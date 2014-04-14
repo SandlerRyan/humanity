@@ -1,8 +1,8 @@
 var Model = require('./Base');
 
-var UserProfile = Model.extend({
+var Turn = Model.extend({
 
-	tableName: 'userprofiles'
+	tableName: 'turns',
 
 });
 

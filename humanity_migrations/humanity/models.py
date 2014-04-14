@@ -4,11 +4,58 @@ from django.db import models
 class WhiteCard(models.Model):
 	content = models.CharField(max_length=511)
 
+	def __unicode__(self):
+		return self.content
+
+	class Meta:
+		db_table = 'whitecards'
+
+
 class BlackCard(models.Model):
 	content = models.CharField(max_length=511)
+	# how many blanks in the sentence to fill in with white cards
+	blanks = models.IntegerField(max_length=1)
 
-class UserProfile(models.Model):
+	def __unicode__(self):
+		return self.content
+
+	class Meta:
+		db_table = 'blackcards'
+
+
+class Player(models.Model):
 	# unique identifier from fb api
 	fb_id = models.CharField(max_length=100)
 	first = models.CharField(max_length=50)
 	last = models.CharField(max_length=50)
+	created = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return self.last
+
+	class Meta:
+		db_table = 'players'
+
+class Game(models.Model):
+	active = models.BooleanField()
+	created = models.DateTimeField(auto_now_add=True)
+	winner = models.ForeignKey(Player, related_name='game_winner')
+	players = models.ManyToManyField(Player, related_name='game_players')
+
+	class Meta:
+		db_table = 'games'
+
+
+class Turn(models.Model):
+	number = models.IntegerField(max_length=2)
+	game_id = models.ForeignKey(Game)
+
+	def __unicode__(self):
+		return self.game_id
+
+	class Meta:
+		db_table = 'turns'
+
+
+
+
