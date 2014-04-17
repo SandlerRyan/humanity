@@ -7,8 +7,8 @@ var app = require('./init/express');
 var http = require('http');
 var path = require('path');
 
+var main = require('./routes/main');
 // Models
-
 
 
 
@@ -16,7 +16,7 @@ var path = require('path');
 /*********
 * ROUTES
 *********/
-
+app.get('/', main.homepage);
 
 
 /*******
