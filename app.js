@@ -29,7 +29,13 @@ server.listen(app.get('port'), function(){
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-app.get('/lobby', main.lobby(io));
+app.get('/lobby', main.lobby);
+
+io.sockets.on('connection', function(socket) {
+	socket.on('user', function(data) {
+		console.log(data);
+	});
+});
 
 // user functionality
 app.get('/login', user.login);

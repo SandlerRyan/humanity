@@ -1,6 +1,11 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
  // change to dynamic port when deploying
-	var socket = io.connect('http://localhost:3000/lobby');
+	var socket = io.connect('http://localhost');
+	socket.on('connect', function() {
+		console.log("client connected");
+		socket.emit('user', 'player 1');
+	});
+
 
 </script>
