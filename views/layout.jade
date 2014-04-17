@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    title Courses
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    meta(name='generator', content='Bootply')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', rel='stylesheet')
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css', type='text/css', rel='stylesheet')
+
+  body
+    block header
+        header.navbar.navbar-bright.navbar-fixed-top(role='banner')
+            .container
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+                a.navbar-brand(href='/') Home
+              nav.collapse.navbar-collapse(role='navigation')
+                ul.nav.navbar-nav
+                  li
+                    a(href='/course') Courses
+                  li
+                    a(href='/faculty') Faculty
+                  li
+                    a(href='/field') Fields
+      #masthead
+        .container
+          .row
+            .col-md-7
+              h1
+                | Course Catalog
+        .container
+          .row
+            .col-md-12
+              .top-spacer
+      .container
+        .row
+          .col-md-12
+            .panel
+              .panel-body
+                block content
+
+    hr
+    #footer.container
+    .row
+      .col.col-sm-12
+
+    footer
+        .container
+          .row
+    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
