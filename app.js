@@ -32,9 +32,18 @@ app.get('/', main.homepage);
 app.get('/lobby', main.lobby);
 
 io.sockets.on('connection', function(socket) {
-	socket.on('user', function(data) {
-		console.log(data);
+	socket.on('new user', function(roomNumber) {
+
+		socket.join(roomNumber)
+		console.log(socket)
+
+        //HOW TO lookup room and broadcast to that room
+        io.sockets.in(roomNumber).emit('players');
+		//SOLUTION: We should save the user in a DB and remove it when disconnected. SocketIO API might change
+        //And we don't want it to break in case it does.
+
 	});
+
 });
 
 // user functionality

@@ -3,9 +3,17 @@
  // change to dynamic port when deploying
 	var socket = io.connect('http://localhost');
 	socket.on('connect', function() {
+
+		var room = "1";
 		console.log("client connected");
-		socket.emit('user', 'player 1');
+		//Figure out which Room the new user should be in
+		socket.emit('new user', room);
+
 	});
+
+	socket.on('players', function() {
+		console.log("new player joined")
+	})
 
 
 </script>
