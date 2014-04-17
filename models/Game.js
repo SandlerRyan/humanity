@@ -5,11 +5,11 @@ var Game = Model.extend({
 	tableName: 'games'
 
 	players: function() {
-		return this.belongsToMany('./Player');
+		return this.belongsToMany(require('./Player'));
 	},
 
 	winner: function() {
-		return this.belongsTo('./Player');
+		return this.belongsTo(require('./Player'));
 	}
 });
 

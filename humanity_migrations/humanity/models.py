@@ -25,7 +25,7 @@ class BlackCard(models.Model):
 
 class Player(models.Model):
 	# unique identifier from fb api
-	fb_id = models.CharField(max_length=100)
+	fb_key = models.CharField(max_length=100)
 	first = models.CharField(max_length=50)
 	last = models.CharField(max_length=50)
 	created = models.DateTimeField(auto_now_add=True)
@@ -45,10 +45,12 @@ class Game(models.Model):
 	class Meta:
 		db_table = 'games'
 
-
 class Turn(models.Model):
 	number = models.IntegerField(max_length=2)
-	game_id = models.ForeignKey(Game)
+	game = models.ForeignKey(Game)
+	black_card = models.ForeignKey(BlackCard)
+	white_card1 = models.ForeignKey(WhiteCard, related_name='whitecard1')
+	white_card2 = models.ForeignKey(WhiteCard, null=True, blank=True, related_name='whitecard2')
 
 	def __unicode__(self):
 		return self.game_id
