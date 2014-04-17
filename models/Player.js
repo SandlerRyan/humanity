@@ -2,7 +2,7 @@ var Model = require('./Base');
 
 var Player = Model.extend({
 
-	tableName: 'players'
+	tableName: 'players',
 
 	games: function() {
 		return this.belongsToMany('./Game');
@@ -14,4 +14,4 @@ var Player = Model.extend({
 
 });
 
-module.exports = Field;
+module.exports = Player;

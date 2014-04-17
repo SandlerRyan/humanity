@@ -6,4 +6,4 @@ var WhiteCard = Model.extend({
 
 });
 
-module.exports = Field;
+module.exports = WhiteCard;

@@ -22,4 +22,4 @@ var Turn = Model.extend({
 
 });
 
-module.exports = Field;
+module.exports = Turn;

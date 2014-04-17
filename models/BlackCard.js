@@ -6,4 +6,4 @@ var BlackCard = Model.extend({
 
 });
 
-module.exports = Field;
+module.exports = BlackCard;

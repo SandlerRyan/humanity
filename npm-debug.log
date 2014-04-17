@@ -1,0 +1,1947 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'update' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose url raw mysql
+5 verbose url resolving [ 'https://registry.npmjs.org/', './mysql' ]
+6 verbose url resolved https://registry.npmjs.org/mysql
+7 info trying registry request attempt 1 at 14:09:07
+8 http GET https://registry.npmjs.org/mysql
+9 verbose url raw socket.io
+10 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io' ]
+11 verbose url resolved https://registry.npmjs.org/socket.io
+12 info trying registry request attempt 1 at 14:09:07
+13 verbose etag "8U4VS7QYNOWBLVGPD6AB3VFWP"
+14 http GET https://registry.npmjs.org/socket.io
+15 verbose url raw express
+16 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+17 verbose url resolved https://registry.npmjs.org/express
+18 info trying registry request attempt 1 at 14:09:07
+19 verbose etag "CG7G45NR24923IGDJN90O91P5"
+20 http GET https://registry.npmjs.org/express
+21 verbose url raw backbone
+22 verbose url resolving [ 'https://registry.npmjs.org/', './backbone' ]
+23 verbose url resolved https://registry.npmjs.org/backbone
+24 info trying registry request attempt 1 at 14:09:07
+25 verbose etag "7PBXLPRZM5KRCUPK3DLZJYPM9"
+26 http GET https://registry.npmjs.org/backbone
+27 verbose url raw ejs
+28 verbose url resolving [ 'https://registry.npmjs.org/', './ejs' ]
+29 verbose url resolved https://registry.npmjs.org/ejs
+30 info trying registry request attempt 1 at 14:09:07
+31 verbose etag "7FIZYKAHZCGG9GRR71VH9ZPU9"
+32 http GET https://registry.npmjs.org/ejs
+33 verbose url raw nodemon
+34 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
+35 verbose url resolved https://registry.npmjs.org/nodemon
+36 info trying registry request attempt 1 at 14:09:07
+37 verbose etag "EX64UV8YELP0SN375290R4NJ7"
+38 http GET https://registry.npmjs.org/nodemon
+39 verbose url raw underscore
+40 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+41 verbose url resolved https://registry.npmjs.org/underscore
+42 info trying registry request attempt 1 at 14:09:07
+43 verbose etag "5U6USDAWIHTYVA3EB9FR4S7QY"
+44 http GET https://registry.npmjs.org/underscore
+45 verbose url raw jquery
+46 verbose url resolving [ 'https://registry.npmjs.org/', './jquery' ]
+47 verbose url resolved https://registry.npmjs.org/jquery
+48 info trying registry request attempt 1 at 14:09:08
+49 verbose etag "8FZ6RE1CZH89EH0J9E86L37TM"
+50 http GET https://registry.npmjs.org/jquery
+51 verbose url raw bookshelf
+52 verbose url resolving [ 'https://registry.npmjs.org/', './bookshelf' ]
+53 verbose url resolved https://registry.npmjs.org/bookshelf
+54 info trying registry request attempt 1 at 14:09:08
+55 verbose etag "C6GA6S7ZJMBEUWPF7A35IGVT9"
+56 http GET https://registry.npmjs.org/bookshelf
+57 verbose url raw knex
+58 verbose url resolving [ 'https://registry.npmjs.org/', './knex' ]
+59 verbose url resolved https://registry.npmjs.org/knex
+60 info trying registry request attempt 1 at 14:09:08
+61 verbose etag "41QWMR1AV4VHZK9L1RMIJD9MD"
+62 http GET https://registry.npmjs.org/knex
+63 http 304 https://registry.npmjs.org/socket.io
+64 silly registry.get cb [ 304,
+64 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+64 silly registry.get     server: 'Apache',
+64 silly registry.get     via: '1.1 varnish',
+64 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+64 silly registry.get     'cache-control': 'max-age=1',
+64 silly registry.get     etag: '"8U4VS7QYNOWBLVGPD6AB3VFWP"',
+64 silly registry.get     'x-served-by': 'cache-at52-ATL',
+64 silly registry.get     'x-cache': 'HIT',
+64 silly registry.get     'x-cache-hits': '1',
+64 silly registry.get     'x-timer': 'S1397758149.134887695,VS0,VE96',
+64 silly registry.get     vary: 'Accept',
+64 silly registry.get     'content-length': '0',
+64 silly registry.get     'keep-alive': 'timeout=10, max=50',
+64 silly registry.get     connection: 'Keep-Alive' } ]
+65 verbose etag socket.io from cache
+66 http 304 https://registry.npmjs.org/backbone
+67 silly registry.get cb [ 304,
+67 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+67 silly registry.get     server: 'Apache',
+67 silly registry.get     via: '1.1 varnish',
+67 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+67 silly registry.get     'cache-control': 'max-age=1',
+67 silly registry.get     etag: '"7PBXLPRZM5KRCUPK3DLZJYPM9"',
+67 silly registry.get     'x-served-by': 'cache-at51-ATL',
+67 silly registry.get     'x-cache': 'MISS',
+67 silly registry.get     'x-cache-hits': '0',
+67 silly registry.get     'x-timer': 'S1397758149.153937578,VS0,VE131',
+67 silly registry.get     vary: 'Accept',
+67 silly registry.get     'content-length': '0',
+67 silly registry.get     'keep-alive': 'timeout=10, max=50',
+67 silly registry.get     connection: 'Keep-Alive' } ]
+68 verbose etag backbone from cache
+69 http 304 https://registry.npmjs.org/nodemon
+70 silly registry.get cb [ 304,
+70 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+70 silly registry.get     server: 'Apache',
+70 silly registry.get     via: '1.1 varnish',
+70 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+70 silly registry.get     'cache-control': 'max-age=1',
+70 silly registry.get     etag: '"EX64UV8YELP0SN375290R4NJ7"',
+70 silly registry.get     'x-served-by': 'cache-at52-ATL',
+70 silly registry.get     'x-cache': 'HIT',
+70 silly registry.get     'x-cache-hits': '1',
+70 silly registry.get     'x-timer': 'S1397758149.271656275,VS0,VE21',
+70 silly registry.get     vary: 'Accept',
+70 silly registry.get     'content-length': '0',
+70 silly registry.get     'keep-alive': 'timeout=10, max=49',
+70 silly registry.get     connection: 'Keep-Alive' } ]
+71 verbose etag nodemon from cache
+72 verbose url raw underscore
+73 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+74 verbose url resolved https://registry.npmjs.org/underscore
+75 info trying registry request attempt 1 at 14:09:08
+76 verbose etag "5U6USDAWIHTYVA3EB9FR4S7QY"
+77 http GET https://registry.npmjs.org/underscore
+78 http 200 https://registry.npmjs.org/ejs
+79 silly registry.get cb [ 200,
+79 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+79 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+79 silly registry.get     etag: '"953AUQIH6ANL13D16XGIF5CVE"',
+79 silly registry.get     'content-type': 'application/json',
+79 silly registry.get     via: '1.1 varnish',
+79 silly registry.get     'cache-control': 'max-age=1',
+79 silly registry.get     'content-length': '24860',
+79 silly registry.get     'accept-ranges': 'bytes',
+79 silly registry.get     age: '180',
+79 silly registry.get     'x-served-by': 'cache-v44-ASH, cache-at52-ATL',
+79 silly registry.get     'x-cache': 'MISS, HIT',
+79 silly registry.get     'x-cache-hits': '0, 1',
+79 silly registry.get     'x-timer': 'S1397616853.886489391,VS0,VS7,VE89,VE141295364',
+79 silly registry.get     vary: 'Accept',
+79 silly registry.get     'keep-alive': 'timeout=10, max=50',
+79 silly registry.get     connection: 'Keep-Alive' } ]
+80 http 304 https://registry.npmjs.org/bookshelf
+81 silly registry.get cb [ 304,
+81 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+81 silly registry.get     server: 'Apache',
+81 silly registry.get     via: '1.1 varnish',
+81 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+81 silly registry.get     'cache-control': 'max-age=1',
+81 silly registry.get     etag: '"C6GA6S7ZJMBEUWPF7A35IGVT9"',
+81 silly registry.get     'x-served-by': 'cache-at52-ATL',
+81 silly registry.get     'x-cache': 'MISS',
+81 silly registry.get     'x-cache-hits': '0',
+81 silly registry.get     'x-timer': 'S1397758149.363288641,VS0,VE21',
+81 silly registry.get     vary: 'Accept',
+81 silly registry.get     'content-length': '0',
+81 silly registry.get     'keep-alive': 'timeout=10, max=49',
+81 silly registry.get     connection: 'Keep-Alive' } ]
+82 verbose etag bookshelf from cache
+83 http 200 https://registry.npmjs.org/underscore
+84 silly registry.get cb [ 200,
+84 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+84 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+84 silly registry.get     etag: '"6M2XLWXTNT0EGK58OCCPNELNS"',
+84 silly registry.get     'content-type': 'application/json',
+84 silly registry.get     via: '1.1 varnish',
+84 silly registry.get     'cache-control': 'max-age=1',
+84 silly registry.get     'content-length': '29836',
+84 silly registry.get     'accept-ranges': 'bytes',
+84 silly registry.get     age: '4',
+84 silly registry.get     'x-served-by': 'cache-v44-ASH, cache-at51-ATL',
+84 silly registry.get     'x-cache': 'HIT, HIT',
+84 silly registry.get     'x-cache-hits': '1, 1',
+84 silly registry.get     'x-timer': 'S1397698189.793532372,VS0,VS8,VE97,VE59959547',
+84 silly registry.get     vary: 'Accept',
+84 silly registry.get     'keep-alive': 'timeout=10, max=49',
+84 silly registry.get     connection: 'Keep-Alive' } ]
+85 http 200 https://registry.npmjs.org/mysql
+86 silly registry.get cb [ 200,
+86 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+86 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+86 silly registry.get     etag: '"77V7YG8PWZPZBV5Q9GKJX1U3G"',
+86 silly registry.get     'content-type': 'application/json',
+86 silly registry.get     via: '1.1 varnish',
+86 silly registry.get     'cache-control': 'max-age=1',
+86 silly registry.get     'content-length': '70492',
+86 silly registry.get     'accept-ranges': 'bytes',
+86 silly registry.get     age: '478',
+86 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-at50-ATL',
+86 silly registry.get     'x-cache': 'HIT, MISS',
+86 silly registry.get     'x-cache-hits': '1, 0',
+86 silly registry.get     'x-timer': 'S1397756140.288720608,VS0,VS10,VE17,VE2008959',
+86 silly registry.get     vary: 'Accept',
+86 silly registry.get     'keep-alive': 'timeout=10, max=50',
+86 silly registry.get     connection: 'Keep-Alive' } ]
+87 verbose url raw update-notifier
+88 verbose url resolving [ 'https://registry.npmjs.org/', './update-notifier' ]
+89 verbose url resolved https://registry.npmjs.org/update-notifier
+90 info trying registry request attempt 1 at 14:09:08
+91 verbose etag "F1OUCYWQ3T32BDRZHR44TBY8X"
+92 http GET https://registry.npmjs.org/update-notifier
+93 verbose url raw minimatch
+94 verbose url resolving [ 'https://registry.npmjs.org/', './minimatch' ]
+95 verbose url resolved https://registry.npmjs.org/minimatch
+96 info trying registry request attempt 1 at 14:09:08
+97 verbose etag "6VCQY7IO4WVPPZT8FLJRXO5VL"
+98 http GET https://registry.npmjs.org/minimatch
+99 http 200 https://registry.npmjs.org/express
+100 silly registry.get cb [ 200,
+100 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+100 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+100 silly registry.get     etag: '"1YKFU8PX43YG2GVSW6EGL38WX"',
+100 silly registry.get     'content-type': 'application/json',
+100 silly registry.get     via: '1.1 varnish',
+100 silly registry.get     'cache-control': 'max-age=1',
+100 silly registry.get     'content-length': '173355',
+100 silly registry.get     'accept-ranges': 'bytes',
+100 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-at52-ATL',
+100 silly registry.get     'x-cache': 'HIT, MISS',
+100 silly registry.get     'x-cache-hits': '2, 0',
+100 silly registry.get     'x-timer': 'S1397695732.592118502,VS0,VS8,VE8,VE62416580',
+100 silly registry.get     vary: 'Accept',
+100 silly registry.get     'keep-alive': 'timeout=10, max=50',
+100 silly registry.get     connection: 'Keep-Alive' } ]
+101 http 304 https://registry.npmjs.org/jquery
+102 silly registry.get cb [ 304,
+102 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+102 silly registry.get     server: 'Apache',
+102 silly registry.get     via: '1.1 varnish',
+102 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+102 silly registry.get     'cache-control': 'max-age=1',
+102 silly registry.get     etag: '"8FZ6RE1CZH89EH0J9E86L37TM"',
+102 silly registry.get     'x-served-by': 'cache-at52-ATL',
+102 silly registry.get     'x-cache': 'HIT',
+102 silly registry.get     'x-cache-hits': '1',
+102 silly registry.get     'x-timer': 'S1397758149.330358982,VS0,VE109',
+102 silly registry.get     vary: 'Accept',
+102 silly registry.get     'content-length': '0',
+102 silly registry.get     'keep-alive': 'timeout=10, max=48',
+102 silly registry.get     connection: 'Keep-Alive' } ]
+103 verbose etag jquery from cache
+104 http 200 https://registry.npmjs.org/underscore
+105 silly registry.get cb [ 200,
+105 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+105 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+105 silly registry.get     etag: '"6M2XLWXTNT0EGK58OCCPNELNS"',
+105 silly registry.get     'content-type': 'application/json',
+105 silly registry.get     via: '1.1 varnish',
+105 silly registry.get     'cache-control': 'max-age=1',
+105 silly registry.get     'content-length': '29836',
+105 silly registry.get     'accept-ranges': 'bytes',
+105 silly registry.get     age: '4',
+105 silly registry.get     'x-served-by': 'cache-v44-ASH, cache-at51-ATL',
+105 silly registry.get     'x-cache': 'HIT, HIT',
+105 silly registry.get     'x-cache-hits': '1, 2',
+105 silly registry.get     'x-timer': 'S1397758149.450336933,VS0,VE0',
+105 silly registry.get     vary: 'Accept',
+105 silly registry.get     'keep-alive': 'timeout=10, max=48',
+105 silly registry.get     connection: 'Keep-Alive' } ]
+106 http 304 https://registry.npmjs.org/minimatch
+107 silly registry.get cb [ 304,
+107 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+107 silly registry.get     server: 'Apache',
+107 silly registry.get     via: '1.1 varnish',
+107 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+107 silly registry.get     'cache-control': 'max-age=1',
+107 silly registry.get     etag: '"6VCQY7IO4WVPPZT8FLJRXO5VL"',
+107 silly registry.get     'x-served-by': 'cache-at52-ATL',
+107 silly registry.get     'x-cache': 'HIT',
+107 silly registry.get     'x-cache-hits': '1',
+107 silly registry.get     'x-timer': 'S1397758149.488867044,VS0,VE16',
+107 silly registry.get     vary: 'Accept',
+107 silly registry.get     'content-length': '0',
+107 silly registry.get     'keep-alive': 'timeout=10, max=49',
+107 silly registry.get     connection: 'Keep-Alive' } ]
+108 verbose etag minimatch from cache
+109 http 304 https://registry.npmjs.org/knex
+110 silly registry.get cb [ 304,
+110 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+110 silly registry.get     server: 'Apache',
+110 silly registry.get     via: '1.1 varnish',
+110 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+110 silly registry.get     'cache-control': 'max-age=1',
+110 silly registry.get     etag: '"41QWMR1AV4VHZK9L1RMIJD9MD"',
+110 silly registry.get     'x-served-by': 'cache-at52-ATL',
+110 silly registry.get     'x-cache': 'MISS',
+110 silly registry.get     'x-cache-hits': '0',
+110 silly registry.get     'x-timer': 'S1397758149.438621998,VS0,VE73',
+110 silly registry.get     vary: 'Accept',
+110 silly registry.get     'content-length': '0',
+110 silly registry.get     'keep-alive': 'timeout=10, max=48',
+110 silly registry.get     connection: 'Keep-Alive' } ]
+111 verbose etag knex from cache
+112 http 304 https://registry.npmjs.org/update-notifier
+113 silly registry.get cb [ 304,
+113 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+113 silly registry.get     server: 'Apache',
+113 silly registry.get     via: '1.1 varnish',
+113 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+113 silly registry.get     'cache-control': 'max-age=1',
+113 silly registry.get     etag: '"F1OUCYWQ3T32BDRZHR44TBY8X"',
+113 silly registry.get     'x-served-by': 'cache-at52-ATL',
+113 silly registry.get     'x-cache': 'HIT',
+113 silly registry.get     'x-cache-hits': '1',
+113 silly registry.get     'x-timer': 'S1397758149.621082783,VS0,VE14',
+113 silly registry.get     vary: 'Accept',
+113 silly registry.get     'content-length': '0',
+113 silly registry.get     'keep-alive': 'timeout=10, max=50',
+113 silly registry.get     connection: 'Keep-Alive' } ]
+114 verbose etag update-notifier from cache
+115 verbose registry.get backbone not expired, no request
+116 verbose url raw knex
+117 verbose url resolving [ 'https://registry.npmjs.org/', './knex' ]
+118 verbose url resolved https://registry.npmjs.org/knex
+119 info trying registry request attempt 1 at 14:09:08
+120 verbose etag "41QWMR1AV4VHZK9L1RMIJD9MD"
+121 http GET https://registry.npmjs.org/knex
+122 verbose url raw inflection
+123 verbose url resolving [ 'https://registry.npmjs.org/', './inflection' ]
+124 verbose url resolved https://registry.npmjs.org/inflection
+125 info trying registry request attempt 1 at 14:09:08
+126 verbose etag "1MT71DCODQOLN4KB4FOC03LB7"
+127 http GET https://registry.npmjs.org/inflection
+128 verbose url raw trigger-then
+129 verbose url resolving [ 'https://registry.npmjs.org/', './trigger-then' ]
+130 verbose url resolved https://registry.npmjs.org/trigger-then
+131 info trying registry request attempt 1 at 14:09:08
+132 verbose etag "AH5SYNUAFJ12IOI6PDIRRR0JS"
+133 http GET https://registry.npmjs.org/trigger-then
+134 verbose url raw lodash
+135 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+136 verbose url resolved https://registry.npmjs.org/lodash
+137 info trying registry request attempt 1 at 14:09:08
+138 verbose etag "4FLHUJN21BJEYHBE3CMAKTF8K"
+139 http GET https://registry.npmjs.org/lodash
+140 verbose url raw bluebird
+141 verbose url resolving [ 'https://registry.npmjs.org/', './bluebird' ]
+142 verbose url resolved https://registry.npmjs.org/bluebird
+143 info trying registry request attempt 1 at 14:09:08
+144 verbose etag "E88I7VMO5EMHGPNGDCYWUJH1L"
+145 http GET https://registry.npmjs.org/bluebird
+146 verbose url raw optimist
+147 verbose url resolving [ 'https://registry.npmjs.org/', './optimist' ]
+148 verbose url resolved https://registry.npmjs.org/optimist
+149 info trying registry request attempt 1 at 14:09:08
+150 verbose etag "S3CQUMQYK1RMBRMFJLWOPW2V"
+151 http GET https://registry.npmjs.org/optimist
+152 verbose url raw bluebird
+153 verbose url resolving [ 'https://registry.npmjs.org/', './bluebird' ]
+154 verbose url resolved https://registry.npmjs.org/bluebird
+155 info trying registry request attempt 1 at 14:09:08
+156 verbose etag "E88I7VMO5EMHGPNGDCYWUJH1L"
+157 http GET https://registry.npmjs.org/bluebird
+158 verbose url raw generic-pool-redux
+159 verbose url resolving [ 'https://registry.npmjs.org/', './generic-pool-redux' ]
+160 verbose url resolved https://registry.npmjs.org/generic-pool-redux
+161 info trying registry request attempt 1 at 14:09:08
+162 verbose etag "2AOWWE9PZTA3LG832KNXGC0SF"
+163 http GET https://registry.npmjs.org/generic-pool-redux
+164 verbose url raw lodash
+165 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+166 verbose url resolved https://registry.npmjs.org/lodash
+167 info trying registry request attempt 1 at 14:09:08
+168 verbose etag "4FLHUJN21BJEYHBE3CMAKTF8K"
+169 http GET https://registry.npmjs.org/lodash
+170 verbose url raw lru-cache
+171 verbose url resolving [ 'https://registry.npmjs.org/', './lru-cache' ]
+172 verbose url resolved https://registry.npmjs.org/lru-cache
+173 info trying registry request attempt 1 at 14:09:08
+174 verbose etag "E03YGIRYGAEAJG2JWR6OPBP9D"
+175 http GET https://registry.npmjs.org/lru-cache
+176 verbose url raw sigmund
+177 verbose url resolving [ 'https://registry.npmjs.org/', './sigmund' ]
+178 verbose url resolved https://registry.npmjs.org/sigmund
+179 info trying registry request attempt 1 at 14:09:08
+180 verbose etag "DCA9PQE5QUPPVOZ1N4XGHB06"
+181 http GET https://registry.npmjs.org/sigmund
+182 verbose url raw mkdirp
+183 verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp' ]
+184 verbose url resolved https://registry.npmjs.org/mkdirp
+185 info trying registry request attempt 1 at 14:09:08
+186 verbose etag "D0OSIRXBBPJV5JUJHAB2DMBB4"
+187 http GET https://registry.npmjs.org/mkdirp
+188 verbose url raw colors
+189 verbose url resolving [ 'https://registry.npmjs.org/', './colors' ]
+190 verbose url resolved https://registry.npmjs.org/colors
+191 info trying registry request attempt 1 at 14:09:08
+192 verbose etag "97E50HBJCNQNTVYBL077EC8AW"
+193 http GET https://registry.npmjs.org/colors
+194 verbose url raw configstore
+195 verbose url resolving [ 'https://registry.npmjs.org/', './configstore' ]
+196 verbose url resolved https://registry.npmjs.org/configstore
+197 info trying registry request attempt 1 at 14:09:08
+198 verbose etag "5T6HD3AG91GIPU5M82CAR8FMD"
+199 http GET https://registry.npmjs.org/configstore
+200 verbose url raw chalk
+201 verbose url resolving [ 'https://registry.npmjs.org/', './chalk' ]
+202 verbose url resolved https://registry.npmjs.org/chalk
+203 info trying registry request attempt 1 at 14:09:08
+204 verbose etag "18WK0NRGUF98FF24X3WZLDHGR"
+205 http GET https://registry.npmjs.org/chalk
+206 verbose url raw request
+207 verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
+208 verbose url resolved https://registry.npmjs.org/request
+209 info trying registry request attempt 1 at 14:09:08
+210 verbose etag "2NCFJQR6M1BKR5TUNO4PT34KZ"
+211 http GET https://registry.npmjs.org/request
+212 verbose url raw semver
+213 verbose url resolving [ 'https://registry.npmjs.org/', './semver' ]
+214 verbose url resolved https://registry.npmjs.org/semver
+215 info trying registry request attempt 1 at 14:09:08
+216 verbose etag "73MJML2GGFR2KWW8VUEMK8P9I"
+217 http GET https://registry.npmjs.org/semver
+218 http 304 https://registry.npmjs.org/knex
+219 silly registry.get cb [ 304,
+219 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+219 silly registry.get     server: 'Apache',
+219 silly registry.get     via: '1.1 varnish',
+219 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+219 silly registry.get     'cache-control': 'max-age=1',
+219 silly registry.get     etag: '"41QWMR1AV4VHZK9L1RMIJD9MD"',
+219 silly registry.get     'x-served-by': 'cache-at52-ATL',
+219 silly registry.get     'x-cache': 'HIT',
+219 silly registry.get     'x-cache-hits': '1',
+219 silly registry.get     'x-timer': 'S1397758149.839557409,VS0,VE0',
+219 silly registry.get     vary: 'Accept',
+219 silly registry.get     'content-length': '0',
+219 silly registry.get     'keep-alive': 'timeout=10, max=50',
+219 silly registry.get     connection: 'Keep-Alive' } ]
+220 verbose etag knex from cache
+221 http 304 https://registry.npmjs.org/inflection
+222 silly registry.get cb [ 304,
+222 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+222 silly registry.get     server: 'Apache',
+222 silly registry.get     via: '1.1 varnish',
+222 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+222 silly registry.get     'cache-control': 'max-age=1',
+222 silly registry.get     etag: '"1MT71DCODQOLN4KB4FOC03LB7"',
+222 silly registry.get     'x-served-by': 'cache-at51-ATL',
+222 silly registry.get     'x-cache': 'MISS',
+222 silly registry.get     'x-cache-hits': '0',
+222 silly registry.get     'x-timer': 'S1397758149.838628531,VS0,VE21',
+222 silly registry.get     vary: 'Accept',
+222 silly registry.get     'content-length': '0',
+222 silly registry.get     'keep-alive': 'timeout=10, max=50',
+222 silly registry.get     connection: 'Keep-Alive' } ]
+223 verbose etag inflection from cache
+224 http 304 https://registry.npmjs.org/trigger-then
+225 silly registry.get cb [ 304,
+225 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+225 silly registry.get     server: 'Apache',
+225 silly registry.get     via: '1.1 varnish',
+225 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+225 silly registry.get     'cache-control': 'max-age=1',
+225 silly registry.get     etag: '"AH5SYNUAFJ12IOI6PDIRRR0JS"',
+225 silly registry.get     'x-served-by': 'cache-at50-ATL',
+225 silly registry.get     'x-cache': 'MISS',
+225 silly registry.get     'x-cache-hits': '0',
+225 silly registry.get     'x-timer': 'S1397758149.856059790,VS0,VE21',
+225 silly registry.get     vary: 'Accept',
+225 silly registry.get     'content-length': '0',
+225 silly registry.get     'keep-alive': 'timeout=10, max=50',
+225 silly registry.get     connection: 'Keep-Alive' } ]
+226 verbose etag trigger-then from cache
+227 http 304 https://registry.npmjs.org/optimist
+228 silly registry.get cb [ 304,
+228 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+228 silly registry.get     server: 'Apache',
+228 silly registry.get     via: '1.1 varnish',
+228 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+228 silly registry.get     'cache-control': 'max-age=1',
+228 silly registry.get     etag: '"S3CQUMQYK1RMBRMFJLWOPW2V"',
+228 silly registry.get     'x-served-by': 'cache-at52-ATL',
+228 silly registry.get     'x-cache': 'HIT',
+228 silly registry.get     'x-cache-hits': '1',
+228 silly registry.get     'x-timer': 'S1397758149.884043694,VS0,VE15',
+228 silly registry.get     vary: 'Accept',
+228 silly registry.get     'content-length': '0',
+228 silly registry.get     'keep-alive': 'timeout=10, max=49',
+228 silly registry.get     connection: 'Keep-Alive' } ]
+229 verbose etag optimist from cache
+230 verbose url raw wordwrap
+231 verbose url resolving [ 'https://registry.npmjs.org/', './wordwrap' ]
+232 verbose url resolved https://registry.npmjs.org/wordwrap
+233 info trying registry request attempt 1 at 14:09:09
+234 verbose etag "2D706CTCC5VWIX4UKCMOLK1NS"
+235 http GET https://registry.npmjs.org/wordwrap
+236 verbose url raw minimist
+237 verbose url resolving [ 'https://registry.npmjs.org/', './minimist' ]
+238 verbose url resolved https://registry.npmjs.org/minimist
+239 info trying registry request attempt 1 at 14:09:09
+240 verbose etag "E1Z1ZPDK1SRU8V2DG033P7I48"
+241 http GET https://registry.npmjs.org/minimist
+242 http 304 https://registry.npmjs.org/generic-pool-redux
+243 silly registry.get cb [ 304,
+243 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+243 silly registry.get     server: 'Apache',
+243 silly registry.get     via: '1.1 varnish',
+243 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+243 silly registry.get     'cache-control': 'max-age=1',
+243 silly registry.get     etag: '"2AOWWE9PZTA3LG832KNXGC0SF"',
+243 silly registry.get     'x-served-by': 'cache-at50-ATL',
+243 silly registry.get     'x-cache': 'MISS',
+243 silly registry.get     'x-cache-hits': '0',
+243 silly registry.get     'x-timer': 'S1397758149.913242102,VS0,VE21',
+243 silly registry.get     vary: 'Accept',
+243 silly registry.get     'content-length': '0',
+243 silly registry.get     'keep-alive': 'timeout=10, max=49',
+243 silly registry.get     connection: 'Keep-Alive' } ]
+244 verbose etag generic-pool-redux from cache
+245 http 304 https://registry.npmjs.org/bluebird
+246 silly registry.get cb [ 304,
+246 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+246 silly registry.get     server: 'Apache',
+246 silly registry.get     via: '1.1 varnish',
+246 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 17:59:09 GMT',
+246 silly registry.get     'cache-control': 'max-age=1',
+246 silly registry.get     etag: '"E88I7VMO5EMHGPNGDCYWUJH1L"',
+246 silly registry.get     'x-served-by': 'cache-at51-ATL',
+246 silly registry.get     'x-cache': 'HIT',
+246 silly registry.get     'x-cache-hits': '2',
+246 silly registry.get     'x-timer': 'S1397758149.897482157,VS0,VE77',
+246 silly registry.get     vary: 'Accept',
+246 silly registry.get     'content-length': '0',
+246 silly registry.get     'keep-alive': 'timeout=10, max=49',
+246 silly registry.get     connection: 'Keep-Alive' } ]
+247 verbose etag bluebird from cache
+248 http 304 https://registry.npmjs.org/bluebird
+249 silly registry.get cb [ 304,
+249 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+249 silly registry.get     server: 'Apache',
+249 silly registry.get     via: '1.1 varnish',
+249 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+249 silly registry.get     'cache-control': 'max-age=1',
+249 silly registry.get     etag: '"E88I7VMO5EMHGPNGDCYWUJH1L"',
+249 silly registry.get     'x-served-by': 'cache-at52-ATL',
+249 silly registry.get     'x-cache': 'HIT',
+249 silly registry.get     'x-cache-hits': '1',
+249 silly registry.get     'x-timer': 'S1397758149.879070282,VS0,VE99',
+249 silly registry.get     vary: 'Accept',
+249 silly registry.get     'content-length': '0',
+249 silly registry.get     'keep-alive': 'timeout=10, max=50',
+249 silly registry.get     connection: 'Keep-Alive' } ]
+250 verbose etag bluebird from cache
+251 http 200 https://registry.npmjs.org/lodash
+252 silly registry.get cb [ 200,
+252 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+252 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+252 silly registry.get     etag: '"8T7X4YV8W0P1SFER9A2HNX51O"',
+252 silly registry.get     'content-type': 'application/json',
+252 silly registry.get     via: '1.1 varnish',
+252 silly registry.get     'cache-control': 'max-age=1',
+252 silly registry.get     'content-length': '70914',
+252 silly registry.get     'accept-ranges': 'bytes',
+252 silly registry.get     age: '13',
+252 silly registry.get     'x-served-by': 'cache-v42-ASH, cache-at52-ATL',
+252 silly registry.get     'x-cache': 'HIT, HIT',
+252 silly registry.get     'x-cache-hits': '2, 2',
+252 silly registry.get     'x-timer': 'S1397758149.872542143,VS0,VE0',
+252 silly registry.get     vary: 'Accept',
+252 silly registry.get     'keep-alive': 'timeout=10, max=50',
+252 silly registry.get     connection: 'Keep-Alive' } ]
+253 http 304 https://registry.npmjs.org/lru-cache
+254 silly registry.get cb [ 304,
+254 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+254 silly registry.get     server: 'Apache',
+254 silly registry.get     via: '1.1 varnish',
+254 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+254 silly registry.get     'cache-control': 'max-age=1',
+254 silly registry.get     etag: '"E03YGIRYGAEAJG2JWR6OPBP9D"',
+254 silly registry.get     'x-served-by': 'cache-at50-ATL',
+254 silly registry.get     'x-cache': 'HIT',
+254 silly registry.get     'x-cache-hits': '1',
+254 silly registry.get     'x-timer': 'S1397758149.970618010,VS0,VE13',
+254 silly registry.get     vary: 'Accept',
+254 silly registry.get     'content-length': '0',
+254 silly registry.get     'keep-alive': 'timeout=10, max=48',
+254 silly registry.get     connection: 'Keep-Alive' } ]
+255 verbose etag lru-cache from cache
+256 http 304 https://registry.npmjs.org/sigmund
+257 silly registry.get cb [ 304,
+257 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+257 silly registry.get     server: 'Apache',
+257 silly registry.get     via: '1.1 varnish',
+257 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+257 silly registry.get     'cache-control': 'max-age=1',
+257 silly registry.get     etag: '"DCA9PQE5QUPPVOZ1N4XGHB06"',
+257 silly registry.get     'x-served-by': 'cache-at51-ATL',
+257 silly registry.get     'x-cache': 'HIT',
+257 silly registry.get     'x-cache-hits': '1',
+257 silly registry.get     'x-timer': 'S1397758150.012853622,VS0,VE13',
+257 silly registry.get     vary: 'Accept',
+257 silly registry.get     'content-length': '0',
+257 silly registry.get     'keep-alive': 'timeout=10, max=48',
+257 silly registry.get     connection: 'Keep-Alive' } ]
+258 verbose etag sigmund from cache
+259 http 304 https://registry.npmjs.org/mkdirp
+260 silly registry.get cb [ 304,
+260 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+260 silly registry.get     server: 'Apache',
+260 silly registry.get     via: '1.1 varnish',
+260 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+260 silly registry.get     'cache-control': 'max-age=1',
+260 silly registry.get     etag: '"D0OSIRXBBPJV5JUJHAB2DMBB4"',
+260 silly registry.get     'x-served-by': 'cache-at52-ATL',
+260 silly registry.get     'x-cache': 'HIT',
+260 silly registry.get     'x-cache-hits': '1',
+260 silly registry.get     'x-timer': 'S1397758150.018004179,VS0,VE14',
+260 silly registry.get     vary: 'Accept',
+260 silly registry.get     'content-length': '0',
+260 silly registry.get     'keep-alive': 'timeout=10, max=49',
+260 silly registry.get     connection: 'Keep-Alive' } ]
+261 verbose etag mkdirp from cache
+262 http 200 https://registry.npmjs.org/lodash
+263 silly registry.get cb [ 200,
+263 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:09 GMT',
+263 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+263 silly registry.get     etag: '"8T7X4YV8W0P1SFER9A2HNX51O"',
+263 silly registry.get     'content-type': 'application/json',
+263 silly registry.get     via: '1.1 varnish',
+263 silly registry.get     'cache-control': 'max-age=1',
+263 silly registry.get     'content-length': '70914',
+263 silly registry.get     'accept-ranges': 'bytes',
+263 silly registry.get     age: '13',
+263 silly registry.get     'x-served-by': 'cache-v42-ASH, cache-at52-ATL',
+263 silly registry.get     'x-cache': 'HIT, HIT',
+263 silly registry.get     'x-cache-hits': '2, 3',
+263 silly registry.get     'x-timer': 'S1397758149.940099239,VS0,VE0',
+263 silly registry.get     vary: 'Accept',
+263 silly registry.get     'keep-alive': 'timeout=10, max=48',
+263 silly registry.get     connection: 'Keep-Alive' } ]
+264 http 304 https://registry.npmjs.org/configstore
+265 silly registry.get cb [ 304,
+265 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+265 silly registry.get     server: 'Apache',
+265 silly registry.get     via: '1.1 varnish',
+265 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:09 GMT',
+265 silly registry.get     'cache-control': 'max-age=1',
+265 silly registry.get     etag: '"5T6HD3AG91GIPU5M82CAR8FMD"',
+265 silly registry.get     'x-served-by': 'cache-at50-ATL',
+265 silly registry.get     'x-cache': 'HIT',
+265 silly registry.get     'x-cache-hits': '2',
+265 silly registry.get     'x-timer': 'S1397758150.052737236,VS0,VE0',
+265 silly registry.get     vary: 'Accept',
+265 silly registry.get     'content-length': '0',
+265 silly registry.get     'keep-alive': 'timeout=10, max=47',
+265 silly registry.get     connection: 'Keep-Alive' } ]
+266 verbose etag configstore from cache
+267 http 304 https://registry.npmjs.org/colors
+268 silly registry.get cb [ 304,
+268 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+268 silly registry.get     server: 'Apache',
+268 silly registry.get     via: '1.1 varnish',
+268 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+268 silly registry.get     'cache-control': 'max-age=1',
+268 silly registry.get     etag: '"97E50HBJCNQNTVYBL077EC8AW"',
+268 silly registry.get     'x-served-by': 'cache-at52-ATL',
+268 silly registry.get     'x-cache': 'HIT',
+268 silly registry.get     'x-cache-hits': '1',
+268 silly registry.get     'x-timer': 'S1397758150.054361343,VS0,VE14',
+268 silly registry.get     vary: 'Accept',
+268 silly registry.get     'content-length': '0',
+268 silly registry.get     'keep-alive': 'timeout=10, max=49',
+268 silly registry.get     connection: 'Keep-Alive' } ]
+269 verbose etag colors from cache
+270 http 304 https://registry.npmjs.org/chalk
+271 silly registry.get cb [ 304,
+271 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+271 silly registry.get     server: 'Apache',
+271 silly registry.get     via: '1.1 varnish',
+271 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+271 silly registry.get     'cache-control': 'max-age=1',
+271 silly registry.get     etag: '"18WK0NRGUF98FF24X3WZLDHGR"',
+271 silly registry.get     'x-served-by': 'cache-at51-ATL',
+271 silly registry.get     'x-cache': 'MISS',
+271 silly registry.get     'x-cache-hits': '0',
+271 silly registry.get     'x-timer': 'S1397758150.072342396,VS0,VE14',
+271 silly registry.get     vary: 'Accept',
+271 silly registry.get     'content-length': '0',
+271 silly registry.get     'keep-alive': 'timeout=10, max=47',
+271 silly registry.get     connection: 'Keep-Alive' } ]
+272 verbose etag chalk from cache
+273 http 304 https://registry.npmjs.org/semver
+274 silly registry.get cb [ 304,
+274 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+274 silly registry.get     server: 'Apache',
+274 silly registry.get     via: '1.1 varnish',
+274 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:07:59 GMT',
+274 silly registry.get     'cache-control': 'max-age=1',
+274 silly registry.get     etag: '"73MJML2GGFR2KWW8VUEMK8P9I"',
+274 silly registry.get     'x-served-by': 'cache-at52-ATL',
+274 silly registry.get     'x-cache': 'HIT',
+274 silly registry.get     'x-cache-hits': '2',
+274 silly registry.get     'x-timer': 'S1397758150.096847296,VS0,VE0',
+274 silly registry.get     vary: 'Accept',
+274 silly registry.get     'content-length': '0',
+274 silly registry.get     'keep-alive': 'timeout=10, max=47',
+274 silly registry.get     connection: 'Keep-Alive' } ]
+275 verbose etag semver from cache
+276 verbose url raw has-color
+277 verbose url resolving [ 'https://registry.npmjs.org/', './has-color' ]
+278 verbose url resolved https://registry.npmjs.org/has-color
+279 info trying registry request attempt 1 at 14:09:09
+280 verbose etag "4FT4BDRSZPHSBQA1Y8XZNI8J6"
+281 http GET https://registry.npmjs.org/has-color
+282 verbose url raw ansi-styles
+283 verbose url resolving [ 'https://registry.npmjs.org/', './ansi-styles' ]
+284 verbose url resolved https://registry.npmjs.org/ansi-styles
+285 info trying registry request attempt 1 at 14:09:09
+286 verbose etag "DSBS86XMM1E1X2WZZ4C24RR70"
+287 http GET https://registry.npmjs.org/ansi-styles
+288 verbose url raw strip-ansi
+289 verbose url resolving [ 'https://registry.npmjs.org/', './strip-ansi' ]
+290 verbose url resolved https://registry.npmjs.org/strip-ansi
+291 info trying registry request attempt 1 at 14:09:09
+292 verbose etag "1U78IAALQ5G9X0OJW346TWLIQ"
+293 http GET https://registry.npmjs.org/strip-ansi
+294 http 304 https://registry.npmjs.org/wordwrap
+295 silly registry.get cb [ 304,
+295 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+295 silly registry.get     server: 'Apache',
+295 silly registry.get     via: '1.1 varnish',
+295 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+295 silly registry.get     'cache-control': 'max-age=1',
+295 silly registry.get     etag: '"2D706CTCC5VWIX4UKCMOLK1NS"',
+295 silly registry.get     'x-served-by': 'cache-at50-ATL',
+295 silly registry.get     'x-cache': 'HIT',
+295 silly registry.get     'x-cache-hits': '1',
+295 silly registry.get     'x-timer': 'S1397758150.098788023,VS0,VE0',
+295 silly registry.get     vary: 'Accept',
+295 silly registry.get     'content-length': '0',
+295 silly registry.get     'keep-alive': 'timeout=10, max=46',
+295 silly registry.get     connection: 'Keep-Alive' } ]
+296 verbose etag wordwrap from cache
+297 http 304 https://registry.npmjs.org/minimist
+298 silly registry.get cb [ 304,
+298 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+298 silly registry.get     server: 'Apache',
+298 silly registry.get     via: '1.1 varnish',
+298 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+298 silly registry.get     'cache-control': 'max-age=1',
+298 silly registry.get     etag: '"E1Z1ZPDK1SRU8V2DG033P7I48"',
+298 silly registry.get     'x-served-by': 'cache-at52-ATL',
+298 silly registry.get     'x-cache': 'HIT',
+298 silly registry.get     'x-cache-hits': '1',
+298 silly registry.get     'x-timer': 'S1397758150.113437414,VS0,VE15',
+298 silly registry.get     vary: 'Accept',
+298 silly registry.get     'content-length': '0',
+298 silly registry.get     'keep-alive': 'timeout=10, max=48',
+298 silly registry.get     connection: 'Keep-Alive' } ]
+299 verbose etag minimist from cache
+300 http 304 https://registry.npmjs.org/strip-ansi
+301 silly registry.get cb [ 304,
+301 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+301 silly registry.get     server: 'Apache',
+301 silly registry.get     via: '1.1 varnish',
+301 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+301 silly registry.get     'cache-control': 'max-age=1',
+301 silly registry.get     etag: '"1U78IAALQ5G9X0OJW346TWLIQ"',
+301 silly registry.get     'x-served-by': 'cache-at50-ATL',
+301 silly registry.get     'x-cache': 'HIT',
+301 silly registry.get     'x-cache-hits': '1',
+301 silly registry.get     'x-timer': 'S1397758150.152805328,VS0,VE15',
+301 silly registry.get     vary: 'Accept',
+301 silly registry.get     'content-length': '0',
+301 silly registry.get     'keep-alive': 'timeout=10, max=45',
+301 silly registry.get     connection: 'Keep-Alive' } ]
+302 verbose etag strip-ansi from cache
+303 http 200 https://registry.npmjs.org/request
+304 silly registry.get cb [ 200,
+304 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+304 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+304 silly registry.get     etag: '"2N8VYYHQHNR909P35J14FE0NO"',
+304 silly registry.get     'content-type': 'application/json',
+304 silly registry.get     via: '1.1 varnish',
+304 silly registry.get     'cache-control': 'max-age=1',
+304 silly registry.get     'content-length': '83332',
+304 silly registry.get     'accept-ranges': 'bytes',
+304 silly registry.get     age: '49',
+304 silly registry.get     'x-served-by': 'cache-v41-ASH, cache-at52-ATL',
+304 silly registry.get     'x-cache': 'MISS, HIT',
+304 silly registry.get     'x-cache-hits': '0, 2',
+304 silly registry.get     'x-timer': 'S1397758150.075580120,VS0,VE0',
+304 silly registry.get     vary: 'Accept',
+304 silly registry.get     'keep-alive': 'timeout=10, max=48',
+304 silly registry.get     connection: 'Keep-Alive' } ]
+305 http 200 https://registry.npmjs.org/has-color
+306 silly registry.get cb [ 200,
+306 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+306 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+306 silly registry.get     etag: '"34PG2RL1U2HLZAT30S5EZBZRT"',
+306 silly registry.get     'content-type': 'application/json',
+306 silly registry.get     via: '1.1 varnish',
+306 silly registry.get     'cache-control': 'max-age=1',
+306 silly registry.get     'content-length': '10383',
+306 silly registry.get     'accept-ranges': 'bytes',
+306 silly registry.get     age: '14',
+306 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-at50-ATL',
+306 silly registry.get     'x-cache': 'HIT, HIT',
+306 silly registry.get     'x-cache-hits': '1, 2',
+306 silly registry.get     'x-timer': 'S1397758150.313570976,VS0,VE0',
+306 silly registry.get     vary: 'Accept',
+306 silly registry.get     'keep-alive': 'timeout=10, max=50',
+306 silly registry.get     connection: 'Keep-Alive' } ]
+307 http 304 https://registry.npmjs.org/ansi-styles
+308 silly registry.get cb [ 304,
+308 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+308 silly registry.get     server: 'Apache',
+308 silly registry.get     via: '1.1 varnish',
+308 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+308 silly registry.get     'cache-control': 'max-age=1',
+308 silly registry.get     etag: '"DSBS86XMM1E1X2WZZ4C24RR70"',
+308 silly registry.get     'x-served-by': 'cache-at50-ATL',
+308 silly registry.get     'x-cache': 'HIT',
+308 silly registry.get     'x-cache-hits': '1',
+308 silly registry.get     'x-timer': 'S1397758150.313963175,VS0,VE14',
+308 silly registry.get     vary: 'Accept',
+308 silly registry.get     'content-length': '0',
+308 silly registry.get     'keep-alive': 'timeout=10, max=50',
+308 silly registry.get     connection: 'Keep-Alive' } ]
+309 verbose etag ansi-styles from cache
+310 info outdated updating [ [ '/Users/ianboothby/humanity',
+310 info outdated     'socket.io',
+310 info outdated     '0.9.16',
+310 info outdated     '1.0.0-pre',
+310 info outdated     '0.9.16',
+310 info outdated     '*' ],
+310 info outdated   [ '/Users/ianboothby/humanity',
+310 info outdated     'mysql',
+310 info outdated     undefined,
+310 info outdated     '2.1.1',
+310 info outdated     '2.1.1',
+310 info outdated     '^2.1.1' ],
+310 info outdated   [ '/Users/ianboothby/humanity',
+310 info outdated     'express',
+310 info outdated     '3.5.1',
+310 info outdated     '3.5.1',
+310 info outdated     '4.0.0',
+310 info outdated     '3.5.1' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+310 info outdated     'backbone',
+310 info outdated     '1.1.0',
+310 info outdated     '1.1.0',
+310 info outdated     '1.1.2',
+310 info outdated     '1.1.0' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+310 info outdated     'inflection',
+310 info outdated     '1.2.7',
+310 info outdated     '1.2.7',
+310 info outdated     '1.3.5',
+310 info outdated     '1.2.x' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+310 info outdated     'configstore',
+310 info outdated     '0.2.3',
+310 info outdated     '0.2.3',
+310 info outdated     '0.3.0',
+310 info outdated     '~0.2.2' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+310 info outdated     'semver',
+310 info outdated     '2.1.0',
+310 info outdated     '2.1.0',
+310 info outdated     '2.2.1',
+310 info outdated     '~2.1.0' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+310 info outdated     'request',
+310 info outdated     '2.27.0',
+310 info outdated     '2.27.0',
+310 info outdated     '2.34.0',
+310 info outdated     '~2.27.0' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk',
+310 info outdated     'strip-ansi',
+310 info outdated     '0.1.1',
+310 info outdated     '0.1.1',
+310 info outdated     '0.2.0',
+310 info outdated     '~0.1.0' ],
+310 info outdated   [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk',
+310 info outdated     'has-color',
+310 info outdated     '0.1.6',
+310 info outdated     '0.1.7',
+310 info outdated     '0.1.7',
+310 info outdated     '~0.1.0' ] ]
+311 verbose install where,what [ '/Users/ianboothby/humanity', [ 'socket.io@1.0.0-pre' ] ]
+312 verbose install where,what [ '/Users/ianboothby/humanity', [ 'mysql@2.1.1' ] ]
+313 verbose install where,what [ '/Users/ianboothby/humanity', [ 'express@3.5.1' ] ]
+314 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+314 verbose install   [ 'backbone@1.1.0' ] ]
+315 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+315 verbose install   [ 'inflection@1.2.7' ] ]
+316 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+316 verbose install   [ 'configstore@0.2.3' ] ]
+317 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+317 verbose install   [ 'semver@2.1.0' ] ]
+318 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier',
+318 verbose install   [ 'request@2.27.0' ] ]
+319 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk',
+319 verbose install   [ 'strip-ansi@0.1.1' ] ]
+320 verbose install where,what [ '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk',
+320 verbose install   [ 'has-color@0.1.7' ] ]
+321 verbose readDependencies using package.json deps
+322 verbose cache add [ 'socket.io@1.0.0-pre', null ]
+323 verbose cache add name=undefined spec="socket.io@1.0.0-pre" args=["socket.io@1.0.0-pre",null]
+324 verbose parsed url { protocol: null,
+324 verbose parsed url   slashes: null,
+324 verbose parsed url   auth: null,
+324 verbose parsed url   host: null,
+324 verbose parsed url   port: null,
+324 verbose parsed url   hostname: null,
+324 verbose parsed url   hash: null,
+324 verbose parsed url   search: null,
+324 verbose parsed url   query: null,
+324 verbose parsed url   pathname: 'socket.io@1.0.0-pre',
+324 verbose parsed url   path: 'socket.io@1.0.0-pre',
+324 verbose parsed url   href: 'socket.io@1.0.0-pre' }
+325 verbose cache add name="socket.io" spec="1.0.0-pre" args=["socket.io","1.0.0-pre"]
+326 verbose parsed url { protocol: null,
+326 verbose parsed url   slashes: null,
+326 verbose parsed url   auth: null,
+326 verbose parsed url   host: null,
+326 verbose parsed url   port: null,
+326 verbose parsed url   hostname: null,
+326 verbose parsed url   hash: null,
+326 verbose parsed url   search: null,
+326 verbose parsed url   query: null,
+326 verbose parsed url   pathname: '1.0.0-pre',
+326 verbose parsed url   path: '1.0.0-pre',
+326 verbose parsed url   href: '1.0.0-pre' }
+327 verbose addNamed [ 'socket.io', '1.0.0-pre' ]
+328 verbose addNamed [ '1.0.0-pre', '1.0.0-pre' ]
+329 verbose readDependencies using package.json deps
+330 verbose cache add [ 'mysql@2.1.1', null ]
+331 verbose cache add name=undefined spec="mysql@2.1.1" args=["mysql@2.1.1",null]
+332 verbose parsed url { protocol: null,
+332 verbose parsed url   slashes: null,
+332 verbose parsed url   auth: null,
+332 verbose parsed url   host: null,
+332 verbose parsed url   port: null,
+332 verbose parsed url   hostname: null,
+332 verbose parsed url   hash: null,
+332 verbose parsed url   search: null,
+332 verbose parsed url   query: null,
+332 verbose parsed url   pathname: 'mysql@2.1.1',
+332 verbose parsed url   path: 'mysql@2.1.1',
+332 verbose parsed url   href: 'mysql@2.1.1' }
+333 verbose cache add name="mysql" spec="2.1.1" args=["mysql","2.1.1"]
+334 verbose parsed url { protocol: null,
+334 verbose parsed url   slashes: null,
+334 verbose parsed url   auth: null,
+334 verbose parsed url   host: null,
+334 verbose parsed url   port: null,
+334 verbose parsed url   hostname: null,
+334 verbose parsed url   hash: null,
+334 verbose parsed url   search: null,
+334 verbose parsed url   query: null,
+334 verbose parsed url   pathname: '2.1.1',
+334 verbose parsed url   path: '2.1.1',
+334 verbose parsed url   href: '2.1.1' }
+335 verbose addNamed [ 'mysql', '2.1.1' ]
+336 verbose addNamed [ '2.1.1', '2.1.1' ]
+337 verbose readDependencies using package.json deps
+338 verbose cache add [ 'express@3.5.1', null ]
+339 verbose cache add name=undefined spec="express@3.5.1" args=["express@3.5.1",null]
+340 verbose parsed url { protocol: null,
+340 verbose parsed url   slashes: null,
+340 verbose parsed url   auth: null,
+340 verbose parsed url   host: null,
+340 verbose parsed url   port: null,
+340 verbose parsed url   hostname: null,
+340 verbose parsed url   hash: null,
+340 verbose parsed url   search: null,
+340 verbose parsed url   query: null,
+340 verbose parsed url   pathname: 'express@3.5.1',
+340 verbose parsed url   path: 'express@3.5.1',
+340 verbose parsed url   href: 'express@3.5.1' }
+341 verbose cache add name="express" spec="3.5.1" args=["express","3.5.1"]
+342 verbose parsed url { protocol: null,
+342 verbose parsed url   slashes: null,
+342 verbose parsed url   auth: null,
+342 verbose parsed url   host: null,
+342 verbose parsed url   port: null,
+342 verbose parsed url   hostname: null,
+342 verbose parsed url   hash: null,
+342 verbose parsed url   search: null,
+342 verbose parsed url   query: null,
+342 verbose parsed url   pathname: '3.5.1',
+342 verbose parsed url   path: '3.5.1',
+342 verbose parsed url   href: '3.5.1' }
+343 verbose addNamed [ 'express', '3.5.1' ]
+344 verbose addNamed [ '3.5.1', '3.5.1' ]
+345 verbose readDependencies using package.json deps
+346 verbose cache add [ 'backbone@1.1.0', null ]
+347 verbose cache add name=undefined spec="backbone@1.1.0" args=["backbone@1.1.0",null]
+348 verbose parsed url { protocol: null,
+348 verbose parsed url   slashes: null,
+348 verbose parsed url   auth: null,
+348 verbose parsed url   host: null,
+348 verbose parsed url   port: null,
+348 verbose parsed url   hostname: null,
+348 verbose parsed url   hash: null,
+348 verbose parsed url   search: null,
+348 verbose parsed url   query: null,
+348 verbose parsed url   pathname: 'backbone@1.1.0',
+348 verbose parsed url   path: 'backbone@1.1.0',
+348 verbose parsed url   href: 'backbone@1.1.0' }
+349 verbose cache add name="backbone" spec="1.1.0" args=["backbone","1.1.0"]
+350 verbose parsed url { protocol: null,
+350 verbose parsed url   slashes: null,
+350 verbose parsed url   auth: null,
+350 verbose parsed url   host: null,
+350 verbose parsed url   port: null,
+350 verbose parsed url   hostname: null,
+350 verbose parsed url   hash: null,
+350 verbose parsed url   search: null,
+350 verbose parsed url   query: null,
+350 verbose parsed url   pathname: '1.1.0',
+350 verbose parsed url   path: '1.1.0',
+350 verbose parsed url   href: '1.1.0' }
+351 verbose addNamed [ 'backbone', '1.1.0' ]
+352 verbose addNamed [ '1.1.0', '1.1.0' ]
+353 verbose readDependencies using package.json deps
+354 verbose cache add [ 'inflection@1.2.7', null ]
+355 verbose cache add name=undefined spec="inflection@1.2.7" args=["inflection@1.2.7",null]
+356 verbose parsed url { protocol: null,
+356 verbose parsed url   slashes: null,
+356 verbose parsed url   auth: null,
+356 verbose parsed url   host: null,
+356 verbose parsed url   port: null,
+356 verbose parsed url   hostname: null,
+356 verbose parsed url   hash: null,
+356 verbose parsed url   search: null,
+356 verbose parsed url   query: null,
+356 verbose parsed url   pathname: 'inflection@1.2.7',
+356 verbose parsed url   path: 'inflection@1.2.7',
+356 verbose parsed url   href: 'inflection@1.2.7' }
+357 verbose cache add name="inflection" spec="1.2.7" args=["inflection","1.2.7"]
+358 verbose parsed url { protocol: null,
+358 verbose parsed url   slashes: null,
+358 verbose parsed url   auth: null,
+358 verbose parsed url   host: null,
+358 verbose parsed url   port: null,
+358 verbose parsed url   hostname: null,
+358 verbose parsed url   hash: null,
+358 verbose parsed url   search: null,
+358 verbose parsed url   query: null,
+358 verbose parsed url   pathname: '1.2.7',
+358 verbose parsed url   path: '1.2.7',
+358 verbose parsed url   href: '1.2.7' }
+359 verbose addNamed [ 'inflection', '1.2.7' ]
+360 verbose addNamed [ '1.2.7', '1.2.7' ]
+361 verbose readDependencies using package.json deps
+362 verbose cache add [ 'configstore@0.2.3', null ]
+363 verbose cache add name=undefined spec="configstore@0.2.3" args=["configstore@0.2.3",null]
+364 verbose parsed url { protocol: null,
+364 verbose parsed url   slashes: null,
+364 verbose parsed url   auth: null,
+364 verbose parsed url   host: null,
+364 verbose parsed url   port: null,
+364 verbose parsed url   hostname: null,
+364 verbose parsed url   hash: null,
+364 verbose parsed url   search: null,
+364 verbose parsed url   query: null,
+364 verbose parsed url   pathname: 'configstore@0.2.3',
+364 verbose parsed url   path: 'configstore@0.2.3',
+364 verbose parsed url   href: 'configstore@0.2.3' }
+365 verbose cache add name="configstore" spec="0.2.3" args=["configstore","0.2.3"]
+366 verbose parsed url { protocol: null,
+366 verbose parsed url   slashes: null,
+366 verbose parsed url   auth: null,
+366 verbose parsed url   host: null,
+366 verbose parsed url   port: null,
+366 verbose parsed url   hostname: null,
+366 verbose parsed url   hash: null,
+366 verbose parsed url   search: null,
+366 verbose parsed url   query: null,
+366 verbose parsed url   pathname: '0.2.3',
+366 verbose parsed url   path: '0.2.3',
+366 verbose parsed url   href: '0.2.3' }
+367 verbose addNamed [ 'configstore', '0.2.3' ]
+368 verbose addNamed [ '0.2.3', '0.2.3' ]
+369 verbose readDependencies using package.json deps
+370 verbose cache add [ 'semver@2.1.0', null ]
+371 verbose cache add name=undefined spec="semver@2.1.0" args=["semver@2.1.0",null]
+372 verbose parsed url { protocol: null,
+372 verbose parsed url   slashes: null,
+372 verbose parsed url   auth: null,
+372 verbose parsed url   host: null,
+372 verbose parsed url   port: null,
+372 verbose parsed url   hostname: null,
+372 verbose parsed url   hash: null,
+372 verbose parsed url   search: null,
+372 verbose parsed url   query: null,
+372 verbose parsed url   pathname: 'semver@2.1.0',
+372 verbose parsed url   path: 'semver@2.1.0',
+372 verbose parsed url   href: 'semver@2.1.0' }
+373 verbose cache add name="semver" spec="2.1.0" args=["semver","2.1.0"]
+374 verbose parsed url { protocol: null,
+374 verbose parsed url   slashes: null,
+374 verbose parsed url   auth: null,
+374 verbose parsed url   host: null,
+374 verbose parsed url   port: null,
+374 verbose parsed url   hostname: null,
+374 verbose parsed url   hash: null,
+374 verbose parsed url   search: null,
+374 verbose parsed url   query: null,
+374 verbose parsed url   pathname: '2.1.0',
+374 verbose parsed url   path: '2.1.0',
+374 verbose parsed url   href: '2.1.0' }
+375 verbose addNamed [ 'semver', '2.1.0' ]
+376 verbose addNamed [ '2.1.0', '2.1.0' ]
+377 verbose readDependencies using package.json deps
+378 verbose cache add [ 'request@2.27.0', null ]
+379 verbose cache add name=undefined spec="request@2.27.0" args=["request@2.27.0",null]
+380 verbose parsed url { protocol: null,
+380 verbose parsed url   slashes: null,
+380 verbose parsed url   auth: null,
+380 verbose parsed url   host: null,
+380 verbose parsed url   port: null,
+380 verbose parsed url   hostname: null,
+380 verbose parsed url   hash: null,
+380 verbose parsed url   search: null,
+380 verbose parsed url   query: null,
+380 verbose parsed url   pathname: 'request@2.27.0',
+380 verbose parsed url   path: 'request@2.27.0',
+380 verbose parsed url   href: 'request@2.27.0' }
+381 verbose cache add name="request" spec="2.27.0" args=["request","2.27.0"]
+382 verbose parsed url { protocol: null,
+382 verbose parsed url   slashes: null,
+382 verbose parsed url   auth: null,
+382 verbose parsed url   host: null,
+382 verbose parsed url   port: null,
+382 verbose parsed url   hostname: null,
+382 verbose parsed url   hash: null,
+382 verbose parsed url   search: null,
+382 verbose parsed url   query: null,
+382 verbose parsed url   pathname: '2.27.0',
+382 verbose parsed url   path: '2.27.0',
+382 verbose parsed url   href: '2.27.0' }
+383 verbose addNamed [ 'request', '2.27.0' ]
+384 verbose addNamed [ '2.27.0', '2.27.0' ]
+385 verbose readDependencies using package.json deps
+386 verbose cache add [ 'strip-ansi@0.1.1', null ]
+387 verbose cache add name=undefined spec="strip-ansi@0.1.1" args=["strip-ansi@0.1.1",null]
+388 verbose parsed url { protocol: null,
+388 verbose parsed url   slashes: null,
+388 verbose parsed url   auth: null,
+388 verbose parsed url   host: null,
+388 verbose parsed url   port: null,
+388 verbose parsed url   hostname: null,
+388 verbose parsed url   hash: null,
+388 verbose parsed url   search: null,
+388 verbose parsed url   query: null,
+388 verbose parsed url   pathname: 'strip-ansi@0.1.1',
+388 verbose parsed url   path: 'strip-ansi@0.1.1',
+388 verbose parsed url   href: 'strip-ansi@0.1.1' }
+389 verbose cache add name="strip-ansi" spec="0.1.1" args=["strip-ansi","0.1.1"]
+390 verbose parsed url { protocol: null,
+390 verbose parsed url   slashes: null,
+390 verbose parsed url   auth: null,
+390 verbose parsed url   host: null,
+390 verbose parsed url   port: null,
+390 verbose parsed url   hostname: null,
+390 verbose parsed url   hash: null,
+390 verbose parsed url   search: null,
+390 verbose parsed url   query: null,
+390 verbose parsed url   pathname: '0.1.1',
+390 verbose parsed url   path: '0.1.1',
+390 verbose parsed url   href: '0.1.1' }
+391 verbose addNamed [ 'strip-ansi', '0.1.1' ]
+392 verbose addNamed [ '0.1.1', '0.1.1' ]
+393 verbose readDependencies using package.json deps
+394 verbose cache add [ 'has-color@0.1.7', null ]
+395 verbose cache add name=undefined spec="has-color@0.1.7" args=["has-color@0.1.7",null]
+396 verbose parsed url { protocol: null,
+396 verbose parsed url   slashes: null,
+396 verbose parsed url   auth: null,
+396 verbose parsed url   host: null,
+396 verbose parsed url   port: null,
+396 verbose parsed url   hostname: null,
+396 verbose parsed url   hash: null,
+396 verbose parsed url   search: null,
+396 verbose parsed url   query: null,
+396 verbose parsed url   pathname: 'has-color@0.1.7',
+396 verbose parsed url   path: 'has-color@0.1.7',
+396 verbose parsed url   href: 'has-color@0.1.7' }
+397 verbose cache add name="has-color" spec="0.1.7" args=["has-color","0.1.7"]
+398 verbose parsed url { protocol: null,
+398 verbose parsed url   slashes: null,
+398 verbose parsed url   auth: null,
+398 verbose parsed url   host: null,
+398 verbose parsed url   port: null,
+398 verbose parsed url   hostname: null,
+398 verbose parsed url   hash: null,
+398 verbose parsed url   search: null,
+398 verbose parsed url   query: null,
+398 verbose parsed url   pathname: '0.1.7',
+398 verbose parsed url   path: '0.1.7',
+398 verbose parsed url   href: '0.1.7' }
+399 verbose addNamed [ 'has-color', '0.1.7' ]
+400 verbose addNamed [ '0.1.7', '0.1.7' ]
+401 silly lockFile 52f0b164-socket-io-1-0-0-pre socket.io@1.0.0-pre
+402 verbose lock socket.io@1.0.0-pre /Users/ianboothby/.npm/52f0b164-socket-io-1-0-0-pre.lock
+403 silly lockFile df0a7fd5-mysql-2-1-1 mysql@2.1.1
+404 verbose lock mysql@2.1.1 /Users/ianboothby/.npm/df0a7fd5-mysql-2-1-1.lock
+405 silly lockFile d983726f-express-3-5-1 express@3.5.1
+406 verbose lock express@3.5.1 /Users/ianboothby/.npm/d983726f-express-3-5-1.lock
+407 silly lockFile 220eea11-backbone-1-1-0 backbone@1.1.0
+408 verbose lock backbone@1.1.0 /Users/ianboothby/.npm/220eea11-backbone-1-1-0.lock
+409 silly lockFile a42ca776-inflection-1-2-7 inflection@1.2.7
+410 verbose lock inflection@1.2.7 /Users/ianboothby/.npm/a42ca776-inflection-1-2-7.lock
+411 silly lockFile 55113639-configstore-0-2-3 configstore@0.2.3
+412 verbose lock configstore@0.2.3 /Users/ianboothby/.npm/55113639-configstore-0-2-3.lock
+413 silly lockFile 386d7f9d-semver-2-1-0 semver@2.1.0
+414 verbose lock semver@2.1.0 /Users/ianboothby/.npm/386d7f9d-semver-2-1-0.lock
+415 silly lockFile 7b48fbe0-request-2-27-0 request@2.27.0
+416 verbose lock request@2.27.0 /Users/ianboothby/.npm/7b48fbe0-request-2-27-0.lock
+417 silly lockFile ed6fc536-strip-ansi-0-1-1 strip-ansi@0.1.1
+418 verbose lock strip-ansi@0.1.1 /Users/ianboothby/.npm/ed6fc536-strip-ansi-0-1-1.lock
+419 silly lockFile 397aab71-has-color-0-1-7 has-color@0.1.7
+420 verbose lock has-color@0.1.7 /Users/ianboothby/.npm/397aab71-has-color-0-1-7.lock
+421 verbose url raw socket.io/1.0.0-pre
+422 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io/1.0.0-pre' ]
+423 verbose url resolved https://registry.npmjs.org/socket.io/1.0.0-pre
+424 info trying registry request attempt 1 at 14:09:09
+425 http GET https://registry.npmjs.org/socket.io/1.0.0-pre
+426 verbose url raw mysql/2.1.1
+427 verbose url resolving [ 'https://registry.npmjs.org/', './mysql/2.1.1' ]
+428 verbose url resolved https://registry.npmjs.org/mysql/2.1.1
+429 info trying registry request attempt 1 at 14:09:09
+430 http GET https://registry.npmjs.org/mysql/2.1.1
+431 verbose url raw has-color/0.1.7
+432 verbose url resolving [ 'https://registry.npmjs.org/', './has-color/0.1.7' ]
+433 verbose url resolved https://registry.npmjs.org/has-color/0.1.7
+434 info trying registry request attempt 1 at 14:09:09
+435 http GET https://registry.npmjs.org/has-color/0.1.7
+436 verbose url raw backbone/1.1.0
+437 verbose url resolving [ 'https://registry.npmjs.org/', './backbone/1.1.0' ]
+438 verbose url resolved https://registry.npmjs.org/backbone/1.1.0
+439 info trying registry request attempt 1 at 14:09:09
+440 verbose etag "78BKA61JKW1D2O72XB74ZAJW0"
+441 http GET https://registry.npmjs.org/backbone/1.1.0
+442 verbose url raw express/3.5.1
+443 verbose url resolving [ 'https://registry.npmjs.org/', './express/3.5.1' ]
+444 verbose url resolved https://registry.npmjs.org/express/3.5.1
+445 info trying registry request attempt 1 at 14:09:09
+446 verbose etag "CG7G45NR24923IGDJN90O91P5"
+447 http GET https://registry.npmjs.org/express/3.5.1
+448 verbose url raw semver/2.1.0
+449 verbose url resolving [ 'https://registry.npmjs.org/', './semver/2.1.0' ]
+450 verbose url resolved https://registry.npmjs.org/semver/2.1.0
+451 info trying registry request attempt 1 at 14:09:09
+452 verbose etag "7SEDS5RUUC6VUESGN627DQQBN"
+453 http GET https://registry.npmjs.org/semver/2.1.0
+454 verbose url raw inflection/1.2.7
+455 verbose url resolving [ 'https://registry.npmjs.org/', './inflection/1.2.7' ]
+456 verbose url resolved https://registry.npmjs.org/inflection/1.2.7
+457 info trying registry request attempt 1 at 14:09:09
+458 verbose etag "1MT71DCODQOLN4KB4FOC03LB7"
+459 http GET https://registry.npmjs.org/inflection/1.2.7
+460 verbose url raw configstore/0.2.3
+461 verbose url resolving [ 'https://registry.npmjs.org/', './configstore/0.2.3' ]
+462 verbose url resolved https://registry.npmjs.org/configstore/0.2.3
+463 info trying registry request attempt 1 at 14:09:09
+464 verbose etag "5T6HD3AG91GIPU5M82CAR8FMD"
+465 http GET https://registry.npmjs.org/configstore/0.2.3
+466 verbose url raw request/2.27.0
+467 verbose url resolving [ 'https://registry.npmjs.org/', './request/2.27.0' ]
+468 verbose url resolved https://registry.npmjs.org/request/2.27.0
+469 info trying registry request attempt 1 at 14:09:09
+470 verbose etag "D9JATBOSGADEGCXJ6X41N6XFP"
+471 http GET https://registry.npmjs.org/request/2.27.0
+472 verbose url raw strip-ansi/0.1.1
+473 verbose url resolving [ 'https://registry.npmjs.org/', './strip-ansi/0.1.1' ]
+474 verbose url resolved https://registry.npmjs.org/strip-ansi/0.1.1
+475 info trying registry request attempt 1 at 14:09:09
+476 verbose etag "5Z0BQ45P2IHAWEN45WLYVTVYN"
+477 http GET https://registry.npmjs.org/strip-ansi/0.1.1
+478 http 200 https://registry.npmjs.org/mysql/2.1.1
+479 silly registry.get cb [ 200,
+479 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+479 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B)',
+479 silly registry.get     etag: '"77V7YG8PWZPZBV5Q9GKJX1U3G"',
+479 silly registry.get     'content-type': 'application/json',
+479 silly registry.get     via: '1.1 varnish',
+479 silly registry.get     'cache-control': 'max-age=1',
+479 silly registry.get     'content-length': '1457',
+479 silly registry.get     'accept-ranges': 'bytes',
+479 silly registry.get     age: '263',
+479 silly registry.get     'x-served-by': 'cache-v43-ASH, cache-at51-ATL',
+479 silly registry.get     'x-cache': 'HIT, MISS',
+479 silly registry.get     'x-cache-hits': '1, 0',
+479 silly registry.get     'x-timer': 'S1397758150.541708708,VS0,VS5,VE6,VE14',
+479 silly registry.get     vary: 'Accept',
+479 silly registry.get     'keep-alive': 'timeout=10, max=50',
+479 silly registry.get     connection: 'Keep-Alive' } ]
+480 silly lockFile 4a8a7076--npmjs-org-mysql-mysql-2-1-1-tgz https://registry.npmjs.org/mysql/-/mysql-2.1.1.tgz
+481 verbose lock https://registry.npmjs.org/mysql/-/mysql-2.1.1.tgz /Users/ianboothby/.npm/4a8a7076--npmjs-org-mysql-mysql-2-1-1-tgz.lock
+482 verbose addRemoteTarball [ 'https://registry.npmjs.org/mysql/-/mysql-2.1.1.tgz',
+482 verbose addRemoteTarball   '3ec79b945dee2830fc995515e551a54dceac8383' ]
+483 info retry fetch attempt 1 at 14:09:09
+484 verbose fetch to= /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/tmp.tgz
+485 http GET https://registry.npmjs.org/mysql/-/mysql-2.1.1.tgz
+486 http 304 https://registry.npmjs.org/backbone/1.1.0
+487 silly registry.get cb [ 304,
+487 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+487 silly registry.get     server: 'Apache',
+487 silly registry.get     via: '1.1 varnish',
+487 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+487 silly registry.get     'cache-control': 'max-age=1',
+487 silly registry.get     etag: '"78BKA61JKW1D2O72XB74ZAJW0"',
+487 silly registry.get     'x-served-by': 'cache-at52-ATL',
+487 silly registry.get     'x-cache': 'MISS',
+487 silly registry.get     'x-cache-hits': '0',
+487 silly registry.get     'x-timer': 'S1397758150.555163145,VS0,VE14',
+487 silly registry.get     vary: 'Accept',
+487 silly registry.get     'content-length': '0',
+487 silly registry.get     'keep-alive': 'timeout=10, max=50',
+487 silly registry.get     connection: 'Keep-Alive' } ]
+488 verbose etag backbone/1.1.0 from cache
+489 http 200 https://registry.npmjs.org/socket.io/1.0.0-pre
+490 silly registry.get cb [ 200,
+490 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+490 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+490 silly registry.get     etag: '"8U4VS7QYNOWBLVGPD6AB3VFWP"',
+490 silly registry.get     'content-type': 'application/json',
+490 silly registry.get     via: '1.1 varnish',
+490 silly registry.get     'cache-control': 'max-age=1',
+490 silly registry.get     'content-length': '1037',
+490 silly registry.get     'accept-ranges': 'bytes',
+490 silly registry.get     age: '1341',
+490 silly registry.get     'x-served-by': 'cache-v43-ASH, cache-at50-ATL',
+490 silly registry.get     'x-cache': 'MISS, MISS',
+490 silly registry.get     'x-cache-hits': '0, 0',
+490 silly registry.get     'x-timer': 'S1397756809.086250067,VS0,VS7,VE14,VE1341487',
+490 silly registry.get     vary: 'Accept',
+490 silly registry.get     'keep-alive': 'timeout=10, max=50',
+490 silly registry.get     connection: 'Keep-Alive' } ]
+491 silly lockFile 4c068b5b-ocket-io-socket-io-1-0-0-pre-tgz https://registry.npmjs.org/socket.io/-/socket.io-1.0.0-pre.tgz
+492 verbose lock https://registry.npmjs.org/socket.io/-/socket.io-1.0.0-pre.tgz /Users/ianboothby/.npm/4c068b5b-ocket-io-socket-io-1-0-0-pre-tgz.lock
+493 verbose addRemoteTarball [ 'https://registry.npmjs.org/socket.io/-/socket.io-1.0.0-pre.tgz',
+493 verbose addRemoteTarball   '58350abfb41baa95b05fbe20189e683ca90e60ff' ]
+494 info retry fetch attempt 1 at 14:09:09
+495 verbose fetch to= /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/tmp.tgz
+496 http GET https://registry.npmjs.org/socket.io/-/socket.io-1.0.0-pre.tgz
+497 http 200 https://registry.npmjs.org/express/3.5.1
+498 silly registry.get cb [ 200,
+498 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+498 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+498 silly registry.get     etag: '"1YKFU8PX43YG2GVSW6EGL38WX"',
+498 silly registry.get     'content-type': 'application/json',
+498 silly registry.get     via: '1.1 varnish',
+498 silly registry.get     'cache-control': 'max-age=1',
+498 silly registry.get     'content-length': '1856',
+498 silly registry.get     'accept-ranges': 'bytes',
+498 silly registry.get     age: '281',
+498 silly registry.get     'x-served-by': 'cache-v43-ASH, cache-at52-ATL',
+498 silly registry.get     'x-cache': 'HIT, MISS',
+498 silly registry.get     'x-cache-hits': '2, 0',
+498 silly registry.get     'x-timer': 'S1397758150.567026854,VS0,VS3,VE3,VE13',
+498 silly registry.get     vary: 'Accept',
+498 silly registry.get     'keep-alive': 'timeout=10, max=50',
+498 silly registry.get     connection: 'Keep-Alive' } ]
+499 silly lockFile bba2d745-js-org-express-express-3-5-1-tgz https://registry.npmjs.org/express/-/express-3.5.1.tgz
+500 verbose lock https://registry.npmjs.org/express/-/express-3.5.1.tgz /Users/ianboothby/.npm/bba2d745-js-org-express-express-3-5-1-tgz.lock
+501 http 304 https://registry.npmjs.org/semver/2.1.0
+502 silly registry.get cb [ 304,
+502 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+502 silly registry.get     server: 'Apache',
+502 silly registry.get     via: '1.1 varnish',
+502 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+502 silly registry.get     'cache-control': 'max-age=1',
+502 silly registry.get     etag: '"7SEDS5RUUC6VUESGN627DQQBN"',
+502 silly registry.get     'x-served-by': 'cache-at51-ATL',
+502 silly registry.get     'x-cache': 'MISS',
+502 silly registry.get     'x-cache-hits': '0',
+502 silly registry.get     'x-timer': 'S1397758150.596655846,VS0,VE14',
+502 silly registry.get     vary: 'Accept',
+502 silly registry.get     'content-length': '0',
+502 silly registry.get     'keep-alive': 'timeout=10, max=49',
+502 silly registry.get     connection: 'Keep-Alive' } ]
+503 verbose etag semver/2.1.0 from cache
+504 silly lockFile 220eea11-backbone-1-1-0 backbone@1.1.0
+505 silly lockFile 220eea11-backbone-1-1-0 backbone@1.1.0
+506 verbose addRemoteTarball [ 'https://registry.npmjs.org/express/-/express-3.5.1.tgz',
+506 verbose addRemoteTarball   '4b333e1117faca336a538f4c724140b9ce1a87e7' ]
+507 silly resolved [ { name: 'backbone',
+507 silly resolved     description: 'Give your JS App some Backbone with Models, Views, Collections, and Events.',
+507 silly resolved     url: 'http://backbonejs.org',
+507 silly resolved     keywords:
+507 silly resolved      [ 'model',
+507 silly resolved        'view',
+507 silly resolved        'controller',
+507 silly resolved        'router',
+507 silly resolved        'server',
+507 silly resolved        'client',
+507 silly resolved        'browser' ],
+507 silly resolved     author: { name: 'Jeremy Ashkenas', email: 'jeremy@documentcloud.org' },
+507 silly resolved     dependencies: { underscore: '>=1.4.3' },
+507 silly resolved     devDependencies:
+507 silly resolved      { phantomjs: '1.9.0-1',
+507 silly resolved        docco: '0.6.1',
+507 silly resolved        'coffee-script': '1.6.1' },
+507 silly resolved     scripts:
+507 silly resolved      { test: 'phantomjs test/vendor/runner.js test/index.html?noglobals=true && coffee test/model.coffee',
+507 silly resolved        build: 'uglifyjs backbone.js --mangle --source-map backbone-min.map -o backbone-min.js',
+507 silly resolved        doc: 'docco backbone.js && docco examples/todos/todos.js examples/backbone.localstorage.js',
+507 silly resolved        lint: 'jsl -nofilelisting -nologo -conf docs/jsl.conf -process backbone.js' },
+507 silly resolved     main: 'backbone.js',
+507 silly resolved     version: '1.1.0',
+507 silly resolved     license: 'MIT',
+507 silly resolved     repository:
+507 silly resolved      { type: 'git',
+507 silly resolved        url: 'https://github.com/jashkenas/backbone.git' },
+507 silly resolved     readme: '     ____                     __      __\n    /\\  _`\\                  /\\ \\    /\\ \\                                   __\n    \\ \\ \\ \\ \\     __      ___\\ \\ \\/\'\\\\ \\ \\____    ___     ___      __      /\\_\\    ____\n     \\ \\  _ <\'  /\'__`\\   /\'___\\ \\ , < \\ \\ \'__`\\  / __`\\ /\' _ `\\  /\'__`\\    \\/\\ \\  /\',__\\\n      \\ \\ \\ \\ \\/\\ \\ \\.\\_/\\ \\__/\\ \\ \\\\`\\\\ \\ \\ \\ \\/\\ \\ \\ \\/\\ \\/\\ \\/\\  __/  __ \\ \\ \\/\\__, `\\\n       \\ \\____/\\ \\__/.\\_\\ \\____\\\\ \\_\\ \\_\\ \\_,__/\\ \\____/\\ \\_\\ \\_\\ \\____\\/\\_\\_\\ \\ \\/\\____/\n        \\/___/  \\/__/\\/_/\\/____/ \\/_/\\/_/\\/___/  \\/___/  \\/_/\\/_/\\/____/\\/_/\\ \\_\\ \\/___/\n                                                                           \\ \\____/\n                                                                            \\/___/\n    (_\'_______________________________________________________________________________\'_)\n    (_.———————————————————————————————————————————————————————————————————————————————._)\n\n\nBackbone supplies structure to JavaScript-heavy applications by providing models key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing application over a RESTful JSON interface.\n\nFor Docs, License, Tests, pre-packed downloads, and everything else, really, see:\nhttp://backbonejs.org\n\nTo suggest a feature, report a bug, or general discussion:\nhttp://github.com/jashkenas/backbone/issues\n\nBackbone is an open-sourced component of DocumentCloud:\nhttps://github.com/documentcloud\n\nMany thanks to our contributors:\nhttp://github.com/jashkenas/backbone/contributors\n\nSpecial thanks to Robert Kieffer for the original philosophy behind Backbone.\nhttp://github.com/broofa\n',
+507 silly resolved     readmeFilename: 'README.md',
+507 silly resolved     bugs: { url: 'https://github.com/jashkenas/backbone/issues' },
+507 silly resolved     homepage: 'https://github.com/jashkenas/backbone',
+507 silly resolved     _id: 'backbone@1.1.0',
+507 silly resolved     _from: 'backbone@1.1.0' } ]
+508 info install backbone@1.1.0 into /Users/ianboothby/humanity/node_modules/bookshelf
+509 info installOne backbone@1.1.0
+510 info retry fetch attempt 1 at 14:09:09
+511 verbose fetch to= /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/tmp.tgz
+512 info /Users/ianboothby/humanity/node_modules/bookshelf/node_modules/backbone unbuild
+513 info preuninstall backbone@1.1.0
+514 http GET https://registry.npmjs.org/express/-/express-3.5.1.tgz
+515 http 304 https://registry.npmjs.org/request/2.27.0
+516 silly registry.get cb [ 304,
+516 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+516 silly registry.get     server: 'Apache',
+516 silly registry.get     via: '1.1 varnish',
+516 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+516 silly registry.get     'cache-control': 'max-age=1',
+516 silly registry.get     etag: '"D9JATBOSGADEGCXJ6X41N6XFP"',
+516 silly registry.get     'x-served-by': 'cache-at52-ATL',
+516 silly registry.get     'x-cache': 'MISS',
+516 silly registry.get     'x-cache-hits': '0',
+516 silly registry.get     'x-timer': 'S1397758150.626081705,VS0,VE14',
+516 silly registry.get     vary: 'Accept',
+516 silly registry.get     'content-length': '0',
+516 silly registry.get     'keep-alive': 'timeout=10, max=49',
+516 silly registry.get     connection: 'Keep-Alive' } ]
+517 verbose etag request/2.27.0 from cache
+518 http 304 https://registry.npmjs.org/configstore/0.2.3
+519 silly registry.get cb [ 304,
+519 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+519 silly registry.get     server: 'Apache',
+519 silly registry.get     via: '1.1 varnish',
+519 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+519 silly registry.get     'cache-control': 'max-age=1',
+519 silly registry.get     etag: '"5T6HD3AG91GIPU5M82CAR8FMD"',
+519 silly registry.get     'x-served-by': 'cache-at50-ATL',
+519 silly registry.get     'x-cache': 'MISS',
+519 silly registry.get     'x-cache-hits': '0',
+519 silly registry.get     'x-timer': 'S1397758150.614789963,VS0,VE37',
+519 silly registry.get     vary: 'Accept',
+519 silly registry.get     'content-length': '0',
+519 silly registry.get     'keep-alive': 'timeout=10, max=49',
+519 silly registry.get     connection: 'Keep-Alive' } ]
+520 verbose etag configstore/0.2.3 from cache
+521 info uninstall backbone@1.1.0
+522 http 200 https://registry.npmjs.org/has-color/0.1.7
+523 silly registry.get cb [ 200,
+523 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+523 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B)',
+523 silly registry.get     etag: '"34PG2RL1U2HLZAT30S5EZBZRT"',
+523 silly registry.get     'content-type': 'application/json',
+523 silly registry.get     via: '1.1 varnish',
+523 silly registry.get     'cache-control': 'max-age=1',
+523 silly registry.get     'content-length': '1027',
+523 silly registry.get     'accept-ranges': 'bytes',
+523 silly registry.get     age: '339',
+523 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-at51-ATL',
+523 silly registry.get     'x-cache': 'MISS, MISS',
+523 silly registry.get     'x-cache-hits': '0, 0',
+523 silly registry.get     'x-timer': 'S1397756729.953887224,VS0,VS7,VE88,VE1420703',
+523 silly registry.get     vary: 'Accept',
+523 silly registry.get     'keep-alive': 'timeout=10, max=50',
+523 silly registry.get     connection: 'Keep-Alive' } ]
+524 http 304 https://registry.npmjs.org/strip-ansi/0.1.1
+525 silly registry.get cb [ 304,
+525 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+525 silly registry.get     server: 'Apache',
+525 silly registry.get     via: '1.1 varnish',
+525 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+525 silly registry.get     'cache-control': 'max-age=1',
+525 silly registry.get     etag: '"5Z0BQ45P2IHAWEN45WLYVTVYN"',
+525 silly registry.get     'x-served-by': 'cache-at51-ATL',
+525 silly registry.get     'x-cache': 'MISS',
+525 silly registry.get     'x-cache-hits': '0',
+525 silly registry.get     'x-timer': 'S1397758150.648085356,VS0,VE14',
+525 silly registry.get     vary: 'Accept',
+525 silly registry.get     'content-length': '0',
+525 silly registry.get     'keep-alive': 'timeout=10, max=48',
+525 silly registry.get     connection: 'Keep-Alive' } ]
+526 verbose etag strip-ansi/0.1.1 from cache
+527 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/bookshelf/node_modules unbuild backbone@1.1.0
+528 info postuninstall backbone@1.1.0
+529 http 304 https://registry.npmjs.org/inflection/1.2.7
+530 silly registry.get cb [ 304,
+530 silly registry.get   { date: 'Thu, 17 Apr 2014 18:09:10 GMT',
+530 silly registry.get     server: 'Apache',
+530 silly registry.get     via: '1.1 varnish',
+530 silly registry.get     'last-modified': 'Thu, 17 Apr 2014 18:09:10 GMT',
+530 silly registry.get     'cache-control': 'max-age=1',
+530 silly registry.get     etag: '"1MT71DCODQOLN4KB4FOC03LB7"',
+530 silly registry.get     'x-served-by': 'cache-at52-ATL',
+530 silly registry.get     'x-cache': 'MISS',
+530 silly registry.get     'x-cache-hits': '0',
+530 silly registry.get     'x-timer': 'S1397758150.609317064,VS0,VE65',
+530 silly registry.get     vary: 'Accept',
+530 silly registry.get     'content-length': '0',
+530 silly registry.get     'keep-alive': 'timeout=10, max=49',
+530 silly registry.get     connection: 'Keep-Alive' } ]
+531 verbose etag inflection/1.2.7 from cache
+532 silly lockFile a23ea2b6-rg-has-color-has-color-0-1-7-tgz https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz
+533 verbose lock https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz /Users/ianboothby/.npm/a23ea2b6-rg-has-color-has-color-0-1-7-tgz.lock
+534 verbose addRemoteTarball [ 'https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz',
+534 verbose addRemoteTarball   '67144a5260c34fc3cca677d041daf52fe7b78b2f' ]
+535 info retry fetch attempt 1 at 14:09:09
+536 verbose fetch to= /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/tmp.tgz
+537 http GET https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz
+538 http 200 https://registry.npmjs.org/mysql/-/mysql-2.1.1.tgz
+539 http 200 https://registry.npmjs.org/socket.io/-/socket.io-1.0.0-pre.tgz
+540 silly lockFile 386d7f9d-semver-2-1-0 semver@2.1.0
+541 silly lockFile 386d7f9d-semver-2-1-0 semver@2.1.0
+542 silly resolved [ { name: 'semver',
+542 silly resolved     version: '2.1.0',
+542 silly resolved     description: 'The semantic version parser used by npm.',
+542 silly resolved     main: 'semver.js',
+542 silly resolved     browser: 'semver.browser.js',
+542 silly resolved     min: 'semver.min.js',
+542 silly resolved     scripts: { test: 'tap test/*.js', prepublish: 'make' },
+542 silly resolved     devDependencies: { tap: '0.x >=0.0.4', 'uglify-js': '~2.3.6' },
+542 silly resolved     license: 'BSD',
+542 silly resolved     repository: { type: 'git', url: 'git://github.com/isaacs/node-semver.git' },
+542 silly resolved     bin: { semver: './bin/semver' },
+542 silly resolved     readme: 'semver(1) -- The semantic versioner for npm\n===========================================\n\n## Usage\n\n    $ npm install semver\n\n    semver.valid(\'1.2.3\') // \'1.2.3\'\n    semver.valid(\'a.b.c\') // null\n    semver.clean(\'  =v1.2.3   \') // \'1.2.3\'\n    semver.satisfies(\'1.2.3\', \'1.x || >=2.5.0 || 5.0.0 - 7.2.3\') // true\n    semver.gt(\'1.2.3\', \'9.8.7\') // false\n    semver.lt(\'1.2.3\', \'9.8.7\') // true\n\nAs a command-line utility:\n\n    $ semver -h\n\n    Usage: semver <version> [<version> [...]] [-r <range> | -i <inc> | -d <dec>]\n    Test if version(s) satisfy the supplied range(s), and sort them.\n\n    Multiple versions or ranges may be supplied, unless increment\n    or decrement options are specified.  In that case, only a single\n    version may be used, and it is incremented by the specified level\n\n    Program exits successfully if any valid version satisfies\n    all supplied ranges, and prints all satisfying versions.\n\n    If no versions are valid, or ranges are not satisfied,\n    then exits failure.\n\n    Versions are printed in ascending order, so supplying\n    multiple versions to the utility will just sort them.\n\n## Versions\n\nA "version" is described by the v2.0.0 specification found at\n<http://semver.org/>.\n\nA leading `"="` or `"v"` character is stripped off and ignored.\n\n## Ranges\n\nThe following range styles are supported:\n\n* `1.2.3` A specific version.  When nothing else will do.  Note that\n  build metadata is still ignored, so `1.2.3+build2012` will satisfy\n  this range.\n* `>1.2.3` Greater than a specific version.\n* `<1.2.3` Less than a specific version.  If there is no prerelease\n  tag on the version range, then no prerelease version will be allowed\n  either, even though these are technically "less than".\n* `>=1.2.3` Greater than or equal to.  Note that prerelease versions\n  are NOT equal to their "normal" equivalents, so `1.2.3-beta` will\n  not satisfy this range, but `2.3.0-beta` will.\n* `<=1.2.3` Less than or equal to.  In this case, prerelease versions\n  ARE allowed, so `1.2.3-beta` would satisfy.\n* `1.2.3 - 2.3.4` := `>=1.2.3 <=2.3.4`\n* `~1.2.3` := `>=1.2.3-0 <1.3.0-0`  "Reasonably close to 1.2.3".  When\n  using tilde operators, prerelease versions are supported as well,\n  but a prerelease of the next significant digit will NOT be\n  satisfactory, so `1.3.0-beta` will not satisfy `~1.2.3`.\n* `^1.2.3` := `>=1.2.3-0 <2.0.0-0`  "Compatible with 1.2.3".  When\n  using caret operators, anything from the specified version (including\n  prerelease) will be supported up to, but not including, the next\n  major version (or its prereleases). `1.5.1` will satisfy `^1.2.3`,\n  while `1.2.2` and `2.0.0-beta` will not.\n* `^0.1.3` := `>=0.1.3-0 <0.2.0-0` "Compatible with 0.1.3". 0.x.x versions are\n  special: the first non-zero component indicates potentially breaking changes,\n  meaning the caret operator matches any version with the same first non-zero\n  component starting at the specified version.\n* `^0.0.2` := `=0.0.2` "Only the version 0.0.2 is considered compatible"\n* `~1.2` := `>=1.2.0-0 <1.3.0-0` "Any version starting with 1.2"\n* `^1.2` := `>=1.2.0-0 <2.0.0-0` "Any version compatible with 1.2"\n* `1.2.x` := `>=1.2.0-0 <1.3.0-0` "Any version starting with 1.2"\n* `~1` := `>=1.0.0-0 <2.0.0-0` "Any version starting with 1"\n* `^1` := `>=1.0.0-0 <2.0.0-0` "Any version compatible with 1"\n* `1.x` := `>=1.0.0-0 <2.0.0-0` "Any version starting with 1"\n\n\nRanges can be joined with either a space (which implies "and") or a\n`||` (which implies "or").\n\n## Functions\n\nAll methods and classes take a final `loose` boolean argument that, if\ntrue, will be more forgiving about not-quite-valid semver strings.\nThe resulting output will always be 100% strict, of course.\n\nStrict-mode Comparators and Ranges will be strict about the SemVer\nstrings that they parse.\n\n* valid(v): Return the parsed version, or null if it\'s not valid.\n* inc(v, release): Return the version incremented by the release type\n  (major, minor, patch, or prerelease), or null if it\'s not valid.\n\n### Comparison\n\n* gt(v1, v2): `v1 > v2`\n* gte(v1, v2): `v1 >= v2`\n* lt(v1, v2): `v1 < v2`\n* lte(v1, v2): `v1 <= v2`\n* eq(v1, v2): `v1 == v2` This is true if they\'re logically equivalent,\n  even if they\'re not the exact same string.  You already know how to\n  compare strings.\n* neq(v1, v2): `v1 != v2` The opposite of eq.\n* cmp(v1, comparator, v2): Pass in a comparison string, and it\'ll call\n  the corresponding function above.  `"==="` and `"!=="` do simple\n  string comparison, but are included for completeness.  Throws if an\n  invalid comparison string is provided.\n* compare(v1, v2): Return 0 if v1 == v2, or 1 if v1 is greater, or -1 if\n  v2 is greater.  Sorts in ascending order if passed to Array.sort().\n* rcompare(v1, v2): The reverse of compare.  Sorts an array of versions\n  in descending order when passed to Array.sort().\n\n\n### Ranges\n\n* validRange(range): Return the valid range or null if it\'s not valid\n* satisfies(version, range): Return true if the version satisfies the\n  range.\n* maxSatisfying(versions, range): Return the highest version in the list\n  that satisfies the range, or null if none of them do.\n',
+542 silly resolved     readmeFilename: 'README.md',
+542 silly resolved     bugs: { url: 'https://github.com/isaacs/node-semver/issues' },
+542 silly resolved     homepage: 'https://github.com/isaacs/node-semver',
+542 silly resolved     _id: 'semver@2.1.0',
+542 silly resolved     _from: 'semver@2.1.0' } ]
+543 info install semver@2.1.0 into /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier
+544 info installOne semver@2.1.0
+545 info /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/semver unbuild
+546 info preuninstall semver@2.1.0
+547 http 200 https://registry.npmjs.org/express/-/express-3.5.1.tgz
+548 info uninstall semver@2.1.0
+549 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules unbuild semver@2.1.0
+550 verbose /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/.bin,[object Object] binRoot
+551 info postuninstall semver@2.1.0
+552 verbose tar unpack /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/tmp.tgz
+553 silly lockFile 088e8963-49744-0-8480603627394885-package tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/package
+554 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/package /Users/ianboothby/.npm/088e8963-49744-0-8480603627394885-package.lock
+555 silly lockFile 8c27e17f-49744-0-8480603627394885-tmp-tgz tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/tmp.tgz
+556 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149744-0.8480603627394885/tmp.tgz /Users/ianboothby/.npm/8c27e17f-49744-0-8480603627394885-tmp-tgz.lock
+557 http 200 https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz
+558 silly lockFile 7b48fbe0-request-2-27-0 request@2.27.0
+559 silly lockFile 7b48fbe0-request-2-27-0 request@2.27.0
+560 verbose tar unpack /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/tmp.tgz
+561 silly lockFile ee659ebf-49725-0-5140842872206122-package tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/package
+562 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/package /Users/ianboothby/.npm/ee659ebf-49725-0-5140842872206122-package.lock
+563 silly lockFile 69a9036c-49725-0-5140842872206122-tmp-tgz tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/tmp.tgz
+564 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149725-0.5140842872206122/tmp.tgz /Users/ianboothby/.npm/69a9036c-49725-0-5140842872206122-tmp-tgz.lock
+565 silly lockFile ed6fc536-strip-ansi-0-1-1 strip-ansi@0.1.1
+566 silly lockFile ed6fc536-strip-ansi-0-1-1 strip-ansi@0.1.1
+567 silly lockFile 55113639-configstore-0-2-3 configstore@0.2.3
+568 silly lockFile 55113639-configstore-0-2-3 configstore@0.2.3
+569 silly resolved [ { name: 'request',
+569 silly resolved     description: 'Simplified HTTP request client.',
+569 silly resolved     tags: [ 'http', 'simple', 'util', 'utility' ],
+569 silly resolved     version: '2.27.0',
+569 silly resolved     author: { name: 'Mikeal Rogers', email: 'mikeal.rogers@gmail.com' },
+569 silly resolved     repository: { type: 'git', url: 'http://github.com/mikeal/request.git' },
+569 silly resolved     bugs: { url: 'http://github.com/mikeal/request/issues' },
+569 silly resolved     engines: [ 'node >= 0.8.0' ],
+569 silly resolved     main: 'index.js',
+569 silly resolved     dependencies:
+569 silly resolved      { qs: '~0.6.0',
+569 silly resolved        'json-stringify-safe': '~5.0.0',
+569 silly resolved        'forever-agent': '~0.5.0',
+569 silly resolved        'tunnel-agent': '~0.3.0',
+569 silly resolved        'http-signature': '~0.10.0',
+569 silly resolved        hawk: '~1.0.0',
+569 silly resolved        'aws-sign': '~0.3.0',
+569 silly resolved        'oauth-sign': '~0.3.0',
+569 silly resolved        'cookie-jar': '~0.3.0',
+569 silly resolved        'node-uuid': '~1.4.0',
+569 silly resolved        mime: '~1.2.9',
+569 silly resolved        'form-data': '~0.1.0' },
+569 silly resolved     scripts: { test: 'node tests/run.js' },
+569 silly resolved     readme: '# Request -- Simplified HTTP client\n\n[![NPM](https://nodei.co/npm/request.png)](https://nodei.co/npm/request/)\n\n## Super simple to use\n\nRequest is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.\n\n```javascript\nvar request = require(\'request\');\nrequest(\'http://www.google.com\', function (error, response, body) {\n  if (!error && response.statusCode == 200) {\n    console.log(body) // Print the google web page.\n  }\n})\n```\n\n## Streaming\n\nYou can stream any response to a file stream.\n\n```javascript\nrequest(\'http://google.com/doodle.png\').pipe(fs.createWriteStream(\'doodle.png\'))\n```\n\nYou can also stream a file to a PUT or POST request. This method will also check the file extension against a mapping of file extensions to content-types, in this case `application/json`, and use the proper content-type in the PUT request if one is not already provided in the headers.\n\n```javascript\nfs.createReadStream(\'file.json\').pipe(request.put(\'http://mysite.com/obj.json\'))\n```\n\nRequest can also pipe to itself. When doing so the content-type and content-length will be preserved in the PUT headers.\n\n```javascript\nrequest.get(\'http://google.com/img.png\').pipe(request.put(\'http://mysite.com/img.png\'))\n```\n\nNow let\'s get fancy.\n\n```javascript\nhttp.createServer(function (req, resp) {\n  if (req.url === \'/doodle.png\') {\n    if (req.method === \'PUT\') {\n      req.pipe(request.put(\'http://mysite.com/doodle.png\'))\n    } else if (req.method === \'GET\' || req.method === \'HEAD\') {\n      request.get(\'http://mysite.com/doodle.png\').pipe(resp)\n    }\n  }\n})\n```\n\nYou can also pipe() from a http.ServerRequest instance and to a http.ServerResponse instance. The HTTP method and headers will be sent as well as the entity-body data. Which means that, if you don\'t really care about security, you can do:\n\n```javascript\nhttp.createServer(function (req, resp) {\n  if (req.url === \'/doodle.png\') {\n    var x = request(\'http://mysite.com/doodle.png\')\n    req.pipe(x)\n    x.pipe(resp)\n  }\n})\n```\n\nAnd since pipe() returns the destination stream in node 0.5.x you can do one line proxying :)\n\n```javascript\nreq.pipe(request(\'http://mysite.com/doodle.png\')).pipe(resp)\n```\n\nAlso, none of this new functionality conflicts with requests previous features, it just expands them.\n\n```javascript\nvar r = request.defaults({\'proxy\':\'http://localproxy.com\'})\n\nhttp.createServer(function (req, resp) {\n  if (req.url === \'/doodle.png\') {\n    r.get(\'http://google.com/doodle.png\').pipe(resp)\n  }\n})\n```\nYou can still use intermediate proxies, the requests will still follow HTTP forwards, etc.\n\n## Forms\n\n`request` supports `application/x-www-form-urlencoded` and `multipart/form-data` form uploads. For `multipart/related` refer to the `multipart` API.\n\nUrl encoded forms are simple\n\n```javascript\nrequest.post(\'http://service.com/upload\', {form:{key:\'value\'}})\n// or\nrequest.post(\'http://service.com/upload\').form({key:\'value\'})\n```\n\nFor `multipart/form-data` we use the [form-data](https://github.com/felixge/node-form-data) library by [@felixge](https://github.com/felixge). You don\'t need to worry about piping the form object or setting the headers, `request` will handle that for you.\n\n```javascript\nvar r = request.post(\'http://service.com/upload\')\nvar form = r.form()\nform.append(\'my_field\', \'my_value\')\nform.append(\'my_buffer\', new Buffer([1, 2, 3]))\nform.append(\'my_file\', fs.createReadStream(path.join(__dirname, \'doodle.png\'))\nform.append(\'remote_file\', request(\'http://google.com/doodle.png\'))\n```\n\n## HTTP Authentication\n\n```javascript\nrequest.get(\'http://some.server.com/\').auth(\'username\', \'password\', false);\n// or\nrequest.get(\'http://some.server.com/\', {\n  \'auth\': {\n    \'user\': \'username\',\n    \'pass\': \'password\',\n    \'sendImmediately\': false\n  }\n});\n```\n\nIf passed as an option, `auth` should be a hash containing values `user` || `username`, `password` || `pass`, and `sendImmediately` (optional).  The method form takes parameters `auth(username, password, sendImmediately)`.\n\n`sendImmediately` defaults to true, which will cause a basic authentication header to be sent.  If `sendImmediately` is `false`, then `request` will retry with a proper authentication header after receiving a 401 response from the server (which must contain a `WWW-Authenticate` header indicating the required authentication method).\n\nDigest authentication is supported, but it only works with `sendImmediately` set to `false` (otherwise `request` will send basic authentication on the initial request, which will probably cause the request to fail).\n\n## OAuth Signing\n\n```javascript\n// Twitter OAuth\nvar qs = require(\'querystring\')\n  , oauth =\n    { callback: \'http://mysite.com/callback/\'\n    , consumer_key: CONSUMER_KEY\n    , consumer_secret: CONSUMER_SECRET\n    }\n  , url = \'https://api.twitter.com/oauth/request_token\'\n  ;\nrequest.post({url:url, oauth:oauth}, function (e, r, body) {\n  // Ideally, you would take the body in the response\n  // and construct a URL that a user clicks on (like a sign in button).\n  // The verifier is only available in the response after a user has\n  // verified with twitter that they are authorizing your app.\n  var access_token = qs.parse(body)\n    , oauth =\n      { consumer_key: CONSUMER_KEY\n      , consumer_secret: CONSUMER_SECRET\n      , token: access_token.oauth_token\n      , verifier: access_token.oauth_verifier\n      }\n    , url = \'https://api.twitter.com/oauth/access_token\'\n    ;\n  request.post({url:url, oauth:oauth}, function (e, r, body) {\n    var perm_token = qs.parse(body)\n      , oauth =\n        { consumer_key: CONSUMER_KEY\n        , consumer_secret: CONSUMER_SECRET\n        , token: perm_token.oauth_token\n        , token_secret: perm_token.oauth_token_secret\n        }\n      , url = \'https://api.twitter.com/1/users/show.json?\'\n      , params =\n        { screen_name: perm_token.screen_name\n        , user_id: perm_token.user_id\n        }\n      ;\n    url += qs.stringify(params)\n    request.get({url:url, oauth:oauth, json:true}, function (e, r, user) {\n      console.log(user)\n    })\n  })\n})\n```\n\n\n\n### request(options, callback)\n\nThe first argument can be either a url or an options object. The only required option is uri, all others are optional.\n\n* `uri` || `url` - fully qualified uri or a parsed url object from url.parse()\n* `qs` - object containing querystring values to be appended to the uri\n* `method` - http method, defaults to GET\n* `headers` - http headers, defaults to {}\n* `body` - entity body for PATCH, POST and PUT requests. Must be buffer or string.\n* `form` - when passed an object this will set `body` but to a querystring representation of value and adds `Content-type: application/x-www-form-urlencoded; charset=utf-8` header. When passed no option a FormData instance is returned that will be piped to request.\n* `auth` - A hash containing values `user` || `username`, `password` || `pass`, and `sendImmediately` (optional).  See documentation above.\n* `json` - sets `body` but to JSON representation of value and adds `Content-type: application/json` header.  Additionally, parses the response body as json.\n* `multipart` - (experimental) array of objects which contains their own headers and `body` attribute. Sends `multipart/related` request. See example below.\n* `followRedirect` - follow HTTP 3xx responses as redirects. defaults to true.\n* `followAllRedirects` - follow non-GET HTTP 3xx responses as redirects. defaults to false.\n* `maxRedirects` - the maximum number of redirects to follow, defaults to 10.\n* `encoding` - Encoding to be used on `setEncoding` of response data. If set to `null`, the body is returned as a Buffer.\n* `pool` - A hash object containing the agents for these requests. If omitted this request will use the global pool which is set to node\'s default maxSockets.\n* `pool.maxSockets` - Integer containing the maximum amount of sockets in the pool.\n* `timeout` - Integer containing the number of milliseconds to wait for a request to respond before aborting the request\n* `proxy` - An HTTP proxy to be used. Support proxy Auth with Basic Auth the same way it\'s supported with the `url` parameter by embedding the auth info in the uri.\n* `oauth` - Options for OAuth HMAC-SHA1 signing, see documentation above.\n* `hawk` - Options for [Hawk signing](https://github.com/hueniverse/hawk). The `credentials` key must contain the necessary signing info, [see hawk docs for details](https://github.com/hueniverse/hawk#usage-example).\n* `strictSSL` - Set to `true` to require that SSL certificates be valid. Note: to use your own certificate authority, you need to specify an agent that was created with that ca as an option.\n* `jar` - Set to `true` if you want cookies to be remembered for future use, or define your custom cookie jar (see examples section)\n* `aws` - object containing aws signing information, should have the properties `key` and `secret` as well as `bucket` unless you\'re specifying your bucket as part of the path, or you are making a request that doesn\'t use a bucket (i.e. GET Services)\n* `httpSignature` - Options for the [HTTP Signature Scheme](https://github.com/joyent/node-http-signature/blob/master/http_signing.md) using [Joyent\'s library](https://github.com/joyent/node-http-signature). The `keyId` and `key` properties must be specified. See the docs for other options.\n* `localAddress` - Local interface to bind for network connections.\n\n\nThe callback argument gets 3 arguments. The first is an error when applicable (usually from the http.Client option not the http.ClientRequest object). The second is an http.ClientResponse object. The third is the response body String or Buffer.\n\n## Convenience methods\n\nThere are also shorthand methods for different HTTP METHODs and some other conveniences.\n\n### request.defaults(options)\n\nThis method returns a wrapper around the normal request API that defaults to whatever options you pass in to it.\n\n### request.put\n\nSame as request() but defaults to `method: "PUT"`.\n\n```javascript\nrequest.put(url)\n```\n\n### request.patch\n\nSame as request() but defaults to `method: "PATCH"`.\n\n```javascript\nrequest.patch(url)\n```\n\n### request.post\n\nSame as request() but defaults to `method: "POST"`.\n\n```javascript\nrequest.post(url)\n```\n\n### request.head\n\nSame as request() but defaults to `method: "HEAD"`.\n\n```javascript\nrequest.head(url)\n```\n\n### request.del\n\nSame as request() but defaults to `method: "DELETE"`.\n\n```javascript\nrequest.del(url)\n```\n\n### request.get\n\nAlias to normal request method for uniformity.\n\n```javascript\nrequest.get(url)\n```\n### request.cookie\n\nFunction that creates a new cookie.\n\n```javascript\nrequest.cookie(\'cookie_string_here\')\n```\n### request.jar\n\nFunction that creates a new cookie jar.\n\n```javascript\nrequest.jar()\n```\n\n\n## Examples:\n\n```javascript\n  var request = require(\'request\')\n    , rand = Math.floor(Math.random()*100000000).toString()\n    ;\n  request(\n    { method: \'PUT\'\n    , uri: \'http://mikeal.iriscouch.com/testjs/\' + rand\n    , multipart:\n      [ { \'content-type\': \'application/json\'\n        ,  body: JSON.stringify({foo: \'bar\', _attachments: {\'message.txt\': {follows: true, length: 18, \'content_type\': \'text/plain\' }}})\n        }\n      , { body: \'I am an attachment\' }\n      ]\n    }\n  , function (error, response, body) {\n      if(response.statusCode == 201){\n        console.log(\'document saved as: http://mikeal.iriscouch.com/testjs/\'+ rand)\n      } else {\n        console.log(\'error: \'+ response.statusCode)\n        console.log(body)\n      }\n    }\n  )\n```\nCookies are disabled by default (else, they would be used in subsequent requests). To enable cookies set jar to true (either in defaults or in the options sent).\n\n```javascript\nvar request = request.defaults({jar: true})\nrequest(\'http://www.google.com\', function () {\n  request(\'http://images.google.com\')\n})\n```\n\nIf you to use a custom cookie jar (instead of letting request use its own global cookie jar) you do so by setting the jar default or by specifying it as an option:\n\n```javascript\nvar j = request.jar()\nvar request = request.defaults({jar:j})\nrequest(\'http://www.google.com\', function () {\n  request(\'http://images.google.com\')\n})\n```\nOR\n\n```javascript\nvar j = request.jar()\nvar cookie = request.cookie(\'your_cookie_here\')\nj.add(cookie)\nrequest({url: \'http://www.google.com\', jar: j}, function () {\n  request(\'http://images.google.com\')\n})\n```\n',
+569 silly resolved     readmeFilename: 'README.md',
+569 silly resolved     homepage: 'https://github.com/mikeal/request',
+569 silly resolved     _id: 'request@2.27.0',
+569 silly resolved     _from: 'request@2.27.0' } ]
+570 info install request@2.27.0 into /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier
+571 info installOne request@2.27.0
+572 silly resolved [ { name: 'strip-ansi',
+572 silly resolved     version: '0.1.1',
+572 silly resolved     description: 'Strip ANSI escape codes (used for colorizing strings in the terminal)',
+572 silly resolved     license: 'MIT',
+572 silly resolved     bin: { 'strip-ansi': 'cli.js' },
+572 silly resolved     repository: { type: 'git', url: 'git://github.com/sindresorhus/strip-ansi' },
+572 silly resolved     author:
+572 silly resolved      { name: 'Sindre Sorhus',
+572 silly resolved        email: 'sindresorhus@gmail.com',
+572 silly resolved        url: 'http://sindresorhus.com' },
+572 silly resolved     engines: { node: '>=0.8.0' },
+572 silly resolved     scripts: { test: 'mocha' },
+572 silly resolved     files: [ 'index.js', 'cli.js' ],
+572 silly resolved     keywords:
+572 silly resolved      [ 'strip',
+572 silly resolved        'trim',
+572 silly resolved        'remove',
+572 silly resolved        'ansi',
+572 silly resolved        'styles',
+572 silly resolved        'color',
+572 silly resolved        'colour',
+572 silly resolved        'colors',
+572 silly resolved        'terminal',
+572 silly resolved        'console',
+572 silly resolved        'cli',
+572 silly resolved        'string',
+572 silly resolved        'tty',
+572 silly resolved        'escape',
+572 silly resolved        'formatting',
+572 silly resolved        'rgb',
+572 silly resolved        '256',
+572 silly resolved        'shell',
+572 silly resolved        'xterm',
+572 silly resolved        'log',
+572 silly resolved        'logging',
+572 silly resolved        'command-line',
+572 silly resolved        'text' ],
+572 silly resolved     devDependencies: { mocha: '~1.x' },
+572 silly resolved     readme: '# strip-ansi [![Build Status](https://secure.travis-ci.org/sindresorhus/strip-ansi.png?branch=master)](http://travis-ci.org/sindresorhus/strip-ansi)\n\n> Strip [ANSI escape codes](http://en.wikipedia.org/wiki/ANSI_escape_code#Colors_and_Styles) (used for colorizing strings in the terminal)\n\nUsed in the terminal color module [chalk](https://github.com/sindresorhus/chalk).\n\n\n## Install\n\nInstall locally with [npm](https://npmjs.org/package/strip-ansi):\n\n```\nnpm install --save strip-ansi\n```\n\nOr globally if you want to use it as a CLI app:\n\n```\nnpm install --global strip-ansi\n```\n\nYou can then use it in your Terminal like:\n\n```\nstrip-ansi file-with-color-codes\n```\n\nOr pipe something to it:\n\n```\nls | strip-ansi\n```\n\n\n## Example\n\n```js\nvar stripAnsi = require(\'strip-ansi\');\nstripAnsi(\'\\x1b[4mcake\\x1b[0m\');\n//=> cake\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n',
+572 silly resolved     readmeFilename: 'readme.md',
+572 silly resolved     bugs: { url: 'https://github.com/sindresorhus/strip-ansi/issues' },
+572 silly resolved     homepage: 'https://github.com/sindresorhus/strip-ansi',
+572 silly resolved     _id: 'strip-ansi@0.1.1',
+572 silly resolved     _from: 'strip-ansi@0.1.1' } ]
+573 info install strip-ansi@0.1.1 into /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk
+574 info installOne strip-ansi@0.1.1
+575 silly resolved [ { name: 'configstore',
+575 silly resolved     version: '0.2.3',
+575 silly resolved     description: 'Easily load and save config without having to think about where and how',
+575 silly resolved     keywords:
+575 silly resolved      [ 'conf',
+575 silly resolved        'config',
+575 silly resolved        'configuration',
+575 silly resolved        'settings',
+575 silly resolved        'store',
+575 silly resolved        'editable',
+575 silly resolved        'yaml',
+575 silly resolved        'yml' ],
+575 silly resolved     homepage: 'https://github.com/yeoman/configstore',
+575 silly resolved     bugs: { url: 'https://github.com/yeoman/configstore/issues' },
+575 silly resolved     author:
+575 silly resolved      { name: 'Sindre Sorhus',
+575 silly resolved        email: 'sindresorhus@gmail.com',
+575 silly resolved        url: 'http://sindresorhus.com' },
+575 silly resolved     main: 'configstore.js',
+575 silly resolved     repository: { type: 'git', url: 'git://github.com/yeoman/configstore.git' },
+575 silly resolved     scripts: { test: 'mocha' },
+575 silly resolved     engines: { node: '>=0.10.0' },
+575 silly resolved     licenses: [ [Object] ],
+575 silly resolved     dependencies:
+575 silly resolved      { mkdirp: '~0.3.5',
+575 silly resolved        'js-yaml': '~3.0.1',
+575 silly resolved        osenv: '0.0.3',
+575 silly resolved        'graceful-fs': '~2.0.1',
+575 silly resolved        uuid: '~1.4.1',
+575 silly resolved        'object-assign': '~0.1.1' },
+575 silly resolved     devDependencies: { mocha: '*' },
+575 silly resolved     files: [ 'configstore.js' ],
+575 silly resolved     readme: '# configstore [![Build Status](https://secure.travis-ci.org/yeoman/configstore.png?branch=master)](http://travis-ci.org/yeoman/configstore)\n\nEasily load and persist config without having to think about where and how.\n\nConfig is stored in a YAML file to make it simple for users to edit the config directly themselves. The file is located in `$XDG_CONFIG_HOME` or `~/.config`. Eg: `~/.config/configstore/id-of-your-choosing.yml`\n\n\n## Example usage\n\n```js\nvar Configstore = require(\'configstore\');\nvar packageName = require(\'./package\').name;\n\n// Init a Configstore instance with an unique ID eg. package name\n// and optionally some default values\nvar conf = new Configstore(packageName, { foo: \'bar\' });\n\nconf.set(\'awesome\', true);\nconsole.log(conf.get(\'awesome\'));  // true\nconsole.log(conf.get(\'foo\'));      // bar\n\nconf.del(\'awesome\');\nconsole.log(conf.get(\'awesome\'));  // undefined\n```\n\n\n## Documentation\n\n### Methods\n\n#### .set(key, val)\n\nSet an item\n\n#### .get(key)\n\nGet an item\n\n#### .del(key)\n\nDelete an item\n\n### Properties\n\n#### .all\n\nGet all items as an object or replace the current config with an object:\n\n```js\nconf.all = {\n\thello: \'world\'\n};\n```\n\n#### .size\n\nGet the item count\n\n#### .path\n\nGet the path to the config file. Can be used to show the user where the config file is located or even better open it for them.\n\n\n## License\n\n[BSD license](http://opensource.org/licenses/bsd-license.php)  \nCopyright Google\n',
+575 silly resolved     readmeFilename: 'readme.md',
+575 silly resolved     _id: 'configstore@0.2.3',
+575 silly resolved     _from: 'configstore@0.2.3' } ]
+576 info install configstore@0.2.3 into /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier
+577 info installOne configstore@0.2.3
+578 info /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/request unbuild
+579 info preuninstall request@2.27.0
+580 silly gunzTarPerm modes [ '755', '644' ]
+581 info /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk/node_modules/strip-ansi unbuild
+582 info preuninstall strip-ansi@0.1.1
+583 info /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore unbuild
+584 info preuninstall configstore@0.2.3
+585 silly gunzTarPerm modes [ '755', '644' ]
+586 silly lockFile a42ca776-inflection-1-2-7 inflection@1.2.7
+587 silly lockFile a42ca776-inflection-1-2-7 inflection@1.2.7
+588 verbose tar unpack /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/tmp.tgz
+589 silly lockFile 36fe39ae-49885-0-4453238972928375-package tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/package
+590 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/package /Users/ianboothby/.npm/36fe39ae-49885-0-4453238972928375-package.lock
+591 silly lockFile c56653ec-49885-0-4453238972928375-tmp-tgz tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/tmp.tgz
+592 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149885-0.4453238972928375/tmp.tgz /Users/ianboothby/.npm/c56653ec-49885-0-4453238972928375-tmp-tgz.lock
+593 info uninstall request@2.27.0
+594 info uninstall configstore@0.2.3
+595 info uninstall strip-ansi@0.1.1
+596 silly resolved [ { name: 'inflection',
+596 silly resolved     version: '1.2.7',
+596 silly resolved     description: 'A port of inflection-js to node.js module',
+596 silly resolved     keywords:
+596 silly resolved      [ 'inflection',
+596 silly resolved        'inflections',
+596 silly resolved        'inflection-js',
+596 silly resolved        'pluralize',
+596 silly resolved        'singularize',
+596 silly resolved        'camelize',
+596 silly resolved        'underscore',
+596 silly resolved        'humanize',
+596 silly resolved        'capitalize',
+596 silly resolved        'dasherize',
+596 silly resolved        'titleize',
+596 silly resolved        'demodulize',
+596 silly resolved        'tableize',
+596 silly resolved        'classify',
+596 silly resolved        'foreign_key',
+596 silly resolved        'ordinalize' ],
+596 silly resolved     author: { name: 'dreamerslab', email: 'ben@dreamerslab.com' },
+596 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+596 silly resolved     dependencies: {},
+596 silly resolved     devDependencies: { 'node.flow': '1.2.2', should: '2.1.1' },
+596 silly resolved     main: './lib/inflection.js',
+596 silly resolved     repository:
+596 silly resolved      { type: 'git',
+596 silly resolved        url: 'https://github.com/dreamerslab/node.inflection.git' },
+596 silly resolved     engines: [ 'node >= 0.4.0' ],
+596 silly resolved     licenses: [ [Object] ],
+596 silly resolved     readme: '# inflection\n\nA port of inflection-js to node.js module\n\n\n\n## Description\n[inflection-js](http://code.google.com/p/inflection-js/) is a port of the functionality from Ruby on Rails\' Active Support Inflection classes into Javascript. `inflection` is a port of `inflection-js` to node.js npm package. Instead of [extending JavaScript native](http://wonko.com/post/extending-javascript-natives) String object like `inflection-js` does, `inflection` separate the methods to a independent package to avoid unexpected behaviors.\n\n\n\n## Requires\n\nCheckout `package.json` for dependencies.\n\n\n\n## Installation\n\nInstall inflection through npm\n\n\tnpm install inflection\n\n\n\n## API\n\n- inflection.indexOf( arr, item, fromIndex, compareFunc );\n- inflection.pluralize( str, plural );\n- inflection.singularize( str, singular );\n- inflection.camelize( str, lowFirstLetter );\n- inflection.underscore( str, allUpperCase );\n- inflection.humanize( str, lowFirstLetter );\n- inflection.capitalize( str );\n- inflection.dasherize( str );\n- inflection.titleize( str );\n- inflection.demodulize( str );\n- inflection.tableize( str );\n- inflection.classify( str );\n- inflection.foreign_key( str, dropIdUbar );\n- inflection.ordinalize( str );\n- inflection.transform( str, arr );\n\n\n\n## Usage\n\n> Require the module before using\n\n\tvar inflection = require( \'inflection\' );\n\n\n\n### inflection.indexOf( arr, item, fromIndex, compareFunc );\n\nThis lets us detect if an Array contains a given element.\n\n#### Arguments\n\n> arr\n\n\ttype: Array\n\tdesc: The subject array.\n\n> item\n\n\ttype: Object\n\tdesc: Object to locate in the Array.\n\n> fromIndex\n\n\ttype: Number\n\tdesc: Starts checking from this position in the Array.(optional)\n\n> compareFunc\n\n\ttype: Function\n\tdesc: Function used to compare Array item vs passed item.(optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.indexOf([ \'hi\',\'there\' ], \'guys\' ); // === -1\n\tinflection.indexOf([ \'hi\',\'there\' ], \'hi\' ); // === 0\n\n\n\n### inflection.pluralize( str, plural );\n\nThis function adds pluralization support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> plural\n\n\ttype: String\n\tdesc: Overrides normal output with said String.(optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.pluralize( \'person\' ); // === \'people\'\n\tinflection.pluralize( \'octopus\' ); // === "octopi"\n\tinflection.pluralize( \'Hat\' ); // === \'Hats\'\n\tinflection.pluralize( \'person\', \'guys\' ); // === \'guys\'\n\n\n\n### inflection.singularize( str, singular );\n\nThis function adds singularization support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> singular\n\n\ttype: String\n\tdesc: Overrides normal output with said String.(optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.singularize( \'people\' ); // === \'person\'\n\tinflection.singularize( \'octopi\' ); // === "octopus"\n\tinflection.singularize( \'Hats\' ); // === \'Hat\'\n\tinflection.singularize( \'guys\', \'person\' ); // === \'person\'\n\n\n\n### inflection.camelize( str, lowFirstLetter );\n\nThis function adds camelization support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> lowFirstLetter\n\n\ttype: Boolean\n\tdesc: Default is to capitalize the first letter of the results. Passing true will lowercase it. (optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.camelize( \'message_properties\' ); // === \'MessageProperties\'\n\tinflection.camelize( \'message_properties\', true ); // === \'messageProperties\'\n\n\n\n### inflection.underscore( str, allUpperCase );\n\nThis function adds underscore support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> allUpperCase\n\n\ttype: Boolean\n\tdesc: Default is to lowercase and add underscore prefix\n\n\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.underscore( \'MessageProperties\' ); // === \'message_properties\'\n\tinflection.underscore( \'messageProperties\' ); // === \'message_properties\'\n\tinflection.underscore( \'MP\' ); // === \'m_p\'\n\tinflection.underscore( \'MP\', true ); // === \'MP\'\n\n\n\n### inflection.humanize( str, lowFirstLetter );\n\nThis function adds humanize support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> lowFirstLetter\n\n\ttype: Boolean\n\tdesc: Default is to capitalize the first letter of the results. Passing true will lowercase it. (optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.humanize( \'message_properties\' ); // === \'Message properties\'\n\tinflection.humanize( \'message_properties\', true ); // === \'message properties\'\n\n\n\n### inflection.capitalize( str );\n\nThis function adds capitalization support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.capitalize( \'message_properties\' ); // === \'Message_properties\'\n\tinflection.capitalize( \'message properties\', true ); // === \'Message properties\'\n\n\n\n### inflection.dasherize( str );\n\nThis function adds dasherization support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.dasherize( \'message_properties\' ); // === \'message-properties\'\n\tinflection.dasherize( \'Message Properties\' ); // === \'Message-Properties\'\n\n\n\n### inflection.titleize( str );\n\nThis function adds titleize support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.titleize( \'message_properties\' ); // === \'Message Properties\'\n\tinflection.titleize( \'message properties to keep\' ); // === \'Message Properties to Keep\'\n\n\n\n### inflection.demodulize( str );\n\nThis function adds demodulize support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.demodulize( \'Message::Bus::Properties\' ); // === \'Properties\'\n\n\n\n### inflection.tableize( str );\n\nThis function adds tableize support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.tableize( \'MessageBusProperty\' ); // === \'message_bus_properties\'\n\n\n\n### inflection.classify( str );\n\nThis function adds classification support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.classify( \'message_bus_properties\' ); // === \'MessageBusProperty\'\n\n\n\n### inflection.foreign_key( str, dropIdUbar );\n\nThis function adds foreign key support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> lowFirstLetter\n\n\ttype: Boolean\n\tdesc: Default is to seperate id with an underbar at the end of the class name, you can pass true to skip it.(optional)\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.foreign_key( \'MessageBusProperty\' ); // === \'message_bus_property_id\'\n\tinflection.foreign_key( \'MessageBusProperty\', true ); // === \'message_bus_propertyid\'\n\n\n\n### inflection.ordinalize( str );\n\nThis function adds ordinalize support to every String object.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.ordinalize( \'the 1 pitch\' ); // === \'the 1st pitch\'\n\n\n\n### inflection.transform( str, arr );\n\nThis function performs multiple inflection methods on a string.\n\n#### Arguments\n\n> str\n\n\ttype: String\n\tdesc: The subject string.\n\n> arr\n\n\ttype: Array\n\tdesc: An array of inflection methods.\n\n#### Example code\n\n\tvar inflection = require( \'inflection\' );\n\n\tinflection.transform( \'all job\', [ \'pluralize\', \'capitalize\', \'dasherize\' ]); // === \'All-jobs\'\n\n\n\n## Credit\n\n- Ryan Schuft <ryan.schuft@gmail.com>\n- Lance Pollard <lancejpollard@gmail.com> (Browser support)\n- brandondewitt\n- luk3thomas\n\n\n## License\n\n(The MIT License)\n\nCopyright (c) 2011 dreamerslab &lt;ben@dreamerslab.com&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+596 silly resolved     readmeFilename: 'Readme.md',
+596 silly resolved     bugs: { url: 'https://github.com/dreamerslab/node.inflection/issues' },
+596 silly resolved     homepage: 'https://github.com/dreamerslab/node.inflection',
+596 silly resolved     _id: 'inflection@1.2.7',
+596 silly resolved     _from: 'inflection@1.2.7' } ]
+597 info install inflection@1.2.7 into /Users/ianboothby/humanity/node_modules/bookshelf
+598 info installOne inflection@1.2.7
+599 verbose tar unpack /var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/tmp.tgz
+600 silly lockFile b686e21e-49755-0-3078043535351753-package tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/package
+601 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/package /Users/ianboothby/.npm/b686e21e-49755-0-3078043535351753-package.lock
+602 silly lockFile 3adeba16-49755-0-3078043535351753-tmp-tgz tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/tmp.tgz
+603 verbose lock tar:///var/folders/l_/y82fgyhs2v1dqqnt3k5r2m9m0000gn/T/npm-58162-dpYYA702/1397758149755-0.3078043535351753/tmp.tgz /Users/ianboothby/.npm/3adeba16-49755-0-3078043535351753-tmp-tgz.lock
+604 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules unbuild request@2.27.0
+605 info postuninstall request@2.27.0
+606 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules unbuild configstore@0.2.3
+607 info postuninstall configstore@0.2.3
+608 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk/node_modules unbuild strip-ansi@0.1.1
+609 verbose /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk/node_modules/.bin,[object Object] binRoot
+610 info /Users/ianboothby/humanity/node_modules/bookshelf/node_modules/inflection unbuild
+611 info preuninstall inflection@1.2.7
+612 silly gunzTarPerm modes [ '755', '644' ]
+613 silly gunzTarPerm modes [ '755', '644' ]
+614 info uninstall inflection@1.2.7
+615 verbose tar unpack /Users/ianboothby/.npm/backbone/1.1.0/package.tgz
+616 silly lockFile f84f8c20--bookshelf-node-modules-backbone tar:///Users/ianboothby/humanity/node_modules/bookshelf/node_modules/backbone
+617 verbose lock tar:///Users/ianboothby/humanity/node_modules/bookshelf/node_modules/backbone /Users/ianboothby/.npm/f84f8c20--bookshelf-node-modules-backbone.lock
+618 silly lockFile 243c4230-y-npm-backbone-1-1-0-package-tgz tar:///Users/ianboothby/.npm/backbone/1.1.0/package.tgz
+619 verbose lock tar:///Users/ianboothby/.npm/backbone/1.1.0/package.tgz /Users/ianboothby/.npm/243c4230-y-npm-backbone-1-1-0-package-tgz.lock
+620 silly gunzTarPerm extractEntry package.json
+621 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+622 silly gunzTarPerm extractEntry package.json
+623 verbose false,/Users/ianboothby/humanity/node_modules,/Users/ianboothby/humanity/node_modules/bookshelf/node_modules unbuild inflection@1.2.7
+624 info postuninstall inflection@1.2.7
+625 info postuninstall strip-ansi@0.1.1
+626 silly gunzTarPerm modes [ '755', '644' ]
+627 silly gunzTarPerm extractEntry package.json
+628 silly gunzTarPerm extractEntry .npmignore
+629 silly gunzTarPerm extractEntry LICENSE
+630 silly gunzTarPerm extractEntry .npmignore
+631 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+632 silly gunzTarPerm extractEntry index.js
+633 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+634 verbose tar unpack /Users/ianboothby/.npm/semver/2.1.0/package.tgz
+635 silly lockFile 303b3969-ate-notifier-node-modules-semver tar:///Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/semver
+636 verbose lock tar:///Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/semver /Users/ianboothby/.npm/303b3969-ate-notifier-node-modules-semver.lock
+637 silly lockFile 36ecaa6f-hby-npm-semver-2-1-0-package-tgz tar:///Users/ianboothby/.npm/semver/2.1.0/package.tgz
+638 verbose lock tar:///Users/ianboothby/.npm/semver/2.1.0/package.tgz /Users/ianboothby/.npm/36ecaa6f-hby-npm-semver-2-1-0-package-tgz.lock
+639 silly gunzTarPerm extractEntry package.json
+640 silly gunzTarPerm modes [ '755', '644' ]
+641 silly gunzTarPerm extractEntry index.js
+642 silly gunzTarPerm extractEntry readme.md
+643 silly gunzTarPerm extractEntry .npmignore
+644 silly gunzTarPerm extractEntry LICENSE
+645 verbose tar unpack /Users/ianboothby/.npm/strip-ansi/0.1.1/package.tgz
+646 silly lockFile a449f7dc-es-chalk-node-modules-strip-ansi tar:///Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk/node_modules/strip-ansi
+647 verbose lock tar:///Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/chalk/node_modules/strip-ansi /Users/ianboothby/.npm/a449f7dc-es-chalk-node-modules-strip-ansi.lock
+648 silly lockFile 5dc609f9-npm-strip-ansi-0-1-1-package-tgz tar:///Users/ianboothby/.npm/strip-ansi/0.1.1/package.tgz
+649 verbose lock tar:///Users/ianboothby/.npm/strip-ansi/0.1.1/package.tgz /Users/ianboothby/.npm/5dc609f9-npm-strip-ansi-0-1-1-package-tgz.lock
+650 info /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore unbuild
+651 silly gunzTarPerm extractEntry package.json
+652 silly gunzTarPerm modes [ '755', '644' ]
+653 silly gunzTarPerm extractEntry index.js
+654 silly gunzTarPerm extractEntry .travis.yml
+655 silly gunzTarPerm extractEntry fixtures/ssl-profiles.json
+656 silly gunzTarPerm modified mode [ 'fixtures/ssl-profiles.json', 438, 420 ]
+657 silly gunzTarPerm extractEntry tool/generate-error-constants.js
+658 silly gunzTarPerm modified mode [ 'tool/generate-error-constants.js', 438, 420 ]
+659 silly gunzTarPerm extractEntry package.json
+660 verbose tar unpack /Users/ianboothby/.npm/inflection/1.2.7/package.tgz
+661 silly lockFile 830ae453-ookshelf-node-modules-inflection tar:///Users/ianboothby/humanity/node_modules/bookshelf/node_modules/inflection
+662 verbose lock tar:///Users/ianboothby/humanity/node_modules/bookshelf/node_modules/inflection /Users/ianboothby/.npm/830ae453-ookshelf-node-modules-inflection.lock
+663 silly lockFile dbb5af04-npm-inflection-1-2-7-package-tgz tar:///Users/ianboothby/.npm/inflection/1.2.7/package.tgz
+664 verbose lock tar:///Users/ianboothby/.npm/inflection/1.2.7/package.tgz /Users/ianboothby/.npm/dbb5af04-npm-inflection-1-2-7-package-tgz.lock
+665 silly gunzTarPerm extractEntry .npmignore
+666 silly gunzTarPerm extractEntry README.md
+667 silly gunzTarPerm modes [ '755', '644' ]
+668 silly gunzTarPerm extractEntry index.js
+669 silly gunzTarPerm extractEntry Makefile
+670 silly gunzTarPerm extractEntry .npmignore
+671 silly gunzTarPerm extractEntry README.md
+672 silly gunzTarPerm extractEntry History.md
+673 silly gunzTarPerm extractEntry Makefile
+674 silly gunzTarPerm extractEntry Readme.md
+675 silly gunzTarPerm extractEntry lib/client.js
+676 silly gunzTarPerm extractEntry lib/index.js
+677 silly gunzTarPerm extractEntry lib/namespace.js
+678 silly gunzTarPerm extractEntry lib/socket.js
+679 silly gunzTarPerm extractEntry pbcopy
+680 silly gunzTarPerm extractEntry lib/Connection.js
+681 silly gunzTarPerm modified mode [ 'lib/Connection.js', 438, 420 ]
+682 silly gunzTarPerm extractEntry lib/ConnectionConfig.js
+683 silly gunzTarPerm modified mode [ 'lib/ConnectionConfig.js', 438, 420 ]
+684 silly gunzTarPerm extractEntry lib/Pool.js
+685 silly gunzTarPerm modified mode [ 'lib/Pool.js', 438, 420 ]
+686 silly gunzTarPerm extractEntry lib/PoolCluster.js
+687 silly gunzTarPerm modified mode [ 'lib/PoolCluster.js', 438, 420 ]
+688 silly gunzTarPerm extractEntry lib/PoolConfig.js
+689 silly gunzTarPerm modified mode [ 'lib/PoolConfig.js', 438, 420 ]
+690 silly gunzTarPerm extractEntry lib/PoolConnection.js
+691 silly gunzTarPerm modified mode [ 'lib/PoolConnection.js', 438, 420 ]
+692 silly gunzTarPerm extractEntry lib/protocol/Auth.js
+693 silly gunzTarPerm modified mode [ 'lib/protocol/Auth.js', 438, 420 ]
+694 silly gunzTarPerm extractEntry lib/protocol/PacketHeader.js
+695 silly gunzTarPerm modified mode [ 'lib/protocol/PacketHeader.js', 438, 420 ]
+696 silly gunzTarPerm extractEntry lib/protocol/PacketWriter.js
+697 silly gunzTarPerm modified mode [ 'lib/protocol/PacketWriter.js', 438, 420 ]
+698 silly gunzTarPerm extractEntry lib/protocol/Parser.js
+699 silly gunzTarPerm modified mode [ 'lib/protocol/Parser.js', 438, 420 ]
+700 silly gunzTarPerm extractEntry lib/protocol/Protocol.js
+701 silly gunzTarPerm modified mode [ 'lib/protocol/Protocol.js', 438, 420 ]
+702 silly gunzTarPerm extractEntry lib/protocol/ResultSet.js
+703 silly gunzTarPerm modified mode [ 'lib/protocol/ResultSet.js', 438, 420 ]
+704 silly gunzTarPerm extractEntry lib/protocol/SqlString.js
+705 silly gunzTarPerm modified mode [ 'lib/protocol/SqlString.js', 438, 420 ]
+706 silly gunzTarPerm extractEntry lib/protocol/constants/charsets.js
+707 silly gunzTarPerm modified mode [ 'lib/protocol/constants/charsets.js', 438, 420 ]
+708 silly gunzTarPerm extractEntry lib/protocol/constants/client.js
+709 silly gunzTarPerm modified mode [ 'lib/protocol/constants/client.js', 438, 420 ]
+710 silly gunzTarPerm extractEntry lib/protocol/constants/errors.js
+711 silly gunzTarPerm modified mode [ 'lib/protocol/constants/errors.js', 438, 420 ]
+712 silly gunzTarPerm extractEntry lib/protocol/constants/field_flags.js
+713 silly gunzTarPerm modified mode [ 'lib/protocol/constants/field_flags.js', 438, 420 ]
+714 silly gunzTarPerm extractEntry lib/protocol/constants/server_status.js
+715 silly gunzTarPerm modified mode [ 'lib/protocol/constants/server_status.js', 438, 420 ]
+716 silly gunzTarPerm extractEntry lib/protocol/constants/types.js
+717 silly gunzTarPerm modified mode [ 'lib/protocol/constants/types.js', 438, 420 ]
+718 silly gunzTarPerm extractEntry lib/protocol/packets/ClientAuthenticationPacket.js
+719 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ClientAuthenticationPacket.js',
+719 silly gunzTarPerm   438,
+719 silly gunzTarPerm   420 ]
+720 silly gunzTarPerm extractEntry lib/protocol/packets/EofPacket.js
+721 silly gunzTarPerm modified mode [ 'lib/protocol/packets/EofPacket.js', 438, 420 ]
+722 silly gunzTarPerm extractEntry lib/protocol/packets/ErrorPacket.js
+723 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ErrorPacket.js', 438, 420 ]
+724 silly gunzTarPerm extractEntry lib/protocol/packets/Field.js
+725 silly gunzTarPerm modified mode [ 'lib/protocol/packets/Field.js', 438, 420 ]
+726 silly gunzTarPerm extractEntry lib/protocol/packets/EmptyPacket.js
+727 silly gunzTarPerm modified mode [ 'lib/protocol/packets/EmptyPacket.js', 438, 420 ]
+728 silly gunzTarPerm extractEntry lib/protocol/packets/HandshakeInitializationPacket.js
+729 silly gunzTarPerm modified mode [ 'lib/protocol/packets/HandshakeInitializationPacket.js',
+729 silly gunzTarPerm   438,
+729 silly gunzTarPerm   420 ]
+730 silly gunzTarPerm extractEntry lib/protocol/packets/index.js
+731 silly gunzTarPerm modified mode [ 'lib/protocol/packets/index.js', 438, 420 ]
+732 silly gunzTarPerm extractEntry lib/protocol/packets/LocalDataFilePacket.js
+733 silly gunzTarPerm modified mode [ 'lib/protocol/packets/LocalDataFilePacket.js', 438, 420 ]
+734 silly gunzTarPerm extractEntry lib/protocol/packets/OkPacket.js
+735 silly gunzTarPerm modified mode [ 'lib/protocol/packets/OkPacket.js', 438, 420 ]
+736 silly gunzTarPerm extractEntry lib/protocol/packets/OldPasswordPacket.js
+737 silly gunzTarPerm modified mode [ 'lib/protocol/packets/OldPasswordPacket.js', 438, 420 ]
+738 silly gunzTarPerm extractEntry lib/protocol/packets/ComStatisticsPacket.js
+739 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ComStatisticsPacket.js', 438, 420 ]
+740 silly gunzTarPerm extractEntry lib/protocol/packets/ResultSetHeaderPacket.js
+741 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ResultSetHeaderPacket.js', 438, 420 ]
+742 silly gunzTarPerm extractEntry lib/protocol/packets/ComQuitPacket.js
+743 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ComQuitPacket.js', 438, 420 ]
+744 silly gunzTarPerm extractEntry lib/protocol/packets/RowDataPacket.js
+745 silly gunzTarPerm modified mode [ 'lib/protocol/packets/RowDataPacket.js', 438, 420 ]
+746 silly gunzTarPerm extractEntry lib/protocol/packets/ComQueryPacket.js
+747 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ComQueryPacket.js', 438, 420 ]
+748 silly gunzTarPerm extractEntry lib/protocol/packets/SSLRequestPacket.js
+749 silly gunzTarPerm modified mode [ 'lib/protocol/packets/SSLRequestPacket.js', 438, 420 ]
+750 silly gunzTarPerm extractEntry lib/protocol/packets/ComPingPacket.js
+751 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ComPingPacket.js', 438, 420 ]
+752 silly gunzTarPerm extractEntry lib/protocol/packets/StatisticsPacket.js
+753 silly gunzTarPerm modified mode [ 'lib/protocol/packets/StatisticsPacket.js', 438, 420 ]
+754 silly gunzTarPerm extractEntry lib/protocol/packets/ComChangeUserPacket.js
+755 silly gunzTarPerm modified mode [ 'lib/protocol/packets/ComChangeUserPacket.js', 438, 420 ]
+756 silly gunzTarPerm extractEntry lib/protocol/packets/UseOldPasswordPacket.js
+757 silly gunzTarPerm modified mode [ 'lib/protocol/packets/UseOldPasswordPacket.js', 438, 420 ]
+758 silly gunzTarPerm extractEntry lib/protocol/packets/FieldPacket.js
+759 silly gunzTarPerm modified mode [ 'lib/protocol/packets/FieldPacket.js', 438, 420 ]
+760 silly gunzTarPerm extractEntry lib/protocol/sequences/ChangeUser.js
+761 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/ChangeUser.js', 438, 420 ]
+762 silly gunzTarPerm extractEntry lib/protocol/sequences/Handshake.js
+763 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Handshake.js', 438, 420 ]
+764 silly gunzTarPerm extractEntry lib/protocol/sequences/index.js
+765 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/index.js', 438, 420 ]
+766 silly gunzTarPerm extractEntry lib/protocol/sequences/Ping.js
+767 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Ping.js', 438, 420 ]
+768 silly gunzTarPerm extractEntry lib/protocol/sequences/Query.js
+769 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Query.js', 438, 420 ]
+770 silly gunzTarPerm extractEntry lib/protocol/sequences/Quit.js
+771 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Quit.js', 438, 420 ]
+772 silly gunzTarPerm extractEntry lib/protocol/sequences/Sequence.js
+773 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Sequence.js', 438, 420 ]
+774 silly gunzTarPerm extractEntry lib/protocol/sequences/Statistics.js
+775 silly gunzTarPerm modified mode [ 'lib/protocol/sequences/Statistics.js', 438, 420 ]
+776 silly gunzTarPerm extractEntry .travis.yml
+777 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
+778 silly gunzTarPerm extractEntry make.bat
+779 silly gunzTarPerm modified mode [ 'make.bat', 438, 420 ]
+780 silly gunzTarPerm extractEntry Makefile
+781 silly gunzTarPerm modified mode [ 'Makefile', 438, 420 ]
+782 silly gunzTarPerm extractEntry Changes.md
+783 silly gunzTarPerm modified mode [ 'Changes.md', 438, 420 ]
+784 silly gunzTarPerm extractEntry Readme.md
+785 silly gunzTarPerm modified mode [ 'Readme.md', 438, 420 ]
+786 silly gunzTarPerm extractEntry License
+787 silly gunzTarPerm modified mode [ 'License', 438, 420 ]
+788 error error rolling back Error: EACCES, unlink '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml'
+788 error error rolling back  configstore@0.2.3 { [Error: EACCES, unlink '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml']
+788 error error rolling back   errno: 3,
+788 error error rolling back   code: 'EACCES',
+788 error error rolling back   path: '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml' }
+789 error Error: EACCES, unlink '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml'
+789 error  { [Error: EACCES, unlink '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml']
+789 error   errno: 3,
+789 error   code: 'EACCES',
+789 error   path: '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml' }
+790 error Please try running this command again as root/Administrator.
+791 error System Darwin 12.5.0
+792 error command "node" "/usr/local/bin/npm" "update"
+793 error cwd /Users/ianboothby/humanity
+794 error node -v v0.10.26
+795 error npm -v 1.4.3
+796 error path /Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml
+797 error code EACCES
+798 error errno 3
+799 error stack Error: EACCES, unlink '/Users/ianboothby/humanity/node_modules/nodemon/node_modules/update-notifier/node_modules/configstore/node_modules/.bin/js-yaml'
+800 verbose exit [ 3, true ]
