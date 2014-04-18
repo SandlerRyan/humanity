@@ -1,19 +1,44 @@
+<h3>Lobby</h3>
+Enter your user id:<input type="text" id="user_id"/>
+<br/>
+<input type="button" value="submit" id="submit"/>
+
 <script src="/socket.io/socket.io.js"></script>
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script src="/js/jquery-ui-1.8.20.custom.min.js"></script>
+
 <script>
- // change to dynamic port when deploying
-	var socket = io.connect('http://localhost');
-	socket.on('connect', function() {
 
-		var room = "1";
-		console.log("client connected");
-		//Figure out which Room the new user should be in
-		socket.emit('new user', room);
+// start socket connection when user name is entered
+$('#submit').on('click', function() {
+	var user_id = $('#user_id');
+	if (user_id.val() == '') {
+		alert('Please enter a valid user id');
+	}
+	else
+	{
+		var socket = io.connect('http://localhost/lobby', {
+			port: 3000,
+			transports: ["websocket"],
+			'sync disconnect on unload': true});
 
-	});
+		socket.on('connect', function() {
+			var room = "1";
+			console.log("client connected");
 
-	socket.on('players', function() {
-		console.log("new player joined")
-	})
+			// Figure out which Room the new user should be in
+			socket.emit('new player', {'room': room, 'player_id': user_id.val()});
+		});
+
+
+		// when a new player joins, socket emits the new player to existing players
+		// and a list of existing players to the new player
+		socket.on('new player', function(players) {
+			console.log(players);
+		});
+
+	}
+});
 
 
 </script>

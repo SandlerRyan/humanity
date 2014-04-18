@@ -31,20 +31,68 @@ server.listen(app.get('port'), function(){
 app.get('/', main.homepage);
 app.get('/lobby', main.lobby);
 
-io.sockets.on('connection', function(socket) {
-	socket.on('new user', function(roomNumber) {
 
-		socket.join(roomNumber)
-		console.log(socket)
+var players = []
 
-        //HOW TO lookup room and broadcast to that room
-        io.sockets.in(roomNumber).emit('players');
+// helper function to find a player by their socket id
+function find_player(ps, socket_id) {
+	var n = ps.length;
+	for(i = 0; i < n; i ++ ) {
+		if (ps[i]['socket'] == socket_id) {
+			return i;
+		}
+		else continue;
+	}
+	return false;
+}
+
+var lobby = io.of('/lobby');
+
+/*********************************************
+* LOBBY SOCKET LOGIC
+*********************************************/
+lobby.on('connection', function(client) {
+	console.log('CONNECTED!!!');
+
+	// add a new player and notify all the other players
+	client.on('new player', function(data) {
+		console.log('NEW USER JOINED!!!');
+		// join the given room number
+		this.join(data.room);
+
+		// send the new player to all the other players
+        lobby.in(data.room).emit('new player', data.player_id);
+        // send all the other players to the new player
+        lobby.emit('new player', players);
+
+		// add to our player list
+		players.push({'player': data.player_id, 'socket': this.id});
+		console.log(players);
+
+		//HOW TO lookup room and broadcast to that room
 		//SOLUTION: We should save the user in a DB and remove it when disconnected. SocketIO API might change
         //And we don't want it to break in case it does.
-
 	});
 
+
+	// remove player from list when they disconnect
+	client.on('disconnect', function() {
+		console.log('PLAYER DISCONNECTED');
+		var p = find_player(players, this.id);
+		if (!p) {
+			console.log('PLAYER NOT FOUND');
+			return;
+		}
+		else {
+			players.splice(p, 1);
+			console.log(players)
+		}
+	});
+
+
 });
+
+
 
 // user functionality
 app.get('/login', user.login);
