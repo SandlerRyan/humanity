@@ -116,23 +116,26 @@ game.on('connection', function(client) {
 		console.log(client[0])
 		game.socket(players[data.room][0].socket).emit("player submission", data)
 	})
+
 	// remove player from list when they disconnect
 	client.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
 
 		// get the rooms the player has joined
-		rooms = io.sockets.manager.roomClients[client.id];
-		for(i = 0; i < rooms.length; i++) {
-			var room = rooms[i];
+		for (var room in players) {
+
 			var p = find_player(players[room], client.id);
+
 			if (p === false) {
-				console.log('PLAYER NOT FOUND');
+				console.log('could not find player in room');
 				return;
 			}
+
 			else {
 				players[room].splice(p, 1);
 				console.log(players);
 			}
+
 		}
 	});
 

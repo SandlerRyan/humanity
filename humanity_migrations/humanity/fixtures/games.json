@@ -6,7 +6,6 @@
 			"fb_key": "1234567",
 			"first": "Ian",
 			"last": "Boothby",
-			"created": "2014-04-20 00:00:00"
 		}
 	},
 	{
@@ -16,7 +15,6 @@
 			"fb_key": "abcdefg",
 			"first": "Nuseir",
 			"last": "Yassin",
-			"created": "2014-04-20 00:00:00"
 		}
 	},
 	{
@@ -26,7 +24,6 @@
 			"fb_key": "asfopijqgrgj",
 			"first": "Vladimir",
 			"last": "Bok",
-			"created": "2014-04-20 00:00:00"
 		}
 	},
 	{
@@ -36,7 +33,6 @@
 			"fb_key": "42hutfkjn",
 			"first": "Ryan",
 			"last": "Sandler",
-			"created": "2014-04-20 00:00:00"
 		}
 	},
 	{
@@ -46,7 +42,6 @@
 			"active": "1",
 			"started": "0",
 			"creator": "1",
-			"created": "2014-04-20 00:00:00",
 			"players": ["1", "2"]
 		}
 	},
@@ -57,7 +52,6 @@
 			"active": "1",
 			"started": "0",
 			"creator": "3",
-			"created": "2014-04-20 00:00:00",
 			"players": ["1", "2", "3", "4"]
 		}
 	},
@@ -68,7 +62,6 @@
 			"active": "0",
 			"started": "1",
 			"creator": "4",
-			"created": "2014-04-20 00:00:00",
 			"players": ["1", "2", "3", "4"]
 		}
 	},
@@ -79,7 +72,6 @@
 			"active": "1",
 			"started": "1",
 			"creator": "4",
-			"created": "2014-04-20 00:00:00",
 			"players": ["1", "2", "3", "4"]
 		}
 	}
