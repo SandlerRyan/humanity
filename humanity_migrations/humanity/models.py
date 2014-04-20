@@ -28,7 +28,8 @@ class Player(models.Model):
 	fb_key = models.CharField(max_length=100)
 	first = models.CharField(max_length=50)
 	last = models.CharField(max_length=50)
-	created = models.DateTimeField(auto_now_add=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
 		return self.last
@@ -40,9 +41,11 @@ class Game(models.Model):
 	active = models.BooleanField()
 	started = models.BooleanField()
 	creator = models.ForeignKey(Player, related_name='creator')
-	created = models.DateTimeField(auto_now_add=True)
-	winner = models.ForeignKey(Player, related_name='winner', blank=True, null=True)
+	winner = models.ForeignKey(Player, related_name='winner', blank=True, null=True, default=None)
 	players = models.ManyToManyField(Player, related_name='players')
+
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
 		db_table = 'games'

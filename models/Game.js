@@ -2,7 +2,9 @@ var Model = require('./Base');
 
 var Game = Model.extend({
 
-	tableName: 'games'
+	tableName: 'games',
+
+	hasTimestamps: ['created_at', 'updated_at'],
 
 	players: function() {
 		return this.belongsToMany(require('./Player'));
