@@ -114,7 +114,7 @@ game.on('connection', function(client) {
 		console.log(data)
 		var judge = find_judge_socket(data.room);
 		console.log(client[0])
-		game.socket(players[0].socket).emit("player submission", data)
+		game.socket(players[data.room][0].socket).emit("player submission", data)
 	})
 
 	// remove player from list when they disconnect

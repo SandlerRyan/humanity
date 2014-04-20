@@ -60,25 +60,27 @@ $( document ).ready(function() {
 
 
 	$('#confirmButton').on('click', function() {
-		console.log("clicked")
 		var card = $('.chosenCard').attr('id')
-		socket.emit('emit player response', {'player': 1, 'card': card, 'room': get_room()})
+		if (card != "") {
+			$(this).text("Waiting for Judge....")
+			$(this).attr('disabled', 'disabled')
+`		} else {
+			alert("You must select a card first")
+		}
+
 	})
 
-
+	//When a
 	$('.useCard').on('click', function() {
-		console.log($(this).children().first().children()[0].innerHTML)
 		var card = $(this);
 		var cardID =  $(this).attr('id')
 		var cardText = $(this).children().first().children()[0].innerHTML
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
 		$(this).removeClass('white')
+
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
-
-
 	})
 });
-
