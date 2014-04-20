@@ -6,25 +6,10 @@ var socket = io.connect('http://localhost/game', {
 
 // get the room id from the GET params
 function get_room () {
-	// var url = document.URL.split['/'];
-	// return url[url.length - 1];
-
-	return 1;
+	var url = $(location).attr('href');
+	url = url.split('/');
+	return url[url.length - 1];
 }
-
-// start socket connection when user name is entered
-// $('#submit').on('click', function() {
-// 	var user_id = $('#user_id');
-// 	if (user_id.val() == '') {
-// 		alert('Please enter a valid user id');
-// 	}
-
-// 	else
-// 	{
-		
-
-// 	}
-// });
 
 $( document ).ready(function() {
     
@@ -48,28 +33,25 @@ $( document ).ready(function() {
 
 
 	$('#confirmButton').on('click', function() {
-		console.log("clicked")
 		var card = $('.chosenCard').attr('id')
-		console.log(card)
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
-			socket.emit('emit player response', {'player': 1, 'card': card, 'room': get_room()})
-		} else {
+`		} else {
 			alert("You must select a card first")
 		}
  		
 	})
 
-
+	//When a 
 	$('.useCard').on('click', function() {
-		console.log($(this).children().first().children()[0].innerHTML)
 		var card = $(this);
 		var cardID =  $(this).attr('id')
 		var cardText = $(this).children().first().children()[0].innerHTML
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
 		$(this).removeClass('white')
+
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
