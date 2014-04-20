@@ -5,10 +5,12 @@
 // Major dependencies
 var app = require('./init/express');
 var path = require('path');
-
 var main = require('./routes/main');
 var user = require('./routes/user');
+
 // Models
+var Player = require('./models/Player');
+var Game = require('./models/Game');
 
 
 /*******
@@ -22,7 +24,6 @@ server.listen(app.get('port'), function(){
 });
 
 
-
 /*********
 * ROUTES
 *********/
@@ -33,8 +34,12 @@ app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
 
+// user functionality
+app.get('/login', user.login);
+app.get('/logout', user.logout);
 
-var players = []
+
+var players = {};
 
 // helper function to find a player by their socket id
 function find_player(ps, socket_id) {
@@ -54,6 +59,17 @@ function find_player(ps, socket_id) {
 var lobby = io.of('/lobby');
 
 lobby.on('connection', function(client) {
+	setInterval(function() {
+		Game.collection()
+		.query('where', {active:1, started:0}).fetch()
+		.then(function(games) {
+			client.emit('games', games);
+		}).catch(function(e) {
+			console.log(e.stack);
+			res.json(400, {error: e.message});
+		});
+	}, 5000);
+});
 
 
 /*********************************************
@@ -72,43 +88,43 @@ game.on('connection', function(client) {
 		this.join(data.room);
 
 		// send the new player to all the other players
-        game.in(data.room).emit('new player', data.player_id);
+        game.in(data.room).emit('new player', data.player);
         // send all the other players to the new player
         game.emit('new player', players);
 
 		// add to our player list
-		players.push({'player': data.player_id, 'socket': this.id});
+		try {
+			players[data.room].push({'player': data.player, 'socket': this.id});
+		}
+		// or if room has just been created, add it to the players object
+		catch (e) {
+			players[data.room] = [];
+			players[data.room].push({'player': data.player, 'socket': this.id});
+		}
 		console.log(players);
 
-		//HOW TO lookup room and broadcast to that room
-		//SOLUTION: We should save the user in a DB and remove it when disconnected. SocketIO API might change
-        //And we don't want it to break in case it does.
 	});
 
 
 	// remove player from list when they disconnect
 	client.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
-		var p = find_player(players, this.id);
-		if (!p) {
-			console.log('PLAYER NOT FOUND');
-			return;
-		}
-		else {
-			players.splice(p, 1);
-			console.log(players);
+
+		// get the rooms the player has joined
+		rooms = io.sockets.manager.roomClients[client.id];
+		for(i = 0; i < rooms.length; i++) {
+			var room = rooms[i];
+			var p = find_player(players[room], client.id);
+			if (p === false) {
+				console.log('PLAYER NOT FOUND');
+				return;
+			}
+			else {
+				players[room].splice(p, 1);
+				console.log(players);
+			}
 		}
 	});
 
-
 });
-
-
-
-// user functionality
-app.get('/login', user.login);
-app.get('/logout', user.logout);
-
-// routes for the games themselves
-
 

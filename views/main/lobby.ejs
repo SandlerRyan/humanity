@@ -34,3 +34,34 @@ Below is a list of games:
       </tr>
    </tbody>
 </table>
+
+<script>
+var socket = io.connect('http://localhost/lobby', {
+	port: 3000,
+	transports: ["websocket"],
+	'sync disconnect on unload': true});
+
+// tell the server a new player has joined
+socket.on('connect', function() {
+	console.log("client connected");
+});
+
+socket.on('games', function (data) {
+	// display the games in the table
+
+	console.log(data)
+
+});
+
+
+$('#create').on('click', function() {
+	var user_id = $('#user_id');
+	if(user_id.val() == '') {
+		alert('Please enter a valid user id');
+	}
+	else {
+		window.location.href = '/create/' + user_id.val()
+	}
+});
+</script>
+
