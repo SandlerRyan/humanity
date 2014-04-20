@@ -31,6 +31,7 @@ server.listen(app.get('port'), function(){
 app.get('/', main.homepage);
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
+app.get('/create/:player_id', main.create);
 
 
 var players = []
