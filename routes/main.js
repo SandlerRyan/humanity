@@ -4,17 +4,9 @@ exports.homepage = function(req, res) {
 
 
 exports.lobby = function(req, res) {
-	res.render('main/lobby');
+	res.render('main/lobby', {room: req.params.room});
+}
 
-	// io.sockets.on('connection', function(socket) {
-	// 	console.log('connected to lobby');
-	// 	socket.on('user', function(data) {
-	// 		console.log("JOINED THIS SPECIFIC ROOM");
-	// 		// socket.join(room);
-	// 	});
-	// });
-
-	// return function(req, res) {
-	// 		res.render('main/lobby');
-	// }
+exports.gamelist = function(req, res) {
+	res.render('main/gamelist');
 }

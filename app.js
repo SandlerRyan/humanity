@@ -17,6 +17,7 @@ var user = require('./routes/user');
 ********/
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+io.set('log level', 1);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
@@ -29,7 +30,8 @@ server.listen(app.get('port'), function(){
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-app.get('/lobby', main.lobby);
+app.get('/gamelist', main.gamelist);
+app.get('/lobby/:room', main.lobby);
 
 
 var players = []
@@ -85,7 +87,7 @@ lobby.on('connection', function(client) {
 		}
 		else {
 			players.splice(p, 1);
-			console.log(players)
+			console.log(players);
 		}
 	});
 
