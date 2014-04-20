@@ -6,7 +6,6 @@
 var app = require('./init/express');
 var path = require('path');
 
-
 var main = require('./routes/main');
 var user = require('./routes/user');
 // Models
