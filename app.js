@@ -111,5 +111,3 @@ app.get('/login', user.login);
 app.get('/logout', user.logout);
 
 // routes for the games themselves
-
-
