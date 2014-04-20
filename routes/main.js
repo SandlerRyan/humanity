@@ -4,8 +4,7 @@ var Game = require('../models/Game');
 
 exports.homepage = function(req, res) {
 	
-	
-	res.render('game', {title: 'Harvard Against Humanity', white_cards: data });
+	res.render('homepage', {title: 'Harvard Against Humanity'});
 },
 
 exports.create = function(req,res) {

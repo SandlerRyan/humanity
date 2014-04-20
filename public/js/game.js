@@ -37,7 +37,7 @@ $( document ).ready(function() {
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
-`		} else {
+		} else {
 			alert("You must select a card first")
 		}
  		
