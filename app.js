@@ -17,7 +17,8 @@ var user = require('./routes/user');
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
-server.listen(app.get('port'), function(){
+app.set('port', process.env.PORT || 3000);
+server.listen(app.get('port'), 'localhost', function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
