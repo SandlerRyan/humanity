@@ -49,6 +49,14 @@ function find_player(ps, socket_id) {
 }
 
 /*********************************************
+* LOBBY SOCKET LOGIC
+*********************************************/
+var lobby = io.of('/lobby');
+
+lobby.on('connection', function(client) {
+
+
+/*********************************************
 * GAME SOCKET LOGIC
 *********************************************/
 

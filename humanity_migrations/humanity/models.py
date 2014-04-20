@@ -38,8 +38,10 @@ class Player(models.Model):
 
 class Game(models.Model):
 	active = models.BooleanField()
+	started = models.BooleanField()
+	room = models.CharField(max_length=50)
 	created = models.DateTimeField(auto_now_add=True)
-	winner = models.ForeignKey(Player, related_name='game_winner')
+	winner = models.ForeignKey(Player, related_name='game_winner', blank=True, null=True)
 	players = models.ManyToManyField(Player, related_name='game_players')
 
 	class Meta:
