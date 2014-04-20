@@ -3,10 +3,10 @@ exports.homepage = function(req, res) {
 },
 
 
-exports.lobby = function(req, res) {
-	res.render('main/lobby', {room: req.params.room});
+exports.game = function(req, res) {
+	res.render('main/game', {room: req.params.room});
 }
 
-exports.gamelist = function(req, res) {
-	res.render('main/gamelist');
+exports.lobby = function(req, res) {
+	res.render('main/lobby');
 }

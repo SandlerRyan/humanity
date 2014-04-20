@@ -29,8 +29,8 @@ server.listen(app.get('port'), function(){
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-app.get('/gamelist', main.gamelist);
-app.get('/lobby/:room', main.lobby);
+app.get('/lobby', main.lobby);
+app.get('/game/:room', main.game);
 
 
 var players = []
@@ -47,12 +47,13 @@ function find_player(ps, socket_id) {
 	return false;
 }
 
-var lobby = io.of('/lobby');
-
 /*********************************************
-* LOBBY SOCKET LOGIC
+* GAME SOCKET LOGIC
 *********************************************/
-lobby.on('connection', function(client) {
+
+var game = io.of('/game');
+
+game.on('connection', function(client) {
 	console.log('CONNECTED!!!');
 
 	// add a new player and notify all the other players
@@ -62,9 +63,9 @@ lobby.on('connection', function(client) {
 		this.join(data.room);
 
 		// send the new player to all the other players
-        lobby.in(data.room).emit('new player', data.player_id);
+        game.in(data.room).emit('new player', data.player_id);
         // send all the other players to the new player
-        lobby.emit('new player', players);
+        game.emit('new player', players);
 
 		// add to our player list
 		players.push({'player': data.player_id, 'socket': this.id});

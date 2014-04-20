@@ -13,7 +13,7 @@ $('#submit').on('click', function() {
 
 	else
 	{
-		var socket = io.connect('http://localhost/lobby', {
+		var socket = io.connect('http://localhost/game/', {
 			port: 3000,
 			transports: ["websocket"],
 			'sync disconnect on unload': true});
