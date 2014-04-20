@@ -1,0 +1,284 @@
+[
+	{
+		"model": "humanity.BlackCard",
+		"pk": "1",
+		"fields": {
+			"content": "At my 25th reunion, I'll remember ______ most.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "2",
+		"fields": {
+			"content": "I didn't get into a finals club because of ______.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "3",
+		"fields": {
+			"content": "Dean Hammonds stepped down because of ______.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "4",
+		"fields": {
+			"content": "I found _____ in my dhall food.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "5",
+		"fields": {
+			"content": "Today's HUDS menu: dry chicken and ______.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "6",
+		"fields": {
+			"content": "I swam in the Charles and cut my foot on ______.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "7",
+		"fields": {
+			"content": "Expos 20: _______",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.BlackCard",
+		"pk": "8",
+		"fields": {
+			"content": "I think I got ______ at Mather Lather.",
+			"blanks": "1"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "1",
+		"fields": {
+			"content":"Investment banking"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "2",
+		"fields": {
+			"content":"Startups"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "3",
+		"fields": {
+			"content":"Being told you're pregnant by UHS"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "4",
+		"fields": {
+			"content":"The Delphic basement"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "5",
+		"fields": {
+			"content":"Microagressions"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "6",
+		"fields": {
+			"content": "White privilege"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "7",
+		"fields": {
+			"content": "Kissing Drew Faust's ass"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "8",
+		"fields": {
+			"content": "Eating breakfast with last night's hookup"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "9",
+		"fields": {
+			"content": "Misogynistic YardFest artist"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "10",
+		"fields": {
+			"content": "Section kid"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "11",
+		"fields": {
+			"content": "A big endowment"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "12",
+		"fields": {
+			"content": "Lamonsters"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "13",
+		"fields": {
+			"content": "Eldo Kim"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "14",
+		"fields": {
+			"content": "Sad Fly-By lunch"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "15",
+		"fields": {
+			"content": "Innovation"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "16",
+		"fields": {
+			"content": "Pre-med tears"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "17",
+		"fields": {
+			"content": "The Pusey"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "18",
+		"fields": {
+			"content": "Sex in the Stacks"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "19",
+		"fields": {
+			"content": "Co-op people"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "20",
+		"fields": {
+			"content": "A dumb freshman"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "21",
+		"fields": {
+			"content": "HBO Go Late Nite"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "22",
+		"fields": {
+			"content": "Mather Lather on Molly"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "23",
+		"fields": {
+			"content": "DG Formal"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "24",
+		"fields": {
+			"content": "Giving zero shits about reading"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "25",
+		"fields": {
+			"content": "Primal Scream"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "26",
+		"fields": {
+			"content": "Pissing on John Harvard's foot"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "27",
+		"fields": {
+			"content": "Running into your TF while drunk"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "28",
+		"fields": {
+			"content": "Getting Quadded"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "29",
+		"fields": {
+			"content": "15 Hottest Freshmen"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "30",
+		"fields": {
+			"content": "Yard Tourists"
+		}
+	},
+	{
+		"model": "humanity.WhiteCard",
+		"pk": "31",
+		"fields": {
+			"content": "Cheating at Intro to Congress"
+		}
+	}
+]
+
