@@ -1,10 +1,11 @@
 var express = require('express');
 var path = require('path');
-
+var engine = require('ejs-locals')
 var app = express();
 
 // settings
 app.set('view engine', 'ejs');
+app.engine('ejs', engine);
 app.set('views', path.join(__dirname, '../views'));
 
 // middleware

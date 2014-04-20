@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Harvard Against Humanity</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+      <!-- jQuery -->
+      <script src="http://code.jquery.com/jquery.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <!-- Custom Stylesheet -->
+      <link rel="stylesheet" href="/css/style.css">
+   </head>
+  <body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	   <div class="container">
+	      <div class="navbar-header">
+	         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	         <span class="sr-only">Toggle navigation</span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         </button>
+	         <a class="navbar-brand" href="/">Havard Against Humanity</a>
+	      </div>
+	      <!-- Collect the nav links, forms, and other content for toggling -->
+	      <div class="collapse navbar-collapse navbar-ex1-collapse">
+	         <ul class="nav navbar-nav navbar-right">
+	            <li><a href="#end">Quit Game</a></li>
+	            <li><a href="#end">Log Out</a></li>
+	         </ul>
+	      </div>
+	   </div>
+	</nav>
+
+    <header>
+      <%-blocks.header%>
+    </header>
+    <section>
+
+
+      <%-body -%>
+    </section>
+    <footer>
+      <%-blocks.footer%>
+    </footer>
+  </body>
+</html>
