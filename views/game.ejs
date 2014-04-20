@@ -1,0 +1,46 @@
+<% layout('mainLayout') -%>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/game.js"></script>
+
+<h1 id="judge-heading">John Harvard is judge this turn.</h1>
+
+<!-- Top Card Pane -->
+<div class="card-pane">
+   <div class="" style="text-align: center;">
+      <div class="card black">
+         <div class="card-content" style="text-align: left;">
+            <p>This is a black card ______. This is a black example.</p>
+         </div>
+      </div>
+      <div class="card white chosenCard" id="">
+         <div class="card-content" style="text-align: left;">
+         </div>
+      </div>
+      <div class="" style="text-align: center;">
+         <a href="#" id="confirmButton" class="btn btn-primary">Confirm</a>
+      </div>
+   </div>
+</div>
+
+<!-- Bottom Card Pane -->
+<div class="card-pane">
+   <div class="row">
+
+   	<% white_cards.forEach(function(card) { %>
+		<div class="card white useCard" id="<%= card.id %>">
+	        <div class="card-content">
+	            <p>
+	               <%= card.text %>
+	            </p>
+	        </div>
+      	</div>
+   	<% }) %> 
+   	
+     
+   </div>
+</div>
+
+<br/>
+<br/>
+<br/>

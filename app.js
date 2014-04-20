@@ -47,6 +47,10 @@ function find_player(ps, socket_id) {
 	return false;
 }
 
+
+function find_judge_socket(room_id) {
+	return 1;
+}
 /*********************************************
 * GAME SOCKET LOGIC
 *********************************************/
@@ -76,7 +80,13 @@ game.on('connection', function(client) {
         //And we don't want it to break in case it does.
 	});
 
-
+	client.on('emit player response', function(data) {
+		console.log("IM HERE")
+		console.log(data)
+		var judge = find_judge_socket(data.room);
+		console.log(client[0])
+		game.socket(players[0].socket).emit("player submission", data)
+	})
 	// remove player from list when they disconnect
 	client.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
