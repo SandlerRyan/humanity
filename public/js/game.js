@@ -25,7 +25,6 @@ $('#submit').on('click', function() {
 			socket.emit('new player', {'room': get_room(), 'player_id': user_id.val()});
 		});
 
-
 		// when a new player joins, socket emits the new player to existing players
 		// and a list of existing players to the new player
 		socket.on('new player', function(players) {

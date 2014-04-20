@@ -32,6 +32,7 @@ server.listen(app.get('port'), 'localhost', function(){
 app.get('/', main.homepage);
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
+app.get('/create/:player_id', main.create);
 
 
 var players = []
@@ -47,6 +48,14 @@ function find_player(ps, socket_id) {
 	}
 	return false;
 }
+
+/*********************************************
+* LOBBY SOCKET LOGIC
+*********************************************/
+var lobby = io.of('/lobby');
+
+lobby.on('connection', function(client) {
+
 
 /*********************************************
 * GAME SOCKET LOGIC

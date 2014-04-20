@@ -38,9 +38,11 @@ class Player(models.Model):
 
 class Game(models.Model):
 	active = models.BooleanField()
+	started = models.BooleanField()
+	creator = models.ForeignKey(Player, related_name='creator')
 	created = models.DateTimeField(auto_now_add=True)
-	winner = models.ForeignKey(Player, related_name='game_winner')
-	players = models.ManyToManyField(Player, related_name='game_players')
+	winner = models.ForeignKey(Player, related_name='winner', blank=True, null=True)
+	players = models.ManyToManyField(Player, related_name='players')
 
 	class Meta:
 		db_table = 'games'

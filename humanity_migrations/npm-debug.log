@@ -1,0 +1,964 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'update' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose url raw ejs
+5 verbose url resolving [ 'https://registry.npmjs.org/', './ejs' ]
+6 verbose url resolved https://registry.npmjs.org/ejs
+7 info trying registry request attempt 1 at 14:53:05
+8 verbose etag "953AUQIH6ANL13D16XGIF5CVE"
+9 http GET https://registry.npmjs.org/ejs
+10 verbose url raw underscore
+11 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+12 verbose url resolved https://registry.npmjs.org/underscore
+13 info trying registry request attempt 1 at 14:53:05
+14 verbose etag "A3EC4LZ1777VBEA4QL2HN71W6"
+15 http GET https://registry.npmjs.org/underscore
+16 verbose url raw backbone
+17 verbose url resolving [ 'https://registry.npmjs.org/', './backbone' ]
+18 verbose url resolved https://registry.npmjs.org/backbone
+19 info trying registry request attempt 1 at 14:53:05
+20 verbose etag "7PBXLPRZM5KRCUPK3DLZJYPM9"
+21 http GET https://registry.npmjs.org/backbone
+22 verbose url raw socket.io
+23 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io' ]
+24 verbose url resolved https://registry.npmjs.org/socket.io
+25 info trying registry request attempt 1 at 14:53:05
+26 verbose etag "85N6PU7YIHMWJY5PJSHXE1G45"
+27 http GET https://registry.npmjs.org/socket.io
+28 verbose url raw knex
+29 verbose url resolving [ 'https://registry.npmjs.org/', './knex' ]
+30 verbose url resolved https://registry.npmjs.org/knex
+31 info trying registry request attempt 1 at 14:53:05
+32 verbose etag "41QWMR1AV4VHZK9L1RMIJD9MD"
+33 http GET https://registry.npmjs.org/knex
+34 verbose url raw express
+35 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+36 verbose url resolved https://registry.npmjs.org/express
+37 info trying registry request attempt 1 at 14:53:05
+38 verbose etag "EYQRD6WZMM8LAYMKNU98AVOG2"
+39 http GET https://registry.npmjs.org/express
+40 verbose url raw jquery
+41 verbose url resolving [ 'https://registry.npmjs.org/', './jquery' ]
+42 verbose url resolved https://registry.npmjs.org/jquery
+43 info trying registry request attempt 1 at 14:53:05
+44 verbose etag "1IP4039HO2QFTWCDLXWQOYD5P"
+45 http GET https://registry.npmjs.org/jquery
+46 verbose url raw bookshelf
+47 verbose url resolving [ 'https://registry.npmjs.org/', './bookshelf' ]
+48 verbose url resolved https://registry.npmjs.org/bookshelf
+49 info trying registry request attempt 1 at 14:53:05
+50 verbose etag "C6GA6S7ZJMBEUWPF7A35IGVT9"
+51 http GET https://registry.npmjs.org/bookshelf
+52 verbose url raw ejs-locals
+53 verbose url resolving [ 'https://registry.npmjs.org/', './ejs-locals' ]
+54 verbose url resolved https://registry.npmjs.org/ejs-locals
+55 info trying registry request attempt 1 at 14:53:06
+56 verbose etag "2NSFV40NJJJ76XVO2DIF9IKHR"
+57 http GET https://registry.npmjs.org/ejs-locals
+58 verbose url raw nodemon
+59 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
+60 verbose url resolved https://registry.npmjs.org/nodemon
+61 info trying registry request attempt 1 at 14:53:06
+62 verbose etag "EX64UV8YELP0SN375290R4NJ7"
+63 http GET https://registry.npmjs.org/nodemon
+64 verbose url raw mysql
+65 verbose url resolving [ 'https://registry.npmjs.org/', './mysql' ]
+66 verbose url resolved https://registry.npmjs.org/mysql
+67 info trying registry request attempt 1 at 14:53:06
+68 verbose etag "77V7YG8PWZPZBV5Q9GKJX1U3G"
+69 http GET https://registry.npmjs.org/mysql
+70 http 304 https://registry.npmjs.org/knex
+71 silly registry.get cb [ 304,
+71 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+71 silly registry.get     server: 'Apache',
+71 silly registry.get     via: '1.1 varnish',
+71 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+71 silly registry.get     'cache-control': 'max-age=1',
+71 silly registry.get     etag: '"41QWMR1AV4VHZK9L1RMIJD9MD"',
+71 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+71 silly registry.get     'x-cache': 'MISS',
+71 silly registry.get     'x-cache-hits': '0',
+71 silly registry.get     'x-timer': 'S1398019986.174515963,VS0,VE28',
+71 silly registry.get     vary: 'Accept',
+71 silly registry.get     'content-length': '0',
+71 silly registry.get     'keep-alive': 'timeout=10, max=50',
+71 silly registry.get     connection: 'Keep-Alive' } ]
+72 verbose etag knex from cache
+73 http 304 https://registry.npmjs.org/backbone
+74 silly registry.get cb [ 304,
+74 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+74 silly registry.get     server: 'Apache',
+74 silly registry.get     via: '1.1 varnish',
+74 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+74 silly registry.get     'cache-control': 'max-age=1',
+74 silly registry.get     etag: '"7PBXLPRZM5KRCUPK3DLZJYPM9"',
+74 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+74 silly registry.get     'x-cache': 'MISS',
+74 silly registry.get     'x-cache-hits': '0',
+74 silly registry.get     'x-timer': 'S1398019986.178553581,VS0,VE89',
+74 silly registry.get     vary: 'Accept',
+74 silly registry.get     'content-length': '0',
+74 silly registry.get     'keep-alive': 'timeout=10, max=50',
+74 silly registry.get     connection: 'Keep-Alive' } ]
+75 verbose etag backbone from cache
+76 http 304 https://registry.npmjs.org/socket.io
+77 silly registry.get cb [ 304,
+77 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+77 silly registry.get     server: 'Apache',
+77 silly registry.get     via: '1.1 varnish',
+77 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+77 silly registry.get     'cache-control': 'max-age=1',
+77 silly registry.get     etag: '"85N6PU7YIHMWJY5PJSHXE1G45"',
+77 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+77 silly registry.get     'x-cache': 'HIT',
+77 silly registry.get     'x-cache-hits': '1',
+77 silly registry.get     'x-timer': 'S1398019986.175070047,VS0,VE105',
+77 silly registry.get     vary: 'Accept',
+77 silly registry.get     'content-length': '0',
+77 silly registry.get     'keep-alive': 'timeout=10, max=50',
+77 silly registry.get     connection: 'Keep-Alive' } ]
+78 verbose etag socket.io from cache
+79 http 304 https://registry.npmjs.org/jquery
+80 silly registry.get cb [ 304,
+80 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+80 silly registry.get     server: 'Apache',
+80 silly registry.get     via: '1.1 varnish',
+80 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+80 silly registry.get     'cache-control': 'max-age=1',
+80 silly registry.get     etag: '"1IP4039HO2QFTWCDLXWQOYD5P"',
+80 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+80 silly registry.get     'x-cache': 'HIT',
+80 silly registry.get     'x-cache-hits': '1',
+80 silly registry.get     'x-timer': 'S1398019986.287405491,VS0,VE14',
+80 silly registry.get     vary: 'Accept',
+80 silly registry.get     'content-length': '0',
+80 silly registry.get     'keep-alive': 'timeout=10, max=49',
+80 silly registry.get     connection: 'Keep-Alive' } ]
+81 verbose etag jquery from cache
+82 http 304 https://registry.npmjs.org/express
+83 silly registry.get cb [ 304,
+83 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+83 silly registry.get     server: 'Apache',
+83 silly registry.get     via: '1.1 varnish',
+83 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+83 silly registry.get     'cache-control': 'max-age=1',
+83 silly registry.get     etag: '"EYQRD6WZMM8LAYMKNU98AVOG2"',
+83 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+83 silly registry.get     'x-cache': 'HIT',
+83 silly registry.get     'x-cache-hits': '1',
+83 silly registry.get     'x-timer': 'S1398019986.215764761,VS0,VE93',
+83 silly registry.get     vary: 'Accept',
+83 silly registry.get     'content-length': '0',
+83 silly registry.get     'keep-alive': 'timeout=10, max=49',
+83 silly registry.get     connection: 'Keep-Alive' } ]
+84 verbose etag express from cache
+85 verbose url raw optimist
+86 verbose url resolving [ 'https://registry.npmjs.org/', './optimist' ]
+87 verbose url resolved https://registry.npmjs.org/optimist
+88 info trying registry request attempt 1 at 14:53:06
+89 verbose etag "S3CQUMQYK1RMBRMFJLWOPW2V"
+90 http GET https://registry.npmjs.org/optimist
+91 verbose url raw generic-pool-redux
+92 verbose url resolving [ 'https://registry.npmjs.org/', './generic-pool-redux' ]
+93 verbose url resolved https://registry.npmjs.org/generic-pool-redux
+94 info trying registry request attempt 1 at 14:53:06
+95 verbose etag "2AOWWE9PZTA3LG832KNXGC0SF"
+96 http GET https://registry.npmjs.org/generic-pool-redux
+97 verbose url raw mkdirp
+98 verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp' ]
+99 verbose url resolved https://registry.npmjs.org/mkdirp
+100 info trying registry request attempt 1 at 14:53:06
+101 verbose etag "A6TX04IP92OVM1QSW107GZUCT"
+102 http GET https://registry.npmjs.org/mkdirp
+103 verbose url raw colors
+104 verbose url resolving [ 'https://registry.npmjs.org/', './colors' ]
+105 verbose url resolved https://registry.npmjs.org/colors
+106 info trying registry request attempt 1 at 14:53:06
+107 verbose etag "BIZFFMK6AD1AS9BOT8OAKP08X"
+108 http GET https://registry.npmjs.org/colors
+109 verbose url raw bluebird
+110 verbose url resolving [ 'https://registry.npmjs.org/', './bluebird' ]
+111 verbose url resolved https://registry.npmjs.org/bluebird
+112 info trying registry request attempt 1 at 14:53:06
+113 verbose etag "497AWG8DCNK8LRFFSWYT2BDQ"
+114 http GET https://registry.npmjs.org/bluebird
+115 verbose url raw lodash
+116 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+117 verbose url resolved https://registry.npmjs.org/lodash
+118 info trying registry request attempt 1 at 14:53:06
+119 verbose etag "8T7X4YV8W0P1SFER9A2HNX51O"
+120 http GET https://registry.npmjs.org/lodash
+121 http 304 https://registry.npmjs.org/ejs-locals
+122 silly registry.get cb [ 304,
+122 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+122 silly registry.get     server: 'Apache',
+122 silly registry.get     via: '1.1 varnish',
+122 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+122 silly registry.get     'cache-control': 'max-age=1',
+122 silly registry.get     etag: '"2NSFV40NJJJ76XVO2DIF9IKHR"',
+122 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+122 silly registry.get     'x-cache': 'MISS',
+122 silly registry.get     'x-cache-hits': '0',
+122 silly registry.get     'x-timer': 'S1398019986.310715437,VS0,VE60',
+122 silly registry.get     vary: 'Accept',
+122 silly registry.get     'content-length': '0',
+122 silly registry.get     'keep-alive': 'timeout=10, max=48',
+122 silly registry.get     connection: 'Keep-Alive' } ]
+123 verbose etag ejs-locals from cache
+124 verbose url raw underscore
+125 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+126 verbose url resolved https://registry.npmjs.org/underscore
+127 info trying registry request attempt 1 at 14:53:06
+128 verbose etag "A3EC4LZ1777VBEA4QL2HN71W6"
+129 http GET https://registry.npmjs.org/underscore
+130 http 304 https://registry.npmjs.org/nodemon
+131 silly registry.get cb [ 304,
+131 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+131 silly registry.get     server: 'Apache',
+131 silly registry.get     via: '1.1 varnish',
+131 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+131 silly registry.get     'cache-control': 'max-age=1',
+131 silly registry.get     etag: '"EX64UV8YELP0SN375290R4NJ7"',
+131 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+131 silly registry.get     'x-cache': 'MISS',
+131 silly registry.get     'x-cache-hits': '0',
+131 silly registry.get     'x-timer': 'S1398019986.319687843,VS0,VE91',
+131 silly registry.get     vary: 'Accept',
+131 silly registry.get     'content-length': '0',
+131 silly registry.get     'keep-alive': 'timeout=10, max=48',
+131 silly registry.get     connection: 'Keep-Alive' } ]
+132 verbose etag nodemon from cache
+133 verbose url raw socket.io-client
+134 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io-client' ]
+135 verbose url resolved https://registry.npmjs.org/socket.io-client
+136 info trying registry request attempt 1 at 14:53:06
+137 verbose etag "2XW8E1KO9T49EUJN3SVXH7R0"
+138 http GET https://registry.npmjs.org/socket.io-client
+139 verbose url raw policyfile
+140 verbose url resolving [ 'https://registry.npmjs.org/', './policyfile' ]
+141 verbose url resolved https://registry.npmjs.org/policyfile
+142 info trying registry request attempt 1 at 14:53:06
+143 verbose etag "AKWHU4ARZWSW0NIE3QHOQMXTU"
+144 http GET https://registry.npmjs.org/policyfile
+145 verbose url raw base64id
+146 verbose url resolving [ 'https://registry.npmjs.org/', './base64id' ]
+147 verbose url resolved https://registry.npmjs.org/base64id
+148 info trying registry request attempt 1 at 14:53:06
+149 verbose etag "62S4N6RRGR18NXRBYQKIQPW9P"
+150 http GET https://registry.npmjs.org/base64id
+151 verbose url raw redis
+152 verbose url resolving [ 'https://registry.npmjs.org/', './redis' ]
+153 verbose url resolved https://registry.npmjs.org/redis
+154 info trying registry request attempt 1 at 14:53:06
+155 verbose etag "F5G9UXE44FKERRUX3WPGZ81XT"
+156 http GET https://registry.npmjs.org/redis
+157 http 304 https://registry.npmjs.org/bookshelf
+158 silly registry.get cb [ 304,
+158 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+158 silly registry.get     server: 'Apache',
+158 silly registry.get     via: '1.1 varnish',
+158 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+158 silly registry.get     'cache-control': 'max-age=1',
+158 silly registry.get     etag: '"C6GA6S7ZJMBEUWPF7A35IGVT9"',
+158 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+158 silly registry.get     'x-cache': 'MISS',
+158 silly registry.get     'x-cache-hits': '0',
+158 silly registry.get     'x-timer': 'S1398019986.297620058,VS0,VE116',
+158 silly registry.get     vary: 'Accept',
+158 silly registry.get     'content-length': '0',
+158 silly registry.get     'keep-alive': 'timeout=10, max=49',
+158 silly registry.get     connection: 'Keep-Alive' } ]
+159 verbose etag bookshelf from cache
+160 verbose url raw ejs
+161 verbose url resolving [ 'https://registry.npmjs.org/', './ejs' ]
+162 verbose url resolved https://registry.npmjs.org/ejs
+163 info trying registry request attempt 1 at 14:53:06
+164 verbose etag "953AUQIH6ANL13D16XGIF5CVE"
+165 http GET https://registry.npmjs.org/ejs
+166 verbose registry.get backbone not expired, no request
+167 verbose url raw update-notifier
+168 verbose url resolving [ 'https://registry.npmjs.org/', './update-notifier' ]
+169 verbose url resolved https://registry.npmjs.org/update-notifier
+170 info trying registry request attempt 1 at 14:53:06
+171 verbose etag "F1OUCYWQ3T32BDRZHR44TBY8X"
+172 http GET https://registry.npmjs.org/update-notifier
+173 verbose registry.get knex not expired, no request
+174 verbose url raw bluebird
+175 verbose url resolving [ 'https://registry.npmjs.org/', './bluebird' ]
+176 verbose url resolved https://registry.npmjs.org/bluebird
+177 info trying registry request attempt 1 at 14:53:06
+178 verbose etag "497AWG8DCNK8LRFFSWYT2BDQ"
+179 http GET https://registry.npmjs.org/bluebird
+180 verbose url raw lodash
+181 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+182 verbose url resolved https://registry.npmjs.org/lodash
+183 info trying registry request attempt 1 at 14:53:06
+184 verbose etag "8T7X4YV8W0P1SFER9A2HNX51O"
+185 http GET https://registry.npmjs.org/lodash
+186 verbose url raw minimatch
+187 verbose url resolving [ 'https://registry.npmjs.org/', './minimatch' ]
+188 verbose url resolved https://registry.npmjs.org/minimatch
+189 info trying registry request attempt 1 at 14:53:06
+190 verbose etag "6VCQY7IO4WVPPZT8FLJRXO5VL"
+191 http GET https://registry.npmjs.org/minimatch
+192 verbose url raw trigger-then
+193 verbose url resolving [ 'https://registry.npmjs.org/', './trigger-then' ]
+194 verbose url resolved https://registry.npmjs.org/trigger-then
+195 info trying registry request attempt 1 at 14:53:06
+196 verbose etag "AH5SYNUAFJ12IOI6PDIRRR0JS"
+197 http GET https://registry.npmjs.org/trigger-then
+198 verbose url raw inflection
+199 verbose url resolving [ 'https://registry.npmjs.org/', './inflection' ]
+200 verbose url resolved https://registry.npmjs.org/inflection
+201 info trying registry request attempt 1 at 14:53:06
+202 verbose etag "1MT71DCODQOLN4KB4FOC03LB7"
+203 http GET https://registry.npmjs.org/inflection
+204 http 304 https://registry.npmjs.org/mysql
+205 silly registry.get cb [ 304,
+205 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+205 silly registry.get     server: 'Apache',
+205 silly registry.get     via: '1.1 varnish',
+205 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+205 silly registry.get     'cache-control': 'max-age=1',
+205 silly registry.get     etag: '"77V7YG8PWZPZBV5Q9GKJX1U3G"',
+205 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+205 silly registry.get     'x-cache': 'MISS',
+205 silly registry.get     'x-cache-hits': '0',
+205 silly registry.get     'x-timer': 'S1398019986.396030903,VS0,VE100',
+205 silly registry.get     vary: 'Accept',
+205 silly registry.get     'content-length': '0',
+205 silly registry.get     'keep-alive': 'timeout=10, max=47',
+205 silly registry.get     connection: 'Keep-Alive' } ]
+206 verbose etag mysql from cache
+207 http 304 https://registry.npmjs.org/optimist
+208 silly registry.get cb [ 304,
+208 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+208 silly registry.get     server: 'Apache',
+208 silly registry.get     via: '1.1 varnish',
+208 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+208 silly registry.get     'cache-control': 'max-age=1',
+208 silly registry.get     etag: '"S3CQUMQYK1RMBRMFJLWOPW2V"',
+208 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+208 silly registry.get     'x-cache': 'MISS',
+208 silly registry.get     'x-cache-hits': '0',
+208 silly registry.get     'x-timer': 'S1398019986.532072067,VS0,VE1',
+208 silly registry.get     vary: 'Accept',
+208 silly registry.get     'content-length': '0',
+208 silly registry.get     'keep-alive': 'timeout=10, max=47',
+208 silly registry.get     connection: 'Keep-Alive' } ]
+209 verbose etag optimist from cache
+210 http 304 https://registry.npmjs.org/generic-pool-redux
+211 silly registry.get cb [ 304,
+211 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+211 silly registry.get     server: 'Apache',
+211 silly registry.get     via: '1.1 varnish',
+211 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+211 silly registry.get     'cache-control': 'max-age=1',
+211 silly registry.get     etag: '"2AOWWE9PZTA3LG832KNXGC0SF"',
+211 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+211 silly registry.get     'x-cache': 'MISS',
+211 silly registry.get     'x-cache-hits': '0',
+211 silly registry.get     'x-timer': 'S1398019986.532120705,VS0,VE13',
+211 silly registry.get     vary: 'Accept',
+211 silly registry.get     'content-length': '0',
+211 silly registry.get     'keep-alive': 'timeout=10, max=48',
+211 silly registry.get     connection: 'Keep-Alive' } ]
+212 verbose etag generic-pool-redux from cache
+213 http 304 https://registry.npmjs.org/colors
+214 silly registry.get cb [ 304,
+214 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+214 silly registry.get     server: 'Apache',
+214 silly registry.get     via: '1.1 varnish',
+214 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+214 silly registry.get     'cache-control': 'max-age=1',
+214 silly registry.get     etag: '"BIZFFMK6AD1AS9BOT8OAKP08X"',
+214 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+214 silly registry.get     'x-cache': 'HIT',
+214 silly registry.get     'x-cache-hits': '1',
+214 silly registry.get     'x-timer': 'S1398019986.556765318,VS0,VE6',
+214 silly registry.get     vary: 'Accept',
+214 silly registry.get     'content-length': '0',
+214 silly registry.get     'keep-alive': 'timeout=10, max=46',
+214 silly registry.get     connection: 'Keep-Alive' } ]
+215 verbose etag colors from cache
+216 verbose url raw readable-stream
+217 verbose url resolving [ 'https://registry.npmjs.org/', './readable-stream' ]
+218 verbose url resolved https://registry.npmjs.org/readable-stream
+219 info trying registry request attempt 1 at 14:53:06
+220 verbose etag "3O3TE7Z58268375M91UDB49P9"
+221 http GET https://registry.npmjs.org/readable-stream
+222 verbose url raw require-all
+223 verbose url resolving [ 'https://registry.npmjs.org/', './require-all' ]
+224 verbose url resolved https://registry.npmjs.org/require-all
+225 info trying registry request attempt 1 at 14:53:06
+226 verbose etag "D7QY0G7JLYXFDEDAESFOSEZTC"
+227 http GET https://registry.npmjs.org/require-all
+228 verbose url raw bignumber.js
+229 verbose url resolving [ 'https://registry.npmjs.org/', './bignumber.js' ]
+230 verbose url resolved https://registry.npmjs.org/bignumber.js
+231 info trying registry request attempt 1 at 14:53:06
+232 verbose etag "5811VLTSBZJYPTCI4K4QTR9OK"
+233 http GET https://registry.npmjs.org/bignumber.js
+234 verbose url raw wordwrap
+235 verbose url resolving [ 'https://registry.npmjs.org/', './wordwrap' ]
+236 verbose url resolved https://registry.npmjs.org/wordwrap
+237 info trying registry request attempt 1 at 14:53:06
+238 verbose etag "2D706CTCC5VWIX4UKCMOLK1NS"
+239 http GET https://registry.npmjs.org/wordwrap
+240 verbose url raw minimist
+241 verbose url resolving [ 'https://registry.npmjs.org/', './minimist' ]
+242 verbose url resolved https://registry.npmjs.org/minimist
+243 info trying registry request attempt 1 at 14:53:06
+244 verbose etag "E1Z1ZPDK1SRU8V2DG033P7I48"
+245 http GET https://registry.npmjs.org/minimist
+246 http 304 https://registry.npmjs.org/underscore
+247 silly registry.get cb [ 304,
+247 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+247 silly registry.get     server: 'Apache',
+247 silly registry.get     via: '1.1 varnish',
+247 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+247 silly registry.get     'cache-control': 'max-age=1',
+247 silly registry.get     etag: '"A3EC4LZ1777VBEA4QL2HN71W6"',
+247 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+247 silly registry.get     'x-cache': 'HIT',
+247 silly registry.get     'x-cache-hits': '1',
+247 silly registry.get     'x-timer': 'S1398019986.529241562,VS0,VE88',
+247 silly registry.get     vary: 'Accept',
+247 silly registry.get     'content-length': '0',
+247 silly registry.get     'keep-alive': 'timeout=10, max=50',
+247 silly registry.get     connection: 'Keep-Alive' } ]
+248 verbose etag underscore from cache
+249 http 304 https://registry.npmjs.org/bluebird
+250 silly registry.get cb [ 304,
+250 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+250 silly registry.get     server: 'Apache',
+250 silly registry.get     via: '1.1 varnish',
+250 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+250 silly registry.get     'cache-control': 'max-age=1',
+250 silly registry.get     etag: '"497AWG8DCNK8LRFFSWYT2BDQ"',
+250 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+250 silly registry.get     'x-cache': 'MISS',
+250 silly registry.get     'x-cache-hits': '0',
+250 silly registry.get     'x-timer': 'S1398019986.558806896,VS0,VE106',
+250 silly registry.get     vary: 'Accept',
+250 silly registry.get     'content-length': '0',
+250 silly registry.get     'keep-alive': 'timeout=10, max=47',
+250 silly registry.get     connection: 'Keep-Alive' } ]
+251 verbose etag bluebird from cache
+252 http 304 https://registry.npmjs.org/lodash
+253 silly registry.get cb [ 304,
+253 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+253 silly registry.get     server: 'Apache',
+253 silly registry.get     via: '1.1 varnish',
+253 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+253 silly registry.get     'cache-control': 'max-age=1',
+253 silly registry.get     etag: '"8T7X4YV8W0P1SFER9A2HNX51O"',
+253 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+253 silly registry.get     'x-cache': 'MISS',
+253 silly registry.get     'x-cache-hits': '0',
+253 silly registry.get     'x-timer': 'S1398019986.732342958,VS0,VE7',
+253 silly registry.get     vary: 'Accept',
+253 silly registry.get     'content-length': '0',
+253 silly registry.get     'keep-alive': 'timeout=10, max=45',
+253 silly registry.get     connection: 'Keep-Alive' } ]
+254 verbose etag lodash from cache
+255 http 304 https://registry.npmjs.org/socket.io-client
+256 silly registry.get cb [ 304,
+256 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+256 silly registry.get     server: 'Apache',
+256 silly registry.get     via: '1.1 varnish',
+256 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+256 silly registry.get     'cache-control': 'max-age=1',
+256 silly registry.get     etag: '"2XW8E1KO9T49EUJN3SVXH7R0"',
+256 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+256 silly registry.get     'x-cache': 'HIT',
+256 silly registry.get     'x-cache-hits': '1',
+256 silly registry.get     'x-timer': 'S1398019986.740065813,VS0,VE100',
+256 silly registry.get     vary: 'Accept',
+256 silly registry.get     'content-length': '0',
+256 silly registry.get     'keep-alive': 'timeout=10, max=46',
+256 silly registry.get     connection: 'Keep-Alive' } ]
+257 verbose etag socket.io-client from cache
+258 http 304 https://registry.npmjs.org/policyfile
+259 silly registry.get cb [ 304,
+259 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+259 silly registry.get     server: 'Apache',
+259 silly registry.get     via: '1.1 varnish',
+259 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+259 silly registry.get     'cache-control': 'max-age=1',
+259 silly registry.get     etag: '"AKWHU4ARZWSW0NIE3QHOQMXTU"',
+259 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+259 silly registry.get     'x-cache': 'MISS',
+259 silly registry.get     'x-cache-hits': '0',
+259 silly registry.get     'x-timer': 'S1398019986.753211737,VS0,VE97',
+259 silly registry.get     vary: 'Accept',
+259 silly registry.get     'content-length': '0',
+259 silly registry.get     'keep-alive': 'timeout=10, max=44',
+259 silly registry.get     connection: 'Keep-Alive' } ]
+260 verbose etag policyfile from cache
+261 http 304 https://registry.npmjs.org/mkdirp
+262 silly registry.get cb [ 304,
+262 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+262 silly registry.get     server: 'Apache',
+262 silly registry.get     via: '1.1 varnish',
+262 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+262 silly registry.get     'cache-control': 'max-age=1',
+262 silly registry.get     etag: '"A6TX04IP92OVM1QSW107GZUCT"',
+262 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+262 silly registry.get     'x-cache': 'HIT',
+262 silly registry.get     'x-cache-hits': '1',
+262 silly registry.get     'x-timer': 'S1398019986.549969196,VS0,VE104',
+262 silly registry.get     vary: 'Accept',
+262 silly registry.get     'content-length': '0',
+262 silly registry.get     'keep-alive': 'timeout=10, max=46',
+262 silly registry.get     connection: 'Keep-Alive' } ]
+263 verbose etag mkdirp from cache
+264 http 304 https://registry.npmjs.org/redis
+265 silly registry.get cb [ 304,
+265 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+265 silly registry.get     server: 'Apache',
+265 silly registry.get     via: '1.1 varnish',
+265 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+265 silly registry.get     'cache-control': 'max-age=1',
+265 silly registry.get     etag: '"F5G9UXE44FKERRUX3WPGZ81XT"',
+265 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+265 silly registry.get     'x-cache': 'MISS',
+265 silly registry.get     'x-cache-hits': '0',
+265 silly registry.get     'x-timer': 'S1398019986.932999134,VS0,VE13',
+265 silly registry.get     vary: 'Accept',
+265 silly registry.get     'content-length': '0',
+265 silly registry.get     'keep-alive': 'timeout=10, max=43',
+265 silly registry.get     connection: 'Keep-Alive' } ]
+266 verbose etag redis from cache
+267 http 304 https://registry.npmjs.org/underscore
+268 silly registry.get cb [ 304,
+268 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+268 silly registry.get     server: 'Apache',
+268 silly registry.get     via: '1.1 varnish',
+268 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+268 silly registry.get     'cache-control': 'max-age=1',
+268 silly registry.get     etag: '"A3EC4LZ1777VBEA4QL2HN71W6"',
+268 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+268 silly registry.get     'x-cache': 'HIT',
+268 silly registry.get     'x-cache-hits': '2',
+268 silly registry.get     'x-timer': 'S1398019986.734665155,VS0,VE0',
+268 silly registry.get     vary: 'Accept',
+268 silly registry.get     'content-length': '0',
+268 silly registry.get     'keep-alive': 'timeout=10, max=49',
+268 silly registry.get     connection: 'Keep-Alive' } ]
+269 verbose etag underscore from cache
+270 verbose url raw uglify-js
+271 verbose url resolving [ 'https://registry.npmjs.org/', './uglify-js' ]
+272 verbose url resolved https://registry.npmjs.org/uglify-js
+273 info trying registry request attempt 1 at 14:53:06
+274 verbose etag "AHE4CI0207ZUQH2LYHFL3DMPL"
+275 http GET https://registry.npmjs.org/uglify-js
+276 verbose url raw ws
+277 verbose url resolving [ 'https://registry.npmjs.org/', './ws' ]
+278 verbose url resolved https://registry.npmjs.org/ws
+279 info trying registry request attempt 1 at 14:53:06
+280 verbose etag "3VKR0V4P7QIL4POJOSMHC08GS"
+281 http GET https://registry.npmjs.org/ws
+282 verbose url raw xmlhttprequest
+283 verbose url resolving [ 'https://registry.npmjs.org/', './xmlhttprequest' ]
+284 verbose url resolved https://registry.npmjs.org/xmlhttprequest
+285 info trying registry request attempt 1 at 14:53:06
+286 verbose etag "43AHUFYG8T5JUHL3L51RQJ1LE"
+287 http GET https://registry.npmjs.org/xmlhttprequest
+288 verbose url raw active-x-obfuscator
+289 verbose url resolving [ 'https://registry.npmjs.org/', './active-x-obfuscator' ]
+290 verbose url resolved https://registry.npmjs.org/active-x-obfuscator
+291 info trying registry request attempt 1 at 14:53:06
+292 verbose etag "EXHJG4RR0HF9OCUXAZ5BRAAWH"
+293 http GET https://registry.npmjs.org/active-x-obfuscator
+294 http 304 https://registry.npmjs.org/ejs
+295 silly registry.get cb [ 304,
+295 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+295 silly registry.get     server: 'Apache',
+295 silly registry.get     via: '1.1 varnish',
+295 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:06 GMT',
+295 silly registry.get     'cache-control': 'max-age=1',
+295 silly registry.get     etag: '"953AUQIH6ANL13D16XGIF5CVE"',
+295 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+295 silly registry.get     'x-cache': 'MISS',
+295 silly registry.get     'x-cache-hits': '0',
+295 silly registry.get     'x-timer': 'S1398019986.932954311,VS0,VE66',
+295 silly registry.get     vary: 'Accept',
+295 silly registry.get     'content-length': '0',
+295 silly registry.get     'keep-alive': 'timeout=10, max=45',
+295 silly registry.get     connection: 'Keep-Alive' } ]
+296 verbose etag ejs from cache
+297 http 304 https://registry.npmjs.org/base64id
+298 silly registry.get cb [ 304,
+298 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+298 silly registry.get     server: 'Apache',
+298 silly registry.get     via: '1.1 varnish',
+298 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+298 silly registry.get     'cache-control': 'max-age=1',
+298 silly registry.get     etag: '"62S4N6RRGR18NXRBYQKIQPW9P"',
+298 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+298 silly registry.get     'x-cache': 'MISS',
+298 silly registry.get     'x-cache-hits': '0',
+298 silly registry.get     'x-timer': 'S1398019986.931007862,VS0,VE109',
+298 silly registry.get     vary: 'Accept',
+298 silly registry.get     'content-length': '0',
+298 silly registry.get     'keep-alive': 'timeout=10, max=45',
+298 silly registry.get     connection: 'Keep-Alive' } ]
+299 verbose etag base64id from cache
+300 http 304 https://registry.npmjs.org/update-notifier
+301 silly registry.get cb [ 304,
+301 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:06 GMT',
+301 silly registry.get     server: 'Apache',
+301 silly registry.get     via: '1.1 varnish',
+301 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+301 silly registry.get     'cache-control': 'max-age=1',
+301 silly registry.get     etag: '"F1OUCYWQ3T32BDRZHR44TBY8X"',
+301 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+301 silly registry.get     'x-cache': 'MISS',
+301 silly registry.get     'x-cache-hits': '0',
+301 silly registry.get     'x-timer': 'S1398019986.969709873,VS0,VE102',
+301 silly registry.get     vary: 'Accept',
+301 silly registry.get     'content-length': '0',
+301 silly registry.get     'keep-alive': 'timeout=10, max=42',
+301 silly registry.get     connection: 'Keep-Alive' } ]
+302 verbose etag update-notifier from cache
+303 http 304 https://registry.npmjs.org/bluebird
+304 silly registry.get cb [ 304,
+304 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+304 silly registry.get     server: 'Apache',
+304 silly registry.get     via: '1.1 varnish',
+304 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+304 silly registry.get     'cache-control': 'max-age=1',
+304 silly registry.get     etag: '"497AWG8DCNK8LRFFSWYT2BDQ"',
+304 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+304 silly registry.get     'x-cache': 'HIT',
+304 silly registry.get     'x-cache-hits': '1',
+304 silly registry.get     'x-timer': 'S1398019987.120859146,VS0,VE1',
+304 silly registry.get     vary: 'Accept',
+304 silly registry.get     'content-length': '0',
+304 silly registry.get     'keep-alive': 'timeout=10, max=48',
+304 silly registry.get     connection: 'Keep-Alive' } ]
+305 verbose etag bluebird from cache
+306 http 304 https://registry.npmjs.org/lodash
+307 silly registry.get cb [ 304,
+307 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+307 silly registry.get     server: 'Apache',
+307 silly registry.get     via: '1.1 varnish',
+307 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+307 silly registry.get     'cache-control': 'max-age=1',
+307 silly registry.get     etag: '"8T7X4YV8W0P1SFER9A2HNX51O"',
+307 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+307 silly registry.get     'x-cache': 'MISS',
+307 silly registry.get     'x-cache-hits': '0',
+307 silly registry.get     'x-timer': 'S1398019987.150225401,VS0,VE1',
+307 silly registry.get     vary: 'Accept',
+307 silly registry.get     'content-length': '0',
+307 silly registry.get     'keep-alive': 'timeout=10, max=44',
+307 silly registry.get     connection: 'Keep-Alive' } ]
+308 verbose etag lodash from cache
+309 verbose url raw request
+310 verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
+311 verbose url resolved https://registry.npmjs.org/request
+312 info trying registry request attempt 1 at 14:53:07
+313 verbose etag "DXHJBHEXNBE1223A5CPCF5JYO"
+314 http GET https://registry.npmjs.org/request
+315 verbose url raw configstore
+316 verbose url resolving [ 'https://registry.npmjs.org/', './configstore' ]
+317 verbose url resolved https://registry.npmjs.org/configstore
+318 info trying registry request attempt 1 at 14:53:07
+319 verbose etag "5T6HD3AG91GIPU5M82CAR8FMD"
+320 http GET https://registry.npmjs.org/configstore
+321 verbose url raw chalk
+322 verbose url resolving [ 'https://registry.npmjs.org/', './chalk' ]
+323 verbose url resolved https://registry.npmjs.org/chalk
+324 info trying registry request attempt 1 at 14:53:07
+325 verbose etag "18WK0NRGUF98FF24X3WZLDHGR"
+326 http GET https://registry.npmjs.org/chalk
+327 verbose url raw semver
+328 verbose url resolving [ 'https://registry.npmjs.org/', './semver' ]
+329 verbose url resolved https://registry.npmjs.org/semver
+330 info trying registry request attempt 1 at 14:53:07
+331 verbose etag "73MJML2GGFR2KWW8VUEMK8P9I"
+332 http GET https://registry.npmjs.org/semver
+333 http 304 https://registry.npmjs.org/minimatch
+334 silly registry.get cb [ 304,
+334 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+334 silly registry.get     server: 'Apache',
+334 silly registry.get     via: '1.1 varnish',
+334 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+334 silly registry.get     'cache-control': 'max-age=1',
+334 silly registry.get     etag: '"6VCQY7IO4WVPPZT8FLJRXO5VL"',
+334 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+334 silly registry.get     'x-cache': 'HIT',
+334 silly registry.get     'x-cache-hits': '1',
+334 silly registry.get     'x-timer': 'S1398019987.156257868,VS0,VE7',
+334 silly registry.get     vary: 'Accept',
+334 silly registry.get     'content-length': '0',
+334 silly registry.get     'keep-alive': 'timeout=10, max=44',
+334 silly registry.get     connection: 'Keep-Alive' } ]
+335 verbose etag minimatch from cache
+336 http 304 https://registry.npmjs.org/inflection
+337 silly registry.get cb [ 304,
+337 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+337 silly registry.get     server: 'Apache',
+337 silly registry.get     via: '1.1 varnish',
+337 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+337 silly registry.get     'cache-control': 'max-age=1',
+337 silly registry.get     etag: '"1MT71DCODQOLN4KB4FOC03LB7"',
+337 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+337 silly registry.get     'x-cache': 'MISS',
+337 silly registry.get     'x-cache-hits': '0',
+337 silly registry.get     'x-timer': 'S1398019987.159153223,VS0,VE14',
+337 silly registry.get     vary: 'Accept',
+337 silly registry.get     'content-length': '0',
+337 silly registry.get     'keep-alive': 'timeout=10, max=47',
+337 silly registry.get     connection: 'Keep-Alive' } ]
+338 verbose etag inflection from cache
+339 http 304 https://registry.npmjs.org/trigger-then
+340 silly registry.get cb [ 304,
+340 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+340 silly registry.get     server: 'Apache',
+340 silly registry.get     via: '1.1 varnish',
+340 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+340 silly registry.get     'cache-control': 'max-age=1',
+340 silly registry.get     etag: '"AH5SYNUAFJ12IOI6PDIRRR0JS"',
+340 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+340 silly registry.get     'x-cache': 'MISS',
+340 silly registry.get     'x-cache-hits': '0',
+340 silly registry.get     'x-timer': 'S1398019987.159942389,VS0,VE100',
+340 silly registry.get     vary: 'Accept',
+340 silly registry.get     'content-length': '0',
+340 silly registry.get     'keep-alive': 'timeout=10, max=41',
+340 silly registry.get     connection: 'Keep-Alive' } ]
+341 verbose etag trigger-then from cache
+342 http 304 https://registry.npmjs.org/readable-stream
+343 silly registry.get cb [ 304,
+343 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+343 silly registry.get     server: 'Apache',
+343 silly registry.get     via: '1.1 varnish',
+343 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+343 silly registry.get     'cache-control': 'max-age=1',
+343 silly registry.get     etag: '"3O3TE7Z58268375M91UDB49P9"',
+343 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+343 silly registry.get     'x-cache': 'HIT',
+343 silly registry.get     'x-cache-hits': '1',
+343 silly registry.get     'x-timer': 'S1398019987.286461353,VS0,VE71',
+343 silly registry.get     vary: 'Accept',
+343 silly registry.get     'content-length': '0',
+343 silly registry.get     'keep-alive': 'timeout=10, max=43',
+343 silly registry.get     connection: 'Keep-Alive' } ]
+344 verbose etag readable-stream from cache
+345 http 304 https://registry.npmjs.org/wordwrap
+346 silly registry.get cb [ 304,
+346 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+346 silly registry.get     server: 'Apache',
+346 silly registry.get     via: '1.1 varnish',
+346 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+346 silly registry.get     'cache-control': 'max-age=1',
+346 silly registry.get     etag: '"2D706CTCC5VWIX4UKCMOLK1NS"',
+346 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+346 silly registry.get     'x-cache': 'HIT',
+346 silly registry.get     'x-cache-hits': '1',
+346 silly registry.get     'x-timer': 'S1398019987.469986677,VS0,VE0',
+346 silly registry.get     vary: 'Accept',
+346 silly registry.get     'content-length': '0',
+346 silly registry.get     'keep-alive': 'timeout=10, max=40',
+346 silly registry.get     connection: 'Keep-Alive' } ]
+347 verbose etag wordwrap from cache
+348 http 304 https://registry.npmjs.org/minimist
+349 silly registry.get cb [ 304,
+349 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+349 silly registry.get     server: 'Apache',
+349 silly registry.get     via: '1.1 varnish',
+349 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+349 silly registry.get     'cache-control': 'max-age=1',
+349 silly registry.get     etag: '"E1Z1ZPDK1SRU8V2DG033P7I48"',
+349 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+349 silly registry.get     'x-cache': 'HIT',
+349 silly registry.get     'x-cache-hits': '1',
+349 silly registry.get     'x-timer': 'S1398019987.467369795,VS0,VE0',
+349 silly registry.get     vary: 'Accept',
+349 silly registry.get     'content-length': '0',
+349 silly registry.get     'keep-alive': 'timeout=10, max=42',
+349 silly registry.get     connection: 'Keep-Alive' } ]
+350 verbose etag minimist from cache
+351 http 304 https://registry.npmjs.org/uglify-js
+352 silly registry.get cb [ 304,
+352 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+352 silly registry.get     server: 'Apache',
+352 silly registry.get     via: '1.1 varnish',
+352 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+352 silly registry.get     'cache-control': 'max-age=1',
+352 silly registry.get     etag: '"AHE4CI0207ZUQH2LYHFL3DMPL"',
+352 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+352 silly registry.get     'x-cache': 'HIT',
+352 silly registry.get     'x-cache-hits': '1',
+352 silly registry.get     'x-timer': 'S1398019987.480489492,VS0,VE7',
+352 silly registry.get     vary: 'Accept',
+352 silly registry.get     'content-length': '0',
+352 silly registry.get     'keep-alive': 'timeout=10, max=39',
+352 silly registry.get     connection: 'Keep-Alive' } ]
+353 verbose etag uglify-js from cache
+354 verbose url raw lru-cache
+355 verbose url resolving [ 'https://registry.npmjs.org/', './lru-cache' ]
+356 verbose url resolved https://registry.npmjs.org/lru-cache
+357 info trying registry request attempt 1 at 14:53:07
+358 verbose etag "E03YGIRYGAEAJG2JWR6OPBP9D"
+359 http GET https://registry.npmjs.org/lru-cache
+360 verbose url raw sigmund
+361 verbose url resolving [ 'https://registry.npmjs.org/', './sigmund' ]
+362 verbose url resolved https://registry.npmjs.org/sigmund
+363 info trying registry request attempt 1 at 14:53:07
+364 verbose etag "DCA9PQE5QUPPVOZ1N4XGHB06"
+365 http GET https://registry.npmjs.org/sigmund
+366 http 304 https://registry.npmjs.org/require-all
+367 silly registry.get cb [ 304,
+367 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+367 silly registry.get     server: 'Apache',
+367 silly registry.get     via: '1.1 varnish',
+367 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+367 silly registry.get     'cache-control': 'max-age=1',
+367 silly registry.get     etag: '"D7QY0G7JLYXFDEDAESFOSEZTC"',
+367 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+367 silly registry.get     'x-cache': 'MISS',
+367 silly registry.get     'x-cache-hits': '0',
+367 silly registry.get     'x-timer': 'S1398019987.466738462,VS0,VE88',
+367 silly registry.get     vary: 'Accept',
+367 silly registry.get     'content-length': '0',
+367 silly registry.get     'keep-alive': 'timeout=10, max=43',
+367 silly registry.get     connection: 'Keep-Alive' } ]
+368 verbose etag require-all from cache
+369 http 304 https://registry.npmjs.org/bignumber.js
+370 silly registry.get cb [ 304,
+370 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+370 silly registry.get     server: 'Apache',
+370 silly registry.get     via: '1.1 varnish',
+370 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+370 silly registry.get     'cache-control': 'max-age=1',
+370 silly registry.get     etag: '"5811VLTSBZJYPTCI4K4QTR9OK"',
+370 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+370 silly registry.get     'x-cache': 'MISS',
+370 silly registry.get     'x-cache-hits': '0',
+370 silly registry.get     'x-timer': 'S1398019987.465617180,VS0,VE90',
+370 silly registry.get     vary: 'Accept',
+370 silly registry.get     'content-length': '0',
+370 silly registry.get     'keep-alive': 'timeout=10, max=46',
+370 silly registry.get     connection: 'Keep-Alive' } ]
+371 verbose etag bignumber.js from cache
+372 http 304 https://registry.npmjs.org/ws
+373 silly registry.get cb [ 304,
+373 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+373 silly registry.get     server: 'Apache',
+373 silly registry.get     via: '1.1 varnish',
+373 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+373 silly registry.get     'cache-control': 'max-age=1',
+373 silly registry.get     etag: '"3VKR0V4P7QIL4POJOSMHC08GS"',
+373 silly registry.get     'x-served-by': 'cache-jfk1032-JFK',
+373 silly registry.get     'x-cache': 'HIT',
+373 silly registry.get     'x-cache-hits': '1',
+373 silly registry.get     'x-timer': 'S1398019987.479057789,VS0,VE116',
+373 silly registry.get     vary: 'Accept',
+373 silly registry.get     'content-length': '0',
+373 silly registry.get     'keep-alive': 'timeout=10, max=41',
+373 silly registry.get     connection: 'Keep-Alive' } ]
+374 verbose etag ws from cache
+375 http 304 https://registry.npmjs.org/xmlhttprequest
+376 silly registry.get cb [ 304,
+376 silly registry.get   { date: 'Sun, 20 Apr 2014 18:53:07 GMT',
+376 silly registry.get     server: 'Apache',
+376 silly registry.get     via: '1.1 varnish',
+376 silly registry.get     'last-modified': 'Sun, 20 Apr 2014 18:53:07 GMT',
+376 silly registry.get     'cache-control': 'max-age=1',
+376 silly registry.get     etag: '"43AHUFYG8T5JUHL3L51RQJ1LE"',
+376 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+376 silly registry.get     'x-cache': 'MISS',
+376 silly registry.get     'x-cache-hits': '0',
+376 silly registry.get     'x-timer': 'S1398019987.496628523,VS0,VE135',
+376 silly registry.get     vary: 'Accept',
+376 silly registry.get     'content-length': '0',
+376 silly registry.get     'keep-alive': 'timeout=10, max=38',
+376 silly registry.get     connection: 'Keep-Alive' } ]
+377 verbose etag xmlhttprequest from cache
+378 info outdated updating [ [ '/Users/ianboothby/humanity',
+378 info outdated     'express',
+378 info outdated     '3.5.1',
+378 info outdated     '3.5.1',
+378 info outdated     '4.0.0',
+378 info outdated     '3.5.1' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/ejs-locals',
+378 info outdated     'ejs',
+378 info outdated     '0.8.8',
+378 info outdated     '0.8.8',
+378 info outdated     '1.0.0',
+378 info outdated     '0.8.x' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+378 info outdated     'backbone',
+378 info outdated     '1.1.0',
+378 info outdated     '1.1.0',
+378 info outdated     '1.1.2',
+378 info outdated     '1.1.0' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/bookshelf',
+378 info outdated     'inflection',
+378 info outdated     '1.2.7',
+378 info outdated     '1.2.7',
+378 info outdated     '1.3.5',
+378 info outdated     '1.2.x' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/mysql',
+378 info outdated     'readable-stream',
+378 info outdated     '1.1.13-1',
+378 info outdated     '1.1.13-1',
+378 info outdated     '1.0.27-1',
+378 info outdated     '~1.1.9' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/mysql',
+378 info outdated     'require-all',
+378 info outdated     '0.0.3',
+378 info outdated     '0.0.3',
+378 info outdated     '0.0.8',
+378 info outdated     '0.0.3' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/mysql',
+378 info outdated     'bignumber.js',
+378 info outdated     '1.0.1',
+378 info outdated     '1.0.1',
+378 info outdated     '1.3.0',
+378 info outdated     '1.0.1' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/socket.io',
+378 info outdated     'policyfile',
+378 info outdated     '0.0.4',
+378 info outdated     '0.0.4',
+378 info outdated     '0.0.5',
+378 info outdated     '0.0.4' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/socket.io',
+378 info outdated     'redis',
+378 info outdated     '0.7.3',
+378 info outdated     '0.7.3',
+378 info outdated     '0.10.1',
+378 info outdated     '0.7.3' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/socket.io/node_modules/socket.io-client',
+378 info outdated     'uglify-js',
+378 info outdated     '1.2.5',
+378 info outdated     '1.2.5',
+378 info outdated     '2.4.13',
+378 info outdated     '1.2.5' ],
+378 info outdated   [ '/Users/ianboothby/humanity/node_modules/socket.io/node_modules/socket.io-client',
+378 info outdated     'xmlhttprequest',
+378 info outdated     '1.4.2',
+378 info outdated     '1.4.2',
+378 info outdated     '1.6.0',
+378 info outdated     '1.4.2' ] ]
+379 error Failed to parse json
+379 error Unexpected token <
+380 error File: /Users/ianboothby/humanity/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws/node_modules/commander/package.json
+381 error Failed to parse package.json data.
+381 error package.json must be actual JSON, not just JavaScript.
+381 error
+381 error This is not a bug in npm.
+381 error Tell the package author to fix their package.json file. JSON.parse
+382 error System Darwin 12.5.0
+383 error command "node" "/usr/local/bin/npm" "update"
+384 error cwd /Users/ianboothby/humanity/humanity_migrations
+385 error node -v v0.10.26
+386 error npm -v 1.4.3
+387 error file /Users/ianboothby/humanity/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws/node_modules/commander/package.json
+388 error code EJSONPARSE
+389 verbose exit [ 1, true ]
