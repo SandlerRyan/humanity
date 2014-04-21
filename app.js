@@ -100,9 +100,9 @@ game.on('connection', function(socket) {
 		this.join(data.room);
 
 		// send the new player to all the other players
-        game.in(data.room).emit('new player', data.player);
+        // game.in(data.room).emit('new player', data.player);
         // send all the other players to the new player
-        game.emit('new player', players);
+        // game.emit('new player', players);
 
         Game.find(data.room).then(function (model) {
         	// tell the client side who the creator is so a start button can be rendered
@@ -122,6 +122,8 @@ game.on('connection', function(socket) {
 			players[data.room] = [];
 			players[data.room].push({'player': data.player, 'socket': this.id});
 		}
+
+		game.in(data.room).emit('new player', players[data.room]);
 		console.log(players);
 	});
 
