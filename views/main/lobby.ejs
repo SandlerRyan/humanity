@@ -1,4 +1,7 @@
 <% layout('../mainLayout') -%>
+<script src="/socket.io/socket.io.js"></script>
+
+
 
 <h1 class="centered-heading">Game Lobby</h1>
 
@@ -20,61 +23,57 @@
       </fieldset>
    </form>
 </div>
+<br/>
+Below is a list of games:
 
-<!-- Current Games -->
-<h3 class="centered-mid-heading">Current Games</h3>
-<table class="table table-hover centered-table">
-   <thead>
-      <tr>
-         <th>Game Id</th>
-         <th>Action</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>123</td>
-         <td><button type="button" class="btn btn-primary">Join!</button></td>
-      </tr>
-      <tr>
-         <td>456</td>
-         <td><button type="button" class="btn btn-primary">Join!</button></td>
-      </tr>
-      <tr>
-         <td>789</td>
-         <td><button type="button" class="btn btn-primary">Join!</button></td>
-      </tr>
-   </tbody>
-</table>
+<div id="show-games">
+   <table class="table table-striped table-bordered centered-table">
+      <thead>
+         <tr>
+            <th>Game Id</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         
+         <tr>
+            <td>123</td>
+            <td><button type="button" class="btn btn-primary">Join!</button></td>
+         </tr>
+         <tr>
+            <td>456</td>
+            <td><button type="button" class="btn btn-primary">Join!</button></td>
+         </tr>
+         <tr>
+            <td>789</td>
+            <td><button type="button" class="btn btn-primary">Join!</button></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
 
-
-<!-- Scripts -->
-<script src="/socket.io/socket.io.js"></script>
-<script>
-   var socket = io.connect('http://localhost/lobby', {
-   	port: 3000,
-   	transports: ["websocket"],
-   	'sync disconnect on unload': true});
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="/js/lobby.js"></script>
+<script id="tmpl-games" type="text/template">
    
-   // tell the server a new player has joined
-   socket.on('connect', function() {
-   	console.log("client connected");
-   });
-   
-   socket.on('games', function (data) {
-   	// display the games in the table
-   
-   	console.log(data)
-   
-   });
-   
-   
-   $('#create').on('click', function() {
-   	var user_id = $('#user_id');
-   	if(user_id.val() == '') {
-   		alert('Please enter a valid user id');
-   	}
-   	else {
-   		window.location.href = '/create/' + user_id.val()
-   	}
-   });
+   <table class="table table-striped table-bordered centered-table">
+      <thead>
+         <tr>
+            <th>Game Id</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <%
+            _.each(games, function(game) {
+         %>
+         <tr>
+            <td><%= game.id %></td>
+            <td><a href="/game/<%= game.id %>"><button type="button" class="btn btn-primary">Join!</button></a></td>
+         </tr>
+         <%
+            }); // end repeat items
+         %>
+      </tbody>
+   </table>
 </script>
