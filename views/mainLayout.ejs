@@ -47,11 +47,15 @@
 
 	         <ul class="nav navbar-nav navbar-right">
 	            <li><a href="#end">Quit Game</a></li>
-	            <li>
-              
+              <% if (!has_user) { %>
+              <li>
                 <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>Login with Facebook</a>
               </li>
-              
+              <% } else { %>
+              <li>
+                <a href="/logout" class="btn btn-primary"><span class="fa fa-facebook"></span>Logout</a>
+              </li>
+              <% } %>
            </ul>
        </div>
 

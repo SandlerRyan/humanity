@@ -3,8 +3,13 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
-	
-	res.render('homepage', {title: 'Harvard Against Humanity', user: req.user});
+	if (req.user == undefined){
+		has_user = 0;
+	}
+	else{
+		has_user = 1;
+	}
+	res.render('homepage', {title: 'Harvard Against Humanity', has_user: has_user});
 },
 
 exports.create = function(req,res) {
