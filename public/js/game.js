@@ -17,7 +17,7 @@ socket.on('connect', function() {
 	console.log("client connected");
 
 	// Figure out which Room the new user should be in
-	socket.emit('new player', {'room': get_room(), 'player': $('#player').text()});
+	socket.emit('new player', {'room': get_room(), 'player': 1});
 });
 
 /* when a new player joins, socket emits the new player to existing players

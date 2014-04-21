@@ -106,7 +106,7 @@ game.on('connection', function(socket) {
 
         Game.find(data.room).then(function (model) {
         	// tell the client side who the creator is so a start button can be rendered
-        	if (model.get('creator_id') == data.player.id) {
+        	if (model.get('creator_id') == data.player) {
         		game.emit('creator', {});
         	}
         }).catch(function(e) {
