@@ -1,16 +1,29 @@
 <% layout('../mainLayout') -%>
 
 <h1 class="centered-heading">Game Lobby</h1>
-Enter your user id:<input type="text" id="user_id"/>
 
-<br/>
-<input type="button" value="Create Game" id="create"/>
+<!-- Create Game Form -->
+<div class="centered-form">
+   <form class="form-horizontal">
+      <fieldset>
+         <!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label" for="create-game">Enter your user ID</label>  
+            <div class="col-md-4">
+               <input id="user_id" name="create-game" type="text" placeholder="" class="form-control input-md">
+            </div>
+            <!-- Submit Button -->
+            <div class="col-md-4">
+               <input type="button" id="create" value="Create a Game" name="create-game" class="btn btn-primary"></input>
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>
 
-<br/>
-Below is a list of games:
-
-
-<table class="table table-striped table-bordered centered-table">
+<!-- Current Games -->
+<h3 class="centered-mid-heading">Current Games</h3>
+<table class="table table-hover centered-table">
    <thead>
       <tr>
          <th>Game Id</th>
@@ -34,33 +47,34 @@ Below is a list of games:
 </table>
 
 
+<!-- Scripts -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
-var socket = io.connect('http://localhost/lobby', {
-	port: 3000,
-	transports: ["websocket"],
-	'sync disconnect on unload': true});
-
-// tell the server a new player has joined
-socket.on('connect', function() {
-	console.log("client connected");
-});
-
-socket.on('games', function (data) {
-	// display the games in the table
-
-	console.log(data)
-
-});
-
-
-$('#create').on('click', function() {
-	var user_id = $('#user_id');
-	if(user_id.val() == '') {
-		alert('Please enter a valid user id');
-	}
-	else {
-		window.location.href = '/create/' + user_id.val()
-	}
-});
+   var socket = io.connect('http://localhost/lobby', {
+   	port: 3000,
+   	transports: ["websocket"],
+   	'sync disconnect on unload': true});
+   
+   // tell the server a new player has joined
+   socket.on('connect', function() {
+   	console.log("client connected");
+   });
+   
+   socket.on('games', function (data) {
+   	// display the games in the table
+   
+   	console.log(data)
+   
+   });
+   
+   
+   $('#create').on('click', function() {
+   	var user_id = $('#user_id');
+   	if(user_id.val() == '') {
+   		alert('Please enter a valid user id');
+   	}
+   	else {
+   		window.location.href = '/create/' + user_id.val()
+   	}
+   });
 </script>

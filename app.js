@@ -82,12 +82,12 @@ app.get('/logout', function(req, res) {
 *********************************************/
 var lobby = io.of('/lobby');
 
-lobby.on('connection', function(client) {
+lobby.on('connection', function(socket) {
 	setInterval(function() {
 		Game.collection()
 		.query('where', {active:1, started:0}).fetch()
 		.then(function(games) {
-			client.emit('games', games);
+			socket.emit('games', games);
 		}).catch(function(e) {
 			console.log(e.stack);
 			res.json(400, {error: e.message});
@@ -102,11 +102,11 @@ lobby.on('connection', function(client) {
 
 var game = io.of('/game');
 
-game.on('connection', function(client) {
+game.on('connection', function(socket) {
 	console.log('CONNECTED!!!');
 
 	// add a new player and notify all the other players
-	client.on('new player', function(data) {
+	socket.on('new player', function(data) {
 		console.log('NEW USER JOINED!!!');
 		// join the given room number
 		this.join(data.room);
@@ -116,6 +116,15 @@ game.on('connection', function(client) {
         // send all the other players to the new player
         game.emit('new player', players);
 
+        Game.find(data.room).then(function (model) {
+        	// tell the client side who the creator is so a start button can be rendered
+        	if (model.get('creator_id') == data.player) {
+        		game.emit('creator', {});
+        	}
+        }).catch(function(e) {
+			console.log(e.stack);
+			res.json(400, {error: e.message});
+		});
 		// add to our player list
 		try {
 			players[data.room].push({'player': data.player, 'socket': this.id});
@@ -126,25 +135,33 @@ game.on('connection', function(client) {
 			players[data.room].push({'player': data.player, 'socket': this.id});
 		}
 		console.log(players);
-
 	});
 
-	client.on('emit player response', function(data) {
+	socket.on('start request', function(data) {
+		if (game.clients(data.room).length < 3) {
+			socket.emit('start rejected');
+		}
+		else {
+			game.in(data.room).emit('start');
+		}
+	});
+
+	socket.on('emit player response', function(data) {
 		console.log("IM HERE")
 		console.log(data)
 		var judge = find_judge_socket(data.room);
-		console.log(client[0])
+		console.log(socket[0])
 		game.socket(players[data.room][0].socket).emit("player submission", data)
 	})
 
 	// remove player from list when they disconnect
-	client.on('disconnect', function() {
+	socket.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
 
 		// get the rooms the player has joined
 		for (var room in players) {
 
-			var p = find_player(players[room], client.id);
+			var p = find_player(players[room], socket.id);
 
 			if (p === false) {
 				console.log('could not find player in room');
