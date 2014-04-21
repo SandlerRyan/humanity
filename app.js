@@ -10,19 +10,16 @@ var main = require('./routes/main');
 var user = require('./routes/user');
 var express  = require('express');
 
+
 // Models
 var Player = require('./models/Player');
 var Game = require('./models/Game');
-
-// pass passport for configuration
-require('./config/passport.js')(passport);
-
-
 
 // required for passport
 app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+require('./config/passport.js')(passport);
 
 
 

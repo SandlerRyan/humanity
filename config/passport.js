@@ -24,7 +24,7 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
-    
+
 	// code for login (use('local-login', new LocalStategy))
 	// code for signup (use('local-signup', new LocalStategy))
 
@@ -42,12 +42,12 @@ module.exports = function(passport) {
 
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
-        
+
 		// asynchronous
 		process.nextTick(function() {
             Player.collection().get(profile.id)
-            
-            var newUser = 
+
+            var newUser =
             new Player({
                 id: profile.id,
                 fb_key: token,
@@ -56,7 +56,8 @@ module.exports = function(passport) {
                 email: profile.emails[0].value
             });
             console.log(newUser);
-            
+            return done(null, newUser);
+
 
         });
             /*
@@ -67,7 +68,7 @@ module.exports = function(passport) {
             {
             	// if there is no user found with that facebook id, create them
 
-            	var newUser = 
+            	var newUser =
             	new Player({
 					id: profile.id,
 					fb_key: token,
@@ -77,7 +78,7 @@ module.exports = function(passport) {
 				});
 
 
-                
+
 				// save our user to the database
                 newUser.save(function(err) {
                     if (err)
