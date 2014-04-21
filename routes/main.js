@@ -3,6 +3,7 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
+<<<<<<< HEAD
 	if (req.user == undefined){
 		has_user = 0;
 	}
@@ -35,12 +36,13 @@ exports.create = function(req,res) {
 },
 
 exports.game = function(req, res) {
-	data = [{"type": "white", "id": 1, "text": "this is a Test"}, 
+	data = [{"type": "white", "id": 1, "text": "this is a Test"},
 	{"type": "white", "id": 2, "text": "this is a Test2"},
 	{"type": "white", "id": 3, "text": "this is a Test3"}]
 	res.render('main/game', {room: req.params.room, white_cards: data });
 },
 
 exports.lobby = function(req, res) {
-	res.render('main/lobby');
+	var data = [{id: 1}, {id: 2}, {id:3}]
+	res.render('main/lobby', {rooms: data});
 }

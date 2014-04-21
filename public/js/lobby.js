@@ -31,7 +31,11 @@ $(document).ready(function () {
 	// display the games in the table
 		$("#show-games").html("");
 		console.log(data)
-		var compiledtmpl = _.template(tmpl, {games: data})
-		$("#show-games").html(compiledtmpl);
+		// var compiledtmpl = _.template(tmpl, {games: data})
+		var hcdata = "";
+		data.forEach(function(room) {
+			hcdata += "<a href='localhost:3000/game/" + room.id + "'>Game " +  room.id +"<br/>"
+		})
+		$("#show-games").html(hcdata);
 	});
 });
