@@ -3,8 +3,10 @@
 ********/
 
 // Major dependencies
-var app = require('./init/express');
-var passport = require('passport');
+var ex = require('./init/express');
+var app = ex[0];
+var passport = ex[1];
+
 var path = require('path');
 var main = require('./routes/main');
 var user = require('./routes/user');
@@ -14,10 +16,6 @@ var express  = require('express');
 // Models
 var Player = require('./models/Player');
 var Game = require('./models/Game');
-
-// pass passport for configuration
-require('./config/passport.js')(passport); 
-
 
 
 /*******
@@ -41,6 +39,8 @@ var user = require('./routes/user');
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
+//fb api error
+//app.get('/homepage#_=_', main.homepage);
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
@@ -59,7 +59,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		successRedirect : '/homepage',
+		successRedirect : '/lobby',
 		failureRedirect : '/'
 	}));
 
