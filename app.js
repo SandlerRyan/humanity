@@ -19,14 +19,6 @@ var Game = require('./models/Game');
 require('./config/passport.js')(passport); 
 
 
-	
-// required for passport
-app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
-
-
 
 /*******
 * SERVER
