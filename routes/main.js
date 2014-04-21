@@ -3,7 +3,7 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
-<<<<<<< HEAD
+
 	if (req.user == undefined){
 		has_user = 0;
 	}
