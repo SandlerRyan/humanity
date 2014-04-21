@@ -37,5 +37,6 @@ exports.game = function(req, res) {
 },
 
 exports.lobby = function(req, res) {
-	res.render('main/lobby');
+	var data = [{id: 1}, {id: 2}, {id:3}]
+	res.render('main/lobby', {rooms: data});
 }
