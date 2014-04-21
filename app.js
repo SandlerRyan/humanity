@@ -9,7 +9,7 @@ var path = require('path');
 var main = require('./routes/main');
 var user = require('./routes/user');
 var express  = require('express');
-var flash    = require('connect-flash');
+
 
 // Models
 var Player = require('./models/Player');
@@ -24,7 +24,7 @@ require('./config/passport.js')(passport);
 app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 
 

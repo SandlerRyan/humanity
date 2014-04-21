@@ -56,6 +56,7 @@ module.exports = function(passport) {
                 email: profile.emails[0].value
             });
             console.log(newUser);
+            return done(null, newUser);
             
 
         });
