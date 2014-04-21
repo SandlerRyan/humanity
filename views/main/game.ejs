@@ -3,6 +3,18 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/game.js"></script>
 
+<!-- for the pre-game waiting phase -->
+<h2 id="waiting-header">Waiting for Players</h2>
+<div id="waiting-list">
+   <ul>
+   </ul>
+</div>
+
+<div id="start">
+</div>
+
+
+<!-- once game starts -->
 <h1 id="judge-heading">John Harvard is judge this turn.</h1>
 
 <!-- Top Card Pane -->
@@ -35,10 +47,17 @@
 	            </p>
 	        </div>
       	</div>
-   	<% }) %> 
+   	<% }) %>
    </div>
 </div>
 
 <br/>
 <br/>
 <br/>
+
+<script>
+$(document).on('ready', function() {
+   $('.card-pane').hide();
+   $('#judge-heading').hide();
+});
+</script>
