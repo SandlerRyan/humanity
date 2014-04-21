@@ -2,6 +2,12 @@ var express = require('express');
 var path = require('path');
 var engine = require('ejs-locals')
 var app = express();
+var passport = require('passport');
+
+// pass passport for configuration
+require('../config/passport.js')(passport); 
+
+app.use(express.logger('dev'));
 
 // settings
 app.set('view engine', 'ejs');
@@ -9,22 +15,31 @@ app.engine('ejs', engine);
 app.set('views', path.join(__dirname, '../views'));
 
 // middleware
-app.use(express.bodyParser());
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(app.router);
+app.use(express.cookieParser()); // read cookies (needed for auth)
+app.use(express.bodyParser());
+
+// settings
+app.set('view engine', 'ejs');
+app.engine('ejs', engine);
+app.set('views', path.join(__dirname, '../views'));
+
+app.use(express.json());
 app.use(express.favicon());
-app.use(express.logger('dev'));
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+
+app.use(express.session({ secret: 'keyboard' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// default listen on 3000
-app.set('port', process.env.PORT || 3000);
-
-// export the app.
-module.exports = app;
+// export the app and passport
+var ex = [app,passport];
+module.exports = ex;

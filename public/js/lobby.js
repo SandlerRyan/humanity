@@ -35,4 +35,3 @@ $(document).ready(function () {
 		$("#show-games").html(compiledtmpl);
 	});
 });
-

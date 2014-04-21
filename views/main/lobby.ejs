@@ -4,11 +4,25 @@
 
 
 <h1 class="centered-heading">Game Lobby</h1>
-Enter your user id:<input type="text" id="user_id"/>
 
-<br/>
-<input type="button" value="Create Game" id="create"/>
-
+<!-- Create Game Form -->
+<div class="centered-form">
+   <form class="form-horizontal">
+      <fieldset>
+         <!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label" for="create-game">Enter your user ID</label>  
+            <div class="col-md-4">
+               <input id="user_id" name="create-game" type="text" placeholder="" class="form-control input-md">
+            </div>
+            <!-- Submit Button -->
+            <div class="col-md-4">
+               <input type="button" id="create" value="Create a Game" name="create-game" class="btn btn-primary"></input>
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>
 <br/>
 Below is a list of games:
 
@@ -53,7 +67,6 @@ Below is a list of games:
          <%
             _.each(games, function(game) {
          %>
-
          <tr>
             <td><%= game.id %></td>
             <td><a href="/game/<%= game.id %>"><button type="button" class="btn btn-primary">Join!</button></a></td>
@@ -64,7 +77,3 @@ Below is a list of games:
       </tbody>
    </table>
 </script>
-
-
-
-

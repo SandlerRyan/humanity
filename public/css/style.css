@@ -14,28 +14,28 @@ div.card-pane [class*="span"] {
 }
 
 .card-pane .card { 
-	border: 1px solid transparent;
-	border-radius: 4px;
-	transition: 0.2s;
-	border: 1px solid rgb(200, 200, 200);
-	width: 200px;
-	height: 200px;
-	margin: 10px;
-	display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: 0.2s;
+    border: 1px solid rgb(200, 200, 200);
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    display: inline-block;
     float: none;  
 }
 
 .black { 
-	background-color: black;
-	color: white;
+    background-color: black;
+    color: white;
 }
 
 .white {
-	background-color: white;
+    background-color: white;
 }
 
 .selected {
-	background-color: grey;
+    background-color: grey;
 }
 
 div.card-pane {
@@ -49,36 +49,60 @@ div.card-pane {
 }
 
 div.card-content {
-	margin-left: 20px;
-	margin-top: 10px;
-	width: 150px;
-	height: 150px;
-	font: Arial;
-	font-size: 20px;
-	white-space:initial;
-	/* Alignment */
-	display:inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 150px;
+    height: 150px;
+    font: Arial;
+    font-size: 20px;
+    white-space:initial;
+    /* Alignment */
+    display:inline-block;
     *display:inline;
     *zoom:1;
     vertical-align:top;
 }
 
 #judge-heading {
-	width: 100%;
-	text-align: center;
-	margin-top: 80px;
-	margin-bottom: 40px;
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
 }
 
 .centered-heading {
-	width: 100%;
-	text-align: center;
-	margin-top: 80px;
-	margin-bottom: 40px;
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.centered-mid-heading {
+    width: 100%;
+    text-align: center;
+/*    margin-top: 40px;
+    margin-bottom: 40px;*/
 }
 
 .centered-table {
-	width: 60%;
-	margin: auto;
-	text-align: center;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+.centered-tbl {
+    width: 300px;
+    margin: auto;
+    /*text-align: center;*/
+    float: center;
+}
+
+.centered-form {
+    width: 60%;
+    margin: auto;
+    /*text-align: center;*/
+}
+
+.img-small {
+    max-width: 80px;
 }
