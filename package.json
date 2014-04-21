@@ -16,6 +16,8 @@
     "knex": "^0.5.13",
     "bookshelf": "^0.6.10",
     "mysql": "^2.1.1",
-    "ejs-locals": "^1.0.2"
+    "ejs-locals": "^1.0.2",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2"
   }
 }

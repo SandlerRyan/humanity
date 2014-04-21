@@ -4,13 +4,26 @@
 
 // Major dependencies
 var app = require('./init/express');
+var passport = require('passport');
 var path = require('path');
 var main = require('./routes/main');
 var user = require('./routes/user');
+var express  = require('express');
 
 // Models
 var Player = require('./models/Player');
 var Game = require('./models/Game');
+
+// pass passport for configuration
+require('./config/passport.js')(passport);
+
+
+
+// required for passport
+app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 
 
 /*******
@@ -19,11 +32,15 @@ var Game = require('./models/Game');
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
-server.listen(app.get('port'), function(){
+app.set('port', process.env.PORT || 3000);
+server.listen(app.get('port'), 'localhost', function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 
+var path = require('path');
+var main = require('./routes/main');
+var user = require('./routes/user');
 /*********
 * ROUTES
 *********/
@@ -35,28 +52,29 @@ app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
 
 // user functionality
-app.get('/login', user.login);
-app.get('/logout', user.logout);
 
+// =====================================
+// FACEBOOK ROUTES =====================
+// =====================================
 
-var players = {};
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-// helper function to find a player by their socket id
-function find_player(ps, socket_id) {
-	var n = ps.length;
-	for(i = 0; i < n; i ++ ) {
-		if (ps[i]['socket'] == socket_id) {
-			return i;
-		}
-		else continue;
-	}
-	return false;
-}
+//var test = require('./routes/test');
+//app.get('/test', test.test1);
 
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {
+		successRedirect : '/homepage',
+		failureRedirect : '/'
+	}));
 
-function find_judge_socket(room_id) {
-	return 1;
-}
+// route for logging out
+app.get('/logout', function(req, res) {
+	console.log(req.user);
+	res.redirect('/');
+});
+
 /*********************************************
 * LOBBY SOCKET LOGIC
 *********************************************/
@@ -157,4 +175,35 @@ game.on('connection', function(socket) {
 	});
 
 });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/');
+}
+
+
+var players = {};
+
+// helper function to find a player by their socket id
+function find_player(ps, socket_id) {
+	var n = ps.length;
+	for(i = 0; i < n; i ++ ) {
+		if (ps[i]['socket'] == socket_id) {
+			return i;
+		}
+		else continue;
+	}
+	return false;
+}
+
+
+function find_judge_socket(room_id) {
+	return 1;
+}
+
 

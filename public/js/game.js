@@ -1,23 +1,16 @@
-var socket = io.connect('http://localhost/game', {
-			port: 3000,
-			transports: ["websocket"],
-			'sync disconnect on unload': true});
-
-
 /************************************************************
 * LOGIC FOR WAITING FOR START OF GAME
 *************************************************************/
+var socket = io.connect('http://localhost/game', {
+	port: 3000,
+	transports: ["websocket"],
+	'sync disconnect on unload': true});
 
 // get the room id from the GET params
 function get_room () {
 	var url = document.URL.split('/');
 	return url[url.length - 1];
 }
-
-var socket = io.connect('http://localhost/game', {
-	port: 3000,
-	transports: ["websocket"],
-	'sync disconnect on unload': true});
 
 // tell the server a new player has joined
 socket.on('connect', function() {
