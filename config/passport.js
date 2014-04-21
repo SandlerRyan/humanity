@@ -15,16 +15,15 @@ module.exports = function(passport) {
 
 	// used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        Player.findById(id, function(err, user) {
-            done(err, user);
-        });
+    passport.deserializeUser(function(user, done) {
+        done(null, user);
     });
-
+    
+    console.log("session done")
 	// code for login (use('local-login', new LocalStategy))
 	// code for signup (use('local-signup', new LocalStategy))
 
@@ -44,56 +43,32 @@ module.exports = function(passport) {
     function(token, refreshToken, profile, done) {
 
 		// asynchronous
-		process.nextTick(function() {
-            Player.collection().get(profile.id)
+		//process.nextTick(function() {
 
-            var newUser =
-            new Player({
-                id: profile.id,
-                fb_key: token,
-                first: profile.name.givenName,
-                last: profile.name.familyName,
-                email: profile.emails[0].value
+            
+            new Player({fb_key: profile.id}).fetch().then(function(model) {
+                if (model == null ) 
+                {
+                    new Player({
+                    fb_key: profile.id,
+                    first: profile.name.givenName,
+                    last: profile.name.familyName,
+                    email: profile.emails[0].value
+                    }).save().then(function(new_user){
+                        return done(null, new_user);
+                    }).catch(function(e) {
+                        console.log(e.stack);
+                        res.json(400, {error: e.message});
+                    });
+                }
+                else {
+                    return done(null, model);
+                }
+            }).catch(function(e) {
+                console.log(e.stack);
+                res.json(400, {error: e.message});
             });
-            console.log(newUser);
-            return done(null, newUser);
 
 
-        });
-            /*
-			// if the user is found, then log them in
-            var matched = Player.collection().get(profile.id);
-
-            if (!matched)
-            {
-            	// if there is no user found with that facebook id, create them
-
-            	var newUser =
-            	new Player({
-					id: profile.id,
-					fb_key: token,
-					first: profile.name.givenName,
-					last: profile.name.familyName,
-					email: profile.emails[0].value
-				});
-
-
-
-				// save our user to the database
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-
-                    // if successful, return the new user
-                    return done(null, newUser);
-                });
-
-            }
-            else{
-            	return done(null, matched[0]); // user found, return that user
-
-            } */
-        }));
-
-    console.log("hello");
+    }));
 };
