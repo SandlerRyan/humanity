@@ -41,7 +41,7 @@ module.exports = function(passport) {
 
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
-        
+
 		// asynchronous
 		//process.nextTick(function() {
 
@@ -68,7 +68,6 @@ module.exports = function(passport) {
                 console.log(e.stack);
                 res.json(400, {error: e.message});
             });
-
 
 
     }));
