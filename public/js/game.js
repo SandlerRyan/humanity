@@ -34,23 +34,32 @@ socket.on('new player', function(players) {
 	console.log(players);
 });
 
-// start socket connection when user name is entered
-// $('#submit').on('click', function() {
-// 	var user_id = $('#user_id');
-// 	if (user_id.val() == '') {
-// 		alert('Please enter a valid user id');
-// 	}
+socket.on('creator', function() {
+	console.log('CREATOR');
+	$('#start').html('<button type=button id="start-button">Start Game!</button>');
+	$('#start-button').on('click', function() {
+		socket.emit('start request', {'room': get_room()});
+	});
+});
 
-// 	else
-// 	{
+socket.on('start rejected', function() {
+	alert('You must have at least three players to start a game');
+});
 
+socket.on('start', function() {
+	alert('GAME STARTING!!!');
+	$('#waiting-header').remove();
+	$('#waiting-list').remove();
+	$('start-button').remove();
+	$('.card-pane').show();
+	$('#judge-heading').show();
+});
 
-// 	}
-// });
 
 /************************************************************
 * IN GAME LOGIC
 *************************************************************/
+
 $( document ).ready(function() {
 
 	// JUDGE specific sockets.
