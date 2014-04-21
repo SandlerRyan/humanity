@@ -39,8 +39,7 @@ var user = require('./routes/user');
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-//fb api error
-//app.get('/homepage#_=_', main.homepage);
+
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
@@ -57,7 +56,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		successRedirect : '/lobby',
+		successRedirect : '/',
 		failureRedirect : '/'
 	}));
 
