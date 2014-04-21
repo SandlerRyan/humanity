@@ -46,7 +46,7 @@ module.exports = function(passport) {
 		//process.nextTick(function() {
 
             
-            Player.find(profile.id).then(function(model) {
+            new Player({fb_key: profile.id}).fetch().then(function(model) {
                 if (model == null ) 
                 {
                     new Player({

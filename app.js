@@ -53,8 +53,6 @@ app.get('/create/:player_id', main.create);
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-//var test = require('./routes/test');
-//app.get('/test', test.test1);
 
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
@@ -65,7 +63,6 @@ app.get('/auth/facebook/callback',
 
 // route for logging out
 app.get('/logout', function(req, res) {
-	console.log(req.user);
 	res.redirect('/');
 });
 
