@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var engine = require('ejs-locals')
 var app = express();
+var passport = require('passport');
 
 // settings
 app.set('view engine', 'ejs');
@@ -17,6 +18,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+
 
 // development only
 if ('development' == app.get('env')) {

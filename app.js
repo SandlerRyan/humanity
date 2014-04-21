@@ -4,6 +4,7 @@
 
 // Major dependencies
 var app = require('./init/express');
+var passport = require('./init/passport');
 var path = require('path');
 var main = require('./routes/main');
 var user = require('./routes/user');
@@ -36,8 +37,44 @@ app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
 
 // user functionality
-app.get('/login', user.login);
-app.get('/logout', user.logout);
+
+// =====================================
+// FACEBOOK ROUTES =====================
+// =====================================
+// route for facebook authentication and login
+
+//passport
+app.use(passport.initialize());
+// persistent login sessions
+app.use(passport.session()); 
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+var test = require('./routes/test');
+app.get('/test', test.test1);
+
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {
+		successRedirect : '/homepage',
+		failureRedirect : '/'
+	}));
+
+// route for logging out
+app.get('/logout', function(req, res) {
+	console.log(req.user);
+	res.redirect('/');
+});
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/');
+}
 
 
 var players = {};
