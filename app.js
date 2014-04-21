@@ -42,7 +42,7 @@ app.get('/', main.homepage);
 
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
-app.get('/create/:player_id', main.create);
+app.get('/create', main.create);
 
 // user functionality
 
@@ -106,7 +106,7 @@ game.on('connection', function(socket) {
 
         Game.find(data.room).then(function (model) {
         	// tell the client side who the creator is so a start button can be rendered
-        	if (model.get('creator_id') == data.player) {
+        	if (model.get('creator_id') == data.player.id) {
         		game.emit('creator', {});
         	}
         }).catch(function(e) {
