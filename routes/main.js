@@ -3,7 +3,7 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
-	res.render('homepage', {title: 'Harvard Against Humanity'});
+	res.render('homepage', {title: 'Harvard Against Humanity'});t
 },
 
 exports.create = function(req,res) {
