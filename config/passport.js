@@ -42,11 +42,24 @@ module.exports = function(passport) {
 
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
-        console.log('FB Logged!');
-        /*
+        
 		// asynchronous
 		process.nextTick(function() {
+            Player.collection().get(profile.id)
+            
+            var newUser = 
+            new Player({
+                id: profile.id,
+                fb_key: token,
+                first: profile.name.givenName,
+                last: profile.name.familyName,
+                email: profile.emails[0].value
+            });
+            console.log(newUser);
+            
 
+        });
+            /*
 			// if the user is found, then log them in
             var matched = Player.collection().get(profile.id);
 
@@ -79,6 +92,7 @@ module.exports = function(passport) {
             	return done(null, matched[0]); // user found, return that user
 
             } */
-		}));
+        }));
 
+    console.log("hello");
 };

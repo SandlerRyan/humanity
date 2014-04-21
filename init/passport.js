@@ -1,7 +1,7 @@
-var passport = require('passport');
+/*var passport = require('passport');
 
 // pass passport for configuration
 require('../config/passport.js')(passport); 
 
 // export passport
-module.exports = passport;
+module.exports = passport;*/

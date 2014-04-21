@@ -4,14 +4,28 @@
 
 // Major dependencies
 var app = require('./init/express');
-var passport = require('./init/passport');
+var passport = require('passport');
 var path = require('path');
 var main = require('./routes/main');
 var user = require('./routes/user');
+var express  = require('express');
+var flash    = require('connect-flash');
 
 // Models
 var Player = require('./models/Player');
 var Game = require('./models/Game');
+
+// pass passport for configuration
+require('./config/passport.js')(passport); 
+
+
+	
+// required for passport
+app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 
 /*******
@@ -26,6 +40,9 @@ server.listen(app.get('port'), 'localhost', function(){
 });
 
 
+var path = require('path');
+var main = require('./routes/main');
+var user = require('./routes/user');
 /*********
 * ROUTES
 *********/
@@ -41,17 +58,11 @@ app.get('/create/:player_id', main.create);
 // =====================================
 // FACEBOOK ROUTES =====================
 // =====================================
-// route for facebook authentication and login
-
-//passport
-app.use(passport.initialize());
-// persistent login sessions
-app.use(passport.session()); 
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-var test = require('./routes/test');
-app.get('/test', test.test1);
+//var test = require('./routes/test');
+//app.get('/test', test.test1);
 
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
@@ -66,35 +77,6 @@ app.get('/logout', function(req, res) {
 	res.redirect('/');
 });
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on
-	if (req.isAuthenticated())
-		return next();
-
-	// if they aren't redirect them to the home page
-	res.redirect('/');
-}
-
-
-var players = {};
-
-// helper function to find a player by their socket id
-function find_player(ps, socket_id) {
-	var n = ps.length;
-	for(i = 0; i < n; i ++ ) {
-		if (ps[i]['socket'] == socket_id) {
-			return i;
-		}
-		else continue;
-	}
-	return false;
-}
-
-
-function find_judge_socket(room_id) {
-	return 1;
-}
 /*********************************************
 * LOBBY SOCKET LOGIC
 *********************************************/
@@ -152,26 +134,61 @@ game.on('connection', function(client) {
 		console.log(data)
 		var judge = find_judge_socket(data.room);
 		console.log(client[0])
-		game.socket(players[0].socket).emit("player submission", data)
+		game.socket(players[data.room][0].socket).emit("player submission", data)
 	})
+
 	// remove player from list when they disconnect
 	client.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
 
 		// get the rooms the player has joined
-		rooms = io.sockets.manager.roomClients[client.id];
-		for(i = 0; i < rooms.length; i++) {
-			var room = rooms[i];
+		for (var room in players) {
+
 			var p = find_player(players[room], client.id);
+
 			if (p === false) {
-				console.log('PLAYER NOT FOUND');
+				console.log('could not find player in room');
 				return;
 			}
+
 			else {
 				players[room].splice(p, 1);
 				console.log(players);
 			}
+
 		}
 	});
 
 });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/');
+}
+
+
+var players = {};
+
+// helper function to find a player by their socket id
+function find_player(ps, socket_id) {
+	var n = ps.length;
+	for(i = 0; i < n; i ++ ) {
+		if (ps[i]['socket'] == socket_id) {
+			return i;
+		}
+		else continue;
+	}
+	return false;
+}
+
+
+function find_judge_socket(room_id) {
+	return 1;
+}
+
+
