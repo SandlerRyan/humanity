@@ -22,7 +22,7 @@ module.exports = function(passport) {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
-    
+
     console.log("session done")
 	// code for login (use('local-login', new LocalStategy))
 	// code for signup (use('local-signup', new LocalStategy))
@@ -45,20 +45,19 @@ module.exports = function(passport) {
 		// asynchronous
 		//process.nextTick(function() {
 
-            
-            Player.find(profile.id).then(function(model) {
-                if (model == null ) 
+
+            new Player({fb_key: profile.id}).fetch().then(function(model) {
+                if (model == null )
                 {
                     new Player({
                     fb_key: profile.id,
                     first: profile.name.givenName,
-                    last: profile.name.familyName,
-                    email: profile.emails[0].value
+                    last: profile.name.familyName
                     }).save().then(function(new_user){
                         return done(null, new_user);
                     }).catch(function(e) {
                         console.log(e.stack);
-                        res.json(400, {error: e.message});
+                        return done(e);
                     });
                 }
                 else {
@@ -66,7 +65,7 @@ module.exports = function(passport) {
                 }
             }).catch(function(e) {
                 console.log(e.stack);
-                res.json(400, {error: e.message});
+                return done(e);
             });
 
 

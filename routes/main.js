@@ -3,7 +3,6 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
-	
 	res.render('homepage', {title: 'Harvard Against Humanity'});
 },
 
@@ -30,7 +29,7 @@ exports.create = function(req,res) {
 },
 
 exports.game = function(req, res) {
-	data = [{"type": "white", "id": 1, "text": "this is a Test"}, 
+	data = [{"type": "white", "id": 1, "text": "this is a Test"},
 	{"type": "white", "id": 2, "text": "this is a Test2"},
 	{"type": "white", "id": 3, "text": "this is a Test3"}]
 	res.render('main/game', {room: req.params.room, white_cards: data });

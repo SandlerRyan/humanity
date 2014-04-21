@@ -39,8 +39,7 @@ var user = require('./routes/user');
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-//fb api error
-//app.get('/homepage#_=_', main.homepage);
+
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
 app.get('/create/:player_id', main.create);
@@ -53,19 +52,16 @@ app.get('/create/:player_id', main.create);
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-//var test = require('./routes/test');
-//app.get('/test', test.test1);
 
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		successRedirect : '/lobby',
+		successRedirect : '/',
 		failureRedirect : '/'
 	}));
 
 // route for logging out
 app.get('/logout', function(req, res) {
-	console.log(req.user);
 	res.redirect('/');
 });
 
@@ -104,9 +100,9 @@ game.on('connection', function(socket) {
 		this.join(data.room);
 
 		// send the new player to all the other players
-        game.in(data.room).emit('new player', data.player);
+        // game.in(data.room).emit('new player', data.player);
         // send all the other players to the new player
-        game.emit('new player', players);
+        // game.emit('new player', players);
 
         Game.find(data.room).then(function (model) {
         	// tell the client side who the creator is so a start button can be rendered
@@ -126,6 +122,8 @@ game.on('connection', function(socket) {
 			players[data.room] = [];
 			players[data.room].push({'player': data.player, 'socket': this.id});
 		}
+
+		game.in(data.room).emit('new player', players[data.room]);
 		console.log(players);
 	});
 
