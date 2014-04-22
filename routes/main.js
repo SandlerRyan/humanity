@@ -3,17 +3,15 @@ var Game = require('../models/Game');
 
 
 exports.homepage = function(req, res) {
-
-	if (req.user == undefined){
-		has_user = 0;
-	}
-	else{
-		has_user = 1;
-	}
-	res.render('homepage', {title: 'Harvard Against Humanity', has_user: has_user});
+	res.render('homepage', {title: 'Harvard Against Humanity'});
 },
 
 exports.create = function(req,res) {
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+
 	new Game({
 		active: 1,
 		started: 0,
@@ -30,13 +28,27 @@ exports.create = function(req,res) {
 },
 
 exports.game = function(req, res) {
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+
 	data = [{"type": "white", "id": 1, "text": "this is a Test"},
 	{"type": "white", "id": 2, "text": "this is a Test2"},
 	{"type": "white", "id": 3, "text": "this is a Test3"}]
-	res.render('main/game', {room: req.params.room, white_cards: data, player:req.user });
+	res.render('main/game', {room: req.params.room, white_cards: data });
 },
 
 exports.lobby = function(req, res) {
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+
 	var data = [{id: 1}, {id: 2}, {id:3}]
 	res.render('main/lobby', {rooms: data});
 }
+
+
+
+

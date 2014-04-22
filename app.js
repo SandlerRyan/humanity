@@ -101,11 +101,11 @@ game.on('connection', function(socket) {
         // game.in(data.room).emit('new player', data.player);
         // send all the other players to the new player
         // game.emit('new player', players);
-
         Game.find(data.room).then(function (model) {
+        	// debugger;
         	// tell the client side who the creator is so a start button can be rendered
-        	if (model.get('creator_id') == data.player) {
-        		game.emit('creator', {});
+        	if (model.get('creator_id') == data.player.id) {
+        		game.emit('creator');
         	}
         }).catch(function(e) {
 			console.log(e.stack);

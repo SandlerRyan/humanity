@@ -1,11 +1,13 @@
 <% layout('../mainLayout') -%>
 
 <script src="/socket.io/socket.io.js"></script>
+<script>
+// pass variables from back end to game.js using ejs
+var room = <%= room %>;
+var user = <%- JSON.stringify(user) %>;
+</script>
 <script src="/js/game.js"></script>
 
-<div id="player" style="display:hidden">
-<%= player %>
-</div>
 
 <!-- for the pre-game waiting phase -->
 <h2 id="waiting-header">Waiting for Players</h2>

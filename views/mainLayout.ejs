@@ -49,11 +49,11 @@
 
 	         <ul class="nav navbar-nav navbar-right">
 	            <li><a href="#end">Quit Game</a></li>
-              <% if (!has_user) { %>
+              <% if (user == undefined) { %>
               <li>
                 <div class="btn-group" style="margin-top:8px;">
                   <a href='/auth/facebook' class='btn btn-primary'><i class="fa fa-facebook" style="width:16px; height:20px"></i> Sign in with Facebook</a>
-                </div>  
+                </div>
               </li>
               <% } else { %>
               <li>
