@@ -64,16 +64,8 @@ lobby.on('connection', function(socket) {
 		.query('where', {active:1, started:0}).fetch()
 		.then(function(games) {
 			socket.emit('games', games);
-<<<<<<< HEAD
 		}).catch(errorHandler);
 	}, 5000);
-=======
-		}).catch(function(e) {
-			console.log(e.stack);
-			res.json(400, {error: e.message});
-		});
-	}, 3000);
->>>>>>> 4851b0d196dfce4692132bbf228d7f47a7b8c3f8
 });
 
 /*********************************************
@@ -85,7 +77,9 @@ var game = io.of('/game');
 game.on('connection', function(socket) {
 	console.log('CONNECTED!!!');
 
-	// add a new player and notify all the other players
+	/**
+	* Add a new player to db and notify all the other players
+	*/
 	socket.on('new player', function(data) {
 		console.log('NEW USER JOINED!!!');
 		// join the given room number
@@ -125,22 +119,9 @@ game.on('connection', function(socket) {
 		game.in(data.room).emit('new player');
 	});
 
-	socket.on('start request', function(data) {
-		if (game.clients(data.room).length < 3) {
-			this.emit('start rejected');
-		}
-		else {
-			Game.find(data.room).then(function(model) {
-				// record that the game has started
-				model.set({started: 1}).save().then(function(){
-					// notify clients that game has started
-					game.in(data.room).emit('start', main.get_all_cards());
-				}).catch(errorHandler);
-			}).catch(errorHandler);
-		}
-	});
-
-	// remove player from list when they disconnect
+	/**
+	* Handle player disconnects; different handling for pre-game and during game
+	*/
 	socket.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
 
@@ -163,8 +144,27 @@ game.on('connection', function(socket) {
 				}
 			}
 		}).catch(errorHandler);
-
 	});
+
+	/**
+	* Decide whether to officially start game when the game's creator
+	* requests to do so
+	*/
+	socket.on('start request', function(data) {
+		Game.find(data.room, {withRelated: 'players'}).then(function(model) {
+			// verify that game has more than three people
+			if (model.related('players').length < 3) {
+				socket.emit('start rejected')
+			}
+			else {
+				// notify clients that game has started and set game as started
+				model.set({started: 1}).save().then(function(){
+					game.in(data.room).emit('start', main.get_all_cards());
+				}).catch(errorHandler);
+			}
+		}).catch(errorHandler);
+	});
+
 
 	socket.on('emit player response', function(data) {
 		console.log("IM HERE")
@@ -187,19 +187,6 @@ function isLoggedIn(req, res, next) {
 }
 
 
-// helper function to find a player by their socket id
-function find_player(ps, socket_id) {
-	var n = ps.length;
-	for(i = 0; i < n; i ++ ) {
-		if (ps[i]['socket'] == socket_id) {
-			return i;
-		}
-		else continue;
-	}
-	return false;
-}
-
-
 function find_judge_socket(room_id) {
 	return 1;
 }
@@ -218,17 +205,13 @@ app.get('/create', main.create);
 var test = require('./routes/test');
 app.get('/test', test.test1);
 
-// facebook routes
+// facebook authentication routes
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-// handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
 		successRedirect : '/',
 		failureRedirect : '/'
 	}));
-
-// route for logging out
 app.get('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/');

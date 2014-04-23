@@ -25,9 +25,10 @@ class BlackCard(models.Model):
 
 class Player(models.Model):
 	# unique identifier from fb api
-	fb_key = models.CharField(max_length=100)
+	fb_key = models.BigIntegerField()
 	first = models.CharField(max_length=50)
 	last = models.CharField(max_length=50)
+	image_url = models.CharField(max_length=200)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now_add=True)
 
