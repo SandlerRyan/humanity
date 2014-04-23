@@ -110,19 +110,23 @@ game.on('connection', function(socket) {
 						game_id: model.id,
 						socket_id: socket.id,
 						connected: 1
-					}).save().then(function(){}).catch(errorHandler);
+					}).save().then(function(){
+						var allplayers = model.related('players').push(player);
+						game.in(data.room).emit('new player', allplayers.toJSON());
+					}).catch(errorHandler);
 				}
 				// or udpate their info if they were previously in-game and disconnected
 				else
 				{
 					player.set({socket_id: socket.id, connected: 1}).save()
-					.then(function(){}).catch(errorHandler);
+					.then(function(){
+						var allplayers = model.related('players').push(player);
+						game.in(data.room).emit('new player', allplayers.toJSON());
+					}).catch(errorHandler);
 				}
 			}).catch(errorHandler)
 		}).catch(errorHandler);
 
-		// notify other players that the player has joined
-		game.in(data.room).emit('new player');
 	});
 
 	/**
@@ -159,13 +163,15 @@ game.on('connection', function(socket) {
 	socket.on('start request', function(data) {
 		Game.find(data.room, {withRelated: 'players'}).then(function(model) {
 			// verify that game has more than three people
-			if (model.related('players').length < 3) {
+			if (model.related('players').length < 1) {
 				socket.emit('start rejected')
 			}
 			else {
 				// notify clients that game has started and set game as started
 				model.set({started: 1}).save().then(function(){
-					game.in(data.room).emit('start', main.get_all_cards());
+					gamecards[data.room] = main.get_all_cards();
+					console.log(gamecards)
+					game.in(data.room).emit('start');
 				}).catch(errorHandler);
 			}
 		}).catch(errorHandler);
