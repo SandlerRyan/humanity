@@ -52,14 +52,17 @@ exports.lobby = function(req, res) {
 	}
 	res.render('main/lobby');
 }
-exports.get_all_cards = function() {
+exports.get_all_cards = function(callback) {
 	var data = {}
 	WhiteCard.collection().fetch().then(function(collection) {
 		data['white'] = collection.toJSON();
-	}).catch(errorHandler);
-	BlackCard.collection().fetch().then(function(collection) {	
-		data['black'] = collection.toJSON();
+		BlackCard.collection().fetch().then(function(collection) {	
+			data['black'] = collection.toJSON();
+			
+			callback(data);
+		}).catch(errorHandler);
 	}).catch(errorHandler);
 	
-	return data;
+	
+
 }

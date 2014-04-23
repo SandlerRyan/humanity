@@ -47,7 +47,8 @@ socket.on('start rejected', function() {
 
 socket.on('start', function(cards) {
 	alert('GAME STARTING!!!');
-	
+	console.log('GAME STARTING!!!');
+	console.log(cards)
 	$('#show-players').hide();
 	
 	//Compile the game template
@@ -60,7 +61,7 @@ socket.on('start', function(cards) {
    		escape: /\{\{-([\s\S]+?)\}\}/g
 	};
 	
-	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black}})
+	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black[0].content}})
 	$("#show-game").html(compiledtmpl);
 	loadjQuery();
 });
