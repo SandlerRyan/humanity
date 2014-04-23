@@ -90,7 +90,7 @@ lobby.on('connection', function(socket) {
 			console.log(e.stack);
 			res.json(400, {error: e.message});
 		});
-	}, 5000);
+	}, 3000);
 });
 
 
@@ -142,7 +142,7 @@ game.on('connection', function(socket) {
 			socket.emit('start rejected');
 		}
 		else {
-			game.in(data.room).emit('start');
+			game.in(data.room).emit('start', main.get_all_cards());
 		}
 	});
 

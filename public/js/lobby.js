@@ -11,8 +11,8 @@ socket.on('connect', function() {
 
 // Display New Games
 $(document).ready(function () {
-	
 
+	//When a new game is created
 	socket.on('games', function (data) {
 		// display the games in the table
 		var tmpl = $('#tmpl-games').html();

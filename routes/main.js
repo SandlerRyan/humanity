@@ -33,10 +33,7 @@ exports.game = function(req, res) {
 		res.redirect('/');
 	}
 
-	data = [{"type": "white", "id": 1, "text": "this is a Test"},
-	{"type": "white", "id": 2, "text": "this is a Test2"},
-	{"type": "white", "id": 3, "text": "this is a Test3"}]
-	res.render('main/game', {room: req.params.room, white_cards: data });
+	res.render('main/game', {room: req.params.room});
 },
 
 exports.lobby = function(req, res) {
@@ -45,4 +42,12 @@ exports.lobby = function(req, res) {
 		res.redirect('/');
 	}
 	res.render('main/lobby');
+}
+exports.get_all_cards = function() {
+	
+	data = {"white": [{"type": "white", "id": 1, "text": "this is a Test"},
+	{"type": "white", "id": 2, "text": "this is a Test2"},
+	{"type": "white", "id": 3, "text": "this is a Test3"}], "black": "This is a black card"}
+	return data;
+
 }
