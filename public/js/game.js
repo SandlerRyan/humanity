@@ -19,6 +19,18 @@ socket.on('connect', function() {
 socket.on('new player', function(players) {
 	console.log('player list');
 	console.log(players);
+
+	//Re-render underscore template with new player that joined
+	var tmpl = $('#tmpl-players').html();
+	$("#show-players").html("");
+
+	_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
+	var compiledtmpl = _.template(tmpl, {players: players})
+	$("#show-players").html(compiledtmpl);
 });
 
 socket.on('creator', function() {
@@ -33,13 +45,25 @@ socket.on('start rejected', function() {
 	alert('You must have at least three players to start a game');
 });
 
-socket.on('start', function() {
+socket.on('start', function(cards) {
 	alert('GAME STARTING!!!');
-	$('#waiting-header').remove();
-	$('#waiting-list').remove();
-	$('start-button').remove();
-	$('.card-pane').show();
-	$('#judge-heading').show();
+	
+	$('#show-players').hide();
+	
+	//Compile the game template
+	var tmpl = $('#tmpl-game').html();
+	$("#show-game").html("");
+
+	_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
+
+	
+	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black}})
+	$("#show-game").html(compiledtmpl);
+	loadjQuery();
 });
 
 
@@ -47,14 +71,15 @@ socket.on('start', function() {
 * IN GAME LOGIC
 *************************************************************/
 
-$( document ).ready(function() {
+// JUDGE specific sockets.
+socket.on('player submission', function(data) {
+	console.log(data)
+})
 
-	// JUDGE specific sockets.
-	socket.on('player submission', function(data) {
-		console.log(data)
-	})
+//Call this function to load jquery functions on game-related objects
+function loadjQuery() {
 
-
+	//Submit card
 	$('#confirmButton').on('click', function() {
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
@@ -66,7 +91,7 @@ $( document ).ready(function() {
 
 	})
 
-	//When a
+	//Toggle between chosen card
 	$('.useCard').on('click', function() {
 		var card = $(this);
 		var cardID =  $(this).attr('id')
@@ -79,4 +104,6 @@ $( document ).ready(function() {
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
 	})
-});
+
+
+}

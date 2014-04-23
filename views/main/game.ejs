@@ -10,108 +10,87 @@ var user = <%- JSON.stringify(user) %>;
 
 
 <!-- for the pre-game waiting phase -->
-<h2 id="waiting-header">Waiting for Players</h2>
-<div id="waiting-list">
-   <ul>
-   </ul>
-</div>
+
 
 <div id="start">
 </div>
 
+<div id="show-players">
+   <!-- Players table goes here via Underscore templates-->
+</div>
 
 <!-- once game starts -->
-<h1 id="judge-heading">John Harvard is judge this turn.</h1>
-
-<!-- Top Card Pane -->
-<div class="card-pane">
-   <div class="" style="text-align: center;">
-      <div class="card black">
-         <div class="card-content" style="text-align: left;">
-            <p>This is a black card ______. This is a black example.</p>
-         </div>
-      </div>
-      <div class="card white chosenCard" id="">
-         <div class="card-content" style="text-align: left;">
-         </div>
-      </div>
-      <div class="" style="text-align: center;">
-         <a href="#" id="confirmButton" class="btn btn-primary">Confirm</a>
-      </div>
-   </div>
-</div>
-
-<!-- Bottom Card Pane -->
-<div class="card-pane">
-   <div class="row">
-
-   	<% white_cards.forEach(function(card) { %>
-		<div class="card white useCard" id="<%= card.id %>">
-	        <div class="card-content">
-	            <p>
-	               <%= card.text %>
-	            </p>
-	        </div>
-      	</div>
-   	<% }) %>
-   </div>
+<div id="show-game">
+   <!-- Game module for players goes here via Underscore templates-->
 </div>
 
 <br/>
-<br/>
-<br/>
 
+<script id="tmpl-players" type="text/template">
+   <h2 id="waiting-header">Waiting for Players</h2>
+   <table class = "table table-hover centered-tbl">
+      <thead>
+         <tr>
+            <th>Players</th>
+         </tr>
+      </thead>
+      <tbody>
+         {[ _.each(players, function(player) { ]}
+            <tr>
+               <td>
+                  <div class="media">
+                     <a href="#" class="pull-left">
+                     <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
+                     </a>
+                     <div class="media-body">
+                        <br/>
+                        <p>
+                        <h4>{{ player.player.first }}</h4>
+                        </p>
+                     </div>
+                  </div>
+               </td>
+            </tr>
+         {[ },this); ]}
 
-<!-- Players table -->
-<table class = "table table-hover centered-tbl">
-   <thead>
-      <tr>
-         <th>Players</th>
-      </tr>
-   </thead>
-   <tbody>
-      <!-- sample player 1 -->
-      <tr>
-         <td>
-            <div class="media">
-               <a href="#" class="pull-left">
-               <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
-               </a>
-               <div class="media-body">
-                  <br/>
-                  <p>
-                  <h4>John</h4>
-                  </p>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <!-- sample player 2 -->
-      <tr>
-         <td>
-            <div class="media">
-               <a href="#" class="pull-left">
-               <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
-               </a>
-               <div class="media-body">
-                  <br/>
-                  <p>
-                  <h4>John</h4>
-                  </p>
-               </div>
-            </div>
-         </td>
-      </tr>
-
-   </tbody>
+      </tbody>
 </table>
+</script>
 
-<br/>
-<br/>
+<script id="tmpl-game" type="text/template">
 
-<script>
-$(document).on('ready', function() {
-   $('.card-pane').hide();
-   $('#judge-heading').hide();
-});
+   <!-- Top Card Pane -->
+   <div class="card-pane">
+      <div class="" style="text-align: center;">
+         <div class="card black">
+            <div class="card-content" style="text-align: left;">
+               <p>{{ black_card.text }}</p>
+            </div>
+         </div>
+         <div class="card white chosenCard" id="">
+            <div class="card-content" style="text-align: left;">
+            </div>
+         </div>
+         <div class="" style="text-align: center;">
+            <a href="#" id="confirmButton" class="btn btn-primary">Confirm</a>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bottom Card Pane -->
+   <div class="card-pane">
+      <div class="row">
+
+         {[ _.each(white_cards, function(card) { ]}
+         <div class="card white useCard" id="{{ card.id }}">
+              <div class="card-content">
+                  <p>
+                     {{ card.text }}
+                  </p>
+              </div>
+            </div>
+         {[ },this); ]}
+      </div>
+   </div>
+
 </script>

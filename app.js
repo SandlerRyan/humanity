@@ -47,13 +47,33 @@ function errorHandler(e) {
 var lobby = io.of('/lobby');
 
 lobby.on('connection', function(socket) {
+
+	//Send Initial Open Games
+	Game.collection()
+		.query('where', {active:1, started:0}).fetch()
+		.then(function(games) {
+			socket.emit('games', games);
+		}).catch(function(e) {
+			console.log(e.stack);
+			res.json(400, {error: e.message});
+		});
+
+	//Keep sockets open and update every 5 seconds.
 	setInterval(function() {
 		Game.collection()
 		.query('where', {active:1, started:0}).fetch()
 		.then(function(games) {
 			socket.emit('games', games);
+<<<<<<< HEAD
 		}).catch(errorHandler);
 	}, 5000);
+=======
+		}).catch(function(e) {
+			console.log(e.stack);
+			res.json(400, {error: e.message});
+		});
+	}, 3000);
+>>>>>>> 4851b0d196dfce4692132bbf228d7f47a7b8c3f8
 });
 
 /*********************************************
@@ -114,7 +134,7 @@ game.on('connection', function(socket) {
 				// record that the game has started
 				model.set({started: 1}).save().then(function(){
 					// notify clients that game has started
-					game.in(data.room).emit('start');
+					game.in(data.room).emit('start', main.get_all_cards());
 				}).catch(errorHandler);
 			}).catch(errorHandler);
 		}

@@ -4,30 +4,17 @@
 
 
 <h1 class="centered-heading">Game Lobby</h1>
-
-<!-- Create Game Form -->
-<div class="centered-form">
-   <form class="form-horizontal">
-      <fieldset>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" for="create-game">Enter your user ID</label>  
-            <div class="col-md-4">
-               <input id="user_id" name="create-game" type="text" placeholder="" class="form-control input-md" style="margin-bottom:5px;">
-            </div>
-            <!-- Submit Button -->
-            <div class="col-md-4">
-               <input type="button" id="create" value="Create a Game" name="create-game" class="btn btn-primary"></input>
-            </div>
-         </div>
-      </fieldset>
-   </form>
-</div>
-<br/>
-Below is a list of games:
+<div class="centered-heading"><input type="button" id="create" value="Create a Game" name="create-game" onclick="window.location.href = '/create';" class="btn btn-primary"></input></div>
 
 <div id="show-games">
-   <!-- <table class="table table-striped table-bordered centered-table">
+</div>
+
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="/js/lobby.js"></script>
+
+<script id="tmpl-games" type="text/template">
+   
+   <table class="table table-striped table-bordered centered-table">
       <thead>
          <tr>
             <th>Game Id</th>
@@ -35,23 +22,13 @@ Below is a list of games:
          </tr>
       </thead>
       <tbody>
-         
-         <tr>
-            <td>123</td>
-            <td><button type="button" class="btn btn-primary">Join!</button></td>
-         </tr>
-         <tr>
-            <td>456</td>
-            <td><button type="button" class="btn btn-primary">Join!</button></td>
-         </tr>
-         <tr>
-            <td>789</td>
-            <td><button type="button" class="btn btn-primary">Join!</button></td>
-         </tr>
+         {[ _.each(games, function(game) { ]}
+            <tr>
+            <td>{{game.id }}</td>
+            <td><a href="/game/{{ game.id }}"><button type="button" class="btn btn-primary">Join!</button></a>
+            </td>
+            </tr>
+         {[ },this); ]}
       </tbody>
-   </table> -->
-</div>
-
-<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
-<script src="/js/lobby.js"></script>
-
+   </table>
+</script>
