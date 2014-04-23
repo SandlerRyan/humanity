@@ -146,12 +146,16 @@ game.on('connection', function(socket) {
 		}
 	});
 
-	socket.on('emit player response', function(data) {
+	socket.on('player submitted card', function(data) {
 		console.log("IM HERE")
 		console.log(data)
 		var judge = find_judge_socket(data.room);
-		console.log(socket[0])
-		game.socket(players[data.room][0].socket).emit("player submission", data)
+		
+		game.in(data.room).emit('player submission', data);
+		console.log(players[data.room][0].socket)
+		//This sends a special emission to the first player to join the game
+		//The first player, for now, is the judge of this round.
+		game.socket(players[data.room][0].socket).emit("judge player submission", data)
 	})
 
 	// remove player from list when they disconnect

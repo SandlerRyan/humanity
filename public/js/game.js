@@ -51,7 +51,7 @@ socket.on('start', function(cards) {
 	$('#show-players').hide();
 	
 	//Compile the game template
-	var tmpl = $('#tmpl-game').html();
+	var tmpl = $('#tmpl-game-players').html();
 	$("#show-game").html("");
 
 	_.templateSettings = {
@@ -59,7 +59,6 @@ socket.on('start', function(cards) {
    		interpolate: /\{\{([\s\S]+?)\}\}/g, 
    		escape: /\{\{-([\s\S]+?)\}\}/g
 	};
-
 	
 	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black}})
 	$("#show-game").html(compiledtmpl);
@@ -75,7 +74,9 @@ socket.on('start', function(cards) {
 socket.on('player submission', function(data) {
 	console.log(data)
 })
-
+socket.on('judge player submission', function(data) {
+	console.log(data)
+})
 //Call this function to load jquery functions on game-related objects
 function loadjQuery() {
 
@@ -85,6 +86,7 @@ function loadjQuery() {
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
+			socket.emit('player submitted card',{'room': room, 'player': user, 'card': card} )
 		} else {
 			alert("You must select a card first")
 		}

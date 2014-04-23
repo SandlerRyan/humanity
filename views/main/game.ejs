@@ -57,7 +57,45 @@ var user = <%- JSON.stringify(user) %>;
 </table>
 </script>
 
-<script id="tmpl-game" type="text/template">
+<script id="tmpl-game-players" type="text/template">
+
+   <!-- Top Card Pane -->
+   <div class="card-pane">
+      <div class="" style="text-align: center;">
+         <div class="card black">
+            <div class="card-content" style="text-align: left;">
+               <p>{{ black_card.text }}</p>
+            </div>
+         </div>
+         <div class="card white chosenCard" id="">
+            <div class="card-content" style="text-align: left;">
+            </div>
+         </div>
+         <div class="" style="text-align: center;">
+            <a href="#" id="confirmButton" class="btn btn-primary">Confirm</a>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bottom Card Pane -->
+   <div class="card-pane">
+      <div class="row">
+
+         {[ _.each(white_cards, function(card) { ]}
+         <div class="card white useCard" id="{{ card.id }}">
+              <div class="card-content">
+                  <p>
+                     {{ card.text }}
+                  </p>
+              </div>
+            </div>
+         {[ },this); ]}
+      </div>
+   </div>
+
+</script>
+
+<script id="tmpl-game-judge" type="text/template">
 
    <!-- Top Card Pane -->
    <div class="card-pane">
