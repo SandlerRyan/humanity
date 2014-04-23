@@ -1,5 +1,7 @@
 var Player = require('../models/Player');
 var Game = require('../models/Game');
+var WhiteCard = require('../models/WhiteCard');
+var BlackCard = require('../models/BlackCard');
 
 
 exports.homepage = function(req, res) {

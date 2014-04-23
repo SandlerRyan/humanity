@@ -12,6 +12,7 @@ var passport = ex[1];
 // route dependencies
 var main = require('./routes/main');
 var setup = require('./routes/setup');
+var helpers = require('./helpers');
 
 
 // Models
@@ -67,6 +68,11 @@ lobby.on('connection', function(socket) {
 		}).catch(errorHandler);
 	}, 5000);
 });
+/*********************************************
+* GAMEPLAY VARIABLES
+*********************************************/
+var gamecards = {}
+
 
 /*********************************************
 * GAME SOCKET LOGIC
@@ -164,34 +170,19 @@ game.on('connection', function(socket) {
 			}
 		}).catch(errorHandler);
 	});
-	
+
 	socket.on('player submitted card', function(data) {
 		console.log("IM HERE")
 		console.log(data)
-		var judge = find_judge_socket(data.room);
-		
+		var judge = helpers.findJudgeSocket(data.room);
+
 		game.in(data.room).emit('player submission', data);
 		console.log(players[data.room][0].socket)
 		//This sends a special emission to the first player to join the game
 		//The first player, for now, is the judge of this round.
 		game.socket(players[data.room][0].socket).emit("judge player submission", data)
-	})
+	});
 });
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on
-	if (req.isAuthenticated())
-		return next();
-
-	// if they aren't redirect them to the home page
-	res.redirect('/');
-}
-
-
-function find_judge_socket(room_id) {
-	return 1;
-}
 
 
 /*********************************************
