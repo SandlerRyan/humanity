@@ -7,21 +7,20 @@ exports.homepage = function(req, res) {
 },
 
 exports.create = function(req,res) {
-	Player.find(req.params.player_id)
-	.then(function(player) {
-		new Game({
-			active: 1,
-			started: 0,
-			winner_id: null,
-			creator_id: player.id
-		})
-		.save().then(function(model) {
-			var url = '/game/' + model.id;
-			res.redirect(url);
-		}).catch(function(e) {
-			console.log(e.stack);
-			res.json(400, {error: e.message});
-		});
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+
+	new Game({
+		active: 1,
+		started: 0,
+		winner_id: null,
+		creator_id: req.user.id
+	})
+	.save().then(function(model) {
+		var url = '/game/' + model.id;
+		res.redirect(url);
 	}).catch(function(e) {
 		console.log(e.stack);
 		res.json(400, {error: e.message});
@@ -29,6 +28,11 @@ exports.create = function(req,res) {
 },
 
 exports.game = function(req, res) {
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+
 	data = [{"type": "white", "id": 1, "text": "this is a Test"},
 	{"type": "white", "id": 2, "text": "this is a Test2"},
 	{"type": "white", "id": 3, "text": "this is a Test3"}]
@@ -36,5 +40,9 @@ exports.game = function(req, res) {
 },
 
 exports.lobby = function(req, res) {
-	res.render('main/lobby');		
+	// require login to proceed
+	if (req.user == undefined) {
+		res.redirect('/');
+	}
+	res.render('main/lobby');
 }

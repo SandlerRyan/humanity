@@ -24,6 +24,8 @@
       <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
 
 
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
    </head>
   <body>
 
@@ -47,11 +49,19 @@
 
 	         <ul class="nav navbar-nav navbar-right">
 	            <li><a href="#end">Quit Game</a></li>
-	            <li>
-              
-                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>Login with Facebook</a>
+              <% if (user == undefined) { %>
+              <li>
+                <div class="btn-group" style="margin-top:8px;">
+                  <a href='/auth/facebook' class='btn btn-primary'><i class="fa fa-facebook" style="width:16px; height:20px"></i> Sign in with Facebook</a>
+                </div>
               </li>
-              
+              <% } else { %>
+              <li>
+                <div class="btn-group" style="margin-top:8px;">
+                 <a href="/logout" class="btn btn-default">Logout</a>
+                </div>
+              </li>
+              <% } %>
            </ul>
        </div>
 

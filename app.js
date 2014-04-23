@@ -9,7 +9,6 @@ var passport = ex[1];
 
 var path = require('path');
 var main = require('./routes/main');
-var user = require('./routes/user');
 var express  = require('express');
 
 
@@ -29,20 +28,18 @@ server.listen(app.get('port'), 'localhost', function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-var path = require('path');
-var main = require('./routes/main');
-var user = require('./routes/user');
 /*********
 * ROUTES
 *********/
 
 // main routes for homepage, create/join game
 app.get('/', main.homepage);
-
 app.get('/lobby', main.lobby);
 app.get('/game/:room', main.game);
-app.get('/create/:player_id', main.create);
+app.get('/create', main.create);
+
+var test = require('./routes/test');
+app.get('/test', test.test1);
 
 // user functionality
 
@@ -62,6 +59,7 @@ app.get('/auth/facebook/callback',
 
 // route for logging out
 app.get('/logout', function(req, res) {
+	req.logout();
 	res.redirect('/');
 });
 
@@ -115,11 +113,11 @@ game.on('connection', function(socket) {
         // game.in(data.room).emit('new player', data.player);
         // send all the other players to the new player
         // game.emit('new player', players);
-
         Game.find(data.room).then(function (model) {
+        	// debugger;
         	// tell the client side who the creator is so a start button can be rendered
-        	if (model.get('creator_id') == data.player) {
-        		game.emit('creator', {});
+        	if (model.get('creator_id') == data.player.id) {
+        		game.emit('creator');
         	}
         }).catch(function(e) {
 			console.log(e.stack);

@@ -6,18 +6,12 @@ var socket = io.connect('http://localhost/game', {
 	transports: ["websocket"],
 	'sync disconnect on unload': true});
 
-// get the room id from the GET params
-function get_room () {
-	var url = document.URL.split('/');
-	return url[url.length - 1];
-}
-
 // tell the server a new player has joined
 socket.on('connect', function() {
 	console.log("client connected");
 
 	// Figure out which Room the new user should be in
-	socket.emit('new player', {'room': get_room(), 'player': 1});
+	socket.emit('new player', {'room': room, 'player': user});
 });
 
 /* when a new player joins, socket emits the new player to existing players
@@ -31,7 +25,7 @@ socket.on('creator', function() {
 	console.log('CREATOR');
 	$('#start').html('<button type=button id="start-button">Start Game!</button>');
 	$('#start-button').on('click', function() {
-		socket.emit('start request', {'room': get_room()});
+		socket.emit('start request', {'room': room});
 	});
 });
 
