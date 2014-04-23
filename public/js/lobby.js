@@ -9,18 +9,6 @@ socket.on('connect', function() {
 });
 
 
-
-
-$('#create').on('click', function() {
-	var user_id = $('#user_id');
-	if(user_id.val() == '') {
-		alert('Please enter a valid user id');
-	}
-	else {
-		window.location.href = '/create/' + user_id.val()
-	}
-});
-
 // Display New Games
 $(document).ready(function () {
 	

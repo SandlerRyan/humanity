@@ -4,26 +4,7 @@
 
 
 <h1 class="centered-heading">Game Lobby</h1>
-
-<!-- Create Game Form -->
-<div class="centered-form">
-   <form class="form-horizontal">
-      <fieldset>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" for="create-game">Enter your user ID</label>  
-            <div class="col-md-4">
-               <input id="user_id" name="create-game" type="text" placeholder="" class="form-control input-md" style="margin-bottom:5px;">
-            </div>
-            <!-- Submit Button -->
-            <div class="col-md-4">
-               <input type="button" id="create" value="Create a Game" name="create-game" class="btn btn-primary"></input>
-            </div>
-         </div>
-      </fieldset>
-   </form>
-</div>
-<br/>
+<div class="centered-heading"><input type="button" id="create" value="Create a Game" name="create-game" onclick="window.location.href = '/create';" class="btn btn-primary"></input></div>
 
 <div id="show-games">
 </div>

@@ -19,6 +19,19 @@ socket.on('connect', function() {
 socket.on('new player', function(players) {
 	console.log('player list');
 	console.log(players);
+
+	//IMPLEMENT UNDERSCORE HERE
+	var tmpl = $('#tmpl-players').html();
+	$("#show-players").html("");
+
+	_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
+
+	var compiledtmpl = _.template(tmpl, {players: players})
+	$("#show-players").html(compiledtmpl);
 });
 
 socket.on('creator', function() {
@@ -46,6 +59,11 @@ socket.on('start', function() {
 /************************************************************
 * IN GAME LOGIC
 *************************************************************/
+
+$(document).on('ready', function() {
+   $('.card-pane').hide();
+   $('#judge-heading').hide();
+});
 
 $( document ).ready(function() {
 

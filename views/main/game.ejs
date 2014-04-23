@@ -19,6 +19,9 @@ var user = <%- JSON.stringify(user) %>;
 <div id="start">
 </div>
 
+<div id="show-players">
+   <!-- Players table goes here via Underscore templates-->
+</div>
 
 <!-- once game starts -->
 <h1 id="judge-heading">John Harvard is judge this turn.</h1>
@@ -60,58 +63,35 @@ var user = <%- JSON.stringify(user) %>;
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
 
+<script id="tmpl-players" type="text/template">
+   <table class = "table table-hover centered-tbl">
+      <thead>
+         <tr>
+            <th>Players</th>
+         </tr>
+      </thead>
+      <tbody>
+         {[ _.each(players, function(player) { ]}
+            <tr>
+               <td>
+                  <div class="media">
+                     <a href="#" class="pull-left">
+                     <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
+                     </a>
+                     <div class="media-body">
+                        <br/>
+                        <p>
+                        <h4>{{ player.player.first }}</h4>
+                        </p>
+                     </div>
+                  </div>
+               </td>
+            </tr>
+         {[ },this); ]}
 
-<!-- Players table -->
-<table class = "table table-hover centered-tbl">
-   <thead>
-      <tr>
-         <th>Players</th>
-      </tr>
-   </thead>
-   <tbody>
-      <!-- sample player 1 -->
-      <tr>
-         <td>
-            <div class="media">
-               <a href="#" class="pull-left">
-               <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
-               </a>
-               <div class="media-body">
-                  <br/>
-                  <p>
-                  <h4>John</h4>
-                  </p>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <!-- sample player 2 -->
-      <tr>
-         <td>
-            <div class="media">
-               <a href="#" class="pull-left">
-               <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
-               </a>
-               <div class="media-body">
-                  <br/>
-                  <p>
-                  <h4>John</h4>
-                  </p>
-               </div>
-            </div>
-         </td>
-      </tr>
-
-   </tbody>
+      </tbody>
 </table>
-
-<br/>
-<br/>
-
-<script>
-$(document).on('ready', function() {
-   $('.card-pane').hide();
-   $('#judge-heading').hide();
-});
 </script>
