@@ -52,7 +52,9 @@ module.exports = function(passport) {
                     new Player({
                     fb_key: profile.id,
                     first: profile.name.givenName,
-                    last: profile.name.familyName
+                    last: profile.name.familyName,
+                    image_url: 'http://graph.facebook.com/' +
+                        profile.id + '/picture?type=large',
                     }).save().then(function(new_user){
                         return done(null, new_user);
                     }).catch(function(e) {

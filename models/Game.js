@@ -7,7 +7,7 @@ var Game = Model.extend({
 	hasTimestamps: ['created_at', 'updated_at'],
 
 	players: function() {
-		return this.belongsToMany(require('./Player'));
+		return this.belongsToMany(require('./Player')).through(require('./GamePlayer'));
 	},
 
 	winner: function() {

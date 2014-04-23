@@ -44,7 +44,8 @@ exports.lobby = function(req, res) {
 	res.render('main/lobby');
 }
 exports.get_all_cards = function() {
-	
+
+
 	data = {"white": [{"type": "white", "id": 1, "text": "this is a Test"},
 	{"type": "white", "id": 2, "text": "this is a Test2"},
 	{"type": "white", "id": 3, "text": "this is a Test3"}], "black": "This is a black card"}
