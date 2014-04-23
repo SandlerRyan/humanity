@@ -71,6 +71,18 @@ app.get('/logout', function(req, res) {
 var lobby = io.of('/lobby');
 
 lobby.on('connection', function(socket) {
+
+	//Send Initial Open Games
+	Game.collection()
+		.query('where', {active:1, started:0}).fetch()
+		.then(function(games) {
+			socket.emit('games', games);
+		}).catch(function(e) {
+			console.log(e.stack);
+			res.json(400, {error: e.message});
+		});
+
+	//Keep sockets open and update every 5 seconds.
 	setInterval(function() {
 		Game.collection()
 		.query('where', {active:1, started:0}).fetch()

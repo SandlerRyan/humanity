@@ -23,19 +23,20 @@ $('#create').on('click', function() {
 
 // Display New Games
 $(document).ready(function () {
-	var tmpl = $('#tmpl-games').html();
-
 	
 
 	socket.on('games', function (data) {
-	// display the games in the table
+		// display the games in the table
+		var tmpl = $('#tmpl-games').html();
 		$("#show-games").html("");
-		console.log(data)
-		// var compiledtmpl = _.template(tmpl, {games: data})
-		var hcdata = "";
-		data.forEach(function(room) {
-			hcdata += "<a href='localhost:3000/game/" + room.id + "'>Game " +  room.id +"<br/>"
-		})
-		$("#show-games").html(hcdata);
+
+		_.templateSettings = {
+			evaluate: /\{\[([\s\S]+?)\]\}/g,
+       		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+       		escape: /\{\{-([\s\S]+?)\}\}/g
+		};
+
+		var compiledtmpl = _.template(tmpl, {games: data})
+		$("#show-games").html(compiledtmpl);
 	});
 });
