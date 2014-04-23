@@ -42,13 +42,22 @@ class Game(models.Model):
 	started = models.BooleanField()
 	creator = models.ForeignKey(Player, related_name='creator')
 	winner = models.ForeignKey(Player, related_name='winner', blank=True, null=True, default=None)
-	players = models.ManyToManyField(Player, related_name='players')
+	players = models.ManyToManyField(Player, related_name='players', through='GamePlayer')
 
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
 		db_table = 'games'
+
+class GamePlayer(models.Model):
+	player = models.ForeignKey(Player)
+	game = models.ForeignKey(Game)
+	connected = models.BooleanField()
+	socket_id = models.CharField(max_length=20)
+
+	class Meta:
+		db_table='games_players'
 
 class Turn(models.Model):
 	number = models.IntegerField(max_length=2)
