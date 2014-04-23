@@ -110,23 +110,25 @@ game.on('connection', function(socket) {
 						game_id: model.id,
 						socket_id: socket.id,
 						connected: 1
-					}).save().then(function(){
-						var allplayers = model.related('players').push(player);
-						game.in(data.room).emit('new player', allplayers.toJSON());
-					}).catch(errorHandler);
+					}).save().then(function(){}).catch(errorHandler);
 				}
 				// or udpate their info if they were previously in-game and disconnected
 				else
 				{
 					player.set({socket_id: socket.id, connected: 1}).save()
-					.then(function(){
-						var allplayers = model.related('players').push(player);
-						game.in(data.room).emit('new player', allplayers.toJSON());
-					}).catch(errorHandler);
+					.then(function(){}).catch(errorHandler);
 				}
 			}).catch(errorHandler)
+			
+			Player.find(data.player.id).then(function(new_player) {
+				var allplayers = model.related('players').push(new_player);
+				game.in(data.room).emit('new player', allplayers.toJSON());	
+			}).catch(errorHandler);
+
 		}).catch(errorHandler);
 
+			
+			
 	});
 
 	/**
@@ -169,9 +171,12 @@ game.on('connection', function(socket) {
 			else {
 				// notify clients that game has started and set game as started
 				model.set({started: 1}).save().then(function(){
-					gamecards[data.room] = main.get_all_cards();
-					console.log(gamecards)
-					game.in(data.room).emit('start');
+					
+					main.get_all_cards(function(data){
+						gamecards[data.room] = data;
+						game.in(data.room).emit('start', data);	
+					})
+					
 				}).catch(errorHandler);
 			}
 		}).catch(errorHandler);
@@ -183,7 +188,6 @@ game.on('connection', function(socket) {
 		var judge = helpers.findJudgeSocket(data.room);
 
 		game.in(data.room).emit('player submission', data);
-		console.log(players[data.room][0].socket)
 		//This sends a special emission to the first player to join the game
 		//The first player, for now, is the judge of this round.
 		game.socket(players[data.room][0].socket).emit("judge player submission", data)

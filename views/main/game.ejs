@@ -40,12 +40,12 @@ var user = <%- JSON.stringify(user) %>;
                <td>
                   <div class="media">
                      <a href="#" class="pull-left">
-                     <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-small">
+                     <img src="{{player.image_url}}" class="img-circle img-small">
                      </a>
                      <div class="media-body">
                         <br/>
                         <p>
-                        <h4>{{ player.player.first }}</h4>
+                        <h4>{{ player.first }}</h4>
                         </p>
                      </div>
                   </div>
@@ -85,7 +85,7 @@ var user = <%- JSON.stringify(user) %>;
          <div class="card white useCard" id="{{ card.id }}">
               <div class="card-content">
                   <p>
-                     {{ card.text }}
+                     {{ card.content }}
                   </p>
               </div>
             </div>
@@ -123,7 +123,7 @@ var user = <%- JSON.stringify(user) %>;
          <div class="card white useCard" id="{{ card.id }}">
               <div class="card-content">
                   <p>
-                     {{ card.text }}
+                     {{ card.content }}
                   </p>
               </div>
             </div>

@@ -3,94 +3,28 @@
 		"model": "humanity.Player",
 		"pk": "1",
 		"fields": {
-			"fb_key": "1234567",
+			"fb_key": 1234567,
 			"first": "Ian",
 			"last": "Boothby",
 			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
+			"updated_at": "2014-04-20 00:00:00",
+			"image_url": "http://hello.com"
 		}
 	},
 	{
 		"model": "humanity.Player",
 		"pk": "2",
 		"fields": {
-			"fb_key": "abcdefg",
+			"fb_key": 12345,
 			"first": "Nuseir",
 			"last": "Yassin",
 			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Player",
-		"pk": "3",
-		"fields": {
-			"fb_key": "asfopijqgrgj",
-			"first": "Vladimir",
-			"last": "Bok",
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Player",
-		"pk": "4",
-		"fields": {
-			"fb_key": "42hutfkjn",
-			"first": "Ryan",
-			"last": "Sandler",
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Game",
-		"pk": "1",
-		"fields": {
-			"active": "1",
-			"started": "0",
-			"creator": "1",
-			"players": ["1", "2"],
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Game",
-		"pk": "2",
-		"fields": {
-			"active": "1",
-			"started": "0",
-			"creator": "3",
-			"players": ["1", "2", "3", "4"],
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Game",
-		"pk": "3",
-		"fields": {
-			"active": "0",
-			"started": "1",
-			"creator": "4",
-			"players": ["1", "2", "3", "4"],
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
-		}
-	},
-	{
-		"model": "humanity.Game",
-		"pk": "4",
-		"fields": {
-			"active": "1",
-			"started": "1",
-			"creator": "4",
-			"players": ["1", "2", "3", "4"],
-			"created_at": "2014-04-20 00:00:00",
-			"updated_at": "2014-04-20 00:00:00"
+			"updated_at": "2014-04-20 00:00:00",
+			"image_url": "http://hello.com"
 		}
 	}
+	
+	
 ]
 
 
