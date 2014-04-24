@@ -95,7 +95,6 @@ game.on('connection', function(socket) {
 
 		// find the game and check if new player is the creator
 		Game.find(data.room, {withRelated: ['players']}).then(function (model) {
-			debugger;
 			// tell the client side who the creator is so a start button can be rendered
 			if (model.get('creator_id') == data.player.id) {
 				game.emit('creator');
@@ -176,20 +175,16 @@ game.on('connection', function(socket) {
 				model.set({started: 1}).save().then(function(){
 
 
-					main.get_all_cards(function(cards){
+					helpers.getAllCards(function(cards){
 						gamecards[data.room] = cards;
 
 						//Emit Start to Player with list of cards
 						game.in(data.room).emit('start', gamecards[data.room]);
 
 						//Emit Start to Judge without list of cards
-						console.log("WHAT IS THE ROOM number")
-						console.log(data)
 						helpers.findJudgeSocket(data.room, function(judges) {
-
 							console.log("RETURNED JUDGES FOR THIS GAME ARE")
 							console.log(judges)
-							// game.socket(players[data.room][0].socket).emit("judge player submission", data)
 						});
 					})
 
@@ -198,15 +193,17 @@ game.on('connection', function(socket) {
 		}).catch(errorHandler);
 	});
 
-
+	/**
+	* Start the turn
+	* 1. Figure out which player should be the judge
+	*/
 	socket.on('begin turn', function() {
 
-		var judge;
-		helpers.findJudgeSocket(data.room, function(judges) {
+		helpers.findJudgeSocket(data.room, function(judge, players) {
 			game.in(data.room).emit('player submission', data);
 			//This sends a special emission to the first player to join the game
 			//The first player, for now, is the judge of this round.
-			game.socket(players[data.room][0].socket).emit("judge player submission", data)
+
 		});
 
 		socket.on('player submitted card', function(data) {

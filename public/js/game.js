@@ -26,7 +26,7 @@ socket.on('new player', function(players) {
 
 	_.templateSettings = {
 		evaluate: /\{\[([\s\S]+?)\]\}/g,
-   		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+   		interpolate: /\{\{([\s\S]+?)\}\}/g,
    		escape: /\{\{-([\s\S]+?)\}\}/g
 	};
 	var compiledtmpl = _.template(tmpl, {players: players})
@@ -51,17 +51,17 @@ socket.on('start', function(cards) {
 	console.log(cards)
 	$('#show-players').hide();
 	$('#start-button').hide();
-	
+
 	//Compile the game template
 	var tmpl = $('#tmpl-game-players').html();
 	$("#show-game").html("");
 
 	_.templateSettings = {
 		evaluate: /\{\[([\s\S]+?)\]\}/g,
-   		interpolate: /\{\{([\s\S]+?)\}\}/g, 
+   		interpolate: /\{\{([\s\S]+?)\}\}/g,
    		escape: /\{\{-([\s\S]+?)\}\}/g
 	};
-	
+
 	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black[0].content}})
 	$("#show-game").html(compiledtmpl);
 	loadjQuery();
@@ -76,7 +76,7 @@ socket.on('start', function(cards) {
 socket.on('player submission', function(data) {
 	console.log(data)
 })
-socket.on('judge player submission', function(data) {
+socket.on('judge', function(data) {
 	console.log(data)
 })
 //Call this function to load jquery functions on game-related objects
