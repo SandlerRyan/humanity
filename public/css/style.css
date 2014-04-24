@@ -1,37 +1,57 @@
 body {
     margin-top: 60px; /* offset for navbar */
+    background: #FFF;
 }
 
 div.card-pane {
     overflow-x: auto;
     white-space: nowrap;
+    /* tabletop bakcground */
+    background: url(http://files.customize.org/download/wallpapers/73938/79422/polished_wood-1920x1200.jpg);
+}
 
+.bottom {
+    background: url(http://www.deliakulukundis.com/wp-content/uploads/2011/04/tabletop.jpg);
 }
 
 div.card-pane [class*="span"] {
     display: inline-block;
-    float: none;
+    float: none;  
 }
 
 .card-pane .card { 
     border: 1px solid transparent;
     border-radius: 4px;
     transition: 0.2s;
-    border: 1px solid rgb(200, 200, 200);
-    width: 200px;
-    height: 200px;
-    margin: 10px;
+    /*border: 1px solid rgb(200, 200, 200);*/
+    width: 180px;
+    height: 180px;
+    margin: 5px;
     display: inline-block;
-    float: none;  
+    float: none;
+}
+
+.card-pane .card:hover {
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    /*    margin-right: 50px;
+    margin-left: 50px;*/
+    /*background-color: yellow;*/
+
 }
 
 .black { 
     background-color: black;
     color: white;
+    border: 1px solid #000;
 }
 
 .white {
     background-color: white;
+    border: 1px solid rgb(200, 200, 200);
 }
 
 .selected {
@@ -39,10 +59,11 @@ div.card-pane [class*="span"] {
 }
 
 div.card-pane {
-    width: 90%;
+    width: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid rgb(200, 200, 200);
+    /*border: 1px solid rgb(200, 200, 200);*/
     padding: 15px;
     background-color: LightGrey;
 

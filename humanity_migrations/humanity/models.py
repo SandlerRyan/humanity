@@ -56,7 +56,7 @@ class GamePlayer(models.Model):
 	game = models.ForeignKey(Game)
 	connected = models.BooleanField()
 	socket_id = models.CharField(max_length=20)
-
+	judged = models.BooleanField(default=False)
 	class Meta:
 		db_table='games_players'
 

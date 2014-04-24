@@ -35,7 +35,7 @@ socket.on('new player', function(players) {
 
 socket.on('creator', function() {
 	console.log('CREATOR');
-	$('#start').html('<button type=button id="start-button">Start Game!</button>');
+	$('#start').html('<button type=button class="btn btn-lg btn-primary btn-block" style="margin:10px"  id="start-button">Start Game!</button>');
 	$('#start-button').on('click', function() {
 		socket.emit('start request', {'room': room});
 	});
@@ -50,6 +50,7 @@ socket.on('start', function(cards) {
 	console.log('GAME STARTING!!!');
 	console.log(cards)
 	$('#show-players').hide();
+	$('#start-button').hide();
 	
 	//Compile the game template
 	var tmpl = $('#tmpl-game-players').html();
