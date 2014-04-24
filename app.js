@@ -45,6 +45,7 @@ function errorHandler(e) {
 	res.json(400, {error: e.message});
 }
 
+
 var lobby = io.of('/lobby');
 
 lobby.on('connection', function(socket) {
@@ -71,6 +72,7 @@ lobby.on('connection', function(socket) {
 /*********************************************
 * GAMEPLAY VARIABLES
 *********************************************/
+
 var gamecards = {}
 
 
@@ -119,16 +121,13 @@ game.on('connection', function(socket) {
 					.then(function(){}).catch(errorHandler);
 				}
 			}).catch(errorHandler)
-			
+
 			Player.find(data.player.id).then(function(new_player) {
 				var allplayers = model.related('players').push(new_player);
-				game.in(data.room).emit('new player', allplayers.toJSON());	
+				game.in(data.room).emit('new player', allplayers.toJSON());
 			}).catch(errorHandler);
 
 		}).catch(errorHandler);
-
-			
-			
 	});
 
 	/**
@@ -156,6 +155,7 @@ game.on('connection', function(socket) {
 				}
 			}
 		}).catch(errorHandler);
+
 	});
 
 	/**
@@ -171,12 +171,12 @@ game.on('connection', function(socket) {
 			else {
 				// notify clients that game has started and set game as started
 				model.set({started: 1}).save().then(function(){
-					
+
 					main.get_all_cards(function(data){
 						gamecards[data.room] = data;
-						game.in(data.room).emit('start', data);	
+						game.in(data.room).emit('start', gamecards[data.room]);	
 					})
-					
+
 				}).catch(errorHandler);
 			}
 		}).catch(errorHandler);
@@ -190,7 +190,7 @@ game.on('connection', function(socket) {
 		game.in(data.room).emit('player submission', data);
 		//This sends a special emission to the first player to join the game
 		//The first player, for now, is the judge of this round.
-		game.socket(players[data.room][0].socket).emit("judge player submission", data)
+		// game.socket(players[data.room][0].socket).emit("judge player submission", data)
 	});
 });
 
