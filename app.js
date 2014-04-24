@@ -95,6 +95,7 @@ game.on('connection', function(socket) {
 
 		// find the game and check if new player is the creator
 		Game.find(data.room, {withRelated: ['players']}).then(function (model) {
+			debugger;
 			// tell the client side who the creator is so a start button can be rendered
 			if (model.get('creator_id') == data.player.id) {
 				game.emit('creator');
@@ -174,7 +175,7 @@ game.on('connection', function(socket) {
 
 					main.get_all_cards(function(data){
 						gamecards[data.room] = data;
-						game.in(data.room).emit('start', gamecards[data.room]);	
+						game.in(data.room).emit('start', gamecards[data.room]);
 					})
 
 				}).catch(errorHandler);
@@ -188,9 +189,6 @@ game.on('connection', function(socket) {
 		var judge = helpers.findJudgeSocket(data.room);
 
 		game.in(data.room).emit('player submission', data);
-		//This sends a special emission to the first player to join the game
-		//The first player, for now, is the judge of this round.
-		// game.socket(players[data.room][0].socket).emit("judge player submission", data)
 	});
 });
 
