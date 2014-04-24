@@ -178,13 +178,17 @@ game.on('connection', function(socket) {
 					// Confirm start to the creator so they can fire the first turn
 					socket.emit('start confirmed');
 
+
+					gamecards[data.room] = cards;
+					console.log(gamecards)
 					// Emit start event to all players, send them each 6 unique cards
 					// The 7th card will be filled in by the begin turn event
 					all_sockets = game.clients(data.room);
 					all_sockets.forEach(function(client) {
 						init_cards = []
-						for (i = 0; i < 3; i++) {
-							init_cards.push(gamecards[data.room].pop());
+						for (i = 0; i < 6; i++) {
+
+							init_cards.push(gamecards[data.room]['white'].pop());
 						}
 						client.emit('start', {'white_cards': init_cards});
 					});
@@ -205,7 +209,7 @@ game.on('connection', function(socket) {
 	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function(judge, players) {
 			// select a blackcard
-			black_card = gamecards[data.room].pop()
+			black_card = gamecards[data.room]['black'].pop()
 
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			all_sockets = game.clients(data.room);
@@ -216,7 +220,7 @@ game.on('connection', function(socket) {
 				else {
 					client.emit('player assignment', {
 						'black_card': black_card,
-						'white_card': gamecards[data.room].pop()
+						'white_card': gamecards[data.room]['white'].pop()
 					});
 				}
 			});

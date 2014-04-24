@@ -46,18 +46,21 @@ socket.on('start rejected', function() {
 });
 
 socket.on('start confirmed', function() {
-	socket.emit('begin turn', {'room': room});
-});
-
-socket.on('start', function(cards) {
+	
 	alert('GAME STARTING!!!');
 	console.log('GAME STARTING!!!');
 	$('#show-players').hide();
 	$('#start-button').hide();
 
+	socket.emit('begin turn', {'room': room});
+});
+
+socket.on('start', function(cards) {
+	
+
 	// handling for first term; this event is handled
 	// differently in subsequent turns
-	socket.on('player assignment', function(newcards){
+	socket.on('player assignment', function(cards){
 		//Compile the game template
 		var tmpl = $('#tmpl-game-players').html();
 		$("#show-game").html("");
@@ -69,8 +72,8 @@ socket.on('start', function(cards) {
 		};
 
 		var compiledtmpl = _.template(tmpl, {
-			white_cards: cards.white.push(newcards.white_card),
-			black_card: newcards.black_card
+			white_cards: cards.white_card,
+			black_card: cards.black_card
 		});
 
 		$("#show-game").html(compiledtmpl);
@@ -95,6 +98,21 @@ socket.on('player submission', function(data) {
 
 socket.on('judge assignment', function(data) {
 	console.log(data)
+	//Compile the game template
+	var tmpl = $('#tmpl-game-judge').html();
+	$("#show-game").html("");
+
+	_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g,
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
+
+	var compiledtmpl = _.template(tmpl, {
+		black_card: data.black_card
+	});
+
+	$("#show-game").html(compiledtmpl);
 });
 
 

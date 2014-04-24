@@ -61,7 +61,7 @@ var user = <%- JSON.stringify(user) %>;
       <div class="" style="text-align: center;">
          <div class="card black">
             <div class="card-content" style="text-align: left;">
-               <p>{{ black_card.text }}</p>
+               <p>{{ black_card.content }}</p>
             </div>
          </div>
          <div class="card white chosenCard" id="">
@@ -99,7 +99,7 @@ var user = <%- JSON.stringify(user) %>;
       <div class="" style="text-align: center;">
          <div class="card black">
             <div class="card-content" style="text-align: left;">
-               <p>{{ black_card.text }}</p>
+               <p>{{ black_card.content }}</p>
             </div>
          </div>
          <div class="card white chosenCard" id="">
@@ -112,20 +112,5 @@ var user = <%- JSON.stringify(user) %>;
       </div>
    </div>
 
-   <!-- Bottom Card Pane -->
-   <div class="card-pane">
-      <div class="row">
-
-         {[ _.each(white_cards, function(card) { ]}
-         <div class="card white useCard" id="{{ card.id }}">
-              <div class="card-content">
-                  <p>
-                     {{ card.content }}
-                  </p>
-              </div>
-            </div>
-         {[ },this); ]}
-      </div>
-   </div>
 
 </script>
