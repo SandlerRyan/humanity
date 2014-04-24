@@ -107,11 +107,13 @@ game.on('connection', function(socket) {
 				// add player to the game if they are completely new
 				if (player == null)
 				{
+					console.log("ADDING PERSON TO THE ROOM")
 					new GamePlayer({
 						player_id: data.player.id,
 						game_id: model.id,
 						socket_id: socket.id,
-						connected: 1
+						connected: 1,
+						judged: 0
 					}).save().then(function(){}).catch(errorHandler);
 				}
 				// or udpate their info if they were previously in-game and disconnected
@@ -172,9 +174,23 @@ game.on('connection', function(socket) {
 				// notify clients that game has started and set game as started
 				model.set({started: 1}).save().then(function(){
 
-					main.get_all_cards(function(data){
-						gamecards[data.room] = data;
+					main.get_all_cards(function(cards){
+						gamecards[data.room] = cards;
+
+						//Emit Start to Player with list of cards
 						game.in(data.room).emit('start', gamecards[data.room]);	
+
+						//Emit Start to Judge without list of cards
+						console.log("WHAT IS THE ROOM number")
+						console.log(data)
+						helpers.findJudgeSocket(data.room, function(judges) {
+							// game.in(data.room).emit('player submission', data);
+							//This sends a special emission to the first player to join the game
+							//The first player, for now, is the judge of this round.
+							console.log("RETURNED JUDGES FOR THIS GAME ARE")
+							console.log(judges)
+							// game.socket(players[data.room][0].socket).emit("judge player submission", data)	
+						});
 					})
 
 				}).catch(errorHandler);
@@ -182,16 +198,27 @@ game.on('connection', function(socket) {
 		}).catch(errorHandler);
 	});
 
-	socket.on('player submitted card', function(data) {
-		console.log("IM HERE")
-		console.log(data)
-		var judge = helpers.findJudgeSocket(data.room);
+	
 
-		game.in(data.room).emit('player submission', data);
-		//This sends a special emission to the first player to join the game
-		//The first player, for now, is the judge of this round.
-		// game.socket(players[data.room][0].socket).emit("judge player submission", data)
-	});
+	socket.on('begin turn', function() {
+
+		var judge;
+		helpers.findJudgeSocket(data.room, function(judges) {
+			game.in(data.room).emit('player submission', data);
+			//This sends a special emission to the first player to join the game
+			//The first player, for now, is the judge of this round.
+			game.socket(players[data.room][0].socket).emit("judge player submission", data)	
+		});
+	
+		socket.on('player submitted card', function(data) {
+			console.log("Player Has Submitted a Card")
+			console.log(data)
+			//emit to Judge 
+			
+
+		});
+
+	})
 });
 
 

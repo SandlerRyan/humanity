@@ -50,6 +50,7 @@ socket.on('start', function(cards) {
 	console.log('GAME STARTING!!!');
 	console.log(cards)
 	$('#show-players').hide();
+	$('#start-button').hide();
 	
 	//Compile the game template
 	var tmpl = $('#tmpl-game-players').html();
