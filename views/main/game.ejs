@@ -7,10 +7,7 @@ var room = <%= room %>;
 var user = <%- JSON.stringify(user) %>;
 </script>
 <script src="/js/game.js"></script>
-
-
 <!-- for the pre-game waiting phase -->
-
 
 <div id="start">
 </div>
@@ -78,7 +75,7 @@ var user = <%- JSON.stringify(user) %>;
    </div>
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane">
+   <div class="card-pane" style="background: #000;">
       <div class="row">
 
          {[ _.each(white_cards, function(card) { ]}
