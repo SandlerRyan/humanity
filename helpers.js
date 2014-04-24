@@ -26,7 +26,7 @@ exports.findJudgeSocket = function (room_id, callback) {
 		//I WILL ASSUME THIS IS SORTED
 		// collection.sort();
 		
-		if (collection.get('judged')) {
+		if (collection[0].get('judged')) {
 
 			collection.forEach(function(model) {
 				model.set({judged: 0}).save().then(function(){}).catch(errorHandler);
