@@ -45,26 +45,37 @@ socket.on('start rejected', function() {
 	alert('You must have at least three players to start a game');
 });
 
+socket.on('start confirmed', function() {
+	socket.emit('begin turn', {'room': room});
+});
+
 socket.on('start', function(cards) {
 	alert('GAME STARTING!!!');
 	console.log('GAME STARTING!!!');
-	console.log(cards)
 	$('#show-players').hide();
 	$('#start-button').hide();
 
-	//Compile the game template
-	var tmpl = $('#tmpl-game-players').html();
-	$("#show-game").html("");
+	// handling for first term; this event is handled
+	// differently in subsequent turns
+	socket.on('player assignment', function(newcards){
+		//Compile the game template
+		var tmpl = $('#tmpl-game-players').html();
+		$("#show-game").html("");
 
-	_.templateSettings = {
-		evaluate: /\{\[([\s\S]+?)\]\}/g,
-   		interpolate: /\{\{([\s\S]+?)\}\}/g,
-   		escape: /\{\{-([\s\S]+?)\}\}/g
-	};
+		_.templateSettings = {
+			evaluate: /\{\[([\s\S]+?)\]\}/g,
+	   		interpolate: /\{\{([\s\S]+?)\}\}/g,
+	   		escape: /\{\{-([\s\S]+?)\}\}/g
+		};
 
-	var compiledtmpl = _.template(tmpl, {white_cards: cards.white, black_card: {text: cards.black[0].content}})
-	$("#show-game").html(compiledtmpl);
-	loadjQuery();
+		var compiledtmpl = _.template(tmpl, {
+			white_cards: cards.white.push(newcards.white_card),
+			black_card: newcards.black_card
+		});
+
+		$("#show-game").html(compiledtmpl);
+		loadjQuery();
+	});
 });
 
 
@@ -72,13 +83,21 @@ socket.on('start', function(cards) {
 * IN GAME LOGIC
 *************************************************************/
 
+// Handler for player assignment on all turns but the first
+socket.on('player assignment', function(data) {
+	console.log(data)
+});
+
 // JUDGE specific sockets.
 socket.on('player submission', function(data) {
 	console.log(data)
-})
-socket.on('judge', function(data) {
+});
+
+socket.on('judge assignment', function(data) {
 	console.log(data)
-})
+});
+
+
 //Call this function to load jquery functions on game-related objects
 function loadjQuery() {
 
@@ -88,7 +107,7 @@ function loadjQuery() {
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
-			socket.emit('player submitted card',{'room': room, 'player': user, 'card': card} )
+			socket.emit('card submission',{'room': room, 'player': user, 'card': card} )
 		} else {
 			alert("You must select a card first")
 		}
@@ -108,6 +127,4 @@ function loadjQuery() {
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
 	})
-
-
 }

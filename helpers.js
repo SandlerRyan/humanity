@@ -8,6 +8,14 @@ function errorHandler(e) {
 	res.json(400, {error: e.message});
 }
 
+// helper function to shuffle a deck
+//+ Jonas Raoni Soares Silva
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
 exports.isLoggedIn = function(req, res, next) {
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
@@ -21,9 +29,6 @@ exports.findJudgeSocket = function (room_id, callback) {
 	GamePlayer.collection().query(function(qb) {
 		qb.where('game_id', '=', room_id).andWhere('connected', '=', 1);
 	}).fetch().then(function(collection) {
-		console.log("LIST OF GAMERS")
-		console.log(room_id)
-		console.log(collection)
 		collection.comparator = "judged";
 		collection.sort();
 
@@ -48,9 +53,9 @@ exports.getAllCards = function(callback) {
 
 	var data = {}
 	WhiteCard.collection().fetch().then(function(collection) {
-		data['white'] = collection.toJSON();
+		data['white'] = shuffle(collection.toJSON());
 		BlackCard.collection().fetch().then(function(collection) {
-			data['black'] = collection.toJSON();
+			data['black'] = shuffle(collection.toJSON());
 
 			callback(data);
 		}).catch(errorHandler);
