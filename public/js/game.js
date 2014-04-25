@@ -18,7 +18,6 @@ var socket = io.connect('http://localhost/game', {
 
 // tell the server a new player has joined
 socket.on('connect', function() {
-	console.log("client connected");
 
 	// Figure out which Room the new user should be in
 	socket.emit('new player', {'room': room, 'player': user});
@@ -27,7 +26,6 @@ socket.on('connect', function() {
 /* when a new player joins, socket emits the new player to existing players
 * and a list of existing players to the new player */
 socket.on('new player', function(players) {
-	console.log('player list');
 	console.log(players);
 
 	//Re-render underscore template with new player that joined
@@ -44,7 +42,6 @@ socket.on('new player', function(players) {
 });
 
 socket.on('creator', function() {
-	console.log('CREATOR');
 	$('#start').html('<button type=button class="btn btn-lg btn-primary btn-block" style="margin:10px"  id="start-button">Start Game!</button>');
 	$('#start-button').on('click', function() {
 		socket.emit('start request', {'room': room});
@@ -56,12 +53,12 @@ socket.on('start rejected', function() {
 });
 
 socket.on('start confirmed', function() {
-	
+
 	socket.emit('begin turn', {'room': room});
 });
 
 socket.on('start', function(cards) {
-	
+
 	alert('GAME STARTING!!!');
 	console.log('GAME STARTING!!!');
 	$('#show-players').hide();
@@ -78,7 +75,8 @@ socket.on('start', function(cards) {
 	});
 	$("#cards-panel").html(compiledtmpl);
 	$("#top-cards").show();
-	loadjQuery();
+	bindPlayerButton();
+	bindPlayerPanel();
 });
 
 
@@ -88,22 +86,14 @@ socket.on('start', function(cards) {
 
 // Handler for player assignment on all turns but the first
 socket.on('player assignment', function(cards) {
-	console.log("IM A PLAYER NOW")
-	//For players, show the new black card
-	var tmpl = $('#tmpl-game-top-card').html();
-	$("#black-card-panel").html("");
+	console.log('player');
+	loadTopPanel(cards);
+	bindPlayerButton();
 
-	var compiledtmpl = _.template(tmpl, {
-		black_card: cards.black_card
-	});
-
-	$("#black-card-panel").html(compiledtmpl);
-
-	//Assign the player specific panel and show the cards and append one card
+	$('#judge-panel').hide();
 	$("#cards-panel").show();
 
 	var tmpl = $('#tmpl-game-single-card').html();
-
 	var compiledtmpl = _.template(tmpl, {
 		card: cards.white_card
 	});
@@ -111,69 +101,79 @@ socket.on('player assignment', function(cards) {
 });
 
 // JUDGE specific sockets.
-socket.on('player submission', function(data) {
-	
-	var tmpl = $('#tmpl-game-single-card').html();
+socket.on('judge assignment', function(cards) {
+	console.log('judge');
+	loadTopPanel(cards);
 
+	//Assign the judge specific panel and hide his cards
+	var tmpl = $('#tmpl-game-judge').html();
+	$("#judge-panel").html("");
+	var compiledtmpl = _.template(tmpl, {});
+
+	$("#cards-panel").hide();
+	$("#judge-panel").html(compiledtmpl);
+	$("#judge-panel").show();
+
+	// bind new jquery event handlers
+	bindJudgePanel();
+	bindJudgeButton();
+});
+
+socket.on('player submission', function(data) {
+
+	console.log('SUBMISSION: ' + data);
+	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
 		card: data.card
 	});
 	$("#submitted-cards").append(compiledtmpl);
-	
-	$('.useCard').unbind();
-	loadJudgejQuery();
 
-});
+	bindJudgePanel();
 
-socket.on('judge assignment', function(card) {
-	
-	var tmpl = $('#tmpl-game-top-card').html();
-	$("#black-card-panel").html("");
-	var compiledtmpl = _.template(tmpl, {
-		black_card: card.black_card
-	});
-	$("#black-card-panel").html(compiledtmpl);
-
-	//Assign the judge specific panel and hide his cards 
-	var tmpl = $('#tmpl-game-judge').html();
-	$("#judge-panel").html("");
-	var compiledtmpl = _.template(tmpl, {});
-	$("#judge-panel").html(compiledtmpl);
-	$("#cards-panel").hide();
-	loadJudgeConfirmButton();
-	
 });
 
 socket.on('winning card', function(card) {
-	
-	alert("The card " + card.card.content + " submitted by " + card.player.first)
-	
-	$("#confirmButton").unbind();
-	$('#confirmButton').text("Confirm Submission")
-	$('#confirmButton').removeAttr('disabled')
-	console.log(card)
+	alert("The card " + card.card.content + " submitted by " +
+		card.player.first + " is the winnner!");
 });
 
-//Call this function to load jquery functions on game-related objects
-function loadjQuery() {
+function loadTopPanel(cards) {
+	var tmpl = $('#tmpl-game-top-card').html();
+	$("#black-card-panel").html("");
+	var compiledtmpl = _.template(tmpl, {
+		black_card: cards.black_card
+	});
+	$("#black-card-panel").html(compiledtmpl);
 
-	//Submit card
+	// blank out the 'chosen' white card div
+	$('.chosenCard').removeAttr('id');
+	$('.chosenCard').children()[0].innerHTML = '';
+}
+
+
+function bindPlayerButton() {
+	// unbind previous handlers attached when user was a judge
+	// or when user submitted the last card
+	$('#confirmButton').unbind('click');
+	$('#confirmButton').removeAttr('disabled');
+	$('#confirmButton').text("Confirm Submission");
+
 	$('#confirmButton').on('click', function() {
-		console.log("CONFIRM BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
-			$("#judge-panel").hide();
 
 		} else {
 			alert("You must select a card first")
 		}
 
-	})
+	});
+}
 
+function bindPlayerPanel() {
 	//Toggle between chosen card
 	$('.useCard').on('click', function() {
 		var card = $(this);
@@ -189,16 +189,23 @@ function loadjQuery() {
 	})
 }
 
-function loadJudgeConfirmButton() {
+function bindJudgeButton() {
+	// unbind previous handlers attached when user was a player
+	$('#confirmButton').unbind('click');
+	$('#confirmButton').removeAttr('disabled');
+	$('#confirmButton').text("Confirm Submission");
 
-	//Submit card
 	$('#confirmButton').on('click', function() {
 		console.log("CONFIRM JUDGE BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
-			socket.emit('judge submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
-			socket.emit('begin turn', {'room': room})
+			// notify players of the choice through the server
+			socket.emit('judge submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}});
+			// tell server to start next turn
+			socket.emit('begin turn', {'room': room});
+			$('#judge-panel').hide();
+			$("#cards-panel").show();
 		} else {
 			alert("You must select a card first")
 		}
@@ -206,7 +213,7 @@ function loadJudgeConfirmButton() {
 	})
 }
 
-function loadJudgejQuery() {
+function bindJudgePanel() {
 
 	//Toggle between chosen card
 	$('.useCard').on('click', function() {
