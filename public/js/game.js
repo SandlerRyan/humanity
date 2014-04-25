@@ -100,6 +100,8 @@ socket.on('player assignment', function(cards) {
 	$("#black-card-panel").html(compiledtmpl);
 
 	//Assign the player specific panel and show the cards and append one card
+	$("#cards-panel").show();
+
 	var tmpl = $('#tmpl-game-single-card').html();
 
 	var compiledtmpl = _.template(tmpl, {
@@ -117,6 +119,7 @@ socket.on('player submission', function(data) {
 		card: data.card
 	});
 	$("#submitted-cards").append(compiledtmpl);
+	loadJudgejQuery();
 
 });
 
@@ -138,6 +141,15 @@ socket.on('judge assignment', function(card) {
 	
 });
 
+socket.on('winning card', function(card) {
+	
+	alert("SOME CARD WON")
+
+
+	console.log(card)
+	socket.emit('begin turn', {'room': room})
+	
+});
 
 //Call this function to load jquery functions on game-related objects
 function loadjQuery() {
@@ -151,6 +163,38 @@ function loadjQuery() {
 			$(this).attr('disabled', 'disabled')
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
+			$("#judge-panel").hide();
+		} else {
+			alert("You must select a card first")
+		}
+
+	})
+
+	//Toggle between chosen card
+	$('.useCard').on('click', function() {
+		var card = $(this);
+		var cardID =  $(this).attr('id')
+		var cardText = $(this).children().first().children()[0].innerHTML
+		$('.chosenCard').attr('id', cardID);
+		$('.chosenCard').children()[0].innerHTML = cardText;
+		$(this).removeClass('white')
+
+		//remove all selected tags.
+		$(".selected").switchClass("selected", "white");
+		$(this).addClass('selected')
+	})
+}
+function loadJudgejQuery() {
+
+	//Submit card
+	$('#confirmButton').on('click', function() {
+		console.log("CONFIRM BUTTON CLICKED")
+		var card = $('.chosenCard').attr('id')
+		if (card != "") {
+			$(this).text("Waiting for Judge....")
+			$(this).attr('disabled', 'disabled')
+			var content = $('.chosenCard').children()[0].innerHTML;
+			socket.emit('judge submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
 		} else {
 			alert("You must select a card first")
 		}

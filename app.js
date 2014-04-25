@@ -209,6 +209,8 @@ game.on('connection', function(socket) {
 	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function(judge, players) {
 			// select a blackcard
+			console.log("JUDGE FOR THIS ROUND IS ")
+			console.log(judge)
 			black_card = gamecards[data.room]['black'].pop()
 
 			//save judge socket id information in the global variable
@@ -241,6 +243,15 @@ game.on('connection', function(socket) {
 			}
 		})
 	
+	});
+
+	socket.on('judge submission', function(data){
+		console.log("Judge SUBMITTED A winning CARD!")
+		console.log(data)
+
+		//Winning card is submitted. Notify other players. And then call Begin Turn again.
+		game.in(data.room).emit('winning card', data);
+
 	});
 
 
