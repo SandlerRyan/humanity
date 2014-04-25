@@ -1,4 +1,14 @@
 /************************************************************
+* UNDERSCORE TEMPLATE SETTINGS
+*************************************************************/
+
+_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g,
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
+
+/************************************************************
 * LOGIC FOR WAITING FOR START OF GAME
 *************************************************************/
 var socket = io.connect('http://localhost/game', {
@@ -47,38 +57,28 @@ socket.on('start rejected', function() {
 
 socket.on('start confirmed', function() {
 	
-	alert('GAME STARTING!!!');
-	console.log('GAME STARTING!!!');
-	$('#show-players').hide();
-	$('#start-button').hide();
-
 	socket.emit('begin turn', {'room': room});
 });
 
 socket.on('start', function(cards) {
 	
+	alert('GAME STARTING!!!');
+	console.log('GAME STARTING!!!');
+	$('#show-players').hide();
+	$('#start-button').hide();
 
 	// handling for first term; this event is handled
 	// differently in subsequent turns
-	socket.on('player assignment', function(cards){
-		//Compile the game template
-		var tmpl = $('#tmpl-game-players').html();
-		$("#show-game").html("");
+	//LOAD INITIAL 6 CARDS TO EVERY PLAYER IN THE GAME
+	var tmpl = $('#tmpl-game-bottom-card').html();
+	$("#cards-panel").html("");
 
-		_.templateSettings = {
-			evaluate: /\{\[([\s\S]+?)\]\}/g,
-	   		interpolate: /\{\{([\s\S]+?)\}\}/g,
-	   		escape: /\{\{-([\s\S]+?)\}\}/g
-		};
-
-		var compiledtmpl = _.template(tmpl, {
-			white_cards: cards.white_card,
-			black_card: cards.black_card
-		});
-
-		$("#show-game").html(compiledtmpl);
-		loadjQuery();
+	var compiledtmpl = _.template(tmpl, {
+		white_cards: cards.white_cards
 	});
+	$("#cards-panel").html(compiledtmpl);
+	$("#top-cards").show();
+	loadjQuery();
 });
 
 
@@ -87,32 +87,55 @@ socket.on('start', function(cards) {
 *************************************************************/
 
 // Handler for player assignment on all turns but the first
-socket.on('player assignment', function(data) {
-	console.log(data)
+socket.on('player assignment', function(cards) {
+
+	//For players, show the new black card
+	var tmpl = $('#tmpl-game-top-card').html();
+	$("#black-card-panel").html("");
+
+	var compiledtmpl = _.template(tmpl, {
+		black_card: cards.black_card
+	});
+
+	$("#black-card-panel").html(compiledtmpl);
+
+	//Assign the player specific panel and show the cards and append one card
+	var tmpl = $('#tmpl-game-single-card').html();
+
+	var compiledtmpl = _.template(tmpl, {
+		card: cards.white_card
+	});
+	$("#bottom-cards-container").append(compiledtmpl);
 });
 
 // JUDGE specific sockets.
 socket.on('player submission', function(data) {
-	console.log(data)
-});
-
-socket.on('judge assignment', function(data) {
-	console.log(data)
-	//Compile the game template
-	var tmpl = $('#tmpl-game-judge').html();
-	$("#show-game").html("");
-
-	_.templateSettings = {
-		evaluate: /\{\[([\s\S]+?)\]\}/g,
-   		interpolate: /\{\{([\s\S]+?)\}\}/g,
-   		escape: /\{\{-([\s\S]+?)\}\}/g
-	};
+	
+	var tmpl = $('#tmpl-game-single-card').html();
 
 	var compiledtmpl = _.template(tmpl, {
-		black_card: data.black_card
+		card: data.card
 	});
+	$("#submitted-cards").append(compiledtmpl);
 
-	$("#show-game").html(compiledtmpl);
+});
+
+socket.on('judge assignment', function(card) {
+	
+	var tmpl = $('#tmpl-game-top-card').html();
+	$("#black-card-panel").html("");
+	var compiledtmpl = _.template(tmpl, {
+		black_card: card.black_card
+	});
+	$("#black-card-panel").html(compiledtmpl);
+
+	//Assign the judge specific panel and hide his cards 
+	var tmpl = $('#tmpl-game-judge').html();
+	$("#judge-panel").html("");
+	var compiledtmpl = _.template(tmpl, {});
+	$("#judge-panel").html(compiledtmpl);
+	$("#cards-panel").hide();
+	
 });
 
 
@@ -121,11 +144,13 @@ function loadjQuery() {
 
 	//Submit card
 	$('#confirmButton').on('click', function() {
+		console.log("CONFIRM BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
-			socket.emit('card submission',{'room': room, 'player': user, 'card': card} )
+			var content = $('.chosenCard').children()[0].innerHTML;
+			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
 		} else {
 			alert("You must select a card first")
 		}

@@ -193,7 +193,7 @@ game.on('connection', function(socket) {
 						client.emit('start', {'white_cards': init_cards});
 					});
 					// store the remaining cards for later rounds
-					gamecards[data.room] = cards;
+					// gamecards[data.room] = cards;
 				});
 			}
 		}).catch(errorHandler);
@@ -211,6 +211,8 @@ game.on('connection', function(socket) {
 			// select a blackcard
 			black_card = gamecards[data.room]['black'].pop()
 
+			//save judge socket id information in the global variable
+			gamecards[data.room]['judge'] = judge.get('socket_id')
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			all_sockets = game.clients(data.room);
 			all_sockets.forEach(function(client) {
@@ -226,6 +228,22 @@ game.on('connection', function(socket) {
 			});
 		});
 	});
+
+	// When a player submits a card for the judge, this socket is fired.
+	socket.on('card submission', function(data) {
+		console.log("PLAYER SUBMITTED A CARD!")
+		console.log(gamecards[data.room]['judge'])
+		// socket.emit(gamecards[data.room]['judge'])
+		all_sockets = game.clients(data.room);
+		all_sockets.forEach(function(client) {
+			if (client.id == gamecards[data.room]['judge']) {
+				client.emit('player submission', data);
+			}
+		})
+	
+	});
+
+
 
 });
 
