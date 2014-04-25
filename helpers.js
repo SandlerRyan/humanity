@@ -31,6 +31,7 @@ exports.findJudgeSocket = function (room_id, callback) {
 	}).fetch().then(function(collection) {
 		collection.comparator = "judged";
 		collection.sort();
+		debugger;
 		console.log("PLAYERS IN THE GAME")
 		console.log(collection.models)
 		// this happens when everyone has judged once already

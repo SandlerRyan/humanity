@@ -88,7 +88,7 @@ socket.on('start', function(cards) {
 
 // Handler for player assignment on all turns but the first
 socket.on('player assignment', function(cards) {
-
+	console.log("IM A PLAYER NOW")
 	//For players, show the new black card
 	var tmpl = $('#tmpl-game-top-card').html();
 	$("#black-card-panel").html("");
@@ -119,6 +119,8 @@ socket.on('player submission', function(data) {
 		card: data.card
 	});
 	$("#submitted-cards").append(compiledtmpl);
+	
+	$('.useCard').unbind();
 	loadJudgejQuery();
 
 });
@@ -138,14 +140,18 @@ socket.on('judge assignment', function(card) {
 	var compiledtmpl = _.template(tmpl, {});
 	$("#judge-panel").html(compiledtmpl);
 	$("#cards-panel").hide();
+	loadJudgeConfirmButton();
 	
 });
 
 socket.on('winning card', function(card) {
 	
 	alert("The card " + card.card.content + " submitted by " + card.player.first)
+	
+	$("#confirmButton").unbind();
+	$('#confirmButton').text("Confirm Submission")
+	$('#confirmButton').removeAttr('disabled')
 	console.log(card)
-j	
 });
 
 //Call this function to load jquery functions on game-related objects
@@ -161,7 +167,6 @@ function loadjQuery() {
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
 			$("#judge-panel").hide();
-			socket.emit('begin turn', {'room': room})
 
 		} else {
 			alert("You must select a card first")
@@ -183,22 +188,25 @@ function loadjQuery() {
 		$(this).addClass('selected')
 	})
 }
-function loadJudgejQuery() {
+
+function loadJudgeConfirmButton() {
 
 	//Submit card
 	$('#confirmButton').on('click', function() {
-		console.log("CONFIRM BUTTON CLICKED")
+		console.log("CONFIRM JUDGE BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
-			$(this).text("Waiting for Judge....")
-			$(this).attr('disabled', 'disabled')
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('judge submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
+			socket.emit('begin turn', {'room': room})
 		} else {
 			alert("You must select a card first")
 		}
 
 	})
+}
+
+function loadJudgejQuery() {
 
 	//Toggle between chosen card
 	$('.useCard').on('click', function() {
