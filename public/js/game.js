@@ -143,12 +143,9 @@ socket.on('judge assignment', function(card) {
 
 socket.on('winning card', function(card) {
 	
-	alert("SOME CARD WON")
-
-
+	alert("The card " + card.card.content + " submitted by " + card.player.first)
 	console.log(card)
-	socket.emit('begin turn', {'room': room})
-	
+j	
 });
 
 //Call this function to load jquery functions on game-related objects
@@ -164,6 +161,8 @@ function loadjQuery() {
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
 			$("#judge-panel").hide();
+			socket.emit('begin turn', {'room': room})
+
 		} else {
 			alert("You must select a card first")
 		}

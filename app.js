@@ -250,8 +250,7 @@ game.on('connection', function(socket) {
 		console.log(data)
 
 		//Winning card is submitted. Notify other players. And then call Begin Turn again.
-		game.in(data.room).emit('winning card', data);
-
+		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
 
