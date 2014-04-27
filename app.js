@@ -157,7 +157,6 @@ game.on('connection', function(socket) {
 				}
 			}
 		}).catch(errorHandler);
-
 	});
 
 	/**
@@ -172,49 +171,90 @@ game.on('connection', function(socket) {
 			}
 			else {
 				// notify clients that game has started and set game as started
-				model.set({started: 1}).save().then(function(){
+				model.set({started: 1}).save().then(function(){}).catch(errorHandler);
+
+				helpers.getAllCards(function(cards){
+
+					// Confirm start to the creator so they can fire the first turn
+					socket.emit('start confirmed');
 
 
-					helpers.getAllCards(function(cards){
-						gamecards[data.room] = cards;
+					gamecards[data.room] = cards;
+					console.log(gamecards)
+					// Emit start event to all players, send them each 6 unique cards
+					// The 7th card will be filled in by the begin turn event
+					all_sockets = game.clients(data.room);
+					all_sockets.forEach(function(client) {
+						init_cards = []
+						for (i = 0; i < 6; i++) {
 
-						//Emit Start to Player with list of cards
-						game.in(data.room).emit('start', gamecards[data.room]);
-
-						//Emit Start to Judge without list of cards
-						helpers.findJudgeSocket(data.room, function(judges) {
-							console.log("RETURNED JUDGES FOR THIS GAME ARE")
-							console.log(judges)
-						});
-					})
-
-				}).catch(errorHandler);
+							init_cards.push(gamecards[data.room]['white'].pop());
+						}
+						client.emit('start', {'white_cards': init_cards});
+					});
+					// store the remaining cards for later rounds
+					// gamecards[data.room] = cards;
+				});
 			}
 		}).catch(errorHandler);
 	});
 
 	/**
-	* Start the turn
+	* Start the turn (generic for all turns including the first)
 	* 1. Figure out which player should be the judge
+	* 2. Pick a black card for everyone
+	* 3. Notify the judge and send the black card
+	* 4. Pick one new card for each player and send them the black card + new white card
 	*/
-	socket.on('begin turn', function() {
-
+	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function(judge, players) {
-			game.in(data.room).emit('player submission', data);
-			//This sends a special emission to the first player to join the game
-			//The first player, for now, is the judge of this round.
+			// select a blackcard
+			console.log("JUDGE FOR THIS ROUND IS ")
+			console.log(judge)
+			black_card = gamecards[data.room]['black'].pop()
 
+			//save judge socket id information in the global variable
+			gamecards[data.room]['judge'] = judge.get('socket_id')
+			// notify the new judge of his assignment, and notify all other players of their assignment
+			all_sockets = game.clients(data.room);
+			all_sockets.forEach(function(client) {
+				if (client.id == judge.get('socket_id')) {
+					client.emit('judge assignment', {'black_card': black_card});
+				}
+				else {
+					client.emit('player assignment', {
+						'black_card': black_card,
+						'white_card': gamecards[data.room]['white'].pop()
+					});
+				}
+			});
 		});
-
-		socket.on('player submitted card', function(data) {
-			console.log("Player Has Submitted a Card")
-			console.log(data)
-			//emit to Judge
-
-
-		});
-
 	});
+
+	// When a player submits a card for the judge, this socket is fired.
+	socket.on('card submission', function(data) {
+		console.log("PLAYER SUBMITTED A CARD!")
+		console.log(gamecards[data.room]['judge'])
+		// socket.emit(gamecards[data.room]['judge'])
+		all_sockets = game.clients(data.room);
+		all_sockets.forEach(function(client) {
+			if (client.id == gamecards[data.room]['judge']) {
+				client.emit('player submission', data);
+			}
+		})
+	
+	});
+
+	socket.on('judge submission', function(data){
+		console.log("Judge SUBMITTED A winning CARD!")
+		console.log(data)
+
+		//Winning card is submitted. Notify other players. And then call Begin Turn again.
+		socket.broadcast.to(data.room).emit('winning card', data);
+	});
+
+
+
 });
 
 
