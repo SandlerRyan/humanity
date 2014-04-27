@@ -9,7 +9,7 @@ var user = <%- JSON.stringify(user) %>;
 <script src="/js/game.js"></script>
 <!-- for the pre-game waiting phase -->
 
-<div id="start">
+<div id="start" class="centered-mid-heading">
 </div>
 
 <div id="show-players">
@@ -20,7 +20,6 @@ var user = <%- JSON.stringify(user) %>;
 <div id="show-game">
    <!-- Game module for players goes here via Underscore templates-->
    
-
    <div id="top-cards" style="display: none;">
       <div class="card-pane">
          <div class="" style="text-align: center;">
@@ -51,8 +50,10 @@ var user = <%- JSON.stringify(user) %>;
 <br/>
 
 <script id="tmpl-players" type="text/template">
-   <h2 id="waiting-header">Waiting for Players</h2>
-   <table class = "table table-hover centered-tbl">
+   <h2 id="waiting-header" class="centered-heading">Waiting for Players</h2>
+   
+   <!-- 
+   <table class = "table centered-tbl">
       <thead>
          <tr>
             <th>Players</th>
@@ -64,7 +65,7 @@ var user = <%- JSON.stringify(user) %>;
                <td>
                   <div class="media">
                      <a href="#" class="pull-left">
-                     <img src="{{player.image_url}}" class="img-circle img-small">
+                     <img src="{{player.image_url}}" class="circular">
                      </a>
                      <div class="media-body">
                         <br/>
@@ -79,6 +80,28 @@ var user = <%- JSON.stringify(user) %>;
 
       </tbody>
 </table>
+ -->
+   <hr>
+   <h3 class="centered-mid-heading">Players</h3>
+   <div class="container">
+      <div class="row">
+         {[ _.each(players, function(player) { ]}
+                  <div class="media">
+                     <div class="pull-left">
+                     <img src="{{player.image_url}}" class="circular">
+                     </div>
+                     <div class="media-body">
+                        <br/>
+                        <p>
+                        <h4>{{ player.first }}</h4>
+                        </p>
+                     </div>
+                  </div>
+         {[ },this); ]}
+
+      </div>
+   </div>
+
 </script>
 
 <script id="tmpl-game-top-card" type="text/template">
@@ -93,7 +116,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-bottom-card" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane" style="background: #000;">
+   <div class="card-pane">
       <div class="row" id="bottom-cards-container">
 
          {[ _.each(white_cards, function(card) { ]}
@@ -112,11 +135,13 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-judge" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane" style="background: #000;">
+   <div class="card-pane">
       
       <div class="row">
          <div id="submitted-cards">
-            <p> You are a judge this round. Cards will show at the bottom </p>
+            <h3 class="centered-mid-heading"> 
+              You are a judge this round. Cards will show at the bottom 
+            </h3>
             <!-- Inject new cards as they come here-->
          </div>
       </div>

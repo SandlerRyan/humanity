@@ -42,7 +42,7 @@ socket.on('new player', function(players) {
 });
 
 socket.on('creator', function() {
-	$('#start').html('<button type=button class="btn btn-lg btn-primary btn-block" style="margin:10px"  id="start-button">Start Game!</button>');
+	$('#start').html('<button type=button class="btn btn-lg btn-primary" style="margin-bottom:20px"  id="start-button">Start Game!</button>');
 	$('#start-button').on('click', function() {
 		socket.emit('start request', {'room': room});
 	});
