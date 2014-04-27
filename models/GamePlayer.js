@@ -4,6 +4,8 @@ var GamePlayer = Model.extend({
 
 	tableName: 'games_players',
 
+	defaults: {judged: 0},
+
 	game: function() {
 		return this.belongsTo(require('./Game'));
 	},

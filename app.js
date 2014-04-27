@@ -107,11 +107,13 @@ game.on('connection', function(socket) {
 				// add player to the game if they are completely new
 				if (player == null)
 				{
+					console.log("ADDING PERSON TO THE ROOM")
 					new GamePlayer({
 						player_id: data.player.id,
 						game_id: model.id,
 						socket_id: socket.id,
-						connected: 1
+						connected: 1,
+						judged: 0
 					}).save().then(function(){}).catch(errorHandler);
 				}
 				// or udpate their info if they were previously in-game and disconnected
@@ -155,7 +157,6 @@ game.on('connection', function(socket) {
 				}
 			}
 		}).catch(errorHandler);
-
 	});
 
 	/**
@@ -170,28 +171,90 @@ game.on('connection', function(socket) {
 			}
 			else {
 				// notify clients that game has started and set game as started
-				model.set({started: 1}).save().then(function(){
+				model.set({started: 1}).save().then(function(){}).catch(errorHandler);
 
-					main.get_all_cards(function(data){
-						gamecards[data.room] = data;
-						game.in(data.room).emit('start', gamecards[data.room]);	
-					})
+				helpers.getAllCards(function(cards){
 
-				}).catch(errorHandler);
+					// Confirm start to the creator so they can fire the first turn
+					socket.emit('start confirmed');
+
+
+					gamecards[data.room] = cards;
+					console.log(gamecards)
+					// Emit start event to all players, send them each 6 unique cards
+					// The 7th card will be filled in by the begin turn event
+					all_sockets = game.clients(data.room);
+					all_sockets.forEach(function(client) {
+						init_cards = []
+						for (i = 0; i < 6; i++) {
+
+							init_cards.push(gamecards[data.room]['white'].pop());
+						}
+						client.emit('start', {'white_cards': init_cards});
+					});
+					// store the remaining cards for later rounds
+					// gamecards[data.room] = cards;
+				});
 			}
 		}).catch(errorHandler);
 	});
 
-	socket.on('player submitted card', function(data) {
-		console.log("IM HERE")
-		console.log(data)
-		var judge = helpers.findJudgeSocket(data.room);
+	/**
+	* Start the turn (generic for all turns including the first)
+	* 1. Figure out which player should be the judge
+	* 2. Pick a black card for everyone
+	* 3. Notify the judge and send the black card
+	* 4. Pick one new card for each player and send them the black card + new white card
+	*/
+	socket.on('begin turn', function(data) {
+		helpers.findJudgeSocket(data.room, function(judge, players) {
+			// select a blackcard
+			console.log("JUDGE FOR THIS ROUND IS ")
+			console.log(judge)
+			black_card = gamecards[data.room]['black'].pop()
 
-		game.in(data.room).emit('player submission', data);
-		//This sends a special emission to the first player to join the game
-		//The first player, for now, is the judge of this round.
-		// game.socket(players[data.room][0].socket).emit("judge player submission", data)
+			//save judge socket id information in the global variable
+			gamecards[data.room]['judge'] = judge.get('socket_id')
+			// notify the new judge of his assignment, and notify all other players of their assignment
+			all_sockets = game.clients(data.room);
+			all_sockets.forEach(function(client) {
+				if (client.id == judge.get('socket_id')) {
+					client.emit('judge assignment', {'black_card': black_card});
+				}
+				else {
+					client.emit('player assignment', {
+						'black_card': black_card,
+						'white_card': gamecards[data.room]['white'].pop()
+					});
+				}
+			});
+		});
 	});
+
+	// When a player submits a card for the judge, this socket is fired.
+	socket.on('card submission', function(data) {
+		console.log("PLAYER SUBMITTED A CARD!")
+		console.log(gamecards[data.room]['judge'])
+		// socket.emit(gamecards[data.room]['judge'])
+		all_sockets = game.clients(data.room);
+		all_sockets.forEach(function(client) {
+			if (client.id == gamecards[data.room]['judge']) {
+				client.emit('player submission', data);
+			}
+		})
+	
+	});
+
+	socket.on('judge submission', function(data){
+		console.log("Judge SUBMITTED A winning CARD!")
+		console.log(data)
+
+		//Winning card is submitted. Notify other players. And then call Begin Turn again.
+		socket.broadcast.to(data.room).emit('winning card', data);
+	});
+
+
+
 });
 
 
