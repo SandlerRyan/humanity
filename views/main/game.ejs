@@ -44,6 +44,9 @@ var user = <%- JSON.stringify(user) %>;
    <div id="judge-panel">
       <!-- Show Judge Specific cards here and hide the cards-panel -->
    </div>
+   <div id="submitted-panel">
+      <!-- Show Judge Specific cards here and hide the cards-panel -->
+   </div>
 </div>
 
 <br/>
@@ -152,6 +155,24 @@ var user = <%- JSON.stringify(user) %>;
 
 </script>
 
+<script id="tmpl-game-player-sub" type="text/template">
+
+   <!-- Bottom Card Pane -->
+   <div class="card-pane">
+      
+      <div class="row">
+         <div id="submitted-cards">
+            <h3 class="centered-mid-heading"> 
+              Submitted cards:
+            </h3>
+            <!-- Inject new cards as they come here-->
+         </div>
+      </div>
+   </div>
+ 
+
+</script>
+
 <script id="tmpl-game-single-card" type="text/template">
 
    <!-- Single Card View -->
@@ -164,3 +185,18 @@ var user = <%- JSON.stringify(user) %>;
    </div>
 
 </script>
+
+<script id="tmpl-game-blank-card" type="text/template">
+
+   <!-- Single Card View -->
+   <div class="card white useCard" id="{{ card.id }}">
+        <div class="card-content">
+            <p>
+               <h1 class="centered-mid-heading" style="color:grey;">?</h1>
+            </p>
+        </div>
+   </div>
+ 
+</script>
+
+
