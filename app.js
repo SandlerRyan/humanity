@@ -52,7 +52,7 @@ lobby.on('connection', function(socket) {
 
 	//Send Initial Open Games
 	Game.collection()
-		.query('where', {active:1, started:0}).fetch()
+		.query('where', {active:1, started:0}).fetch({withRelated:['players', 'creator']})
 		.then(function(games) {
 			socket.emit('games', games);
 		}).catch(function(e) {
@@ -137,22 +137,30 @@ game.on('connection', function(socket) {
 	socket.on('disconnect', function() {
 		console.log('PLAYER DISCONNECTED');
 
-		new GamePlayer({socket_id: this.id}).fetch({withRelated:['game', 'player']})
+		new GamePlayer({socket_id: this.id}).fetch({withRelated:['game.players', 'player']})
 		.then(function(model) {
-			if (model == null) console.log('Disconnected player not found');
-			else {
-				// if game has already started, player is just marked disconnected
-				// and can rejoin anytime
-				if (model.related('game').get('started')) {
-					model.set({connected: 0}).save().then(function() {
-						socket.emit('player inactive');
-					}).catch(errorHandler);
+			// if game has already started, player is just marked disconnected
+			// and can rejoin anytime
+			if (model.related('game').get('started')) {
+				model.set({connected: 0}).save().then(function() {
+					socket.emit('player inactive');
+				}).catch(errorHandler);
+
+				// if this is the last active player, then inactivate game
+				if (model.related('game').related('players').models.length == 1) {
+					model.related('game').set({active: 0}).save()
+					.then(function() {}).catch(errorHandler);
 				}
-				// if still in pre-game waiting phase, player is removed completely
-				// to make room for other players trying to join the game
-				else {
-					model.destroy();
-					socket.emit('player left');
+			}
+			// if still in pre-game waiting phase, player is removed completely
+			// to make room for other players trying to join the game
+			else {
+				model.destroy();
+				socket.emit('player left');
+
+				// if this is the last active player, then delete the unstarted game
+				if (model.related('game').related('players').models.length == 1) {
+					model.related('game').destroy();
 				}
 			}
 		}).catch(errorHandler);

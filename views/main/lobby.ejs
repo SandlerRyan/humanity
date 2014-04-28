@@ -18,18 +18,20 @@
 <script src="/js/lobby.js"></script>
 
 <script id="tmpl-games" type="text/template">
-   
+
    <table class="table centered-table">
       <thead>
          <tr>
-            <th>Game Id</th>
+            <th>Creator</th>
+            <th>Number of players</th>
             <th>Action</th>
          </tr>
       </thead>
       <tbody>
          {[ _.each(games, function(game) { ]}
             <tr>
-            <td>{{game.id }}</td>
+            <td>{{ game.creator.first }}</td>
+            <td>{{ game.players.length }}</td>
             <td><a href="/game/{{ game.id }}"><button type="button" class="btn btn-primary">Join!</button></a>
             </td>
             </tr>
