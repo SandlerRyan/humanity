@@ -1,4 +1,14 @@
 /************************************************************
+* EXTERNAL VARIABLES PASSED INTO THIS FILE
+* user- the user object from session, passed into every template
+* by some custom middleware and passed by ejs into the script
+*
+* room- the socket room this game takes place in (equal to the
+* game id in db and also listed in the url of the game)
+*************************************************************/
+
+
+/************************************************************
 * UNDERSCORE TEMPLATE SETTINGS
 *************************************************************/
 
@@ -166,6 +176,12 @@ socket.on('winning card', function(card) {
 		card.player.first + " is the winnner!");
 });
 
+
+
+/**************************************************************
+* HELPER FUNCTIONS
+* Template rendering for the top panel and jquery event handlers
+**************************************************************/
 function loadTopPanel(cards) {
 	var tmpl = $('#tmpl-game-top-card').html();
 	$("#black-card-panel").html("");
