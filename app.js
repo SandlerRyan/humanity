@@ -107,7 +107,6 @@ game.on('connection', function(socket) {
 				// add player to the game if they are completely new
 				if (player == null)
 				{
-					console.log("ADDING PERSON TO THE ROOM")
 					new GamePlayer({
 						player_id: data.player.id,
 						game_id: model.id,
@@ -174,26 +173,19 @@ game.on('connection', function(socket) {
 				model.set({started: 1}).save().then(function(){}).catch(errorHandler);
 
 				helpers.getAllCards(function(cards){
-
 					// Confirm start to the creator so they can fire the first turn
 					socket.emit('start confirmed');
-
-
 					gamecards[data.room] = cards;
-					console.log(gamecards)
 					// Emit start event to all players, send them each 6 unique cards
 					// The 7th card will be filled in by the begin turn event
 					all_sockets = game.clients(data.room);
 					all_sockets.forEach(function(client) {
 						init_cards = []
 						for (i = 0; i < 6; i++) {
-
 							init_cards.push(gamecards[data.room]['white'].pop());
 						}
 						client.emit('start', {'white_cards': init_cards});
 					});
-					// store the remaining cards for later rounds
-					// gamecards[data.room] = cards;
 				});
 			}
 		}).catch(errorHandler);
@@ -242,12 +234,23 @@ game.on('connection', function(socket) {
 				client.emit('player submission', data);
 			}
 		})
-	
+
 	});
 
+	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data){
-		console.log("Judge SUBMITTED A winning CARD!")
-		console.log(data)
+		// save the turn data
+		var t = new Turn({
+			game_id: data.room,
+			number: gamecards[data.room]['turn'],
+			black_card_id: data.black_card.id,
+			white_card1_id: data.white_card.id,
+			white_card2_id: null,
+			winner_id: data.player.id
+		}).save().then(function (){
+			// increment the turn counter
+			gamecards[data.room]['turn'] += 1;
+		}).catch(errorHandler);
 
 		//Winning card is submitted. Notify other players. And then call Begin Turn again.
 		socket.broadcast.to(data.room).emit('winning card', data);

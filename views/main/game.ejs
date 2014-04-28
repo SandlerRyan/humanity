@@ -7,8 +7,8 @@ var room = <%= room %>;
 var user = <%- JSON.stringify(user) %>;
 </script>
 <script src="/js/game.js"></script>
-<!-- for the pre-game waiting phase -->
 
+<!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
 </div>
 
@@ -16,17 +16,16 @@ var user = <%- JSON.stringify(user) %>;
    <!-- Players table goes here via Underscore templates-->
 </div>
 
-<!-- once game starts -->
+<!-- Once game starts -->
 <div id="show-game">
    <!-- Game module for players goes here via Underscore templates-->
-   
    <div id="top-cards" style="display: none;">
       <div class="card-pane">
          <div class="" style="text-align: center;">
-            
+
             <span id="black-card-panel">
             </span>
-            
+
             <div class="card white chosenCard" id="">
                <div class="card-content" style="text-align: left;">
                </div>
@@ -38,7 +37,7 @@ var user = <%- JSON.stringify(user) %>;
       </div>
    <div>
 
-   
+
    <div id="cards-panel">
       <!-- Show Player Specific cards here -->
    </div>
@@ -49,10 +48,11 @@ var user = <%- JSON.stringify(user) %>;
 
 <br/>
 
+<!-- Template for waiting phase -->
 <script id="tmpl-players" type="text/template">
    <h2 id="waiting-header" class="centered-heading">Waiting for Players</h2>
-   
-   <!-- 
+
+   <!--
    <table class = "table centered-tbl">
       <thead>
          <tr>
@@ -101,18 +101,20 @@ var user = <%- JSON.stringify(user) %>;
 
       </div>
    </div>
-
 </script>
 
+
+<!-- Templates for game phase -->
 <script id="tmpl-game-top-card" type="text/template">
 
    <!-- Top Card Pane -->
-   <div class="card black">
+   <div class="card black" id="{{ black_card.id }}">
          <div class="card-content" style="text-align: left;">
                <p>{{ black_card.content }}</p>
          </div>
    </div>
 </script>
+
 <script id="tmpl-game-bottom-card" type="text/template">
 
    <!-- Bottom Card Pane -->
@@ -136,17 +138,17 @@ var user = <%- JSON.stringify(user) %>;
 
    <!-- Bottom Card Pane -->
    <div class="card-pane">
-      
+
       <div class="row">
          <div id="submitted-cards">
-            <h3 class="centered-mid-heading"> 
-              You are a judge this round. Cards will show at the bottom 
+            <h3 class="centered-mid-heading">
+              You are a judge this round. Cards will show at the bottom
             </h3>
             <!-- Inject new cards as they come here-->
          </div>
       </div>
    </div>
- 
+
 
 </script>
 
@@ -160,5 +162,5 @@ var user = <%- JSON.stringify(user) %>;
             </p>
         </div>
    </div>
- 
+
 </script>

@@ -31,9 +31,7 @@ exports.findJudgeSocket = function (room_id, callback) {
 	}).fetch().then(function(collection) {
 		collection.comparator = "judged";
 		collection.sort();
-		debugger;
-		console.log("PLAYERS IN THE GAME")
-		console.log(collection.models)
+
 		// this happens when everyone has judged once already
 		if (collection.models[0].get('judged')) {
 			// now set everyone to zero
@@ -58,8 +56,10 @@ exports.getAllCards = function(callback) {
 		data['white'] = shuffle(collection.toJSON());
 		BlackCard.collection().fetch().then(function(collection) {
 			data['black'] = shuffle(collection.toJSON());
+			data['turn'] = 0;
 
 			callback(data);
 		}).catch(errorHandler);
 	}).catch(errorHandler);
 }
+

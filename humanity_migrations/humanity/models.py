@@ -63,6 +63,7 @@ class GamePlayer(models.Model):
 class Turn(models.Model):
 	number = models.IntegerField(max_length=2)
 	game = models.ForeignKey(Game)
+	winner = models.ForeignKey(Player)
 	black_card = models.ForeignKey(BlackCard)
 	white_card1 = models.ForeignKey(WhiteCard, related_name='whitecard1')
 	white_card2 = models.ForeignKey(WhiteCard, null=True, blank=True, related_name='whitecard2')
