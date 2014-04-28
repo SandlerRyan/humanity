@@ -41,6 +41,7 @@ socket.on('new player', function(players) {
 	$("#show-players").html(compiledtmpl);
 });
 
+// if this player is the game creator, render a button for them to start the game
 socket.on('creator', function() {
 	$('#start').html('<button type=button class="btn btn-lg btn-primary" style="margin-bottom:20px"  id="start-button">Start Game!</button>');
 	$('#start-button').on('click', function() {
@@ -48,19 +49,21 @@ socket.on('creator', function() {
 	});
 });
 
+// emitted to game creator if not enough people have joined to start the game
 socket.on('start rejected', function() {
 	alert('You must have at least three players to start a game');
 });
 
+// emitted to game creator upon successful game start
 socket.on('start confirmed', function() {
-
+	console.log('START CONFIRMED')
 	socket.emit('begin turn', {'room': room});
 });
 
+// emitted to all players
 socket.on('start', function(cards) {
 
 	alert('GAME STARTING!!!');
-	console.log('GAME STARTING!!!');
 	$('#show-players').hide();
 	$('#start-button').hide();
 
@@ -98,6 +101,7 @@ socket.on('player assignment', function(cards) {
 		card: cards.white_card
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
+	bindPlayerPanel();
 });
 
 // JUDGE specific sockets.
@@ -132,17 +136,15 @@ socket.on('player submission', function(data) {
 
 });
 
-socket.on('winning card', function(card) {
-	alert("The card " + card.card.content + " submitted by " +
-		card.player.first + " is the winnner!");
+socket.on('winning card', function(data) {
+	alert("The card " + data.card.content + " submitted by " +
+		data.player.first + " is the winnner!");
 });
 
 function loadTopPanel(cards) {
 	var tmpl = $('#tmpl-game-top-card').html();
 	$("#black-card-panel").html("");
-	var compiledtmpl = _.template(tmpl, {
-		black_card: cards.black_card
-	});
+	var compiledtmpl = _.template(tmpl, {black_card: cards.black_card});
 	$("#black-card-panel").html(compiledtmpl);
 
 	// blank out the 'chosen' white card div
@@ -164,8 +166,14 @@ function bindPlayerButton() {
 			$(this).text("Waiting for Judge....")
 			$(this).attr('disabled', 'disabled')
 			var content = $('.chosenCard').children()[0].innerHTML;
-			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
+			socket.emit('card submission', {
+				'room': room,
+				'player': user,
+				'card': {'id': card, 'content': content}
+			});
 
+			// remove the selected card from the player panel
+			$('.selected').remove();
 		} else {
 			alert("You must select a card first")
 		}
@@ -174,19 +182,20 @@ function bindPlayerButton() {
 }
 
 function bindPlayerPanel() {
+	// unbind handler that were bound to cards from previous turns
+	$('.useCard').unbind('click');
+
 	//Toggle between chosen card
 	$('.useCard').on('click', function() {
-		var card = $(this);
 		var cardID =  $(this).attr('id')
 		var cardText = $(this).children().first().children()[0].innerHTML
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
-		$(this).removeClass('white')
 
 		//remove all selected tags.
-		$(".selected").switchClass("selected", "white");
-		$(this).addClass('selected')
-	})
+		$('.selected').removeClass('selected').addClass('white');
+		$(this).removeClass('white').addClass('selected');
+	});
 }
 
 function bindJudgeButton() {
@@ -200,17 +209,23 @@ function bindJudgeButton() {
 		var card = $('.chosenCard').attr('id')
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
+			black_card = $('.black');
 			// notify players of the choice through the server
-			socket.emit('judge submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}});
+			socket.emit('judge submission', {
+				'room': room,
+				'player': user,
+				'white_card': {'id': card, 'content': content},
+				'black_card': {'id': black_card.attr('id')}
+			});
 			// tell server to start next turn
 			socket.emit('begin turn', {'room': room});
 			$('#judge-panel').hide();
 			$("#cards-panel").show();
+
 		} else {
 			alert("You must select a card first")
 		}
-
-	})
+	});
 }
 
 function bindJudgePanel() {
@@ -227,5 +242,5 @@ function bindJudgePanel() {
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
-	})
+	});
 }
