@@ -95,6 +95,11 @@ div.card-content {
     text-align: center;
 }
 
+.centered-button {
+    float: center;
+    text-align: center;
+}
+
 .centered-table {
     width: 300px;
     margin: auto;

@@ -63,7 +63,7 @@ lobby.on('connection', function(socket) {
 	//Keep sockets open and update every 5 seconds.
 	setInterval(function() {
 		Game.collection()
-		.query('where', {active:1, started:0}).fetch()
+		.query('where', {active:1, started:0}).fetch({withRelated:['players', 'creator']})
 		.then(function(games) {
 			socket.emit('games', games);
 		}).catch(errorHandler);
