@@ -95,6 +95,7 @@ socket.on('player assignment', function(cards) {
 
 	$('#judge-panel').hide();
 	$("#cards-panel").show();
+	$("#submitted-panel").hide();
 
 
 	var tmpl = $('#tmpl-game-single-card').html();
@@ -111,7 +112,7 @@ socket.on('player assignment', function(cards) {
 	var compiledtmpl = _.template(tmpl, {});
 
 	$("#submitted-panel").html(compiledtmpl);
-	$("#submitted-panel").hide();
+	//$("#submitted-panel").hide();
 
 });
 
@@ -126,6 +127,7 @@ socket.on('judge assignment', function(cards) {
 	var compiledtmpl = _.template(tmpl, {});
 
 	$("#cards-panel").hide();
+	$("#submitted-panel").hide();
 	$("#judge-panel").html(compiledtmpl);
 	$("#judge-panel").show();
 
