@@ -241,12 +241,16 @@ game.on('connection', function(socket) {
 			if (client.id == gamecards[data.room]['judge']) {
 				client.emit('player submission', data);
 			}
+			else {
+				client.emit('player submission player', data);
+			}
 		})
 
 	});
 
 	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data){
+		
 		// save the turn data
 		var t = new Turn({
 			game_id: data.room,
@@ -263,8 +267,6 @@ game.on('connection', function(socket) {
 		//Winning card is submitted. Notify other players. And then call Begin Turn again.
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
-
-
 
 });
 
