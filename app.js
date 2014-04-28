@@ -250,6 +250,7 @@ game.on('connection', function(socket) {
 
 	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data){
+		
 		// save the turn data
 		var t = new Turn({
 			game_id: data.room,

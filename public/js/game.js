@@ -172,7 +172,7 @@ socket.on('player submission player', function(data) {
 
 
 socket.on('winning card', function(card) {
-	alert("The card " + card.card.content + " submitted by " +
+	alert("The card " + card.white_card.content + " submitted by " +
 		card.player.first + " is the winnner!");
 });
 
