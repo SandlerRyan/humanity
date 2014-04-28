@@ -93,11 +93,21 @@ socket.on('player assignment', function(cards) {
 	$('#judge-panel').hide();
 	$("#cards-panel").show();
 
+
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
 		card: cards.white_card
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
+
+	//initialize the submitted-panel
+	var tmpl = $('#tmpl-game-player-sub').html();
+	$("#submitted-panel").html("");
+	var compiledtmpl = _.template(tmpl, {});
+
+	$("#submitted-panel").html(compiledtmpl);
+	$("#submitted-panel").hide();
+
 });
 
 // JUDGE specific sockets.
@@ -132,6 +142,19 @@ socket.on('player submission', function(data) {
 
 });
 
+
+socket.on('player submission player', function(data) {
+
+	//add submitted card to submitted panel
+	var tmpl = $('#tmpl-game-blank-card').html();
+	var compiledtmpl = _.template(tmpl, {
+		card: data.card
+	});
+	$("#submitted-cards").append(compiledtmpl);
+
+});
+
+
 socket.on('winning card', function(card) {
 	alert("The card " + card.card.content + " submitted by " +
 		card.player.first + " is the winnner!");
@@ -165,6 +188,9 @@ function bindPlayerButton() {
 			$(this).attr('disabled', 'disabled')
 			var content = $('.chosenCard').children()[0].innerHTML;
 			socket.emit('card submission',{'room': room, 'player': user, 'card': {'id': card, 'content': content}})
+			
+			$("#cards-panel").hide();
+			$("#submitted-panel").show();
 
 		} else {
 			alert("You must select a card first")

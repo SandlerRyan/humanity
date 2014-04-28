@@ -241,6 +241,9 @@ game.on('connection', function(socket) {
 			if (client.id == gamecards[data.room]['judge']) {
 				client.emit('player submission', data);
 			}
+			else {
+				client.emit('player submission player', data);
+			}
 		})
 	
 	});

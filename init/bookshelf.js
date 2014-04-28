@@ -9,7 +9,7 @@ var bookshelf = Bookshelf.initialize({
     user     : 'root',
     password : '',
     database : 'humanity',
-    charset  : 'utf8'
+    charset  : 'UTF8_GENERAL_CI'
   }
 });
 
