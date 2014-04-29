@@ -61,8 +61,7 @@ lobby.on('connection', function(socket) {
 	//Keep sockets open and update every 5 seconds.
 	setInterval(function() {
 		Game.collection()
-		.query('where', {active:1, started:0})
-		.fetch({withRelated:['players', 'creator']})
+		.query('where', {active:1, started:0}).fetch({withRelated:['players', 'creator']})
 		.then(function(games) {
 			socket.emit('games', games);
 		}).catch(errorHandler);
@@ -244,12 +243,15 @@ game.on('connection', function (socket) {
 			if (client.id == gamecards[data.room]['judge']) {
 				client.emit('player submission', data);
 			}
+			else {
+				client.emit('player submission player', data);
+			}
 		});
-
 	});
 
 	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data){
+
 		// save the turn data
 		var t = new Turn({
 			game_id: data.room,
@@ -266,8 +268,6 @@ game.on('connection', function (socket) {
 		//Winning card is submitted. Notify other players. Judge calls begin turn again
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
-
-
 
 });
 
