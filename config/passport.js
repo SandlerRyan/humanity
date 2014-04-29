@@ -41,35 +41,27 @@ module.exports = function(passport) {
 
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
+        new Player({fb_key: profile.id}).fetch({require: true})
 
-		// asynchronous
-		//process.nextTick(function() {
+        // find user
+        .then(function(existing_user) {
+            return done(null, existing_user);
 
-
-            new Player({fb_key: profile.id}).fetch().then(function(model) {
-                if (model == null )
-                {
-                    new Player({
-                    fb_key: profile.id,
-                    first: profile.name.givenName,
-                    last: profile.name.familyName,
-                    image_url: 'http://graph.facebook.com/' +
-                        profile.id + '/picture?type=large',
-                    }).save().then(function(new_user){
-                        return done(null, new_user);
-                    }).catch(function(e) {
-                        console.log(e.stack);
-                        return done(e);
-                    });
-                }
-                else {
-                    return done(null, model);
-                }
-            }).catch(function(e) {
-                console.log(e.stack);
-                return done(e);
-            });
-
+        // or create if the user is not in database
+        }).catch(function(e) {
+            return new Player({
+            fb_key: profile.id,
+            first: profile.name.givenName,
+            last: profile.name.familyName,
+            image_url: 'http://graph.facebook.com/' +
+                profile.id + '/picture?type=large',
+            }).save()
+        }).then(function(new_user){
+            return done(null, new_user);
+        }).catch(function(e) {
+            console.log(e.stack);
+            return done(e);
+        });
 
     }));
 };

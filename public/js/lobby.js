@@ -9,22 +9,18 @@ socket.on('connect', function() {
 });
 
 
-// Display New Games
-$(document).ready(function () {
+//When a new game is created
+socket.on('games', function (data) {
+	// display the games in the table
+	var tmpl = $('#tmpl-games').html();
+	$("#show-games").html("");
 
-	//When a new game is created
-	socket.on('games', function (data) {
-		// display the games in the table
-		var tmpl = $('#tmpl-games').html();
-		$("#show-games").html("");
+	_.templateSettings = {
+		evaluate: /\{\[([\s\S]+?)\]\}/g,
+   		interpolate: /\{\{([\s\S]+?)\}\}/g,
+   		escape: /\{\{-([\s\S]+?)\}\}/g
+	};
 
-		_.templateSettings = {
-			evaluate: /\{\[([\s\S]+?)\]\}/g,
-       		interpolate: /\{\{([\s\S]+?)\}\}/g, 
-       		escape: /\{\{-([\s\S]+?)\}\}/g
-		};
-
-		var compiledtmpl = _.template(tmpl, {games: data})
-		$("#show-games").html(compiledtmpl);
-	});
+	var compiledtmpl = _.template(tmpl, {games: data})
+	$("#show-games").html(compiledtmpl);
 });

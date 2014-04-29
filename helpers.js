@@ -2,10 +2,11 @@ var GamePlayer = require('./models/GamePlayer');
 var WhiteCard = require('./models/WhiteCard');
 var BlackCard = require('./models/BlackCard');
 
+var Promise = require('bluebird');
+
 // route middleware to make sure a user is logged in
 function errorHandler(e) {
 	console.log(e.stack);
-	res.json(400, {error: e.message});
 }
 
 // helper function to shuffle a deck
@@ -26,9 +27,8 @@ exports.isLoggedIn = function(req, res, next) {
 },
 
 exports.findJudgeSocket = function (room_id, callback) {
-	GamePlayer.collection().query(function(qb) {
-		qb.where('game_id', '=', room_id).andWhere('connected', '=', 1);
-	}).fetch().then(function(collection) {
+	GamePlayer.collection().query('where', {game_id: room_id, connected: 1}).fetch()
+	.then(function (collection) {
 		collection.comparator = "judged";
 		collection.sort();
 
@@ -36,30 +36,24 @@ exports.findJudgeSocket = function (room_id, callback) {
 		if (collection.models[0].get('judged')) {
 			// now set everyone to zero
 			collection.forEach(function(model) {
-				model.set({judged: 0}).save().then(function(){}).catch(errorHandler);
+				model.set({judged: 0}).save()
 			});
 			callback(collection.models.shift(), collection.models);
 		}
 		// pull off the first person (who has not judged yet, since list is sorted)
 		// and make them the judge by calling the callback
 		else {
-			collection.models[0].set({judged: 1}).save().then(function() {}).catch(errorHandler);
+			collection.models[0].set({judged: 1}).save();
 			callback(collection.models.shift(), collection.models);
 		}
-	})
+	}).catch(errorHandler);
 },
 
-exports.getAllCards = function(callback) {
+exports.getAllCards = function() {
 
-	var data = {}
-	WhiteCard.collection().fetch().then(function(collection) {
-		data['white'] = shuffle(collection.toJSON());
-		BlackCard.collection().fetch().then(function(collection) {
-			data['black'] = shuffle(collection.toJSON());
-			data['turn'] = 0;
-
-			callback(data);
-		}).catch(errorHandler);
-	}).catch(errorHandler);
+	return Promise.props({
+        white: WhiteCard.fetchAll().call('shuffle'),
+        black: BlackCard.fetchAll().call('shuffle')
+    })
 }
 

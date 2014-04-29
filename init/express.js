@@ -1,8 +1,9 @@
 var express = require('express');
 var path = require('path');
-var engine = require('ejs-locals')
+var engine = require('ejs-locals');
 var app = express();
 var passport = require('passport');
+var flash = require('connect-flash');
 
 // pass passport for configuration
 require('../config/passport.js')(passport);
@@ -27,6 +28,9 @@ app.use(express.methodOverride());
 app.use(express.session({ secret: 'keyboard' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
+// flashing message through session
+app.use(flash());
 
 // sets session 'user' variable in all templates
 app.use(function(req, res, next){

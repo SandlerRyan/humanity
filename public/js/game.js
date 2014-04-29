@@ -28,7 +28,6 @@ var socket = io.connect('http://localhost/game', {
 
 // tell the server a new player has joined
 socket.on('connect', function() {
-
 	// Figure out which Room the new user should be in
 	socket.emit('new player', {'room': room, 'player': user});
 });
@@ -36,6 +35,7 @@ socket.on('connect', function() {
 /* when a new player joins, socket emits the new player to existing players
 * and a list of existing players to the new player */
 socket.on('new player', function(players) {
+	console.log('NEW PLAYER!!!');
 	console.log(players);
 
 	//Re-render underscore template with new player that joined
@@ -147,10 +147,9 @@ socket.on('player submission', function(data) {
 });
 
 socket.on('winning card', function(data) {
-	alert("The card " + data.card.content + " submitted by " +
+	alert("The card " + data.white_card.content + " submitted by " +
 		data.player.first + " is the winnner!");
 });
-
 
 
 /**************************************************************

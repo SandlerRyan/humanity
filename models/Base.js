@@ -15,4 +15,8 @@ BaseModel.find = function(id, options) {
 	return new this({id: id}).fetch(options);
 };
 
+BaseModel.fetchAll = function(options) {
+	return this.collection().fetch(options);
+};
+
 module.exports = BaseModel;

@@ -8,8 +8,7 @@ var bookshelf = Bookshelf.initialize({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'humanity',
-    charset  : 'utf8'
+    database : 'humanity'
   }
 });
 

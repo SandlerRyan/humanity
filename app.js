@@ -52,18 +52,17 @@ lobby.on('connection', function(socket) {
 
 	//Send Initial Open Games
 	Game.collection()
-		.query('where', {active:1, started:0}).fetch({withRelated:['players', 'creator']})
-		.then(function(games) {
-			socket.emit('games', games);
-		}).catch(function(e) {
-			console.log(e.stack);
-			res.json(400, {error: e.message});
-		});
+	.query('where', {active:1, started:0})
+	.fetch({withRelated:['players', 'creator']})
+	.then(function(games) {
+		socket.emit('games', games);
+	}).catch(errorHandler);
 
 	//Keep sockets open and update every 5 seconds.
 	setInterval(function() {
 		Game.collection()
-		.query('where', {active:1, started:0}).fetch()
+		.query('where', {active:1, started:0})
+		.fetch({withRelated:['players', 'creator']})
 		.then(function(games) {
 			socket.emit('games', games);
 		}).catch(errorHandler);
@@ -82,74 +81,79 @@ var gamecards = {}
 
 var game = io.of('/game');
 
-game.on('connection', function(socket) {
-	console.log('CONNECTED!!!');
+game.on('connection', function (socket) {
 
 	/**
 	* Add a new player to db and notify all the other players
 	*/
-	socket.on('new player', function(data) {
+	socket.on('new player', function (data) {
 		console.log('NEW USER JOINED!!!');
 		// join the given room number
 		this.join(data.room);
 
 		// find the game and check if new player is the creator
-		Game.find(data.room, {withRelated: ['players']}).then(function (model) {
+		Game.find(data.room, {require: true, withRelated: ['players']})
+		.bind({})
+		.then(function (game_model) {
+			this.game_model = game_model;
 			// tell the client side who the creator is so a start button can be rendered
-			if (model.get('creator_id') == data.player.id) {
+			if (this.game_model.get('creator_id') == data.player.id) {
 				game.emit('creator');
 			}
 			// add to our player list
-			new GamePlayer({
+			return new GamePlayer({
 				player_id: data.player.id,
-				game_id: model.id
-			}).fetch().then(function(player) {
-				// add player to the game if they are completely new
-				if (player == null)
-				{
-					new GamePlayer({
-						player_id: data.player.id,
-						game_id: model.id,
-						socket_id: socket.id,
-						connected: 1,
-						judged: 0
-					}).save().then(function(){}).catch(errorHandler);
-				}
-				// or udpate their info if they were previously in-game and disconnected
-				else
-				{
-					player.set({socket_id: socket.id, connected: 1}).save()
-					.then(function(){}).catch(errorHandler);
-				}
-			}).catch(errorHandler)
+				game_id: this.game_model.id
+			}).fetch({require: true});
+		})
 
-			Player.find(data.player.id).then(function(new_player) {
-				var allplayers = model.related('players').push(new_player);
-				game.in(data.room).emit('new player', allplayers.toJSON());
-			}).catch(errorHandler);
+		// if players exists in db, they were previously in-game; update their info
+		.then(function (player) {
+			/* TODO: emit a 'reconnected' event, when client receives this event, they
+			get their old hand and are shown a waiting screen until the next 'begin turn' event
+			*/
 
+			return player.set({socket_id: socket.id, connected: 1}).save();
+
+		// if player is not in db, they were never in this game, so add them
+		}).catch(function (e) {
+			return new GamePlayer({
+				player_id: data.player.id,
+				game_id: this.game_model.id,
+				socket_id: socket.id,
+				connected: 1,
+				judged: 0
+			}).save();
+
+		// alert existing players of the new player's arrival
+		}).then(function () {
+			return Player.find(data.player.id, {require: true});
+		}).then(function (new_player) {
+			var allplayers = this.game_model.related('players').push(new_player);
+			game.in(data.room).emit('new player', allplayers.toJSON());
 		}).catch(errorHandler);
 	});
 
 	/**
 	* Handle player disconnects; different handling for pre-game and during game
 	*/
-	socket.on('disconnect', function() {
+	socket.on('disconnect', function () {
 		console.log('PLAYER DISCONNECTED');
 
 		new GamePlayer({socket_id: this.id}).fetch({withRelated:['game.players', 'player']})
-		.then(function(model) {
+		.bind({})
+		.then(function (model) {
 			// if game has already started, player is just marked disconnected
-			// and can rejoin anytime
+			// and can rejoin within a certain time limit
 			if (model.related('game').get('started')) {
 				model.set({connected: 0}).save().then(function() {
 					socket.emit('player inactive');
-				}).catch(errorHandler);
+				})
 
-				// if this is the last active player, then inactivate game
-				if (model.related('game').related('players').models.length == 1) {
-					model.related('game').set({active: 0}).save()
-					.then(function() {}).catch(errorHandler);
+				// if this is there are not enough players left, end the game
+				if (model.related('game').related('players').models.length <= 3) {
+					game.in(model.related('game').get('id')).emit('game ended');
+					model.related('game').set({active: 0}).save();
 				}
 			}
 			// if still in pre-game waiting phase, player is removed completely
@@ -171,31 +175,31 @@ game.on('connection', function(socket) {
 	* requests to do so
 	*/
 	socket.on('start request', function(data) {
-		Game.find(data.room, {withRelated: 'players'}).then(function(model) {
+		Game.find(data.room, {require: true, withRelated: 'players'})
+		.then(function (model) {
 			// verify that game has more than three people
 			if (model.related('players').length < 1) {
 				socket.emit('start rejected')
-			}
-			else {
+			} else {
 				// notify clients that game has started and set game as started
-				model.set({started: 1}).save().then(function(){}).catch(errorHandler);
-
-				helpers.getAllCards(function(cards){
-					// Confirm start to the creator so they can fire the first turn
-					socket.emit('start confirmed');
-					gamecards[data.room] = cards;
-					// Emit start event to all players, send them each 6 unique cards
-					// The 7th card will be filled in by the begin turn event
-					all_sockets = game.clients(data.room);
-					all_sockets.forEach(function(client) {
-						init_cards = []
-						for (i = 0; i < 6; i++) {
-							init_cards.push(gamecards[data.room]['white'].pop());
-						}
-						client.emit('start', {'white_cards': init_cards});
-					});
-				});
+				model.set({started: 1}).save();
+				return helpers.getAllCards()
 			}
+		}).then(function (cards){
+			// Confirm start to the creator so they can fire the first turn
+			socket.emit('start confirmed');
+			gamecards[data.room] = cards;
+
+			// Emit start event to all players, send them each 6 unique cards
+			// The 7th card will be filled in by the begin turn event
+			all_sockets = game.clients(data.room);
+			all_sockets.forEach(function(client) {
+				init_cards = []
+				for (i = 0; i < 6; i++) {
+					init_cards.push(gamecards[data.room]['white'].pop());
+				}
+				client.emit('start', {'white_cards': init_cards});
+			});
 		}).catch(errorHandler);
 	});
 
@@ -207,7 +211,7 @@ game.on('connection', function(socket) {
 	* 4. Pick one new card for each player and send them the black card + new white card
 	*/
 	socket.on('begin turn', function(data) {
-		helpers.findJudgeSocket(data.room, function(judge, players) {
+		helpers.findJudgeSocket(data.room, function (judge, players) {
 			// select a blackcard
 			console.log("JUDGE FOR THIS ROUND IS ")
 			console.log(judge)
@@ -217,11 +221,10 @@ game.on('connection', function(socket) {
 			gamecards[data.room]['judge'] = judge.get('socket_id')
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			all_sockets = game.clients(data.room);
-			all_sockets.forEach(function(client) {
+			all_sockets.forEach(function (client) {
 				if (client.id == judge.get('socket_id')) {
 					client.emit('judge assignment', {'black_card': black_card});
-				}
-				else {
+				} else {
 					client.emit('player assignment', {
 						'black_card': black_card,
 						'white_card': gamecards[data.room]['white'].pop()
@@ -241,7 +244,7 @@ game.on('connection', function(socket) {
 			if (client.id == gamecards[data.room]['judge']) {
 				client.emit('player submission', data);
 			}
-		})
+		});
 
 	});
 
@@ -260,7 +263,7 @@ game.on('connection', function(socket) {
 			gamecards[data.room]['turn'] += 1;
 		}).catch(errorHandler);
 
-		//Winning card is submitted. Notify other players. And then call Begin Turn again.
+		//Winning card is submitted. Notify other players. Judge calls begin turn again
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
