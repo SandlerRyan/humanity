@@ -7,6 +7,7 @@ var room = <%= room %>;
 var user = <%- JSON.stringify(user) %>;
 </script>
 <script src="/js/game.js"></script>
+<script src="/js/gamehandlers.js"></script>
 
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
@@ -47,6 +48,9 @@ var user = <%- JSON.stringify(user) %>;
    <div id="submitted-panel">
       <!-- Show Judge Specific cards here and hide the cards-panel -->
    </div>
+
+   <div id="score-panel">
+   </div>
 </div>
 
 <br/>
@@ -82,7 +86,7 @@ var user = <%- JSON.stringify(user) %>;
          {[ },this); ]}
 
       </tbody>
-</table>
+   </table>
  -->
    <hr>
    <h3 class="centered-mid-heading">Players</h3>
@@ -158,17 +162,17 @@ var user = <%- JSON.stringify(user) %>;
 
    <!-- Bottom Card Pane -->
    <div class="card-pane">
-      
+
       <div class="row">
          <div id="submitted-cards">
-            <h3 class="centered-mid-heading"> 
+            <h3 class="centered-mid-heading">
               Submitted cards:
             </h3>
             <!-- Inject new cards as they come here-->
          </div>
       </div>
    </div>
- 
+
 
 </script>
 
@@ -195,7 +199,31 @@ var user = <%- JSON.stringify(user) %>;
             </p>
         </div>
    </div>
- 
+
+</script>
+
+<script id="tmpl-game-scores" type="text/template">
+
+   <h4>Scores</h4>
+
+   <table class = "table centered-tbl">
+      <thead>
+         <tr>
+            <th>Player Name</th>
+            <th>Score</th>
+         </tr>
+      </thead>
+      <tbody>
+         {[ _.each(players, function (player) { ]}
+            <tr id="{{ player.id }}">
+               <td>{{ player.first }} {{player.last}}</td>
+               <td>{{ player.score }} {{ player.score }}</td>
+            </tr>
+         {[ },this); ]}
+
+      </tbody>
+   </table>
+
 </script>
 
 

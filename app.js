@@ -71,7 +71,35 @@ lobby.on('connection', function(socket) {
 * GAMEPLAY VARIABLES
 *********************************************/
 
+/**
+* Holds all the unused cards for each ongoing game
+* KEYS: <socket room numbers>
+* VALUES: {white: [<whitecard objects>], black: [<blackcard objects>]}
+*/
 var gamecards = {}
+
+/**
+* Holds all information about the state of the current
+* turn in various games
+* KEYS: <socket room numbers>
+* VALUES:
+	{judge: <judge socket id>,
+	 submissions:
+	   	{<player socket id>:
+   			submitted: bool,
+   			card: <card object, default null>
+		}
+	}
+*/
+var gamestates = {}
+
+/**
+* Holds all information about each player's hand at a given time
+* KEYS: <socket room numbers>
+* VALUES:
+	{<player id>: [<whitecard objects>]}
+*/
+var gamehands = {}
 
 
 /*********************************************
@@ -89,12 +117,13 @@ game.on('connection', function (socket) {
 		console.log('NEW USER JOINED!!!');
 		// join the given room number
 		this.join(data.room);
+		this.set('player_id', data.player.id);
 
 		// find the game and check if new player is the creator
 		Game.find(data.room, {require: true, withRelated: ['players']})
 		.bind({})
-		.then(function (game_model) {
-			this.game_model = game_model;
+		.then(function (model) {
+			this.game_model = model;
 			// tell the client side who the creator is so a start button can be rendered
 			if (this.game_model.get('creator_id') == data.player.id) {
 				game.emit('creator');
@@ -104,14 +133,10 @@ game.on('connection', function (socket) {
 				player_id: data.player.id,
 				game_id: this.game_model.id
 			}).fetch({require: true});
-		})
 
 		// if players exists in db, they were previously in-game; update their info
-		.then(function (player) {
-			/* TODO: emit a 'reconnected' event, when client receives this event, they
-			get their old hand and are shown a waiting screen until the next 'begin turn' event
-			*/
-
+		}).then(function (player) {
+			socket.emit('reconnect', player);
 			return player.set({socket_id: socket.id, connected: 1}).save();
 
 		// if player is not in db, they were never in this game, so add them
@@ -133,6 +158,13 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
+	/* TODO: emit a 'reconnected' event, when client receives this event, they
+	get their old hand and are shown a waiting screen until the next 'begin turn' event
+	*/
+	socket.on('reconnect', function () {
+
+	});
+
 	/**
 	* Handle player disconnects; different handling for pre-game and during game
 	*/
@@ -147,12 +179,14 @@ game.on('connection', function (socket) {
 			if (model.related('game').get('started')) {
 				model.set({connected: 0}).save().then(function() {
 					socket.emit('player inactive');
-				})
+				});
 
 				// if this is there are not enough players left, end the game
 				if (model.related('game').related('players').models.length <= 3) {
 					game.in(model.related('game').get('id')).emit('game ended');
-					model.related('game').set({active: 0}).save();
+					Game.find(model.get('game_id')).then(function (game_model) {
+						game_model.set({active: 0}).save();
+					});
 				}
 			}
 			// if still in pre-game waiting phase, player is removed completely
@@ -169,34 +203,50 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
+/*********************************************
+* GAMEPLAY LOGIC
+*********************************************/
+
 	/**
 	* Decide whether to officially start game when the game's creator
 	* requests to do so
 	*/
 	socket.on('start request', function(data) {
+
 		Game.find(data.room, {require: true, withRelated: 'players'})
 		.then(function (model) {
+
 			// verify that game has more than three people
 			if (model.related('players').length < 1) {
 				socket.emit('start rejected')
 			} else {
-				// notify clients that game has started and set game as started
+				// notify creator that game has started and set game as started
+				socket.emit('start confirmed');
 				model.set({started: 1}).save();
+
+				// initialize keys for this game in the gameplay variables
+				gamecards[data.room] = {};
+				gamestates[data.room] = {};
+				gamehands[data.room] = {};
+
 				return helpers.getAllCards()
 			}
 		}).then(function (cards){
-			// Confirm start to the creator so they can fire the first turn
-			socket.emit('start confirmed');
 			gamecards[data.room] = cards;
-
 			// Emit start event to all players, send them each 6 unique cards
 			// The 7th card will be filled in by the begin turn event
-			all_sockets = game.clients(data.room);
-			all_sockets.forEach(function(client) {
+			game.clients(data.room).forEach(function(client) {
 				init_cards = []
 				for (i = 0; i < 6; i++) {
 					init_cards.push(gamecards[data.room]['white'].pop());
 				}
+
+				// initialize the player's hand
+				socket.get('player_id', function (err, player_id) {
+					gamehands[data.room][player_id] = init_cards;
+				});
+
+				// tell everyone the game is starting
 				client.emit('start', {'white_cards': init_cards});
 			});
 		}).catch(errorHandler);
@@ -217,10 +267,9 @@ game.on('connection', function (socket) {
 			black_card = gamecards[data.room]['black'].pop()
 
 			//save judge socket id information in the global variable
-			gamecards[data.room]['judge'] = judge.get('socket_id')
+			gamestates[data.room]['judge'] = judge.get('socket_id');
 			// notify the new judge of his assignment, and notify all other players of their assignment
-			all_sockets = game.clients(data.room);
-			all_sockets.forEach(function (client) {
+			game.clients(data.room).forEach(function (client) {
 				if (client.id == judge.get('socket_id')) {
 					client.emit('judge assignment', {'black_card': black_card});
 				} else {
@@ -233,18 +282,18 @@ game.on('connection', function (socket) {
 		});
 	});
 
-	// When a player submits a card for the judge, this socket is fired.
+	// When a player submits a card, relay this card to the other players and judge
 	socket.on('card submission', function(data) {
-		console.log("PLAYER SUBMITTED A CARD!")
-		console.log(gamecards[data.room]['judge'])
+		console.log("PLAYER SUBMITTED A CARD!");
+		console.log(gamestates[data.room]['judge']);
 		// socket.emit(gamecards[data.room]['judge'])
 		all_sockets = game.clients(data.room);
 		all_sockets.forEach(function(client) {
-			if (client.id == gamecards[data.room]['judge']) {
-				client.emit('player submission', data);
+			if (client.id == gamestates[data.room]['judge']) {
+				client.emit('submission to judge', data);
 			}
 			else {
-				client.emit('player submission player', data);
+				client.emit('submission to player', data);
 			}
 		});
 	});
