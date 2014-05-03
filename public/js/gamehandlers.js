@@ -109,3 +109,20 @@ function bindJudgePanel() {
 		$(this).addClass('selected')
 	});
 }
+
+function bindChatButton() {
+
+	$("#submit-chat").on('click', function(){
+		var message = $("#message").val();
+
+		createChatMessage(message, user);
+		//scrollToBottom();
+
+		// Send the message to the other person in the chat
+		socket.emit('msg', {msg: message, player: user});
+
+		// Empty the textarea
+		$("#message").val("");
+
+	});
+}

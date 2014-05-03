@@ -88,6 +88,7 @@ socket.on('start', function(cards) {
 	});
 	$("#cards-panel").html(compiledtmpl);
 	$("#top-cards").show();
+	bindChatButton();
 	bindPlayerButton();
 	bindPlayerPanel();
 });
@@ -122,6 +123,7 @@ socket.on('player assignment', function(cards) {
 
 	bindPlayerPanel();
 	bindPlayerButton();
+
 });
 
 // JUDGE specific sockets.
@@ -142,6 +144,7 @@ socket.on('judge assignment', function(cards) {
 	// bind new jquery event handlers
 	bindJudgePanel();
 	bindJudgeButton();
+
 });
 
 socket.on('submission to judge', function(data) {
@@ -178,4 +181,38 @@ socket.on('winning card', function(card) {
 		card.player.first + " is the winnner!");
 });
 
+//logic for chat
 
+socket.on('receive', function(data){
+
+	createChatMessage(data.msg, data.player);
+
+});
+
+
+// Function that creates a new chat message
+
+function createChatMessage(msg,player){
+
+	var who = '';
+
+	if(player===user) {
+		who = 'me';
+	}
+	else {
+		who = player.first;
+	}
+
+	var li = $(
+		'<li>'+ who + ': ' + msg +
+	 	'</li>');
+
+
+	var chats = $(".chats");
+	chats.append(li);
+
+}
+
+function scrollToBottom(){
+	$("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
+}

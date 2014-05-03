@@ -8,6 +8,8 @@ var user = <%- JSON.stringify(user) %>;
 </script>
 <script src="/js/game.js"></script>
 <script src="/js/gamehandlers.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
@@ -51,6 +53,33 @@ var user = <%- JSON.stringify(user) %>;
 
    <div id="score-panel">
    </div>
+
+   <section class="chat-panel">
+
+      <div class="nomessages">
+
+         <div class="info">
+            <h5>Send a message from the form below!</h5>
+         </div>
+
+      </div>
+
+      <div class="chatscreen">
+
+         <ul class="chats">
+            <!-- The chat messages will go here -->
+         </ul>
+
+      </div>
+
+   </section>
+
+   <footer>
+
+      <textarea id="message" placeholder="Write something.."></textarea>
+      <a id="submit-chat" class="btn btn-primary">submit</a>
+
+   </footer>
 </div>
 
 <br/>
