@@ -66,7 +66,6 @@ socket.on('start rejected', function() {
 
 // emitted to game creator upon successful game start
 socket.on('start confirmed', function() {
-	console.log('START CONFIRMED')
 	socket.emit('begin turn', {'room': room});
 });
 
@@ -88,9 +87,9 @@ socket.on('start', function(cards) {
 	});
 	$("#cards-panel").html(compiledtmpl);
 	$("#top-cards").show();
+
 	bindChatButton();
-	bindPlayerButton();
-	bindPlayerPanel();
+
 });
 
 
@@ -106,24 +105,50 @@ socket.on('player assignment', function(cards) {
 	$('#judge-panel').hide();
 	$("#cards-panel").show();
 
-
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
 		card: cards.white_card
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
 
-	//initialize the submitted-panel
+	// compile submitted panel template and bind jquery handlers
 	var tmpl = $('#tmpl-game-player-sub').html();
 	$("#submitted-panel").html("");
 	var compiledtmpl = _.template(tmpl, {});
-
 	$("#submitted-panel").html(compiledtmpl);
-	$("#submitted-panel").hide();
+
+
+	// set a timer for the player
+	var time = 20;
+	var player_timer = setTimeout(function () {
+		console.log('TIME EXPIRED');
+
+		$('#confirmButton').text('Waiting for Judge...').attr('disabled', 'disabled');
+		socket.emit('card submission', {
+			'room': room,
+			'player': user,
+			'card': {'id': null, 'content': null}
+		});
+
+	}, time * 1000);
 
 	bindPlayerPanel();
-	bindPlayerButton();
 
+	bindPlayerButton(player_timer);
+
+	// display a timer on the webpage
+	(function countDown(){
+		if (time-->0) {
+			if( $('#confirmButton').attr('disabled')) {
+				$('#t').text(time + ' s');
+			} else {
+				$('#t').text(time + ' s');
+				setTimeout(countDown, 1000);
+			}
+		} else {
+			$('#t').text('Time is up!');
+		}
+	}) ();
 });
 
 // JUDGE specific sockets.
@@ -147,10 +172,57 @@ socket.on('judge assignment', function(cards) {
 
 });
 
+socket.on('begin judging', function () {
+	alert('You may now choose the best card');
+	$('#confirmButton').text("Confirm submission")
+	$('#confirmButton').removeAttr('disabled');
+
+	var time = 10;
+	// display a timer on the webpage
+	(function countDown(){
+		if (time-->0) {
+			if( $('#confirmButton').attr('disabled')) {
+				$('#t').text(time + ' s');
+			} else {
+				$('#t').text(time + ' s');
+				setTimeout(countDown, 1000);
+			}
+		} else {
+			
+			//Choose a random submitted card and declare it as the winner when the time is up
+			$('#t').text('Time is up!');
+			
+			//If there are no submitted cards, end the game. Fuck it.
+			if($("#submitted-cards > .useCard").first().length == 0) {
+				socket.emit('tear down this game')
+			} else {
+
+				var randomCard = $("#submitted-cards > .useCard").first().attr('id');
+				var content = $("#submitted-cards > .useCard").first().children()[0].innerHTML;
+				var black_card = $('.black');
+				
+				//Send back random judge submission
+				socket.emit('judge submission', {
+					'room': room,
+					'player': user,
+					'white_card': {'id': randomCard, 'content': content},
+					'black_card': {'id': black_card.attr('id')}
+				});
+				// tell server to start next turn
+				socket.emit('begin turn', {'room': room});
+				$('#judge-panel').hide();
+				$("#cards-panel").show();	
+			}
+			
+		}
+	}) ();
+
+});
+
 socket.on('submission to judge', function(data) {
 
 	console.log('SUBMISSION: ' + data);
-	if (data.card != null) {
+	if (data.card.id != null) {
 		var tmpl = $('#tmpl-game-single-card').html();
 		var compiledtmpl = _.template(tmpl, {
 			card: data.card

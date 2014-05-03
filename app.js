@@ -1,5 +1,5 @@
 /*********************************************
-* Dependencies
+* DEPENDENCIES
 *********************************************/
 
 // Major dependencies
@@ -84,6 +84,7 @@ var gamecards = {}
 * KEYS: <socket room numbers>
 * VALUES:
 	{judge: <judge socket id>,
+	 turn: int,
 	 submissions:
 	   	{<player socket id>:
    			submitted: bool,
@@ -226,7 +227,11 @@ game.on('connection', function (socket) {
 
 				// initialize keys for this game in the gameplay variables
 				gamecards[data.room] = {};
-				gamestates[data.room] = {};
+				gamestates[data.room] = {
+					'judge': null,
+					'turn': 1,
+					'submissions': 0
+				};
 				gamehands[data.room] = {};
 
 				return helpers.getAllCards()
@@ -269,13 +274,16 @@ game.on('connection', function (socket) {
 	*/
 	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function (judge, players) {
+
 			// select a blackcard
-			console.log("JUDGE FOR THIS ROUND IS ")
-			console.log(judge)
 			black_card = gamecards[data.room]['black'].pop()
 
-			//save judge socket id information in the global variable
+			// save judge socket id information in the global variable
 			gamestates[data.room]['judge'] = judge.get('socket_id');
+
+			// reset submission number to zero
+			gamestates[data.room]['submissions'] = 0;
+
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			game.clients(data.room).forEach(function (client) {
 				if (client.id == judge.get('socket_id')) {
@@ -287,45 +295,63 @@ game.on('connection', function (socket) {
 					});
 				}
 			});
+
+			console.log('gamestates: ');
+			console.log(gamestates);
 		});
 	});
 
 	// When a player submits a card, relay this card to the other players and judge
 	socket.on('card submission', function(data) {
 		console.log("PLAYER SUBMITTED A CARD!");
-		console.log(gamestates[data.room]['judge']);
-		// socket.emit(gamecards[data.room]['judge'])
+
+		// log the submission in the gamestates array
+		gamestates[data.room]['submissions'] += 1
+
+		// notify the players and judges of the submission
 		all_sockets = game.clients(data.room);
 		all_sockets.forEach(function(client) {
 			if (client.id == gamestates[data.room]['judge']) {
 				client.emit('submission to judge', data);
+
+				// if all cards have been submitted, begin judge phase
+				if (gamestates[data.room]['submissions'] == all_sockets.length - 1) {
+					client.emit('begin judging')
+				}
 			}
 			else {
 				client.emit('submission to player', data);
 			}
 		});
+
+		console.log('gamestates: ');
+		console.log(gamestates);
+		console.log('players: ' + all_sockets.length);
 	});
 
 	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data){
 
 		// save the turn data
-		var t = new Turn({
+		new Turn({
 			game_id: data.room,
-			number: gamecards[data.room]['turn'],
+			number: gamestates[data.room]['turn'],
 			black_card_id: data.black_card.id,
 			white_card1_id: data.white_card.id,
 			white_card2_id: null,
 			winner_id: data.player.id
-		}).save().then(function (){
+		}).save().then(function () {
 			// increment the turn counter
-			gamecards[data.room]['turn'] += 1;
+			gamestates[data.room]['turn'] += 1;
 		}).catch(errorHandler);
 
-		//Winning card is submitted. Notify other players. Judge calls begin turn again
+		// winning card is submitted. Notify other players. Judge calls begin turn again
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
+	socket.on('tear down this game', function() {
+		console.log("END THIS DAMN GAME BECAUSE NO ONE IS PLAYING")
+	})
 });
 
 
