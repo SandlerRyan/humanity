@@ -119,7 +119,7 @@ socket.on('player assignment', function(cards) {
 
 
 	// set a timer for the player
-	var time = 20;
+	var time = 200;
 	var player_timer = setTimeout(function () {
 		console.log('TIME EXPIRED');
 
@@ -177,7 +177,7 @@ socket.on('begin judging', function () {
 	$('#confirmButton').text("Confirm submission")
 	$('#confirmButton').removeAttr('disabled');
 
-	var time = 10;
+	var time = 100;
 	// display a timer on the webpage
 	(function countDown(){
 		if (time-->0) {
@@ -249,8 +249,16 @@ socket.on('submission to player', function(data) {
 
 
 socket.on('winning card', function(card) {
-	alert("The card " + card.white_card.content + " submitted by " +
-		card.player.first + " is the winnner!");
+	
+	console.log("WINNING CARD IS ")
+	console.log(card)
+
+	$("#" + card.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
+
+	// alert("The card " + card.white_card.content + " submitted by " +
+	// 	card.player.first + " is the winnner!");
+
+
 });
 
 //logic for chat

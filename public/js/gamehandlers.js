@@ -23,6 +23,10 @@ function bindPlayerButton(player_timer) {
 
 	$('#confirmButton').on('click', function() {
 		var card = $('.chosenCard').attr('id')
+
+		//change id of the submitted card 
+		$('.chosenCard').attr('id', 'submitted')
+
 		if (card != "") {
 			$(this).text("Waiting for Judge....");
 			$(this).attr('disabled', 'disabled');
@@ -84,10 +88,17 @@ function bindJudgeButton() {
 				'white_card': {'id': card, 'content': content},
 				'black_card': {'id': black_card.attr('id')}
 			});
-			// tell server to start next turn
-			socket.emit('begin turn', {'room': room});
-			$('#judge-panel').hide();
-			$("#cards-panel").show();
+			
+			// tell server to start next turn after a 5 second wait
+			setTimeout(function () {
+				console.log('Waiting to start turn');
+				socket.emit('begin turn', {'room': room});
+				$('#judge-panel').hide();
+				$("#cards-panel").show();
+				
+			}, 10000);
+
+			
 
 		} else {
 			alert("You must select a card first")
