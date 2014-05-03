@@ -14,7 +14,7 @@ function loadTopPanel(cards) {
 }
 
 
-function bindPlayerButton() {
+function bindPlayerButton(player_timer) {
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
 	$('#confirmButton').unbind('click');
@@ -35,6 +35,7 @@ function bindPlayerButton() {
 			});
 			// clear the timeout so the player doesn't submit card twice
 			clearTimeout(player_timer);
+			$('#t').text('gone!');
 
 			// remove the selected card from the player panel
 			$('.selected').remove();
