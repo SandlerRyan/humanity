@@ -1,5 +1,5 @@
 /*********************************************
-* Dependencies
+* DEPENDENCIES
 *********************************************/
 
 // Major dependencies
@@ -84,6 +84,7 @@ var gamecards = {}
 * KEYS: <socket room numbers>
 * VALUES:
 	{judge: <judge socket id>,
+	 turn: int,
 	 submissions:
 	   	{<player socket id>:
    			submitted: bool,
@@ -227,6 +228,7 @@ game.on('connection', function (socket) {
 				// initialize keys for this game in the gameplay variables
 				gamecards[data.room] = {};
 				gamestates[data.room] = {};
+				gamestates[data.room]['turn'] = 1;
 				gamehands[data.room] = {};
 
 				return helpers.getAllCards()
@@ -302,16 +304,16 @@ game.on('connection', function (socket) {
 	socket.on('judge submission', function(data){
 
 		// save the turn data
-		var t = new Turn({
+		new Turn({
 			game_id: data.room,
-			number: gamecards[data.room]['turn'],
+			number: gamestates[data.room]['turn'],
 			black_card_id: data.black_card.id,
 			white_card1_id: data.white_card.id,
 			white_card2_id: null,
 			winner_id: data.player.id
-		}).save().then(function (){
+		}).save().then(function () {
 			// increment the turn counter
-			gamecards[data.room]['turn'] += 1;
+			gamestates[data.room]['turn'] += 1;
 		}).catch(errorHandler);
 
 		//Winning card is submitted. Notify other players. Judge calls begin turn again

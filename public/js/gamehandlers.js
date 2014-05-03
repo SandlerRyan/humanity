@@ -33,6 +33,8 @@ function bindPlayerButton() {
 				'player': user,
 				'card': {'id': card, 'content': content}
 			});
+			// clear the timeout so the player doesn't submit card twice
+			clearTimeout(player_timer);
 
 			// remove the selected card from the player panel
 			$('.selected').remove();

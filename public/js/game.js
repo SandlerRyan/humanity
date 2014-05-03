@@ -107,7 +107,6 @@ socket.on('player assignment', function(cards) {
 	$("#cards-panel").show();
 	$("#submitted-panel").hide();
 
-
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
 		card: cards.white_card
@@ -122,7 +121,18 @@ socket.on('player assignment', function(cards) {
 	var compiledtmpl = _.template(tmpl, {});
 
 	$("#submitted-panel").html(compiledtmpl);
-	//$("#submitted-panel").hide();
+
+	// set a timer for the player
+	var player_timer = setTimeout(function () {
+		console.log('TIME EXPIRED');
+
+		$('#confirmButton').text('Waiting for Judge...').attr('disabled', 'disabled');
+		socket.emit('card submission', {
+			'room': room,
+			'player': user,
+			'card': {'id': null, 'content': null}
+		});
+	}, 10000);
 });
 
 // JUDGE specific sockets.
@@ -148,7 +158,7 @@ socket.on('judge assignment', function(cards) {
 socket.on('submission to judge', function(data) {
 
 	console.log('SUBMISSION: ' + data);
-	if (data.card != null) {
+	if (data.card.id != null) {
 		var tmpl = $('#tmpl-game-single-card').html();
 		var compiledtmpl = _.template(tmpl, {
 			card: data.card
