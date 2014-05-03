@@ -207,7 +207,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-single-card" type="text/template">
 
    <!-- Single Card View -->
-   <div class="card white useCard" id="{{ card.id }}">
+   <div class="card white useCard" id="{{ card.id }}" data-player="{{ player.id }}">
         <div class="card-content">
             <p>
                {{ card.content }}

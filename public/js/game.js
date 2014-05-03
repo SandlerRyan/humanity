@@ -111,7 +111,8 @@ socket.on('player assignment', function(data) {
 	// append the newly received card
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
-		card: data.white_card
+		card: data.white_card,
+		player: user
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
 
@@ -136,6 +137,8 @@ socket.on('player assignment', function(data) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
+		// update the scoreboard to show submitted
+		markSubmitted(user.id);
 	}, time * 1000);
 
 	bindPlayerPanel();
@@ -203,20 +206,24 @@ socket.on('begin judging', function () {
 
 			//If there are no submitted cards, end the game. Fuck it.
 			if($("#submitted-cards > .useCard").first().length == 0) {
-				socket.emit('tear down this game')
+				socket.emit('tear down this game');
 			} else {
 
 				var randomCard = $("#submitted-cards > .useCard").first().attr('id');
 				var content = $("#submitted-cards > .useCard").first().children()[0].innerHTML;
 				var black_card = $('.black');
+				var winner_id = $("#submitted-cards > .useCard").attr('data-player');
 
 				//Send back random judge submission
 				socket.emit('judge submission', {
 					'room': room,
-					'player': user,
+					'winner_id': winner_id,
 					'white_card': {'id': randomCard, 'content': content},
 					'black_card': {'id': black_card.attr('id')}
 				});
+				// update the player's score
+				updateScore(winner_id)
+
 				// tell server to start next turn
 				socket.emit('begin turn', {'room': room});
 				$('#judge-panel').hide();
@@ -235,7 +242,8 @@ socket.on('submission to judge', function(data) {
 		//
 		var tmpl = $('#tmpl-game-single-card').html();
 		var compiledtmpl = _.template(tmpl, {
-			card: data.card
+			card: data.card,
+			player: data.player
 		});
 		$("#submitted-cards").append(compiledtmpl);
 
@@ -270,20 +278,15 @@ socket.on('winning card', function(data) {
 	updateScore(data.player.id);
 
 	console.log("WINNING CARD IS ")
-	console.log(card)
+	console.log(data)
 
-	$("#" + card.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
-
-	// alert("The card " + card.white_card.content + " submitted by " +
-	// 	card.player.first + " is the winnner!");
+	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
 
 
 });
 
 //logic for chat
 socket.on('receive', function(data){
-
 	createChatMessage(data.msg, data.player);
-
 });
 

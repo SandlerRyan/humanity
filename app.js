@@ -328,7 +328,7 @@ game.on('connection', function (socket) {
 
 	// fired when the judge chooses a card, thus ending the turn
 	socket.on('judge submission', function(data) {
-
+		debugger;
 		// save the turn data
 		new Turn({
 			game_id: data.room,
@@ -336,14 +336,18 @@ game.on('connection', function (socket) {
 			black_card_id: data.black_card.id,
 			white_card1_id: data.white_card.id,
 			white_card2_id: null,
-			winner_id: data.player.id
+			winner_id: data.winner_id
 		}).save().then(function () {
 			// increment the turn counter
 			gamestates[data.room]['turn'] += 1;
 		}).catch(errorHandler);
 
-		// winning card is submitted. Notify other players. Judge calls begin turn again
-		socket.broadcast.to(data.room).emit('winning card', data);
+		// get all the information for the winning player from db
+		Player.find(data.winner_id).then(function (model) {
+			data['player'] = model.toJSON();
+			// winning card is submitted. Notify other players. Judge calls begin turn again
+			socket.broadcast.to(data.room).emit('winning card', data);
+		}).catch(errorHandler);
 	});
 
 	socket.on('tear down this game', function() {
