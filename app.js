@@ -257,6 +257,14 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
+	//sockets to handle chat between players in the game
+	// Handle the sending of messages
+	socket.on('msg', function(data){
+
+		// When the server receives a message, it sends it to the other person in the room.
+		socket.broadcast.to(socket.room).emit('receive', {msg: data.msg, player: data.player});
+	});
+
 	/**
 	* Start the turn (generic for all turns including the first)
 	* 1. Figure out which player should be the judge
@@ -338,6 +346,9 @@ game.on('connection', function (socket) {
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
+	socket.on('tear down this game', function() {
+		console.log("END THIS DAMN GAME BECAUSE NO ONE IS PLAYING")
+	})
 });
 
 /*********************************************

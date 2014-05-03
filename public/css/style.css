@@ -46,6 +46,10 @@ div.card-pane [class*="span"] {
     border: 1px solid rgb(200, 200, 200);
 }
 
+.winner {
+    background-color: yellow;
+}
+
 .selected {
     background-color: grey;
 }

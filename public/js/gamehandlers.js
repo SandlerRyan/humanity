@@ -13,7 +13,6 @@ function loadTopPanel(cards) {
 	$('.chosenCard').children()[0].innerHTML = '';
 }
 
-
 function bindPlayerButton(player_timer) {
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
@@ -23,9 +22,11 @@ function bindPlayerButton(player_timer) {
 
 	$('#confirmButton').on('click', function() {
 		var card = $('.chosenCard').attr('id')
-		if (card != "")
-		{
-			// disable the button
+
+		//change id of the submitted card
+		$('.chosenCard').attr('id', 'submitted')
+
+		if (card != "") {
 			$(this).text("Waiting for Judge....");
 			$(this).attr('disabled', 'disabled');
 			var content = $('.chosenCard').children()[0].innerHTML;
@@ -98,10 +99,14 @@ function bindJudgeButton() {
 			/**** BUG HERE: JUDGE ALWAYS WINS!!!! ****/
 			updateScore(user.id);
 
-			// tell server to start next turn
-			socket.emit('begin turn', {'room': room});
-			$('#judge-panel').hide();
-			$("#cards-panel").show();
+			// tell server to start next turn after a 5 second wait
+			setTimeout(function () {
+				console.log('Waiting to start turn');
+				socket.emit('begin turn', {'room': room});
+				$('#judge-panel').hide();
+				$("#cards-panel").show();
+
+			}, 10000);
 
 		} else {
 			alert("You must select a card first")
@@ -126,6 +131,10 @@ function bindJudgePanel() {
 	});
 }
 
+
+ /**************************************************************
+* SCORE TABLE UPDATES
+**************************************************************/
 function updateScore(player_id) {
 	var score = parseInt($('#score-' + player_id).text()) + 1
 	$('#score-' + player_id).text(String(score))
@@ -145,3 +154,49 @@ function markJudge(player_id) {
 	$('#submitted-' + player_id).html('<span>JUDGE</span>');
 }
 
+
+ /**************************************************************
+* CHAT
+**************************************************************/
+function bindChatButton() {
+
+	$("#submit-chat").on('click', function(){
+		var message = $("#message").val();
+
+		createChatMessage(message, user);
+		//scrollToBottom();
+
+		// Send the message to the other person in the chat
+		socket.emit('msg', {msg: message, player: user});
+
+		// Empty the textarea
+		$("#message").val("");
+
+	});
+}
+
+// Function that creates a new chat message
+function createChatMessage(msg,player){
+
+	var who = '';
+
+	if(player===user) {
+		who = 'me';
+	}
+	else {
+		who = player.first;
+	}
+
+	var li = $(
+		'<li>'+ who + ': ' + msg +
+	 	'</li>');
+
+
+	var chats = $(".chats");
+	chats.append(li);
+
+}
+
+function scrollToBottom(){
+	$("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
+}
