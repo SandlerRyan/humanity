@@ -87,8 +87,6 @@ socket.on('start', function(cards) {
 	});
 	$("#cards-panel").html(compiledtmpl);
 	$("#top-cards").show();
-	bindPlayerButton();
-	bindPlayerPanel();
 });
 
 
@@ -115,10 +113,10 @@ socket.on('player assignment', function(cards) {
 	$("#submitted-panel").html("");
 	var compiledtmpl = _.template(tmpl, {});
 	$("#submitted-panel").html(compiledtmpl);
-	bindPlayerPanel();
-	bindPlayerButton();
+
 
 	// set a timer for the player
+	var time = 20;
 	var player_timer = setTimeout(function () {
 		console.log('TIME EXPIRED');
 
@@ -128,9 +126,25 @@ socket.on('player assignment', function(cards) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
-	}, 100000);
 
+	}, time * 1000);
 
+	bindPlayerPanel();
+	bindPlayerButton(player_timer);
+
+	// display a timer on the webpage
+	(function countDown(){
+		if (time-->0) {
+			if( $('#confirmButton').attr('disabled')) {
+				$('#t').text(time + ' s');
+			} else {
+				$('#t').text(time + ' s');
+				setTimeout(countDown, 1000);
+			}
+		} else {
+			$('#t').text('Time is up!');
+		}
+	}) ();
 });
 
 // JUDGE specific sockets.

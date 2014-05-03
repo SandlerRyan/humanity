@@ -266,13 +266,15 @@ game.on('connection', function (socket) {
 	*/
 	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function (judge, players) {
-			console.log(judge)
 
 			// select a blackcard
 			black_card = gamecards[data.room]['black'].pop()
 
-			//save judge socket id information in the global variable
+			// save judge socket id information in the global variable
 			gamestates[data.room]['judge'] = judge.get('socket_id');
+
+			// reset submission number to zero
+			gamestates[data.room]['submissions'] = 0;
 
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			game.clients(data.room).forEach(function (client) {
@@ -285,6 +287,9 @@ game.on('connection', function (socket) {
 					});
 				}
 			});
+
+			console.log('gamestates: ');
+			console.log(gamestates);
 		});
 	});
 
@@ -310,6 +315,10 @@ game.on('connection', function (socket) {
 				client.emit('submission to player', data);
 			}
 		});
+
+		console.log('gamestates: ');
+		console.log(gamestates);
+		console.log('players: ' + all_sockets.length);
 	});
 
 	// fired when the judge chooses a card, thus ending the turn
@@ -328,7 +337,7 @@ game.on('connection', function (socket) {
 			gamestates[data.room]['turn'] += 1;
 		}).catch(errorHandler);
 
-		//Winning card is submitted. Notify other players. Judge calls begin turn again
+		// winning card is submitted. Notify other players. Judge calls begin turn again
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
