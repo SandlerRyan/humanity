@@ -164,7 +164,7 @@ var user = <%- JSON.stringify(user) %>;
    <div class="card-pane">
 
       <div class="row">
-         <div id="submitted-cards">
+         <div id="sub-cards">
             <h3 class="centered-mid-heading">
               Submitted cards:
             </h3>
@@ -195,7 +195,7 @@ var user = <%- JSON.stringify(user) %>;
    <div class="card white useCard" id="{{ card.id }}">
         <div class="card-content">
             <p>
-               <h1 class="centered-mid-heading" style="color:grey;">?</h1>
+               {{ card.content }}
             </p>
         </div>
    </div>

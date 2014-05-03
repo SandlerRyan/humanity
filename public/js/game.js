@@ -101,11 +101,9 @@ socket.on('start', function(cards) {
 socket.on('player assignment', function(cards) {
 	console.log('player');
 	loadTopPanel(cards);
-	bindPlayerButton();
 
 	$('#judge-panel').hide();
 	$("#cards-panel").show();
-	$("#submitted-panel").hide();
 
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
@@ -113,14 +111,13 @@ socket.on('player assignment', function(cards) {
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
 
-	bindPlayerPanel();
-
-	//initialize the submitted-panel
+	// compile submitted panel template and bind jquery handlers
 	var tmpl = $('#tmpl-game-player-sub').html();
 	$("#submitted-panel").html("");
 	var compiledtmpl = _.template(tmpl, {});
-
 	$("#submitted-panel").html(compiledtmpl);
+	bindPlayerPanel();
+	bindPlayerButton();
 
 	// set a timer for the player
 	var player_timer = setTimeout(function () {
@@ -133,6 +130,8 @@ socket.on('player assignment', function(cards) {
 			'card': {'id': null, 'content': null}
 		});
 	}, 10000);
+
+
 });
 
 // JUDGE specific sockets.
@@ -177,7 +176,9 @@ socket.on('submission to player', function(data) {
 	var compiledtmpl = _.template(tmpl, {
 		card: data.card
 	});
-	$("#submitted-cards").append(compiledtmpl);
+	$("#sub-cards").append(compiledtmpl);
+
+	bindPlayerPanel();
 
 });
 
