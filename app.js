@@ -341,6 +341,9 @@ game.on('connection', function (socket) {
 		socket.broadcast.to(data.room).emit('winning card', data);
 	});
 
+	socket.on('tear down this game', function() {
+		console.log("END THIS DAMN GAME BECAUSE NO ONE IS PLAYING")
+	})
 });
 
 

@@ -171,6 +171,47 @@ socket.on('begin judging', function () {
 	alert('You may now choose the best card');
 	$('#confirmButton').text("Confirm submission")
 	$('#confirmButton').removeAttr('disabled');
+
+	var time = 10;
+	// display a timer on the webpage
+	(function countDown(){
+		if (time-->0) {
+			if( $('#confirmButton').attr('disabled')) {
+				$('#t').text(time + ' s');
+			} else {
+				$('#t').text(time + ' s');
+				setTimeout(countDown, 1000);
+			}
+		} else {
+			
+			//Choose a random submitted card and declare it as the winner when the time is up
+			$('#t').text('Time is up!');
+			
+			//If there are no submitted cards, end the game. Fuck it.
+			if($("#submitted-cards > .useCard").first().length == 0) {
+				socket.emit('tear down this game')
+			} else {
+
+				var randomCard = $("#submitted-cards > .useCard").first().attr('id');
+				var content = $("#submitted-cards > .useCard").first().children()[0].innerHTML;
+				var black_card = $('.black');
+				
+				//Send back random judge submission
+				socket.emit('judge submission', {
+					'room': room,
+					'player': user,
+					'white_card': {'id': randomCard, 'content': content},
+					'black_card': {'id': black_card.attr('id')}
+				});
+				// tell server to start next turn
+				socket.emit('begin turn', {'room': room});
+				$('#judge-panel').hide();
+				$("#cards-panel").show();	
+			}
+			
+		}
+	}) ();
+
 });
 
 socket.on('submission to judge', function(data) {
