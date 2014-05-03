@@ -66,7 +66,6 @@ socket.on('start rejected', function() {
 
 // emitted to game creator upon successful game start
 socket.on('start confirmed', function() {
-	console.log('START CONFIRMED')
 	socket.emit('begin turn', {'room': room});
 });
 
@@ -129,7 +128,7 @@ socket.on('player assignment', function(cards) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
-	}, 10000);
+	}, 100000);
 
 
 });
@@ -152,6 +151,12 @@ socket.on('judge assignment', function(cards) {
 	// bind new jquery event handlers
 	bindJudgePanel();
 	bindJudgeButton();
+});
+
+socket.on('begin judging', function () {
+	alert('You may now choose the best card');
+	$('#confirmButton').text("Confirm submission")
+	$('#confirmButton').removeAttr('disabled');
 });
 
 socket.on('submission to judge', function(data) {

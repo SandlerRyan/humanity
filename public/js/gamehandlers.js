@@ -52,14 +52,14 @@ function bindPlayerPanel() {
 	// unbind handler that were bound to cards from previous turns
 	$('.useCard').unbind('click');
 
-	//Toggle between chosen card
+	// Toggle between chosen card
 	$('.useCard').on('click', function() {
 		var cardID =  $(this).attr('id')
 		var cardText = $(this).children().first().children()[0].innerHTML
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
 
-		//remove all selected tags.
+		// remove all selected tags
 		$('.selected').removeClass('selected').addClass('white');
 		$(this).removeClass('white').addClass('selected');
 	});
@@ -68,8 +68,7 @@ function bindPlayerPanel() {
 function bindJudgeButton() {
 	// unbind previous handlers attached when user was a player
 	$('#confirmButton').unbind('click');
-	$('#confirmButton').removeAttr('disabled');
-	$('#confirmButton').text("Confirm Submission");
+	$('#confirmButton').text("Waiting for player submissions...");
 
 	$('#confirmButton').on('click', function() {
 		console.log("CONFIRM JUDGE BUTTON CLICKED")

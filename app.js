@@ -227,8 +227,11 @@ game.on('connection', function (socket) {
 
 				// initialize keys for this game in the gameplay variables
 				gamecards[data.room] = {};
-				gamestates[data.room] = {};
-				gamestates[data.room]['turn'] = 1;
+				gamestates[data.room] = {
+					'judge': null,
+					'turn': 1,
+					'submissions': 0
+				};
 				gamehands[data.room] = {};
 
 				return helpers.getAllCards()
@@ -263,13 +266,14 @@ game.on('connection', function (socket) {
 	*/
 	socket.on('begin turn', function(data) {
 		helpers.findJudgeSocket(data.room, function (judge, players) {
-			// select a blackcard
-			console.log("JUDGE FOR THIS ROUND IS ")
 			console.log(judge)
+
+			// select a blackcard
 			black_card = gamecards[data.room]['black'].pop()
 
 			//save judge socket id information in the global variable
 			gamestates[data.room]['judge'] = judge.get('socket_id');
+
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			game.clients(data.room).forEach(function (client) {
 				if (client.id == judge.get('socket_id')) {
@@ -287,12 +291,20 @@ game.on('connection', function (socket) {
 	// When a player submits a card, relay this card to the other players and judge
 	socket.on('card submission', function(data) {
 		console.log("PLAYER SUBMITTED A CARD!");
-		console.log(gamestates[data.room]['judge']);
-		// socket.emit(gamecards[data.room]['judge'])
+
+		// log the submission in the gamestates array
+		gamestates[data.room]['submissions'] += 1
+
+		// notify the players and judges of the submission
 		all_sockets = game.clients(data.room);
 		all_sockets.forEach(function(client) {
 			if (client.id == gamestates[data.room]['judge']) {
 				client.emit('submission to judge', data);
+
+				// if all cards have been submitted, begin judge phase
+				if (gamestates[data.room]['submissions'] == all_sockets.length - 1) {
+					client.emit('begin judging')
+				}
 			}
 			else {
 				client.emit('submission to player', data);
