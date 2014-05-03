@@ -82,15 +82,10 @@ var gamecards = {}
 * Holds all information about the state of the current
 * turn in various games
 * KEYS: <socket room numbers>
-* VALUES:
-	{judge: <judge socket id>,
-	 turn: int,
-	 submissions:
-	   	{<player socket id>:
-   			submitted: bool,
-   			card: <card object, default null>
-		}
-	}
+* VALUES: {
+	judge: <judge socket id>,
+	turn: <int>,
+	submissions: <int>}
 */
 var gamestates = {}
 
@@ -214,8 +209,9 @@ game.on('connection', function (socket) {
 	*/
 	socket.on('start request', function(data) {
 
-		Game.find(data.room, {require: true, withRelated: 'players'})
+		Game.find(data.room, {require: true, withRelated: 'players'}).bind({})
 		.then(function (model) {
+			this.model = model;
 
 			// verify that game has more than three people
 			if (model.related('players').length < 1) {
@@ -238,10 +234,11 @@ game.on('connection', function (socket) {
 			}
 		}).then(function (cards){
 			gamecards[data.room] = cards;
+
 			// Emit start event to all players, send them each 6 unique cards
 			// The 7th card will be filled in by the begin turn event
 			game.clients(data.room).forEach(function(client) {
-				init_cards = []
+				init_cards = [];
 				for (i = 0; i < 6; i++) {
 					init_cards.push(gamecards[data.room]['white'].pop());
 				}
@@ -251,9 +248,12 @@ game.on('connection', function (socket) {
 					gamehands[data.room][player_id] = init_cards;
 				});
 
-				// tell everyone the game is starting
-				client.emit('start', {'white_cards': init_cards});
-			});
+				// tell everyone the game is starting and send out a final player list
+				client.emit('start', {
+					'white_cards': init_cards,
+					'players': this.model.related('players').toJSON()
+				});
+			}, this);
 		}).catch(errorHandler);
 	});
 
@@ -279,17 +279,18 @@ game.on('connection', function (socket) {
 			// notify the new judge of his assignment, and notify all other players of their assignment
 			game.clients(data.room).forEach(function (client) {
 				if (client.id == judge.get('socket_id')) {
-					client.emit('judge assignment', {'black_card': black_card});
+					client.emit('judge assignment', {
+						'judge': judge.get('player_id'),
+						'black_card': black_card
+					});
 				} else {
 					client.emit('player assignment', {
+						'judge': judge.get('player_id'),
 						'black_card': black_card,
 						'white_card': gamecards[data.room]['white'].pop()
 					});
 				}
 			});
-
-			console.log('gamestates: ');
-			console.log(gamestates);
 		});
 	});
 
@@ -307,22 +308,18 @@ game.on('connection', function (socket) {
 				client.emit('submission to judge', data);
 
 				// if all cards have been submitted, begin judge phase
-				if (gamestates[data.room]['submissions'] == all_sockets.length - 1) {
-					client.emit('begin judging')
+				if (gamestates[data.room]['submissions'] >= all_sockets.length - 1) {
+					client.emit('begin judging');
 				}
 			}
 			else {
 				client.emit('submission to player', data);
 			}
 		});
-
-		console.log('gamestates: ');
-		console.log(gamestates);
-		console.log('players: ' + all_sockets.length);
 	});
 
 	// fired when the judge chooses a card, thus ending the turn
-	socket.on('judge submission', function(data){
+	socket.on('judge submission', function(data) {
 
 		// save the turn data
 		new Turn({
@@ -342,7 +339,6 @@ game.on('connection', function (socket) {
 	});
 
 });
-
 
 /*********************************************
 * ROUTES

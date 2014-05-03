@@ -156,7 +156,6 @@ var user = <%- JSON.stringify(user) %>;
       </div>
    </div>
 
-
 </script>
 
 <script id="tmpl-game-player-sub" type="text/template">
@@ -173,7 +172,6 @@ var user = <%- JSON.stringify(user) %>;
          </div>
       </div>
    </div>
-
 
 </script>
 
@@ -212,13 +210,15 @@ var user = <%- JSON.stringify(user) %>;
          <tr>
             <th>Player Name</th>
             <th>Score</th>
+            <th>Card Submitted</th>
          </tr>
       </thead>
       <tbody>
          {[ _.each(players, function (player) { ]}
-            <tr id="{{ player.id }}">
+            <tr id="info-{{ player.id }}">
                <td>{{ player.first }} {{player.last}}</td>
-               <td>{{ player.score }} {{ player.score }}</td>
+               <td id="score-{{player.id}}">0</td>
+               <td class="submitted-cell" id="submitted-{{player.id}}"></td>
             </tr>
          {[ },this); ]}
 
