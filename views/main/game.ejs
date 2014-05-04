@@ -11,6 +11,8 @@ var user = <%- JSON.stringify(user) %>;
 <script src="/js/moment.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+<h2 id="status-header" class="centered-heading">Waiting for Players</h2>
+
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
 </div>
@@ -39,7 +41,7 @@ var user = <%- JSON.stringify(user) %>;
             </div>
          </div>
       </div>
-   <div>
+   </div>
 
 
    <div id="cards-panel">
@@ -49,7 +51,7 @@ var user = <%- JSON.stringify(user) %>;
       <!-- Show Judge Specific cards here and hide the cards-panel -->
    </div>
    <div id="submitted-panel">
-      <!-- Show Judge Specific cards here and hide the cards-panel -->
+      <!-- Show cards submitted by other players in this panel -->
    </div>
 
    <div id="score-panel">
@@ -87,7 +89,6 @@ var user = <%- JSON.stringify(user) %>;
 
 <!-- Template for waiting phase -->
 <script id="tmpl-players" type="text/template">
-   <h2 id="waiting-header" class="centered-heading">Waiting for Players</h2>
 
    <!--
    <table class = "table centered-tbl">

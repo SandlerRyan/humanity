@@ -6,9 +6,9 @@ var BlackCard = require('../models/BlackCard');
 
 
 // HELPER FUNCTION
-function idInArray(id, arr) {
+function recentlyConnected(id, arr) {
 	for(var i = 0; i < arr.length; i++) {
-		if (arr[i].id == id) {
+		if (arr[i].id == id && arr[i].connected) {
 			return true;
 		}
 	}
@@ -61,7 +61,9 @@ exports.game = function(req, res) {
 
 		// verify that game has not started yet
 		if (model.get('started') == 1) {
-			// if user was previously in game, they can rejoin; otherwise no access
+			// if user was recently in game, they will still be 'connected' in db
+			// and they can rejoin; otherwise no access
+
 			if (!idInArray(req.user.id, model.related('players'))) {
 				req.flash('filter', 'The requested game could not be found.');
 				res.redirect('/lobby');

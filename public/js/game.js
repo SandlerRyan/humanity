@@ -91,18 +91,22 @@ socket.on('start', function(data) {
 	$('#score-panel').html('');
 	$('#score-panel').html( _.template(score_tmpl, {players: data.players}));
 	bindChatButton();
-
 });
 
 
 /************************************************************
 * IN GAME LOGIC
 *************************************************************/
+var PLAYER_TIME = 200;
+var JUDGE_TIME = 100;
 
-// Handler for player assignment on all turns but the first
+// handler for player assignment at beginning of turn
 socket.on('player assignment', function(data) {
 	console.log('player');
 	loadTopPanel(data);
+
+	// update the turn
+	$('#status-header').text('Turn ' + data.turn + ' of ' + data.max_turns);
 
 	// display the player's hand of cards
 	$('#judge-panel').hide();
@@ -127,7 +131,7 @@ socket.on('player assignment', function(data) {
 	markJudge(data.judge);
 
 	// set a timer for the player
-	var time = 200;
+	var time = PLAYER_TIME;
 	var player_timer = setTimeout(function () {
 		console.log('TIME EXPIRED');
 
@@ -142,7 +146,6 @@ socket.on('player assignment', function(data) {
 	}, time * 1000);
 
 	bindPlayerPanel();
-
 	bindPlayerButton(player_timer);
 
 	// display the timer on the webpage
@@ -160,10 +163,13 @@ socket.on('player assignment', function(data) {
 	}) ();
 });
 
-// JUDGE specific sockets.
+// assignment as judge at the beginning of a turn
 socket.on('judge assignment', function(data) {
 	console.log('judge');
 	loadTopPanel(data);
+
+	// update the turn
+	$('#status-header').text('Turn ' + data.turn + ' of ' + data.max_turns);
 
 	// Assign the judge specific panel and hide his cards
 	var tmpl = $('#tmpl-game-judge').html();
@@ -184,12 +190,13 @@ socket.on('judge assignment', function(data) {
 	markJudge(data.judge);
 });
 
+// when all players have submitted their cards, the judging phase begins
 socket.on('begin judging', function () {
 	alert('You may now choose the best card');
 	$('#confirmButton').text("Confirm submission")
 	$('#confirmButton').removeAttr('disabled');
 
-	var time = 100;
+	var time = JUDGE_TIME;
 	// display a timer on the webpage
 	(function countDown(){
 		if (time-->0) {
@@ -232,9 +239,9 @@ socket.on('begin judging', function () {
 
 		}
 	}) ();
-
 });
 
+// when a player submits a card, the judge sees it
 socket.on('submission to judge', function(data) {
 
 	// card id will be null if player didn't submit and time limit simply expired
@@ -253,9 +260,9 @@ socket.on('submission to judge', function(data) {
 		// mark player as submitted
 		markSubmitted(data.player.id);
 	}
-
 });
 
+// when a player submits a card, it is emitted to other players facedown
 socket.on('submission to player', function(data) {
 
 	// add submitted card to submitted panel
@@ -270,23 +277,40 @@ socket.on('submission to player', function(data) {
 
 	// mark player as submitted
 	markSubmitted(data.player.id);
-
 });
 
+// when the judge has seleced a winning card, server fires this event
 socket.on('winning card', function(data) {
 	// update the player's score
 	updateScore(data.player.id);
 
-	console.log("WINNING CARD IS ")
-	console.log(data)
-
 	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
-
-
 });
 
-//logic for chat
+// logic for chat
 socket.on('receive', function(data){
 	createChatMessage(data.msg, data.player);
 });
+
+// the game can end for many reasons--exact reason is given by message in data
+socket.on('end game', function (data) {
+	console.log('GAME ENDING!');
+
+	// hide gameplay elements
+	$('#cards-panel').hide();
+	$('#judge-panel').hide();
+	$('#top-cards').hide();
+	$('#submitted-panel').hide();
+
+	resetAllSubmitted();
+
+	alert(data.message);
+	$('#status-header').text('Postgame--redirecting to lobby in two minutes');
+
+	// redirect to lobby after a certain amt of time
+	setTimeout(function () {
+		window.location.replace('/lobby');
+	}, 120000);
+});
+
 
