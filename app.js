@@ -255,15 +255,16 @@ game.on('connection', function (socket) {
 
 	/**
 	* Start the turn (generic for all turns including the first)
-	* 1. Figure out which player should be the judge
-	* 2. Pick a black card for everyone
-	* 3. Notify the judge and send the black card
-	* 4. Pick one new card for each player and send them the black card + new white card
+	* 1. Figure out if game should continue or end
+	* 2. Figure out which player should be the judge
+	* 3. Pick a black card for everyone
+	* 4. Notify the judge and send the black card
+	* 5. Pick one new card for each player and send them the black card + new white card
 	*/
 	socket.on('begin turn', function(data) {
 
 		// if we have reached the turn limit, end the game
-		if (gamestates[data.room]['turn'] >= TURN_LIMIT) {
+		if (gamestates[data.room]['turn'] > TURN_LIMIT) {
 			game.in(data.room).emit('end game', {
 				message: 'Turn limit reached--game ending!'});
 			Game.find(data.room).then(function (model) {
@@ -315,7 +316,9 @@ game.on('connection', function (socket) {
 		}
 	});
 
-	// When a player submits a card, relay this card to the other players and judge
+	/**
+	* When a player submits a card, relay this card to the other players and judge
+	*/
 	socket.on('card submission', function(data) {
 		console.log("PLAYER SUBMITTED A CARD!");
 
@@ -339,7 +342,9 @@ game.on('connection', function (socket) {
 		});
 	});
 
-	// fired when the judge chooses a card, thus ending the turn
+	/**
+	* fired when the judge chooses a card, thus ending the turn
+	*/
 	socket.on('judge submission', function(data) {
 		// save the turn data
 		new Turn({
@@ -362,7 +367,9 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
-	// handle the sending of chat messages
+	/**
+	* handle the sending of chat messages
+	*/
 	socket.on('msg', function(data){
 
 		// When the server receives a message, it sends it to the other person in the room.
