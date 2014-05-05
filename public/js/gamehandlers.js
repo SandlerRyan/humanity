@@ -14,8 +14,11 @@ function loadTopPanel(cards) {
 }
 
 function bindPlayerButton(player_timer) {
+	
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
+
+	$("#notification").text("");
 	$('#confirmButton').unbind('click');
 	$('#confirmButton').removeAttr('disabled');
 	$('#confirmButton').text("Confirm Submission");
@@ -39,7 +42,6 @@ function bindPlayerButton(player_timer) {
 			});
 			// clear the timeout so the player doesn't submit card twice
 			clearTimeout(player_timer);
-			$('#t').text('gone!');
 
 			// remove the selected card from the player panel
 			$('.selected').remove();
@@ -105,10 +107,13 @@ function bindJudgeButton() {
 			setTimeout(function () {
 				console.log('Waiting to start turn');
 				socket.emit('begin turn', {'room': room});
+
 				$('#judge-panel').hide();
 				$("#cards-panel").show();
+				$("#notification").text("");
 
-			}, 10000);
+			}, 8000);
+			
 
 		} else {
 			alert("You must select a card first")
@@ -243,4 +248,14 @@ function createChatMessage(msg, player) {
 
 function scrollToBottom(){
 	$("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
+}
+
+function flashNotification() {
+
+	//Highlight the notification bar for new message
+	$("#notification").addClass('highlighted');
+	setTimeout(function(){
+      $('#notification').removeClass('highlighted');}, 2000);
+
+
 }

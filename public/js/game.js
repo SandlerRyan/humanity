@@ -73,7 +73,10 @@ socket.on('start confirmed', function() {
 // emitted to all players
 socket.on('start', function(data) {
 
-	alert('GAME STARTING!!!');
+	
+	flashNotification(); 
+	$("#notification").text("Your Game is starting!");
+
 	$('#show-players').hide();
 	$('#start-button').hide();
 	$('#notification-warning').hide();
@@ -138,6 +141,8 @@ socket.on('player assignment', function(data) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
+		
+
 		// update the scoreboard to show submitted
 		markSubmitted(user.id);
 	}, time * 1000);
@@ -186,7 +191,9 @@ socket.on('judge assignment', function(data) {
 });
 
 socket.on('begin judging', function () {
-	alert('You may now choose the best card');
+	flashNotification();
+	$("#notification").text("You may now start judging!");
+	
 	$('#confirmButton').text("Confirm submission")
 	$('#confirmButton').removeAttr('disabled');
 
@@ -281,11 +288,9 @@ socket.on('winning card', function(data) {
 	console.log("WINNING CARD IS ")
 	console.log(data)
 
-	//Highlight the notification bar for new message
-	$("#notification").addClass('highlighted');
-    setTimeout(function(){
-      $('#notification').removeClass('highlighted');}, 2000);
-
+	
+	flashNotification(); 
+    
 
 	$("#notification").text(data.player.first + " won this round! Next round starting soon...");
 	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
