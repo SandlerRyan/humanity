@@ -1,5 +1,6 @@
 <% layout('../mainLayout') -%>
 
+
 <script src="/socket.io/socket.io.js"></script>
 <script>
 // pass variables from back end to game.js using ejs
@@ -10,6 +11,13 @@ var user = <%- JSON.stringify(user) %>;
 <script src="/js/gamehandlers.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<div class="row" style="width:70%;margin:auto;">
+   <div class="alert alert-success" id="notification">
+     <a href="#" class="alert-link">Notification goes here...</a>
+   </div>
+</div>
 
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
@@ -24,7 +32,7 @@ var user = <%- JSON.stringify(user) %>;
 <div id="show-game">
    <!-- Game module for players goes here via Underscore templates-->
    <div id="top-cards" style="display: none;">
-      <div class="card-pane" style="background: #FFF;">
+      <div class="card-pane" style="">
          <div class="" style="text-align: center;">
 
             <span id="black-card-panel">
@@ -148,7 +156,7 @@ var user = <%- JSON.stringify(user) %>;
       </tbody>
    </table>
    -->
-   <hr>
+
    <h3 class="centered-mid-heading">Players</h3>
    <div class="container">
       <div class="row">
@@ -185,7 +193,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-bottom-card" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane" style="background: #FFF;">
+   <div class="card-pane" style="">
       <div class="row" id="bottom-cards-container">
 
          {[ _.each(white_cards, function(card) { ]}
@@ -204,7 +212,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-judge" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane" style="background: #FFF;">
+   <div class="card-pane" style="">
       <div class="row">
          <div id="submitted-cards">
             <h3 class="centered-mid-heading">
@@ -220,7 +228,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-player-sub" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane" style="background: #FFF;">
+   <div class="card-pane" style="">
 
       <div class="row">
          <div id="sub-cards">

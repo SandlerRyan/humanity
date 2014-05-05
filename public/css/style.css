@@ -1,17 +1,21 @@
 body {
     margin-top: 100px; /* offset for navbar */
     margin-bottom: 60px;
-    background: url(/img/bg.jpg);
-    /*background: black;*/
+    /*background: url(/img/bg.jpg);*/
+    background: white;
     /*background: url(http://files.customize.org/download/wallpapers/73938/79422/polished_wood-1920x1200.jpg);*/
+
+
+    font-family: Arial;
+
 }
 
 div.card-pane {
     overflow-x: auto;
     white-space: nowrap;
-    /*background: url(/img/bg.jpg);*/
-    background: white;
-    background-color: white;
+    background: url(/img/bg.jpg);
+    /*background: white;*/
+    /*background-color: white;*/
 }   
 
 div.card-pane [class*="span"] {
@@ -168,16 +172,15 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
-/*body {
-  min-height: 3000px;
-  padding-top: 70px;
-  font-family: 'Open Sans', sans-serif;
-}
-*/
+
 .thumbnail {
     position: relative;
     padding: 0px;
     margin-bottom: 20px;
+
+  -webkit-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  -moz-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  box-shadow: 1px 5px 5px rgba(0,0,0,.15);
 }
 
 .thumbnail img {
@@ -268,7 +271,8 @@ html {
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
   width: 90%;
-  background-color: white;
+  /*background-color: white;*/
+  background: url(/img/bg.jpg);
 }
 
 
