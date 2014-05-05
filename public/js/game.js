@@ -62,7 +62,10 @@ socket.on('creator', function() {
 
 // emitted to game creator if not enough people have joined to start the game
 socket.on('start rejected', function() {
-	alert('You must have at least three players to start a game');
+
+	flashNotification(); 
+	$("#notification").text('You must have at least three players to start a game');
+
 });
 
 // emitted to game creator upon successful game start
@@ -74,8 +77,6 @@ socket.on('start confirmed', function() {
 socket.on('start', function(data) {
 
 	
-	flashNotification(); 
-	$("#notification").text("Your Game is starting!");
 
 	$('#show-players').hide();
 	$('#start-button').hide();
@@ -95,6 +96,11 @@ socket.on('start', function(data) {
 	$('#score-panel').html('');
 	$('#score-panel').html( _.template(score_tmpl, {players: data.players}));
 	bindChatButton();
+
+	console.log("Game is starting!")
+	console.log($("#notification"));
+	flashNotification(); 
+	$("#notification").text("Your Game is starting!");
 
 });
 
@@ -146,6 +152,9 @@ socket.on('player assignment', function(data) {
 		// update the scoreboard to show submitted
 		markSubmitted(user.id);
 	}, time * 1000);
+
+	// flashNotification(); 
+	// $("#notification").text("");
 
 	bindPlayerPanel();
 
@@ -289,8 +298,6 @@ socket.on('winning card', function(data) {
 
 	
 	flashNotification(); 
-    
-
 	$("#notification").text(data.player.first + " won this round! Next round starting soon...");
 	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner');
 });
@@ -315,6 +322,9 @@ socket.on('judge left', function() {
 	setTimeout(function () {
 		console.log('Waiting to start turn');
 		socket.emit('begin turn', {'room': room});
+		
+		flashNotification(); 
+		$("#notification").text("");
 
 	}, 7000);
 });

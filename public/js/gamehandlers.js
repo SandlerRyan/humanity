@@ -18,7 +18,6 @@ function bindPlayerButton(player_timer) {
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
 
-	$("#notification").text("");
 	$('#confirmButton').unbind('click');
 	$('#confirmButton').removeAttr('disabled');
 	$('#confirmButton').text("Confirm Submission");

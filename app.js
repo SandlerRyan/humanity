@@ -232,7 +232,7 @@ game.on('connection', function (socket) {
 			this.model = model;
 
 			// verify that game has more than three people
-			if (model.related('players').length < 3) {
+			if (model.related('players').length < 1) {
 				socket.emit('start rejected')
 			} else {
 				// notify creator that game has started and set game as started
