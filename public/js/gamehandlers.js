@@ -14,7 +14,7 @@ function loadTopPanel(cards) {
 }
 
 function bindPlayerButton(player_timer) {
-	
+
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
 
@@ -184,8 +184,6 @@ function bindChatButton() {
 	});
 }
 
-
-// player.image_url
 
 // Function that creates a new chat message
 function createChatMessage(msg, player) {

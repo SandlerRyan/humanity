@@ -12,18 +12,12 @@ var user = <%- JSON.stringify(user) %>;
 <script src="/js/moment.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-
-<!-- <h2 id="status-header" class="centered-heading">Waiting for Players</h2> -->
-
 <div class="row" style="width:70%;margin:auto;">
-   <div class="alert alert-warning" id="notification-warning">
-     <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
-   </div>
+   <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
 </div>
 
 <div class="row" style="width:70%;margin:auto;">
-   <div class="alert notificationCenter" id="notification">
-     Harvard Against Humanity
+   <div class="alert notificationCenter" id="notification" style="display:none;">
    </div>
 </div>
 
@@ -56,78 +50,62 @@ var user = <%- JSON.stringify(user) %>;
             </div>
          </div>
       </div>
-
-   
-
-
-   <div>
+   </div>
 
 
-      <div id="cards-panel">
-         <!-- Show Player Specific cards here -->
-      </div>
-      <div id="judge-panel">
-         <!-- Show Judge Specific cards here and hide the cards-panel -->
-      </div>
-      <div id="submitted-panel">
-         <!-- Show Judge Specific cards here and hide the cards-panel -->
-      </div>
+   <div id="cards-panel">
+      <!-- Show Player Specific cards here -->
+   </div>
+   <div id="judge-panel">
+      <!-- Show Judge Specific cards here and hide the cards-panel -->
+   </div>
+   <div id="submitted-panel">
+      <!-- Show Judge Specific cards here and hide the cards-panel -->
+   </div>
 
-      <br><br><br><br>
+   <br><br><br><br>
 
-      <div class="row">
+   <div id="score-panel">
+      <!-- Show Score Panel -->
+   </div>
 
+   <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
 
-         <!-- <div id="score-panel"> -->
-            <!-- Show Score Panel -->
-         <!-- </div> -->
-         <div class="col-md-1">
-         </div>
-                        <div class="col-md-5">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading" style="background: #000;">
+                          <span class="glyphicon glyphicon-comment"></span> Chat
+                      </div>
+                      <div class="panel-body">
+                          <ul class="chat" id="chat-content">
 
-   <div class="container">
-       <div class="row">
-           <div class="col-md-5">
-               <div class="panel panel-primary">
-                   <div class="panel-heading" style="background: #000;">
-                       <span class="glyphicon glyphicon-comment"></span> Chat
-              
-                   </div>
-                   <div class="panel-body">
-                       <ul class="chat" id="chat-content">
+                          </ul>
+                      </div>
+                      <div class="panel-footer">
+                          <div class="input-group">
 
-                       </ul>
-                   </div>
-                   <div class="panel-footer">
-                       <div class="input-group">
-                           
-                           <input id="message" class="form-control input-sm" 
-                           placeholder="Type your message here...">
-                           <span class="input-group-btn">
-                              <a id="submit-chat" class="btn btn-primary btn-sm">Send</a>
-                           </span>
+                              <input id="message" class="form-control input-sm"
+                              placeholder="Type your message here...">
+                              <span class="input-group-btn">
+                                 <a id="submit-chat" class="btn btn-primary btn-sm">Send</a>
+                              </span>
 
-                       </div>
-                   </div>
+                          </div>
+                      </div>
+                  </div>
                </div>
-           </div>
-       </div>
-   </div>
-
-
-
-      </div>
-
-
-
-         <div id="score-panel">
-            <!-- Show Score Panel -->
+            </div>
          </div>
-
       </div>
 
-
    </div>
+
+
+</div>
 
 
 
@@ -280,7 +258,7 @@ var user = <%- JSON.stringify(user) %>;
 
 <script id="tmpl-game-scores" type="text/template">
 
-<!-- 
+<!--
    <h4>Scores</h4>
 
    <table class = "table centered-tbl">
@@ -332,7 +310,7 @@ var user = <%- JSON.stringify(user) %>;
                            </span>
                                <div class="chat-body clearfix">
                                    <div class="header">
-                                       <strong class="primary-font"> {{ player.first }} {{player.last}} </strong> 
+                                       <strong class="primary-font"> {{ player.first }} {{player.last}} </strong>
 
                                    </div>
 
@@ -345,7 +323,7 @@ var user = <%- JSON.stringify(user) %>;
 
                                </div>
                            </li>
-      
+
                            {[ },this); ]}
 
                        </ul>
