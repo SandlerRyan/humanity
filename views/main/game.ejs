@@ -13,7 +13,9 @@ var user = <%- JSON.stringify(user) %>;
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <div class="row" style="width:70%;margin:auto;">
-   <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
+   <div class="alert alert-warning">
+      <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
+   </div>
 </div>
 
 <div class="row" style="width:70%;margin:auto;">
@@ -32,7 +34,7 @@ var user = <%- JSON.stringify(user) %>;
 
 <div class="centered-mid-heading" id="t"></div>
 <!-- Once game starts -->
-<div id="show-game">
+<div id="show-game" style="display:none;">
    <!-- Game module for players goes here via Underscore templates-->
    <div id="top-cards" style="display: none;">
       <div class="card-pane" style="">
