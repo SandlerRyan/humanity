@@ -108,7 +108,7 @@ function bindJudgeButton() {
 				$('#judge-panel').hide();
 				$("#cards-panel").show();
 
-			}, 10000);
+			}, 7000);
 
 		} else {
 			alert("You must select a card first")
@@ -126,8 +126,10 @@ function bindJudgePanel() {
 		var cardPlayer = $(this).attr('data-player')
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
+
 		$('.chosenCard').attr('data-player', cardPlayer);
-		$(this).removeClass('white');
+		$(this).removeClass('white').addClass('selected');
+
 
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
@@ -179,25 +181,63 @@ function bindChatButton() {
 	});
 }
 
+
+// player.image_url
+
 // Function that creates a new chat message
-function createChatMessage(msg,player){
+function createChatMessage(msg, player) {
 
 	var who = '';
 
-	if(player===user) {
+	if (player === user) {
 		who = 'me';
 	}
 	else {
 		who = player.first;
 	}
 
-	var li = $(
-		'<li>'+ who + ': ' + msg +
-	 	'</li>');
+	var you_li = $(
+      '<li class="left clearfix"><span class="chat-img pull-left">' +
+           '<img src="' + player.image_url + '" alt="" class="img-chat" />' +
+       '</span>' +
+           '<div class="chat-body clearfix">' +
+               '<div class="header">' +
+                   '<strong class="primary-font">' + who + '</strong>' +
+                   // '<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span></small>' +
+               '</div>' +
+               '<p>' +
+                   msg +
+               '</p>' +
+           '</div>' +
+       '</li>'
+    );
+
+	var me_li = $(
+        '<li class="right clearfix"><span class="chat-img pull-right">' +
+            '<img src="' + player.image_url + '" alt="User Avatar" class="img-chat" />' +
+        '</span>' +
+            '<div class="chat-body clearfix">' +
+                '<div class="header">' +
+                    // '<small class=" text-muted"><span class="glyphicon glyphicon-time"></span></small>' +
+                    '<strong class="pull-right primary-font">' + who + '</strong>' +
+                '</div>' +
+                '<p>' +
+                    msg +
+                '</p>' +
+            '</div>' +
+        '</li>'
+    );
 
 
-	var chats = $(".chats");
-	chats.append(li);
+	var chats = $("#chat-content");
+
+	if (player===user) {
+		chats.append(me_li);
+	}
+
+	else {
+		chats.append(you_li);
+	}
 
 }
 

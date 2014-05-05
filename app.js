@@ -167,7 +167,7 @@ game.on('connection', function (socket) {
 				});
 
 				// if this is there are not enough players left, end the game
-				if (model.related('game').related('players').length <= 2) {
+				if (model.related('game').related('players').length <= 3) {
 					game.in(room_num).emit('end game', {
 						message: 'There are no longer enough players in game--game ending'});
 
@@ -180,14 +180,15 @@ game.on('connection', function (socket) {
 					// if the disconnected player was the judge, keep checking until all cards are
 					// submitted, then pick a random player to emit their card as the winner
 					if (gamestates[room_num]['judge'] ==  socket.id) {
-
 						var submit_check = setInterval(function () {
+							debugger;
 							all_sockets = game.clients(room_num);
 
 							if (gamestates[room_num]['submissions'] >= all_sockets.length) {
 								rand_winner = all_sockets[Math.floor(Math.random() * all_sockets.length)];
 								rand_winner.emit('judge left');
 								clearInterval(submit_check);
+								debugger;
 							}
 						}, 5000);
 					}

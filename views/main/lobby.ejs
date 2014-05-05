@@ -4,7 +4,7 @@
 
 <div id="error-messages" style="color:red; text-align:center;"><%= messages %></div>
 <h1 class="centered-heading">Game Lobby</h1>
-<hr>
+
 <div class="centered-heading">
    <input type="button" id="create" value="Create a Game" name="create-game" onclick="window.location.href = '/create';" class="btn btn-primary" style="margin:30px"></input>
 </div>
@@ -27,6 +27,7 @@
                <!-- <img src="http://www.geekosystem.com/wp-content/uploads/2012/12/cardsagainsthumanity_550.jpg" alt=""> -->
                  <div class="caption centered-mid-heading">
                    <h3>Game {{ game.id }}</h3>
+                   <hr>
                     <h4>Number of players: {{ game.players.length }}</h4>
                     <h4>Created by: {{ game.creator.first }}</h4>
                    <p>

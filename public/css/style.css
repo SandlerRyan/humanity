@@ -1,14 +1,21 @@
 body {
-    margin-top: 100px; /* offset for navbar */
-    margin-bottom: 60px;
-    background: url(/img/bg.jpg);
+    margin-top: 70px; /* offset for navbar */
+    margin-bottom: 30px;
+    /*background: url(/img/bg.jpg);*/
+    background: white;
     /*background: url(http://files.customize.org/download/wallpapers/73938/79422/polished_wood-1920x1200.jpg);*/
+
+
+    font-family: Arial;
+
 }
 
 div.card-pane {
     overflow-x: auto;
     white-space: nowrap;
     background: url(/img/bg.jpg);
+    /*background: white;*/
+    /*background-color: white;*/
 }   
 
 div.card-pane [class*="span"] {
@@ -25,6 +32,10 @@ div.card-pane [class*="span"] {
     margin: 5px;
     display: inline-block;
     float: none;
+
+  -webkit-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  -moz-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  box-shadow: 1px 5px 5px rgba(0,0,0,.15);
 }
 
 .card-pane .card:hover {
@@ -140,6 +151,15 @@ div.card-content {
     background: no-repeat;
 }
 
+.img-chat {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    background: no-repeat;
+}
+
 #confirmButton {
     margin-top: 20px;
 }
@@ -152,18 +172,135 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
-body {
-  min-height: 3000px;
-  padding-top: 70px;
-  font-family: 'Open Sans', sans-serif;
-}
 
 .thumbnail {
     position: relative;
     padding: 0px;
     margin-bottom: 20px;
+
+  -webkit-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  -moz-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  box-shadow: 1px 5px 5px rgba(0,0,0,.15);
 }
 
 .thumbnail img {
     width: 100%;
+}
+
+
+/* Chat */
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+.panel-heading {
+    background: #FFF;
+
+}
+
+
+
+/* body content wrapper */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding: 20px;
+  padding-bottom: 100px;
+  margin: 0 auto -60px;
+  background-color: #fff;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  width: 90%;
+  /*background-color: white;*/
+  background: url(/img/bg.jpg);
+}
+
+
+/* Timer */
+@font-face {
+    font-family: 'digi';
+    src: url('http://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+}
+
+#t {
+    font-family: 'digi';
+    font-size: 60px;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.notificationCenter {
+    padding: 13px;
+    margin-bottom: 18px;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    border-radius: 3px
+}
+.highlighted {
+    background-color: #77FD40;
 }
