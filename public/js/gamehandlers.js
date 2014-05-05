@@ -14,7 +14,7 @@ function loadTopPanel(cards) {
 }
 
 function bindPlayerButton(player_timer) {
-	
+
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
 
@@ -99,6 +99,9 @@ function bindJudgeButton() {
 				'black_card': {'id': black_card.attr('id')}
 			});
 
+			flashNotification();
+			$("#notification").text("Your decision has been sent! Next turn starting soon.");
+
 			// increment player's score on the score table
 			updateScore(winner_id);
 
@@ -137,6 +140,7 @@ function bindJudgePanel() {
 		$(".selected").switchClass("selected", "white");
 		$(this).addClass('selected')
 	});
+
 }
 
 
@@ -183,8 +187,6 @@ function bindChatButton() {
 	});
 }
 
-
-// player.image_url
 
 // Function that creates a new chat message
 function createChatMessage(msg, player) {

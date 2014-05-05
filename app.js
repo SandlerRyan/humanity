@@ -177,20 +177,11 @@ game.on('connection', function (socket) {
 				}
 
 				if (gamestates[room_num] != undefined) {
-					// if the disconnected player was the judge, keep checking until all cards are
-					// submitted, then pick a random player to emit their card as the winner
+					// if the disconnected player was the judge, notify players of error
+					// and start new turn
 					if (gamestates[room_num]['judge'] ==  socket.id) {
-						var submit_check = setInterval(function () {
-							debugger;
-							all_sockets = game.clients(room_num);
-
-							if (gamestates[room_num]['submissions'] >= all_sockets.length) {
-								rand_winner = all_sockets[Math.floor(Math.random() * all_sockets.length)];
-								rand_winner.emit('judge left');
-								clearInterval(submit_check);
-								debugger;
-							}
-						}, 5000);
+						game.in(room_num).emit('judge left');
+						startTurn({'room': room_num});
 					}
 
 					// if the last player with an unsubmitted card disconnects, then start judging phase
@@ -243,7 +234,7 @@ game.on('connection', function (socket) {
 				gamecards[data.room] = {};
 				gamestates[data.room] = {
 					'judge': null,
-					'turn': 1,
+					'turn': 0,
 					'submissions': 0
 				};
 
@@ -277,7 +268,9 @@ game.on('connection', function (socket) {
 	* 4. Notify the judge and send the black card
 	* 5. Pick one new card for each player and send them the black card + new white card
 	*/
-	socket.on('begin turn', function(data) {
+	function startTurn(data) {
+		// increment the turn counter
+		gamestates[data.room]['turn'] += 1;
 
 		// if we have reached the turn limit, end the game
 		if (gamestates[data.room]['turn'] > TURN_LIMIT) {
@@ -330,7 +323,8 @@ game.on('connection', function (socket) {
 			}
 			helpers.findJudgeSocket(data.room, judgeCallback);
 		}
-	});
+	}
+	socket.on('begin turn', startTurn);
 
 	/**
 	* When a player submits a card, relay this card to the other players and judge
@@ -370,10 +364,7 @@ game.on('connection', function (socket) {
 			white_card1_id: data.white_card.id,
 			white_card2_id: null,
 			winner_id: data.winner_id
-		}).save().then(function () {
-			// increment the turn counter
-			gamestates[data.room]['turn'] += 1;
-		}).catch(errorHandler);
+		}).save().catch(errorHandler);
 
 		// get all the information for the winning player from db
 		Player.find(data.winner_id).then(function (model) {

@@ -76,11 +76,14 @@ socket.on('start confirmed', function() {
 // emitted to all players
 socket.on('start', function(data) {
 
-	
+
+	flashNotification();
+	$("#notification").text("Your Game is starting!");
 
 	$('#show-players').hide();
 	$('#start-button').hide();
 	$('#notification-warning').hide();
+	$('#notification').show();
 
 	// load initial six cards for every player in the game
 	var tmpl = $('#tmpl-game-bottom-card').html();
@@ -113,6 +116,9 @@ socket.on('start', function(data) {
 socket.on('player assignment', function(data) {
 	console.log('player');
 	loadTopPanel(data);
+
+	// update the turn
+	$('#status-header').text('Turn ' + data.turn + ' of ' + data.max_turns);
 
 	// display the player's hand of cards
 	$('#judge-panel').hide();
@@ -147,7 +153,7 @@ socket.on('player assignment', function(data) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
-		
+
 
 		// update the scoreboard to show submitted
 		markSubmitted(user.id);
@@ -180,6 +186,9 @@ socket.on('judge assignment', function(data) {
 	console.log('judge');
 	loadTopPanel(data);
 
+	// update the turn
+	$('#status-header').text('Turn ' + data.turn + ' of ' + data.max_turns);
+
 	// Assign the judge specific panel and hide his cards
 	var tmpl = $('#tmpl-game-judge').html();
 	$("#judge-panel").html("");
@@ -202,7 +211,7 @@ socket.on('judge assignment', function(data) {
 socket.on('begin judging', function () {
 	flashNotification();
 	$("#notification").text("You may now start judging!");
-	
+
 	$('#confirmButton').text("Confirm submission")
 	$('#confirmButton').removeAttr('disabled');
 
@@ -296,37 +305,43 @@ socket.on('winning card', function(data) {
 	console.log("WINNING CARD IS ")
 	console.log(data)
 
-	
-	flashNotification(); 
+
+	flashNotification();
+
 	$("#notification").text(data.player.first + " won this round! Next round starting soon...");
 	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner');
+});
+
+// the game can end for many reasons--exact reason is given by message in data
+socket.on('end game', function (data) {
+	console.log('GAME ENDING!');
+
+	// hide gameplay elements
+	$('#cards-panel').hide();
+	$('#judge-panel').hide();
+	$('#top-cards').hide();
+	$('#submitted-panel').hide();
+
+	resetAllSubmitted();
+
+	alert(data.message);
+	$('#status-header').text('Postgame--redirecting to lobby in two minutes');
+	$("#notification").hide();
+	$("#t").hide();
+	// redirect to lobby after a certain amt of time
+	setTimeout(function () {
+		console.log('Waiting to start turn');
+		socket.emit('begin turn', {'room': room});
+		
+		window.location.replace('/lobby');
+	}, 120000);
 });
 
 // error handling for if the judge leaves the game--a random player is chosen
 // to be the winner, and that player emits their chosenCard
 socket.on('judge left', function() {
 	console.log('JUDGE LEFT!!!!!');
-
-	var card = $('.chosenCard').attr('id');
-	var content = $('.chosenCard').children()[0].innerHTML;
-	var black_card = $('.black');
-
-	socket.emit('judge submission', {
-		'room': room,
-		'winner_id': user.id,
-		'white_card': {'id': card, 'content': content},
-		'black_card': {'id': black_card.attr('id')}
-	});
-
-	// tell server to start next turn after a 5 second wait
-	setTimeout(function () {
-		console.log('Waiting to start turn');
-		socket.emit('begin turn', {'room': room});
-		
-		flashNotification(); 
-		$("#notification").text("");
-
-	}, 7000);
+	alert('The judge has disconnected--new turn will start');
 });
 
 //logic for chat
