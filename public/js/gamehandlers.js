@@ -13,7 +13,6 @@ function loadTopPanel(cards) {
 	$('.chosenCard').children()[0].innerHTML = '';
 }
 
-
 function bindPlayerButton(player_timer) {
 	// unbind previous handlers attached when user was a judge
 	// or when user submitted the last card
@@ -24,7 +23,7 @@ function bindPlayerButton(player_timer) {
 	$('#confirmButton').on('click', function() {
 		var card = $('.chosenCard').attr('id')
 
-		//change id of the submitted card 
+		//change id of the submitted card
 		$('.chosenCard').attr('id', 'submitted')
 
 		if (card != "") {
@@ -32,6 +31,7 @@ function bindPlayerButton(player_timer) {
 			$(this).attr('disabled', 'disabled');
 			var content = $('.chosenCard').children()[0].innerHTML;
 
+			// notify the server
 			socket.emit('card submission', {
 				'room': room,
 				'player': user,
@@ -44,8 +44,13 @@ function bindPlayerButton(player_timer) {
 			// remove the selected card from the player panel
 			$('.selected').remove();
 
+			// hide the current hand and start showing other players' submissions
 			$("#cards-panel").hide();
 			$("#submitted-panel").show();
+
+			// update the scoreboard to show submitted
+			markSubmitted(user.id);
+
 		} else {
 			alert("You must select a card first")
 		}
@@ -76,29 +81,34 @@ function bindJudgeButton() {
 	$('#confirmButton').text("Waiting for player submissions...");
 
 	$('#confirmButton').on('click', function() {
-		console.log("CONFIRM JUDGE BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
+
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
-			black_card = $('.black');
+			var winner_id = $('.chosenCard').attr('data-player');
+			var black_card = $('.black');
+			$('#confirmButton').attr('disabled', 'disabled');
+			console.log('disabled judge button');
+
 			// notify players of the choice through the server
 			socket.emit('judge submission', {
 				'room': room,
-				'player': user,
+				'winner_id': winner_id,
 				'white_card': {'id': card, 'content': content},
 				'black_card': {'id': black_card.attr('id')}
 			});
-			
+
+			// increment player's score on the score table
+			updateScore(winner_id);
+
 			// tell server to start next turn after a 5 second wait
 			setTimeout(function () {
 				console.log('Waiting to start turn');
 				socket.emit('begin turn', {'room': room});
 				$('#judge-panel').hide();
 				$("#cards-panel").show();
-				
-			}, 10000);
 
-			
+			}, 10000);
 
 		} else {
 			alert("You must select a card first")
@@ -113,9 +123,13 @@ function bindJudgePanel() {
 		var card = $(this);
 		var cardID =  $(this).attr('id')
 		var cardText = $(this).children().first().children()[0].innerHTML
+		var cardPlayer = $(this).attr('data-player')
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
-		$(this).removeClass('white').addClass("selected")
+
+		$('.chosenCard').attr('data-player', cardPlayer);
+		$(this).removeClass('white').addClass('selected');
+
 
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
@@ -123,6 +137,33 @@ function bindJudgePanel() {
 	});
 }
 
+
+ /**************************************************************
+* SCORE TABLE UPDATES
+**************************************************************/
+function updateScore(player_id) {
+	var score = parseInt($('#score-' + player_id).text()) + 1
+	$('#score-' + player_id).text(String(score))
+}
+
+function markSubmitted(player_id) {
+	$('#submitted-' + player_id).html(
+		"<img src='http://www.electronicsfleamarket.com/images/checkmark_tiny_icon.gif' height='10' width='10'>");
+}
+
+function resetAllSubmitted() {
+	$(".submitted-cell").html('');
+}
+
+function markJudge(player_id) {
+	console.log('JUDGE:' + player_id);
+	$('#submitted-' + player_id).html('<span>JUDGE</span>');
+}
+
+
+ /**************************************************************
+* CHAT
+**************************************************************/
 function bindChatButton() {
 
 	$("#submit-chat").on('click', function(){
@@ -138,4 +179,68 @@ function bindChatButton() {
 		$("#message").val("");
 
 	});
+}
+
+
+// player.image_url
+
+// Function that creates a new chat message
+function createChatMessage(msg, player) {
+
+	var who = '';
+
+	if (player === user) {
+		who = 'me';
+	}
+	else {
+		who = player.first;
+	}
+
+	var you_li = $(
+      '<li class="left clearfix"><span class="chat-img pull-left">' + 
+           '<img src="' + player.image_url + '" alt="" class="img-chat" />' +
+       '</span>' +
+           '<div class="chat-body clearfix">' +
+               '<div class="header">' +
+                   '<strong class="primary-font">' + who + '</strong>' +
+                   // '<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span></small>' +
+               '</div>' +
+               '<p>' +
+                   msg +
+               '</p>' +
+           '</div>' +
+       '</li>'
+    );
+
+	var me_li = $(
+        '<li class="right clearfix"><span class="chat-img pull-right">' +
+            '<img src="' + player.image_url + '" alt="User Avatar" class="img-chat" />' +
+        '</span>' +
+            '<div class="chat-body clearfix">' +
+                '<div class="header">' +
+                    // '<small class=" text-muted"><span class="glyphicon glyphicon-time"></span></small>' +
+                    '<strong class="pull-right primary-font">' + who + '</strong>' +
+                '</div>' +
+                '<p>' +
+                    msg +
+                '</p>' +
+            '</div>' +
+        '</li>'
+    );
+
+
+	var chats = $("#chat-content");
+
+	if (player===user) {
+		chats.append(me_li);
+	}
+
+	else {
+		chats.append(you_li);
+	}
+
+}
+
+function scrollToBottom(){
+	$("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
 }

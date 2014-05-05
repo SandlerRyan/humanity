@@ -1,5 +1,6 @@
 <% layout('../mainLayout') -%>
 
+
 <script src="/socket.io/socket.io.js"></script>
 <script>
 // pass variables from back end to game.js using ejs
@@ -10,6 +11,22 @@ var user = <%- JSON.stringify(user) %>;
 <script src="/js/gamehandlers.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<!-- <h2 id="status-header" class="centered-heading">Waiting for Players</h2> -->
+
+<div class="row" style="width:70%;margin:auto;">
+   <div class="alert alert-warning" id="notification-warning">
+     <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
+   </div>
+</div>
+
+<div class="row" style="width:70%;margin:auto;">
+   <div class="alert notificationCenter" id="notification">
+     <a href="#" class="alert-link">Notification goes here...</a>
+   </div>
+</div>
+
 
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
@@ -24,7 +41,7 @@ var user = <%- JSON.stringify(user) %>;
 <div id="show-game">
    <!-- Game module for players goes here via Underscore templates-->
    <div id="top-cards" style="display: none;">
-      <div class="card-pane">
+      <div class="card-pane" style="">
          <div class="" style="text-align: center;">
 
             <span id="black-card-panel">
@@ -39,55 +56,86 @@ var user = <%- JSON.stringify(user) %>;
             </div>
          </div>
       </div>
+
+   
+
+
    <div>
 
 
-   <div id="cards-panel">
-      <!-- Show Player Specific cards here -->
-   </div>
-   <div id="judge-panel">
-      <!-- Show Judge Specific cards here and hide the cards-panel -->
-   </div>
-   <div id="submitted-panel">
-      <!-- Show Judge Specific cards here and hide the cards-panel -->
+      <div id="cards-panel">
+         <!-- Show Player Specific cards here -->
+      </div>
+      <div id="judge-panel">
+         <!-- Show Judge Specific cards here and hide the cards-panel -->
+      </div>
+      <div id="submitted-panel">
+         <!-- Show Judge Specific cards here and hide the cards-panel -->
+      </div>
+
+      <br><br><br><br>
+
+      <div class="row">
+
+
+         <!-- <div id="score-panel"> -->
+            <!-- Show Score Panel -->
+         <!-- </div> -->
+         <div class="col-md-1">
+         </div>
+                        <div class="col-md-5">
+
+   <div class="container">
+       <div class="row">
+           <div class="col-md-5">
+               <div class="panel panel-primary">
+                   <div class="panel-heading" style="background: #000;">
+                       <span class="glyphicon glyphicon-comment"></span> Chat
+              
+                   </div>
+                   <div class="panel-body">
+                       <ul class="chat" id="chat-content">
+
+                       </ul>
+                   </div>
+                   <div class="panel-footer">
+                       <div class="input-group">
+                           
+                           <input id="message" class="form-control input-sm" 
+                           placeholder="Type your message here...">
+                           <span class="input-group-btn">
+                              <a id="submit-chat" class="btn btn-primary btn-sm">Send</a>
+                           </span>
+
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
    </div>
 
-   <div id="score-panel">
-   </div>
 
-   <section class="chat-panel">
 
-      <div class="nomessages">
+      </div>
 
-         <div class="info">
-            <h5>Send a message from the form below!</h5>
+
+
+         <div id="score-panel">
+            <!-- Show Score Panel -->
          </div>
 
       </div>
 
-      <div class="chatscreen">
 
-         <ul class="chats">
-            <!-- The chat messages will go here -->
-         </ul>
+   </div>
 
-      </div>
 
-   </section>
 
-   <footer>
-
-      <textarea id="message" placeholder="Write something.."></textarea>
-      <a id="submit-chat" class="btn btn-primary">submit</a>
-
-   </footer>
-</div>
 
 <br/>
 
 <!-- Template for waiting phase -->
 <script id="tmpl-players" type="text/template">
-   <h2 id="waiting-header" class="centered-heading">Waiting for Players</h2>
 
    <!--
    <table class = "table centered-tbl">
@@ -117,8 +165,8 @@ var user = <%- JSON.stringify(user) %>;
 
       </tbody>
    </table>
- -->
-   <hr>
+   -->
+
    <h3 class="centered-mid-heading">Players</h3>
    <div class="container">
       <div class="row">
@@ -155,7 +203,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-bottom-card" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane">
+   <div class="card-pane" style="">
       <div class="row" id="bottom-cards-container">
 
          {[ _.each(white_cards, function(card) { ]}
@@ -174,7 +222,7 @@ var user = <%- JSON.stringify(user) %>;
 <script id="tmpl-game-judge" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane">
+   <div class="card-pane" style="">
       <div class="row">
          <div id="submitted-cards">
             <h3 class="centered-mid-heading">
@@ -185,13 +233,12 @@ var user = <%- JSON.stringify(user) %>;
       </div>
    </div>
 
-
 </script>
 
 <script id="tmpl-game-player-sub" type="text/template">
 
    <!-- Bottom Card Pane -->
-   <div class="card-pane">
+   <div class="card-pane" style="">
 
       <div class="row">
          <div id="sub-cards">
@@ -203,13 +250,12 @@ var user = <%- JSON.stringify(user) %>;
       </div>
    </div>
 
-
 </script>
 
 <script id="tmpl-game-single-card" type="text/template">
 
    <!-- Single Card View -->
-   <div class="card white useCard" id="{{ card.id }}">
+   <div class="card white useCard" id="{{ card.id }}" data-player="{{ player.id }}">
         <div class="card-content">
             <p>
                {{ card.content }}
@@ -234,6 +280,7 @@ var user = <%- JSON.stringify(user) %>;
 
 <script id="tmpl-game-scores" type="text/template">
 
+<!-- 
    <h4>Scores</h4>
 
    <table class = "table centered-tbl">
@@ -241,19 +288,76 @@ var user = <%- JSON.stringify(user) %>;
          <tr>
             <th>Player Name</th>
             <th>Score</th>
+            <th>Card Submitted</th>
          </tr>
       </thead>
       <tbody>
          {[ _.each(players, function (player) { ]}
-            <tr id="{{ player.id }}">
+            <tr id="info-{{ player.id }}">
                <td>{{ player.first }} {{player.last}}</td>
-               <td>{{ player.score }} {{ player.score }}</td>
+               <td id="score-{{player.id}}">0</td>
+               <td class="submitted-cell" id="submitted-{{player.id}}"></td>
             </tr>
          {[ },this); ]}
 
       </tbody>
    </table>
+-->
+
+
+ <div class="col-md-5">
+
+
+   <div class="container">
+       <div class="row">
+           <div class="col-md-5">
+               <div class="panel panel-primary">
+                   <div class="panel-heading" style="background: #000;">
+                   <span class="glyphicon glyphicon-user"></span>
+                     Players
+
+                   </div>
+                   <div class="panel-body">
+                       <ul class="chat">
+
+                        {[ _.each(players, function (player) { ]}
+
+
+                        <li class="left clearfix" id="info-{{ player.id }}">
+
+                           <span class="chat-img pull-left">
+
+                              <img src={{ player.image_url }}  alt="User Avatar" class="img-chat" />
+
+                           </span>
+                               <div class="chat-body clearfix">
+                                   <div class="header">
+                                       <strong class="primary-font"> {{ player.first }} {{player.last}} </strong> 
+
+                                   </div>
+
+                                    <p style="display:inline">
+                                       Score: <div id="score-{{player.id}}" style="display:inline">0</div>
+                                    </p>
+                                    <p style="display:inline">
+                                       Card Submitted: <div class="submitted-cell" id="submitted-{{player.id}}" style="display:inline"></div>
+                                    </p>
+
+                               </div>
+                           </li>
+      
+                           {[ },this); ]}
+
+                       </ul>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+</div>
+
 
 </script>
-
-

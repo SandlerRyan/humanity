@@ -6,13 +6,14 @@ var BlackCard = require('../models/BlackCard');
 
 
 // HELPER FUNCTION
-function idInArray(id, arr) {
-	for(var i = 0; i < arr.length; i++) {
-		if (arr[i].id == id) {
-			return true;
+function playerInGame(id, players) {
+	ingame = false;
+	players.forEach(function (player) {
+		if (player.get('id') == id) {
+			ingame = true;
 		}
-	}
-	return false;
+	}, this);
+	return ingame;
 }
 
 // The main page of the app
@@ -41,7 +42,6 @@ exports.create = function(req,res) {
 		var url = '/game/' + model.id;
 		res.redirect(url);
 	}).catch(function(e) {
-		console.log(e.stack);
 		res.json(400, {error: e.message});
 	});
 },
@@ -58,22 +58,23 @@ exports.game = function(req, res) {
 		active: 1
 	 }).fetch({require: true, withRelated: 'players'})
 	.then(function (model) {
-
 		// verify that game has not started yet
 		if (model.get('started') == 1) {
-			// if user was previously in game, they can rejoin; otherwise no access
-			if (!idInArray(req.user.id, model.related('players'))) {
-				req.flash('filter', 'The requested game could not be found.');
-				res.redirect('/lobby');
-			}
+			req.flash('filter', 'The requested game has already started.');
+			res.redirect('/lobby');
 		}
-		else {
-			// check that there's not more than 8 players
-			if (model.related('players').length >= 8) {
-				req.flash('filter', 'The requested game has too many players.');
-				res.redirect('/lobby');
-			}
+		// check that there's not more than 8 players
+		if (model.related('players').length >= 8) {
+			req.flash('filter', 'The requested game has too many players.');
+			res.redirect('/lobby');
 		}
+		// check if the player has already joined the game
+		if (playerInGame(req.user.id, model.related('players'))) {
+			req.flash('filter', 'You are already in this game.');
+			res.redirect('/lobby');
+		}
+
+		// let the user in if all filter are passed
 		res.render('main/game', {room: req.params.room});
 	}).catch(function (e) {
 		req.flash('filter', 'The requested game could not be found.');

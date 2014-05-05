@@ -24,7 +24,8 @@ _.templateSettings = {
 var socket = io.connect('http://localhost/game', {
 	port: 3000,
 	transports: ["websocket"],
-	'sync disconnect on unload': true});
+	'sync disconnect on unload': true
+});
 
 // tell the server a new player has joined
 socket.on('connect', function() {
@@ -70,24 +71,26 @@ socket.on('start confirmed', function() {
 });
 
 // emitted to all players
-socket.on('start', function(cards) {
+socket.on('start', function(data) {
 
 	alert('GAME STARTING!!!');
 	$('#show-players').hide();
 	$('#start-button').hide();
+	$('#notification-warning').hide();
 
-	// handling for first term; this event is handled
-	// differently in subsequent turns
-	//LOAD INITIAL 6 CARDS TO EVERY PLAYER IN THE GAME
+	// load initial six cards for every player in the game
 	var tmpl = $('#tmpl-game-bottom-card').html();
 	$("#cards-panel").html("");
-
 	var compiledtmpl = _.template(tmpl, {
-		white_cards: cards.white_cards
+		white_cards: data.white_cards
 	});
 	$("#cards-panel").html(compiledtmpl);
 	$("#top-cards").show();
 
+	// load the table showing each player's score; bind chat jquery
+	var score_tmpl = $('#tmpl-game-scores').html();
+	$('#score-panel').html('');
+	$('#score-panel').html( _.template(score_tmpl, {players: data.players}));
 	bindChatButton();
 
 });
@@ -98,16 +101,19 @@ socket.on('start', function(cards) {
 *************************************************************/
 
 // Handler for player assignment on all turns but the first
-socket.on('player assignment', function(cards) {
+socket.on('player assignment', function(data) {
 	console.log('player');
-	loadTopPanel(cards);
+	loadTopPanel(data);
 
+	// display the player's hand of cards
 	$('#judge-panel').hide();
 	$("#cards-panel").show();
 
+	// append the newly received card
 	var tmpl = $('#tmpl-game-single-card').html();
 	var compiledtmpl = _.template(tmpl, {
-		card: cards.white_card
+		card: data.white_card,
+		player: user
 	});
 	$("#bottom-cards-container").append(compiledtmpl);
 
@@ -117,6 +123,9 @@ socket.on('player assignment', function(cards) {
 	var compiledtmpl = _.template(tmpl, {});
 	$("#submitted-panel").html(compiledtmpl);
 
+	// reset the player's submission status on the scoreboard and reveal the judge
+	resetAllSubmitted();
+	markJudge(data.judge);
 
 	// set a timer for the player
 	var time = 200;
@@ -129,20 +138,21 @@ socket.on('player assignment', function(cards) {
 			'player': user,
 			'card': {'id': null, 'content': null}
 		});
-
+		// update the scoreboard to show submitted
+		markSubmitted(user.id);
 	}, time * 1000);
 
 	bindPlayerPanel();
 
 	bindPlayerButton(player_timer);
 
-	// display a timer on the webpage
+	// display the timer on the webpage
 	(function countDown(){
 		if (time-->0) {
 			if( $('#confirmButton').attr('disabled')) {
-				$('#t').text(time + ' s');
+				$('#t').text('Time Left: ' + time + ' sec');
 			} else {
-				$('#t').text(time + ' s');
+				$('#t').text('Time Left: ' + time + ' sec');
 				setTimeout(countDown, 1000);
 			}
 		} else {
@@ -152,11 +162,11 @@ socket.on('player assignment', function(cards) {
 });
 
 // JUDGE specific sockets.
-socket.on('judge assignment', function(cards) {
+socket.on('judge assignment', function(data) {
 	console.log('judge');
-	loadTopPanel(cards);
+	loadTopPanel(data);
 
-	//Assign the judge specific panel and hide his cards
+	// Assign the judge specific panel and hide his cards
 	var tmpl = $('#tmpl-game-judge').html();
 	$("#judge-panel").html("");
 	var compiledtmpl = _.template(tmpl, {});
@@ -170,6 +180,9 @@ socket.on('judge assignment', function(cards) {
 	bindJudgePanel();
 	bindJudgeButton();
 
+	// reset the player's submission status on the scoreboard mark self as judge
+	resetAllSubmitted();
+	markJudge(data.judge);
 });
 
 socket.on('begin judging', function () {
@@ -188,32 +201,36 @@ socket.on('begin judging', function () {
 				setTimeout(countDown, 1000);
 			}
 		} else {
-			
+
 			//Choose a random submitted card and declare it as the winner when the time is up
 			$('#t').text('Time is up!');
-			
+
 			//If there are no submitted cards, end the game. Fuck it.
 			if($("#submitted-cards > .useCard").first().length == 0) {
-				socket.emit('tear down this game')
+				socket.emit('tear down this game');
 			} else {
 
 				var randomCard = $("#submitted-cards > .useCard").first().attr('id');
 				var content = $("#submitted-cards > .useCard").first().children()[0].innerHTML;
 				var black_card = $('.black');
-				
+				var winner_id = $("#submitted-cards > .useCard").attr('data-player');
+
 				//Send back random judge submission
 				socket.emit('judge submission', {
 					'room': room,
-					'player': user,
+					'winner_id': winner_id,
 					'white_card': {'id': randomCard, 'content': content},
 					'black_card': {'id': black_card.attr('id')}
 				});
+				// update the player's score
+				updateScore(winner_id)
+
 				// tell server to start next turn
 				socket.emit('begin turn', {'room': room});
 				$('#judge-panel').hide();
-				$("#cards-panel").show();	
+				$("#cards-panel").show();
 			}
-			
+
 		}
 	}) ();
 
@@ -221,78 +238,63 @@ socket.on('begin judging', function () {
 
 socket.on('submission to judge', function(data) {
 
-	console.log('SUBMISSION: ' + data);
+	// card id will be null if player didn't submit and time limit simply expired
 	if (data.card.id != null) {
+		//
 		var tmpl = $('#tmpl-game-single-card').html();
 		var compiledtmpl = _.template(tmpl, {
-			card: data.card
+			card: data.card,
+			player: data.player
 		});
 		$("#submitted-cards").append(compiledtmpl);
 
+		// bind jquery event handlers
 		bindJudgePanel();
+
+		// mark player as submitted
+		markSubmitted(data.player.id);
 	}
 
 });
 
 socket.on('submission to player', function(data) {
 
-	//add submitted card to submitted panel
+	// add submitted card to submitted panel
 	var tmpl = $('#tmpl-game-blank-card').html();
 	var compiledtmpl = _.template(tmpl, {
 		card: data.card
 	});
 	$("#sub-cards").append(compiledtmpl);
 
+	// bind jquery event handlers
 	bindPlayerPanel();
+
+	// mark player as submitted
+	markSubmitted(data.player.id);
 
 });
 
+socket.on('winning card', function(data) {
+	// update the player's score
+	updateScore(data.player.id);
 
-socket.on('winning card', function(card) {
-	
 	console.log("WINNING CARD IS ")
-	console.log(card)
+	console.log(data)
 
-	$("#" + card.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
+	//Highlight the notification bar for new message
+	$("#notification").addClass('highlighted');
+    setTimeout(function(){
+      $('#notification').removeClass('highlighted');}, 2000);
 
-	// alert("The card " + card.white_card.content + " submitted by " +
-	// 	card.player.first + " is the winnner!");
+
+	$("#notification").text(data.player.first + " won this round! Next round starting soon...");
+	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
 
 
 });
 
 //logic for chat
-
 socket.on('receive', function(data){
-
 	createChatMessage(data.msg, data.player);
-
 });
 
-
-// Function that creates a new chat message
-
-function createChatMessage(msg,player){
-
-	var who = '';
-
-	if(player===user) {
-		who = 'me';
-	}
-	else {
-		who = player.first;
-	}
-
-	var li = $(
-		'<li>'+ who + ': ' + msg +
-	 	'</li>');
-
-
-	var chats = $(".chats");
-	chats.append(li);
-
-}
-
-function scrollToBottom(){
-	$("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
-}
