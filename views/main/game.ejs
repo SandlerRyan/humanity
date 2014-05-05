@@ -39,49 +39,276 @@ var user = <%- JSON.stringify(user) %>;
             </div>
          </div>
       </div>
+   
+
+
    <div>
 
+      <div id="cards-panel">
+         <!-- Show Player Specific cards here -->
+      </div>
+      <div id="judge-panel">
+         <!-- Show Judge Specific cards here and hide the cards-panel -->
+      </div>
+      <div id="submitted-panel">
+         <!-- Show Judge Specific cards here and hide the cards-panel -->
+      </div>
 
-   <div id="cards-panel">
-      <!-- Show Player Specific cards here -->
-   </div>
-   <div id="judge-panel">
-      <!-- Show Judge Specific cards here and hide the cards-panel -->
-   </div>
-   <div id="submitted-panel">
-      <!-- Show Judge Specific cards here and hide the cards-panel -->
-   </div>
+      <div id="score-panel">
+      </div>
 
-   <div id="score-panel">
-   </div>
+      <section class="chat-panel">
 
-   <section class="chat-panel">
+         <div class="nomessages">
 
-      <div class="nomessages">
+            <div class="info">
+               <h5>Send a message from the form below!</h5>
+            </div>
 
-         <div class="info">
-            <h5>Send a message from the form below!</h5>
          </div>
 
-      </div>
+         <div class="chatscreen">
 
-      <div class="chatscreen">
+            <!-- <ul class="chats"> -->
+               <!-- The chat messages will go here -->
+            <!-- </ul> -->
 
-         <ul class="chats">
-            <!-- The chat messages will go here -->
-         </ul>
+         </div>
 
-      </div>
+      </section>
 
-   </section>
+      <footer>
 
-   <footer>
+         <!-- <textarea id="message" placeholder="Write something.."></textarea> -->
+         <!-- <a id="submit-chat" class="btn btn-primary">submit</a> -->
 
-      <textarea id="message" placeholder="Write something.."></textarea>
-      <a id="submit-chat" class="btn btn-primary">submit</a>
+      </footer>
 
-   </footer>
-</div>
+   </div>
+
+
+   <!-- Chat -->
+   <div class="container">
+       <div class="row">
+           <div class="col-md-5">
+               <div class="panel panel-primary">
+                   <div class="panel-heading">
+                       <span class="glyphicon glyphicon-comment"></span> Chat
+                       <div class="btn-group pull-right">
+                         <!--   <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                               <span class="glyphicon glyphicon-chevron-down"></span>
+                           </button> -->
+<!--                            <ul class="dropdown-menu slidedown">
+                               <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                               </span>Refresh</a></li>
+                               <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                               </span>Available</a></li>
+                               <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                               </span>Busy</a></li>
+                               <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                   Away</a></li>
+                               <li class="divider"></li>
+                               <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                   Sign Out</a></li>
+                           </ul> -->
+                       </div>
+                   </div>
+                   <div class="panel-body">
+                       <ul class="chat">
+                           
+
+<!--                            <li class="left clearfix"><span class="chat-img pull-left">
+                               <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                           </span>
+                               <div class="chat-body clearfix">
+                                   <div class="header">
+                                       <strong class="primary-font">Masud</strong> <small class="pull-right text-muted">
+                                           <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                   </div>
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                       dolor, quis ullamcorper ligula sodales.
+                                   </p>
+                               </div>
+                           </li> -->
+
+<!--                            <li class="right clearfix"><span class="chat-img pull-right">
+                               <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                           </span>
+                               <div class="chat-body clearfix">
+                                   <div class="header">
+                                       <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                       <strong class="pull-right primary-font">Nicola</strong>
+                                   </div>
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                       dolor, quis ullamcorper ligula sodales.
+                                   </p>
+                               </div>
+                           </li>
+ -->
+<!--                            <li class="left clearfix"><span class="chat-img pull-left">
+                               <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                           </span>
+                               <div class="chat-body clearfix">
+                                   <div class="header">
+                                       <strong class="primary-font">Masud</strong> <small class="pull-right text-muted">
+                                           <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                   </div>
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                       dolor, quis ullamcorper ligula sodales.
+                                   </p>
+                               </div>
+                           </li> -->
+
+   <!--                         <li class="right clearfix"><span class="chat-img pull-right">
+                               <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                           </span>
+                               <div class="chat-body clearfix">
+                                   <div class="header">
+                                       <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                       <strong class="pull-right primary-font">Nicola</strong>
+                                   </div>
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                       dolor, quis ullamcorper ligula sodales.
+                                   </p>
+                               </div>
+                           </li> -->
+
+                       </ul>
+                   </div>
+                   <div class="panel-footer">
+                       <div class="input-group">
+                           
+
+                           <!-- <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." /> -->
+                           <input id="message" class="form-control input-sm" 
+                           placeholder="Type your message here...">
+                           <span class="input-group-btn">
+                               <!-- <button class="btn btn-warning btn-sm" id="btn-chat">
+                                   Send</button> -->
+                                   <a id="submit-chat" class="btn btn-primary btn-sm">Send</a>
+                           </span>
+
+
+
+                       <!--     <textarea id="message" placeholder="Write something..">
+                           </textarea> -->
+                           <!-- <a id="submit-chat" class="btn btn-primary">submit</a> -->
+
+
+
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- End Chat -->
+
+
+<!--    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Masud</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Nicola</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Masud</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Nicola</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
 
 <br/>
 
