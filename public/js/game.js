@@ -272,8 +272,7 @@ socket.on('submission to player', function(data) {
 	});
 	$("#sub-cards").append(compiledtmpl);
 
-	// bind jquery event handlers
-	bindPlayerPanel();
+	// don't bind player panel handlers so that originally submitted card remains
 
 	// mark player as submitted
 	markSubmitted(data.player.id);
@@ -311,6 +310,30 @@ socket.on('end game', function (data) {
 	setTimeout(function () {
 		window.location.replace('/lobby');
 	}, 120000);
+});
+
+// error handling for if the judge leaves the game--a random player is chosen
+// to be the winner, and that player emits their chosenCard
+socket.on('judge left', function() {
+	console.log('JUDGE LEFT!!!!!');
+
+	var card = $('.chosenCard').attr('id');
+	var content = $('.chosenCard').children()[0].innerHTML;
+	var black_card = $('.black');
+
+	socket.emit('judge submission', {
+		'room': room,
+		'winner_id': user.id,
+		'white_card': {'id': card, 'content': content},
+		'black_card': {'id': black_card.attr('id')}
+	});
+
+	// tell server to start next turn after a 5 second wait
+	setTimeout(function () {
+		console.log('Waiting to start turn');
+		socket.emit('begin turn', {'room': room});
+
+	}, 10000);
 });
 
 

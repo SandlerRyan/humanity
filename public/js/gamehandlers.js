@@ -81,7 +81,7 @@ function bindJudgeButton() {
 	$('#confirmButton').text("Waiting for player submissions...");
 
 	$('#confirmButton').on('click', function() {
-		var card = $('.chosenCard').attr('id')
+		var card = $('.chosenCard').attr('id');
 
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
