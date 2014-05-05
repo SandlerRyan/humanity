@@ -84,17 +84,10 @@ var gamecards = {};
 * VALUES: {
 	judge: <judge socket id>,
 	turn: <int>,
-	submissions: <int>}
+	submissions: <int>
+	cards: (<whitecard object>, <player id>}
 */
 var gamestates = {};
-
-/**
-* Holds all information about each player's hand at a given time
-* KEYS: <socket room numbers>
-* VALUES:
-	{<player id>: [<whitecard objects>]}
-*/
-var gamehands = {};
 
 /**
 * Sets the maximum number of turns before the game ends
@@ -116,7 +109,6 @@ game.on('connection', function (socket) {
 		console.log('NEW USER JOINED!!!');
 		// join the given room number
 		this.join(data.room);
-		this.set('player_id', data.player.id);
 
 		// find the game and check if new player is the creator
 		Game.find(data.room, {require: true, withRelated: ['players']})
@@ -163,32 +155,62 @@ game.on('connection', function (socket) {
 	socket.on('disconnect', function () {
 		console.log('PLAYER DISCONNECTED');
 
-		new GamePlayer({socket_id: this.id}).fetch({withRelated:['game.players', 'player']})
+		new GamePlayer({socket_id: socket.id}).fetch({withRelated:['game.players', 'player']})
 		.bind({})
 		.then(function (model) {
-			// if game has already started, player is just marked disconnected
-			// and can rejoin within a certain time limit
+			var room_num = model.related('game').get('id');
+			// if game has already started, player is marked disconnected in db
 			if (model.related('game').get('started')) {
+
 				model.set({connected: 0}).save().then(function() {
-					socket.emit('player inactive');
+					socket.emit('player left', {player: model.related('player')});
 				});
 
 				// if this is there are not enough players left, end the game
-				if (model.related('game').related('players').models.length <= 3) {
-					game.in(model.related('game').get('id')).emit('game ended');
+				if (model.related('game').related('players').length <= 3) {
+					game.in(room_num).emit('end game', {
+						message: 'There are no longer enough players in game--game ending'});
+
 					Game.find(model.get('game_id')).then(function (game_model) {
 						game_model.set({active: 0}).save();
 					});
+				}
+
+				if (gamestates[room_num] != undefined) {
+					// if the disconnected player was the judge, keep checking until all cards are
+					// submitted, then pick a random player to emit their card as the winner
+					if (gamestates[room_num]['judge'] ==  socket.id) {
+						var submit_check = setInterval(function () {
+							debugger;
+							all_sockets = game.clients(room_num);
+
+							if (gamestates[room_num]['submissions'] >= all_sockets.length) {
+								rand_winner = all_sockets[Math.floor(Math.random() * all_sockets.length)];
+								rand_winner.emit('judge left');
+								clearInterval(submit_check);
+								debugger;
+							}
+						}, 5000);
+					}
+
+					// if the last player with an unsubmitted card disconnects, then start judging phase
+					if (gamestates[room_num]['submissions'] >= game.clients(room_num).length - 1) {
+						game.clients(room_num).forEach(function (client) {
+							if (client.id == gamestates[room_num]['judge']) {
+								client.emit('begin judging');
+							}
+						});
+					}
 				}
 			}
 			// if still in pre-game waiting phase, player is removed completely
 			// to make room for other players trying to join the game
 			else {
 				model.destroy();
-				socket.emit('player left');
+				socket.emit('player left', {player: model.related('player')});
 
 				// if this is the last active player, then delete the unstarted game
-				if (model.related('game').related('players').models.length == 1) {
+				if (model.related('game').related('players').length == 1) {
 					model.related('game').destroy();
 				}
 			}
@@ -210,7 +232,7 @@ game.on('connection', function (socket) {
 			this.model = model;
 
 			// verify that game has more than three people
-			if (model.related('players').length < 1) {
+			if (model.related('players').length < 3) {
 				socket.emit('start rejected')
 			} else {
 				// notify creator that game has started and set game as started
@@ -224,7 +246,6 @@ game.on('connection', function (socket) {
 					'turn': 1,
 					'submissions': 0
 				};
-				gamehands[data.room] = {};
 
 				return helpers.getAllCards()
 			}
@@ -238,11 +259,6 @@ game.on('connection', function (socket) {
 				for (i = 0; i < 6; i++) {
 					init_cards.push(gamecards[data.room]['white'].pop());
 				}
-
-				// initialize the player's hand
-				socket.get('player_id', function (err, player_id) {
-					gamehands[data.room][player_id] = init_cards;
-				});
 
 				// tell everyone the game is starting and send out a final player list
 				client.emit('start', {
@@ -345,7 +361,7 @@ game.on('connection', function (socket) {
 	/**
 	* fired when the judge chooses a card, thus ending the turn
 	*/
-	socket.on('judge submission', function(data) {
+	socket.on('judge submission', function (data) {
 		// save the turn data
 		new Turn({
 			game_id: data.room,
@@ -363,7 +379,11 @@ game.on('connection', function (socket) {
 		Player.find(data.winner_id).then(function (model) {
 			data['player'] = model.toJSON();
 			// winning card is submitted. Notify other players. Judge calls begin turn again
-			socket.broadcast.to(data.room).emit('winning card', data);
+			game.clients(data.room).forEach(function(client) {
+				if (client.id != gamestates[data.room]['judge']) {
+					client.emit('winning card', data);
+				}
+			}, this);
 		}).catch(errorHandler);
 	});
 

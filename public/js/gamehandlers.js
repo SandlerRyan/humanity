@@ -83,7 +83,7 @@ function bindJudgeButton() {
 	$('#confirmButton').text("Waiting for player submissions...");
 
 	$('#confirmButton').on('click', function() {
-		var card = $('.chosenCard').attr('id')
+		var card = $('.chosenCard').attr('id');
 
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
@@ -111,9 +111,7 @@ function bindJudgeButton() {
 				$('#judge-panel').hide();
 				$("#cards-panel").show();
 				$("#notification").text("");
-
-			}, 8000);
-			
+			}, 7000);
 
 		} else {
 			alert("You must select a card first")
@@ -202,7 +200,7 @@ function createChatMessage(msg, player) {
 	}
 
 	var you_li = $(
-      '<li class="left clearfix"><span class="chat-img pull-left">' + 
+      '<li class="left clearfix"><span class="chat-img pull-left">' +
            '<img src="' + player.image_url + '" alt="" class="img-chat" />' +
        '</span>' +
            '<div class="chat-body clearfix">' +

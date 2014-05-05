@@ -273,8 +273,7 @@ socket.on('submission to player', function(data) {
 	});
 	$("#sub-cards").append(compiledtmpl);
 
-	// bind jquery event handlers
-	bindPlayerPanel();
+	// don't bind player panel handlers so that originally submitted card remains
 
 	// mark player as submitted
 	markSubmitted(data.player.id);
@@ -293,13 +292,36 @@ socket.on('winning card', function(data) {
     
 
 	$("#notification").text(data.player.first + " won this round! Next round starting soon...");
-	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner')
+	$("#" + data.white_card.id).removeClass('selected').removeClass('white').addClass('winner');
+});
 
+// error handling for if the judge leaves the game--a random player is chosen
+// to be the winner, and that player emits their chosenCard
+socket.on('judge left', function() {
+	console.log('JUDGE LEFT!!!!!');
 
+	var card = $('.chosenCard').attr('id');
+	var content = $('.chosenCard').children()[0].innerHTML;
+	var black_card = $('.black');
+
+	socket.emit('judge submission', {
+		'room': room,
+		'winner_id': user.id,
+		'white_card': {'id': card, 'content': content},
+		'black_card': {'id': black_card.attr('id')}
+	});
+
+	// tell server to start next turn after a 5 second wait
+	setTimeout(function () {
+		console.log('Waiting to start turn');
+		socket.emit('begin turn', {'room': room});
+
+	}, 7000);
 });
 
 //logic for chat
 socket.on('receive', function(data){
 	createChatMessage(data.msg, data.player);
 });
+
 
