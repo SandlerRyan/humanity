@@ -81,14 +81,15 @@ function bindJudgeButton() {
 	$('#confirmButton').text("Waiting for player submissions...");
 
 	$('#confirmButton').on('click', function() {
-		console.log("CONFIRM JUDGE BUTTON CLICKED")
 		var card = $('.chosenCard').attr('id')
+
 		if (card != "") {
 			var content = $('.chosenCard').children()[0].innerHTML;
 			var winner_id = $('.chosenCard').attr('data-player');
 			var black_card = $('.black');
+			$('#confirmButton').attr('disabled', 'disabled');
+			console.log('disabled judge button');
 
-			console.log('WINNER ID: ' + winner_id);
 			// notify players of the choice through the server
 			socket.emit('judge submission', {
 				'room': room,
@@ -97,8 +98,7 @@ function bindJudgeButton() {
 				'black_card': {'id': black_card.attr('id')}
 			});
 
-			// increment player's score
-			/**** BUG HERE: JUDGE ALWAYS WINS!!!! ****/
+			// increment player's score on the score table
 			updateScore(winner_id);
 
 			// tell server to start next turn after a 5 second wait
@@ -127,7 +127,7 @@ function bindJudgePanel() {
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
 		$('.chosenCard').attr('data-player', cardPlayer);
-		$(this).removeClass('white')
+		$(this).removeClass('white');
 
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");

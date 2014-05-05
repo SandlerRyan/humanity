@@ -14,7 +14,6 @@ var main = require('./routes/main');
 var setup = require('./routes/setup');
 var helpers = require('./helpers');
 
-
 // Models
 var Player = require('./models/Player');
 var Game = require('./models/Game');
@@ -45,7 +44,6 @@ function errorHandler(e) {
 	res.json(400, {error: e.message});
 }
 
-
 var lobby = io.of('/lobby');
 
 lobby.on('connection', function(socket) {
@@ -66,6 +64,7 @@ lobby.on('connection', function(socket) {
 			socket.emit('games', games);
 		}).catch(errorHandler);
 	}, 5000);
+
 });
 /*********************************************
 * GAMEPLAY VARIABLES
@@ -76,7 +75,7 @@ lobby.on('connection', function(socket) {
 * KEYS: <socket room numbers>
 * VALUES: {white: [<whitecard objects>], black: [<blackcard objects>]}
 */
-var gamecards = {}
+var gamecards = {};
 
 /**
 * Holds all information about the state of the current
@@ -87,7 +86,7 @@ var gamecards = {}
 	turn: <int>,
 	submissions: <int>}
 */
-var gamestates = {}
+var gamestates = {};
 
 /**
 * Holds all information about each player's hand at a given time
@@ -95,8 +94,12 @@ var gamestates = {}
 * VALUES:
 	{<player id>: [<whitecard objects>]}
 */
-var gamehands = {}
+var gamehands = {};
 
+/**
+* Sets the maximum number of turns before the game ends
+*/
+var TURN_LIMIT = 2;
 
 /*********************************************
 * GAME SOCKET LOGIC
@@ -152,13 +155,6 @@ game.on('connection', function (socket) {
 			var allplayers = this.game_model.related('players').push(new_player);
 			game.in(data.room).emit('new player', allplayers.toJSON());
 		}).catch(errorHandler);
-	});
-
-	/* TODO: emit a 'reconnected' event, when client receives this event, they
-	get their old hand and are shown a waiting screen until the next 'begin turn' event
-	*/
-	socket.on('reconnect', function () {
-
 	});
 
 	/**
@@ -257,52 +253,72 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
-	//sockets to handle chat between players in the game
-	// Handle the sending of messages
-	socket.on('msg', function(data){
+	/**
+	* Start the turn (generic for all turns including the first)
+	* 1. Figure out if game should continue or end
+	* 2. Figure out which player should be the judge
+	* 3. Pick a black card for everyone
+	* 4. Notify the judge and send the black card
+	* 5. Pick one new card for each player and send them the black card + new white card
+	*/
+	socket.on('begin turn', function(data) {
 
-		// When the server receives a message, it sends it to the other person in the room.
-		socket.broadcast.to(socket.room).emit('receive', {msg: data.msg, player: data.player});
+		// if we have reached the turn limit, end the game
+		if (gamestates[data.room]['turn'] > TURN_LIMIT) {
+			game.in(data.room).emit('end game', {
+				message: 'Turn limit reached--game ending!'});
+			Game.find(data.room).then(function (model) {
+				model.set({active: 0}).save()
+			}).catch(errorHandler);
+		}
+		// if there are not enough cards left, end the game
+		else if (gamecards[data.room].length < game.clients(data.room).length) {
+			game.in(data.room).emit('end game', {
+				message: 'The deck is out of cards--game ending!'});
+			Game.find(data.room).then(function (model) {
+				model.set({active: 0}).save();
+			}).catch(errorHandler);
+		}
+		else
+		{
+			// if the game continues, figure out who the judge should be
+			judgeCallback = function (judge, players) {
+				// select a blackcard
+				black_card = gamecards[data.room]['black'].pop()
+
+				// save judge socket id information in the global variable
+				gamestates[data.room]['judge'] = judge.get('socket_id');
+
+				// reset submission number to zero
+				gamestates[data.room]['submissions'] = 0;
+
+				// notify the new judge of his assignment, and notify all other players of their assignment
+				game.clients(data.room).forEach(function (client) {
+					if (client.id == judge.get('socket_id')) {
+						client.emit('judge assignment', {
+							'turn': gamestates[data.room]['turn'],
+							'max_turns': TURN_LIMIT,
+							'judge': judge.get('player_id'),
+							'black_card': black_card
+						});
+					} else {
+						client.emit('player assignment', {
+							'turn': gamestates[data.room]['turn'],
+							'max_turns': TURN_LIMIT,
+							'judge': judge.get('player_id'),
+							'black_card': black_card,
+							'white_card': gamecards[data.room]['white'].pop()
+						});
+					}
+				});
+			}
+			helpers.findJudgeSocket(data.room, judgeCallback);
+		}
 	});
 
 	/**
-	* Start the turn (generic for all turns including the first)
-	* 1. Figure out which player should be the judge
-	* 2. Pick a black card for everyone
-	* 3. Notify the judge and send the black card
-	* 4. Pick one new card for each player and send them the black card + new white card
+	* When a player submits a card, relay this card to the other players and judge
 	*/
-	socket.on('begin turn', function(data) {
-		helpers.findJudgeSocket(data.room, function (judge, players) {
-
-			// select a blackcard
-			black_card = gamecards[data.room]['black'].pop()
-
-			// save judge socket id information in the global variable
-			gamestates[data.room]['judge'] = judge.get('socket_id');
-
-			// reset submission number to zero
-			gamestates[data.room]['submissions'] = 0;
-
-			// notify the new judge of his assignment, and notify all other players of their assignment
-			game.clients(data.room).forEach(function (client) {
-				if (client.id == judge.get('socket_id')) {
-					client.emit('judge assignment', {
-						'judge': judge.get('player_id'),
-						'black_card': black_card
-					});
-				} else {
-					client.emit('player assignment', {
-						'judge': judge.get('player_id'),
-						'black_card': black_card,
-						'white_card': gamecards[data.room]['white'].pop()
-					});
-				}
-			});
-		});
-	});
-
-	// When a player submits a card, relay this card to the other players and judge
 	socket.on('card submission', function(data) {
 		console.log("PLAYER SUBMITTED A CARD!");
 
@@ -326,9 +342,10 @@ game.on('connection', function (socket) {
 		});
 	});
 
-	// fired when the judge chooses a card, thus ending the turn
+	/**
+	* fired when the judge chooses a card, thus ending the turn
+	*/
 	socket.on('judge submission', function(data) {
-		debugger;
 		// save the turn data
 		new Turn({
 			game_id: data.room,
@@ -350,9 +367,14 @@ game.on('connection', function (socket) {
 		}).catch(errorHandler);
 	});
 
-	socket.on('tear down this game', function() {
-		console.log("END THIS DAMN GAME BECAUSE NO ONE IS PLAYING")
-	})
+	/**
+	* handle the sending of chat messages
+	*/
+	socket.on('msg', function(data){
+
+		// When the server receives a message, it sends it to the other person in the room.
+		socket.broadcast.to(socket.room).emit('receive', {msg: data.msg, player: data.player});
+	});
 });
 
 /*********************************************

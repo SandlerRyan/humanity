@@ -13,11 +13,20 @@ var user = <%- JSON.stringify(user) %>;
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 
+<!-- <h2 id="status-header" class="centered-heading">Waiting for Players</h2> -->
+
+<div class="row" style="width:70%;margin:auto;">
+   <div class="alert alert-warning" id="notification">
+     <h2 id="status-header" class="centered-heading">Waiting for Players</h2>
+   </div>
+</div>
+
 <div class="row" style="width:70%;margin:auto;">
    <div class="alert alert-success" id="notification">
      <a href="#" class="alert-link">Notification goes here...</a>
    </div>
 </div>
+
 
 <!-- for the pre-game waiting phase -->
 <div id="start" class="centered-mid-heading">
@@ -47,10 +56,12 @@ var user = <%- JSON.stringify(user) %>;
             </div>
          </div>
       </div>
+
    
 
 
    <div>
+
 
       <div id="cards-panel">
          <!-- Show Player Specific cards here -->
@@ -125,7 +136,6 @@ var user = <%- JSON.stringify(user) %>;
 
 <!-- Template for waiting phase -->
 <script id="tmpl-players" type="text/template">
-   <h2 id="waiting-header" class="centered-heading">Waiting for Players</h2>
 
    <!--
    <table class = "table centered-tbl">
