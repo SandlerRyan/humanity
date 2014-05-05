@@ -227,7 +227,7 @@ function createChatMessage(msg, player) {
     );
 
 
-	var chats = $(".chat");
+	var chats = $("#chat-content");
 
 	if (player===user) {
 		chats.append(me_li);

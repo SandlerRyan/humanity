@@ -149,9 +149,9 @@ socket.on('player assignment', function(data) {
 	(function countDown(){
 		if (time-->0) {
 			if( $('#confirmButton').attr('disabled')) {
-				$('#t').text(time + ' s');
+				$('#t').text('Time Left: ' + time + ' sec');
 			} else {
-				$('#t').text(time + ' s');
+				$('#t').text('Time Left: ' + time + ' sec');
 				setTimeout(countDown, 1000);
 			}
 		} else {

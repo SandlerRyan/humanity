@@ -271,3 +271,20 @@ html {
   background-color: white;
 }
 
+
+/* Timer */
+@font-face {
+    font-family: 'digi';
+    src: url('http://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+}
+
+#t {
+    font-family: 'digi';
+    font-size: 60px;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
