@@ -78,8 +78,8 @@ socket.on('start', function(data) {
 
 	$('#show-players').hide();
 	$('#start-button').hide();
-	$('#notification-warning').hide();
 	$('#notification').show();
+	$('#show-game').show();
 
 	// load initial six cards for every player in the game
 	var tmpl = $('#tmpl-game-bottom-card').html();
