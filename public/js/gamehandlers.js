@@ -115,7 +115,7 @@ function bindJudgePanel() {
 		var cardText = $(this).children().first().children()[0].innerHTML
 		$('.chosenCard').attr('id', cardID);
 		$('.chosenCard').children()[0].innerHTML = cardText;
-		$(this).removeClass('white')
+		$(this).removeClass('white').addClass("selected")
 
 		//remove all selected tags.
 		$(".selected").switchClass("selected", "white");
