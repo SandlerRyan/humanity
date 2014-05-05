@@ -304,3 +304,17 @@ html {
 .highlighted {
     background-color: #77FD40;
 }
+
+.page-header {
+  background-color: #696969;
+  color: white;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+}
+
+.t-header {
+  background-color: #696969;
+  color: white;
+  padding: 5px 5px 5px;
+  margin: -10px -10px 5px;
+}
