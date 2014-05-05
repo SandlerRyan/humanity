@@ -2,13 +2,16 @@ body {
     margin-top: 100px; /* offset for navbar */
     margin-bottom: 60px;
     background: url(/img/bg.jpg);
+    /*background: black;*/
     /*background: url(http://files.customize.org/download/wallpapers/73938/79422/polished_wood-1920x1200.jpg);*/
 }
 
 div.card-pane {
     overflow-x: auto;
     white-space: nowrap;
-    background: url(/img/bg.jpg);
+    /*background: url(/img/bg.jpg);*/
+    background: white;
+    background-color: white;
 }   
 
 div.card-pane [class*="span"] {
@@ -25,6 +28,10 @@ div.card-pane [class*="span"] {
     margin: 5px;
     display: inline-block;
     float: none;
+
+  -webkit-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  -moz-box-shadow: 1px 5px 5px rgba(0,0,0,.15);
+  box-shadow: 1px 5px 5px rgba(0,0,0,.15);
 }
 
 .card-pane .card:hover {
@@ -161,12 +168,12 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
-body {
+/*body {
   min-height: 3000px;
   padding-top: 70px;
   font-family: 'Open Sans', sans-serif;
 }
-
+*/
 .thumbnail {
     position: relative;
     padding: 0px;
@@ -237,3 +244,30 @@ body {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
+
+.panel-heading {
+    background: #FFF;
+
+}
+
+
+
+/* body content wrapper */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding: 20px;
+  padding-bottom: 100px;
+  margin: 0 auto -60px;
+  background-color: #fff;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  width: 90%;
+  background-color: white;
+}
+
